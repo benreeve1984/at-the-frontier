@@ -85,7 +85,7 @@
       <ul class="plain small">
         <li>From the text already stored in the PDF</li>
         <li>From a model that recognises characters in an image</li>
-        <li>From a model that looks at the page and writes out what it sees</li>
+        <li>From a model that reads the page image and generates the text</li>
       </ul>
     </div>
     <div class="card q3 rise" style="--i:1">
@@ -147,8 +147,8 @@
     <div class="card col rise" style="--i:0"><div class="bar" style="background:var(--ink-3)"></div><span class="sees">Reads the file</span><h3>PDF text libraries</h3><p>Read the text the PDF already contains, then rebuild lines, columns and tables using rules about position.</p><div class="eg">pdfplumber · PyMuPDF<br>pdfminer · Camelot<br><b>≈ free</b></div></div>
     <div class="card col rise" style="--i:1"><div class="bar" style="background:var(--orange)"></div><span class="sees">Reads pixels</span><h3>Classic OCR</h3><p>Find lines and words in an image, then recognise the characters one line at a time.</p><div class="eg">Tesseract · ABBYY<br>PaddleOCR (PP-OCR)<br><b>≈ free to cheap</b></div></div>
     <div class="card col rise" style="--i:2"><div class="bar" style="background:var(--teal)"></div><span class="sees">Reads pixels + file</span><h3>Cloud document services</h3><p>OCR plus trained models for layout, tables and form fields, sold per page by the big clouds.</p><div class="eg">Azure Document Intelligence<br>AWS Textract · Google Document AI<br><b>$1.50–$50 / 1k pages</b></div></div>
-    <div class="card col rise" style="--i:3"><div class="bar" style="background:var(--blue)"></div><span class="sees">Reads pixels + file</span><h3>Specialist document models</h3><p>Small models trained only on documents. Some are pipelines of several models, some are one model that writes the page.</p><div class="eg">Datalab (Marker, Chandra) · Docling<br>MinerU · PaddleOCR-VL · olmOCR · Mistral OCR<br><b>$0.10–$15 / 1k pages</b></div></div>
-    <div class="card col rise" style="--i:4"><div class="bar" style="background:var(--purple)"></div><span class="sees">Reads pixels</span><h3>General vision language models</h3><p>Large general models that look at a page image and write out text or JSON, following instructions.</p><div class="eg">Gemini · GPT · Claude · Qwen<br><br><b>$0.50–$80 / 1k pages</b></div></div>
+    <div class="card col rise" style="--i:3"><div class="bar" style="background:var(--blue)"></div><span class="sees">Reads pixels + file</span><h3>Specialist document models</h3><p>Small models trained only on documents. Some are pipelines of several models; others are a single model that converts the whole page image to text in one step.</p><div class="eg">Datalab (Marker, Chandra) · Docling<br>MinerU · PaddleOCR-VL · olmOCR · Mistral OCR<br><b>$0.10–$15 / 1k pages</b></div></div>
+    <div class="card col rise" style="--i:4"><div class="bar" style="background:var(--purple)"></div><span class="sees">Reads pixels</span><h3>General vision language models</h3><p>Large general-purpose models that take a page image and return text or JSON, following instructions.</p><div class="eg">Gemini · GPT · Claude · Qwen<br><br><b>$0.50–$80 / 1k pages</b></div></div>
   </div>
   <div class="spectrum"><span>Exact and cheap, but brittle</span><div class="arrow"></div><span>Flexible, but can produce text that is not there</span></div>
   <aside class="notes"><p>We'll go through each family in turn. Costs are list prices checked on 22 Oct 2026. Most development in the last 18 months has been in the specialist family.</p></aside>
@@ -285,8 +285,8 @@
       <div class="eg">MinerU 2.5 · PaddleOCR-VL · Surya 2 · Marker 2</div>
     </div>
     <div class="card pat rise" style="--i:2">
-      <span class="label">Design C</span><h3>One model writes the whole page</h3>
-      <p>A small vision language model (1–9 billion parameters) takes the page image and writes markdown or HTML, often with boxes.</p>
+      <span class="label">Design C</span><h3>A single model converts the whole page</h3>
+      <p>A small vision language model (1–9 billion parameters) takes the page image and outputs the full page as markdown or HTML, often with block positions.</p>
       <figure class="pimg"><img class="shot" src="../assets/doc-extraction/vendor/chandra2-layout-blocks.png" alt="Chandra 2 blocks"></figure>
       <div class="eg">Chandra · olmOCR · dots.ocr · DeepSeek-OCR · Mistral OCR</div>
     </div>
@@ -356,7 +356,7 @@
       <div class="flow">
         <div class="box" data-step="1"><b>1. Cut into patches</b>The page image is split into small squares, 28–32 pixels across.</div><div class="arr" data-step="2">→</div>
         <div class="box" data-step="2"><b>2. Patches become tokens</b>A vision encoder turns patches into "image tokens".</div><div class="arr" data-step="3">→</div>
-        <div class="box" data-step="3"><b>3. The model writes</b>The language model writes the text, one token at a time.</div>
+        <div class="box" data-step="3"><b>3. The model generates text</b>The language model produces the output text one token at a time.</div>
       </div>
       <div class="tokens" data-step="2"></div>
       <div class="typing" data-step="3"></div>
