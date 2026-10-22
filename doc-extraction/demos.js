@@ -285,12 +285,12 @@ const fmt$ = v => v == null ? '–' : v === 0 ? '$0' : v < 0.1 ? '<$0.10' : v < 
         r.start = by({ any: 'A vendor extraction pipeline: LlamaExtract, Reducto Deep Extract or Datalab', aws: 'Reducto Deep Extract or LlamaExtract through AWS Marketplace', azure: 'Claude Sonnet 5.5 in Foundry, inside a split, extract and check pipeline', gcp: 'Gemini 3.8 Flash inside a split, extract and check pipeline', local: 'A self-hosted model (Qwen3.8 27B) inside a split, extract and check pipeline' });
         r.why = 'Single model calls score 5–38 on long documents. Pipelines that split and check score above 90.';
         r.test.push(W === 'local' ? 'A second open model on the same pipeline' : 'A coding agent (Claude Code or Codex) on a sample, for unusual layouts');
-        r.cost = '$30–75 per 1,000 pages for vendor pipelines';
+        r.cost = by({ any: '$30–65 per 1,000 pages (LlamaExtract Agentic about $31, Reducto Deep Extract about $64)', aws: '$30–65 per 1,000 pages through AWS Marketplace', azure: 'About $17 per 1,000 pages per extraction pass with Claude Sonnet 5.5, plus any checking passes', gcp: 'About $4–7 per 1,000 pages per extraction pass with Gemini 3.8 Flash, plus any checking passes', local: 'Under $2 per 1,000 pages in GPU time, plus engineering effort' });
       } else {
         r.start = by({ any: 'Gemini 3.8 Flash with low thinking and a JSON schema', aws: 'Claude Haiku 5.5 or Sonnet 5.5 on Bedrock with a JSON schema', azure: 'GPT-6 Luna or Claude Sonnet 5.5 in Foundry with a JSON schema', gcp: 'Gemini 3.8 Flash with low thinking and a JSON schema', local: 'A self-hosted model (Qwen3.8 27B) with a JSON schema' });
         r.why = 'Most established systems score 93–97 on short documents.';
         if (W !== 'local') r.test.push('Reducto Extract, LlamaExtract or Datalab extract');
-        r.cost = '$1–10 per 1,000 pages';
+        r.cost = by({ any: 'About $4–7 per 1,000 pages', aws: 'About $1–2 per 1,000 pages with Haiku 5.5; $17–27 with Sonnet 5.5', azure: 'About $1 per 1,000 pages with GPT-6 Luna; $17–27 with Claude Sonnet 5.5', gcp: 'About $4–7 per 1,000 pages', local: 'Under $2 per 1,000 pages in GPU time' });
       }
       r.watch.push('Valid JSON may still contain wrong values. Add checks on totals, dates and required fields.');
     } else if (a.docs === 'digital' && a.hard === 'plain') {
@@ -303,13 +303,13 @@ const fmt$ = v => v == null ? '–' : v === 0 ? '$0' : v < 0.1 ? '<$0.10' : v < 
       r.start = by({ any: 'Datalab accurate ($10)', aws: 'Claude Sonnet 5.5 on Bedrock', azure: 'Claude Sonnet 5.5 in Foundry', gcp: 'Gemini 3.8 Flash', local: 'Chandra 2 (licence needed) or dots.mocr' });
       r.why = 'Difficult pages separate systems by 10–30 points. These options are at the top of the hard-pages frontier.';
       r.test.push(by({ any: 'Gemini 3.8 Flash or Claude Sonnet 5.5', aws: 'Reducto via AWS Marketplace', azure: 'Mistral OCR 4 in Foundry', gcp: 'Claude Sonnet 5.5 on Vertex', local: 'MinerU2.5-Pro' }));
-      r.cost = W === 'local' ? 'Under $2 per 1,000 pages in GPU time' : '$10–35 per 1,000 pages';
+      r.cost = by({ any: 'About $10 per 1,000 pages', aws: 'About $17–31 per 1,000 pages, higher with thinking enabled', azure: 'About $17–31 per 1,000 pages, higher with thinking enabled', gcp: 'About $4 per 1,000 pages with thinking off, up to $35 with high thinking', local: 'Under $2 per 1,000 pages in GPU time' });
       r.watch.push('Request word-level confidence scores and send low-confidence results for human review.');
     } else {
       r.start = by({ any: a.volume === 'high' ? 'Datalab balanced or Mistral OCR 4 ($4)' : 'Datalab balanced ($4) or Claude Haiku 5.5', aws: 'Claude Haiku 5.5 on Bedrock', azure: 'Mistral OCR 4 in Foundry ($4)', gcp: 'Gemini 3.8 Flash with low thinking', local: 'MinerU2.5-Pro or dots.mocr' });
       r.why = 'Low-cost options on or near the frontier for typical pages and tables.';
       r.test.push(by({ any: 'Reducto ($10)', aws: 'Textract Tables ($15)', azure: 'Azure DI Layout ($10)', gcp: 'Document AI Layout Parser ($10)', local: 'PaddleOCR-VL 1.6' }));
-      r.cost = W === 'local' ? 'Under $1 per 1,000 pages in GPU time' : '$1–10 per 1,000 pages';
+      r.cost = by({ any: 'About $4 per 1,000 pages', aws: 'About $1–2 per 1,000 pages', azure: 'About $4 per 1,000 pages ($2 with batch)', gcp: 'About $4–7 per 1,000 pages', local: 'Under $1 per 1,000 pages in GPU time' });
     }
     if (a.volume === 'high' && W !== 'local' && a.output === 'text') r.test.push('A self-hosted small model (LightOnOCR, MinerU) for 10–30× lower cost on easy pages');
     if (a.audit === 'yes') { r.watch.push('Choose an option that returns boxes and confidence (Azure DI, Textract, Datalab, Mistral OCR 4, Docling). Locations returned by general models are approximate and should not be relied on for audit.'); }
@@ -324,7 +324,7 @@ const fmt$ = v => v == null ? '–' : v === 0 ? '$0' : v < 0.1 ? '<$0.10' : v < 
     const r = pick(A);
     out.innerHTML = `<h4>Start with</h4><div class="pick">${r.start}</div><div class="why">${r.why}</div>
       <h4>Test it against</h4><ul>${r.test.map(t => `<li>${t}</li>`).join('')}</ul>
-      <h4>Rough cost</h4><div class="why" style="color:var(--ink-2)">${r.cost}</div>
+      <h4>Rough cost (list price)</h4><div class="why" style="color:var(--ink-2)">${r.cost}</div>
       ${r.watch.length ? `<h4>Watch out for</h4><ul>${r.watch.map(t => `<li>${t}</li>`).join('')}</ul>` : ''}
       <p class="src" style="margin-top:16px">Picks dated 22 Oct 2026. A starting point for a test on the client's documents, not a final answer.</p>`;
   }
