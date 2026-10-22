@@ -283,31 +283,31 @@ const fmt$ = v => v == null ? '–' : v === 0 ? '$0' : v < 0.1 ? '<$0.10' : v < 
     if (a.output === 'fields') {
       if (a.length === 'long') {
         r.start = by({ any: 'A vendor extraction pipeline: LlamaExtract, Reducto Deep Extract or Datalab', aws: 'Reducto Deep Extract or LlamaExtract through AWS Marketplace', azure: 'Claude Sonnet 5.5 in Foundry, inside a split, extract and check pipeline', gcp: 'Gemini 3.8 Flash inside a split, extract and check pipeline', local: 'A self-hosted model (Qwen3.8 27B) inside a split, extract and check pipeline' });
-        r.why = 'Single model calls score 5–38 on long documents. Pipelines that split and check score 90+.';
+        r.why = 'Single model calls score 5–38 on long documents. Pipelines that split and check score above 90.';
         r.test.push(W === 'local' ? 'A second open model on the same pipeline' : 'A coding agent (Claude Code or Codex) on a sample, for unusual layouts');
         r.cost = '$30–75 per 1,000 pages for vendor pipelines';
       } else {
         r.start = by({ any: 'Gemini 3.8 Flash with low thinking and a JSON schema', aws: 'Claude Haiku 5.5 or Sonnet 5.5 on Bedrock with a JSON schema', azure: 'GPT-6 Luna or Claude Sonnet 5.5 in Foundry with a JSON schema', gcp: 'Gemini 3.8 Flash with low thinking and a JSON schema', local: 'A self-hosted model (Qwen3.8 27B) with a JSON schema' });
-        r.why = 'Short-document extraction is largely solved: competent systems score 93–97.';
+        r.why = 'Most established systems score 93–97 on short documents.';
         if (W !== 'local') r.test.push('Reducto Extract, LlamaExtract or Datalab extract');
         r.cost = '$1–10 per 1,000 pages';
       }
-      r.watch.push('Valid JSON is not correct JSON. Add checks on totals, dates and required fields.');
+      r.watch.push('Valid JSON may still contain wrong values. Add checks on totals, dates and required fields.');
     } else if (a.docs === 'digital' && a.hard === 'plain') {
       r.start = 'Text-layer extraction (pymupdf4llm or Docling), sending only failed pages to a model';
-      r.why = 'The PDF already contains exact text. Use it, and pay for models only where it is broken.';
+      r.why = 'The PDF already contains exact text. Use it, and apply a model only where the text layer is missing or broken.';
       r.test.push(by({ any: 'Mistral OCR 4 or Datalab balanced ($4)', aws: 'Claude Haiku 5.5 on Bedrock', azure: 'Mistral OCR 4 in Foundry ($4)', gcp: 'Gemini 3.1 Flash-Lite', local: 'Marker or MinerU, self-hosted' }));
       r.cost = 'Close to $0, plus the cost of the failed pages';
       r.watch.push('Multi-column layouts and headers can come out in the wrong order. PyMuPDF is AGPL.');
     } else if (a.hard === 'messy') {
       r.start = by({ any: 'Datalab accurate ($10)', aws: 'Claude Sonnet 5.5 on Bedrock', azure: 'Claude Sonnet 5.5 in Foundry', gcp: 'Gemini 3.8 Flash', local: 'Chandra 2 (licence needed) or dots.mocr' });
-      r.why = 'Hard pages split the field by 10–30 points. These sit at the top of the hard-pages frontier.';
+      r.why = 'Difficult pages separate systems by 10–30 points. These options are at the top of the hard-pages frontier.';
       r.test.push(by({ any: 'Gemini 3.8 Flash or Claude Sonnet 5.5', aws: 'Reducto via AWS Marketplace', azure: 'Mistral OCR 4 in Foundry', gcp: 'Claude Sonnet 5.5 on Vertex', local: 'MinerU2.5-Pro' }));
       r.cost = W === 'local' ? 'Under $2 per 1,000 pages in GPU time' : '$10–35 per 1,000 pages';
-      r.watch.push('Ask for word-level confidence and send low scores to people.');
+      r.watch.push('Request word-level confidence scores and send low-confidence results for human review.');
     } else {
       r.start = by({ any: a.volume === 'high' ? 'Datalab balanced or Mistral OCR 4 ($4)' : 'Datalab balanced ($4) or Claude Haiku 5.5', aws: 'Claude Haiku 5.5 on Bedrock', azure: 'Mistral OCR 4 in Foundry ($4)', gcp: 'Gemini 3.8 Flash with low thinking', local: 'MinerU2.5-Pro or dots.mocr' });
-      r.why = 'Cheap options on or near the frontier for typical pages and tables.';
+      r.why = 'Low-cost options on or near the frontier for typical pages and tables.';
       r.test.push(by({ any: 'Reducto ($10)', aws: 'Textract Tables ($15)', azure: 'Azure DI Layout ($10)', gcp: 'Document AI Layout Parser ($10)', local: 'PaddleOCR-VL 1.6' }));
       r.cost = W === 'local' ? 'Under $1 per 1,000 pages in GPU time' : '$1–10 per 1,000 pages';
     }

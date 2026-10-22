@@ -120,8 +120,8 @@
   <div class="wrap">
     <div>
       <div class="label rise" style="--i:0">A weekly series for the DNA team</div>
-      <h1 class="rise" style="--i:1; margin-top:18px">What is the best way to do this with AI, right now?</h1>
-      <p class="lede rise" style="--i:2">Clients keep asking us that question. The honest answer is usually "it depends". This series works out what it depends on, one task at a time, so we can give a better answer.</p>
+      <h1 class="rise" style="--i:1; margin-top:18px">Choosing the right AI approach for each task</h1>
+      <p class="lede rise" style="--i:2">Clients often ask which AI approach they should use. The usual answer is "it depends". Each session in this series sets out, for one task, what the answer depends on and which options to consider.</p>
       <div class="ctas rise" style="--i:3">
         <a class="btn" href="doc-extraction/">Session 1: Document extraction →</a>
         <a class="btn ghost" href="#frontier">How the series works</a>
@@ -152,14 +152,14 @@
   <div class="wrap">
     <div class="sec-head"><span class="label"><b>[01]</b> &nbsp;Why this series</span><span class="label">The problem</span></div>
     <div class="two">
-      <h2>"It depends" is true, but it is not useful on its own.</h2>
+      <h2>"It depends" is accurate but not sufficient.</h2>
       <div class="prose">
-        <p class="big">Take a common question: what is the best way to get the contents out of a few thousand PDF contracts?</p>
-        <p>There is no single answer. Small scripts, classic OCR, cloud document services, specialist vendors, open models and the big general models like Gemini, GPT and Claude can all do it. Each is the right choice somewhere. Which one depends on things like:</p>
+        <p class="big">Consider a common question: what is the best way to get the contents out of a few thousand PDF contracts?</p>
+        <p>There is no single answer. Small scripts, classic OCR, cloud document services, specialist vendors, open models and the big general models like Gemini, GPT and Claude can all do it. Each is the right choice in some situations. The choice depends on factors such as:</p>
         <div class="quotes">
           <span class="tag">How many documents?</span><span class="tag">Digital or scanned?</span><span class="tag">How long?</span><span class="tag">Lots of tables?</span><span class="tag">Charts and diagrams?</span><span class="tag">How accurate?</span><span class="tag">Budget?</span><span class="tag">Where can the data go?</span><span class="tag">What happens next?</span>
         </div>
-        <p>These options also change every few months. Something that was too expensive last year may now be the cheapest good option. Each session takes one task and works out what the current options are, how they work, what they cost, and which to try first in different situations.</p>
+        <p>The options also change every few months: an approach that was too expensive last year may now be the cheapest adequate option. Each session takes one task and sets out the current options, how they work, what they cost, and which to try first in common situations.</p>
       </div>
     </div>
   </div>
@@ -171,12 +171,12 @@
     <div class="concept-grid">
       <div class="card chartcard"><svg id="concept" viewBox="0 0 640 420" role="img" aria-label="Illustrative chart of quality against cost, showing the Pareto frontier"></svg></div>
       <div>
-        <h2 style="font-size:44px; margin-bottom:22px">Find the options worth considering.</h2>
+        <h2 style="font-size:44px; margin-bottom:22px">Identifying the options worth considering.</h2>
         <div class="steps-list" id="conceptSteps">
           <div data-k="0"><b>Plot every option</b><p>Each dot is one way of doing the task. Up means better results on a fair test. Right means more expensive per unit of work.</p></div>
-          <div data-k="1"><b>Draw the frontier</b><p>An option is on the frontier if nothing else is both better and cheaper. These are the only ones worth a serious look.</p></div>
-          <div data-k="2"><b>Ignore the rest</b><p>Everything below the line is beaten on both counts by something on it. That is most of the market.</p></div>
-          <div data-k="3"><b>Apply the client's limits</b><p>Rules like "must run in our Azure tenant" remove options. The frontier moves, and the best choice may change.</p></div>
+          <div data-k="1"><b>Draw the frontier</b><p>An option is on the frontier if nothing else is both better and cheaper. Only these options merit detailed evaluation.</p></div>
+          <div data-k="2"><b>Ignore the rest</b><p>Every option below the line is beaten on both quality and cost by an option on it. This is usually most of the market.</p></div>
+          <div data-k="3"><b>Apply the client's limits</b><p>Constraints such as "must run in our Azure tenant" remove options. This moves the frontier and may change the best choice.</p></div>
         </div>
         <p class="label" style="margin-top:14px">Illustrative data. Real charts are in each session.</p>
       </div>
@@ -186,13 +186,13 @@
 
 <section id="format" class="format">
   <div class="wrap">
-    <div class="sec-head"><span class="label"><b>[03]</b> &nbsp;Format</span><span class="label">One hour, every week</span></div>
-    <h2 style="font-size:44px; margin-top:44px; max-width:820px">Each session covers the same six things.</h2>
+    <div class="sec-head"><span class="label"><b>[03]</b> &nbsp;Format</span><span class="label">Session structure</span></div>
+    <h2 style="font-size:44px; margin-top:44px; max-width:820px">Each session follows the same six-part structure.</h2>
     <div class="fgrid">
-      <div><span class="label">01</span><h3>How we got here</h3><p>A short history. It explains why so many different approaches still exist side by side.</p></div>
-      <div><span class="label">02</span><h3>How each approach works</h3><p>What is actually happening inside, with real examples, rather than a list of tools to score.</p></div>
+      <div><span class="label">01</span><h3>How we got here</h3><p>A short history, explaining why several approaches remain in use.</p></div>
+      <div><span class="label">02</span><h3>How each approach works</h3><p>How each approach works internally, illustrated with real examples.</p></div>
       <div><span class="label">03</span><h3>Who the players are</h3><p>Vendors, open models and cloud services, including which can run on Azure, Google Cloud or AWS.</p></div>
-      <div><span class="label">04</span><h3>How they are measured</h3><p>The main public benchmarks, who runs them, and what they do and do not tell you.</p></div>
+      <div><span class="label">04</span><h3>How they are measured</h3><p>The main public benchmarks, who runs them, and their limitations.</p></div>
       <div><span class="label">05</span><h3>Where the frontier is</h3><p>Quality against cost, from benchmarks other people have run, with sources and dates.</p></div>
       <div><span class="label">06</span><h3>What to recommend</h3><p>Dated default picks for common client situations, and what to test them against.</p></div>
     </div>
@@ -210,13 +210,13 @@
         <p>Getting text, tables and fields out of PDFs and scans. Covers PDF libraries, OCR, cloud services, specialist models and vision language models.</p>
         <span class="go">Open the session →</span>
       </a>
-      <div class="card topic soon"><div class="top"><span class="label">02</span><span class="tag">Planned</span></div><h3>Web search and research agents</h3><p>Search APIs, "deep research" tools and agents that browse. How good are they, and what do they cost per answer?</p></div>
+      <div class="card topic soon"><div class="top"><span class="label">02</span><span class="tag">Planned</span></div><h3>Web search and research agents</h3><p>Search APIs, "deep research" tools and agents that browse. Their accuracy and cost per answer.</p></div>
       <div class="card topic soon"><div class="top"><span class="label">03</span><span class="tag">Planned</span></div><h3>Automated research and optimisation</h3><p>Agents that run experiments in a loop to improve a model, a prompt, a piece of code or a business metric.</p></div>
-      <div class="card topic soon"><div class="top"><span class="label">04</span><span class="tag">Planned</span></div><h3>Coding agents</h3><p>From autocomplete to agents that take a ticket and open a pull request. What they are good for in data work.</p></div>
+      <div class="card topic soon"><div class="top"><span class="label">04</span><span class="tag">Planned</span></div><h3>Coding agents</h3><p>Code completion tools and agents that implement changes and open pull requests, and their uses in data work.</p></div>
       <div class="card topic soon"><div class="top"><span class="label">05</span><span class="tag">Planned</span></div><h3>Structured outputs and data cleaning</h3><p>Turning messy text and tables into clean, typed data. Schemas, validation, and matching records.</p></div>
       <div class="card topic soon"><div class="top"><span class="label">06</span><span class="tag">Planned</span></div><h3>Retrieval and RAG</h3><p>Chunking, embeddings, rerankers, and when a long context window is simpler than retrieval.</p></div>
       <div class="card topic soon"><div class="top"><span class="label">07</span><span class="tag">Planned</span></div><h3>Speech and transcription</h3><p>Speech to text, telling speakers apart, and turning calls and meetings into usable data.</p></div>
-      <div class="card topic soon"><div class="top"><span class="label">08</span><span class="tag">Planned</span></div><h3>Questions to SQL</h3><p>Answering plain-English questions over a data warehouse. Where it works and where it goes wrong.</p></div>
+      <div class="card topic soon"><div class="top"><span class="label">08</span><span class="tag">Planned</span></div><h3>Questions to SQL</h3><p>Answering plain-English questions over a data warehouse. Where it works and where it fails.</p></div>
       <div class="card topic soon"><div class="top"><span class="label">09</span><span class="tag">Planned</span></div><h3>Classification and tagging at scale</h3><p>Labelling millions of records with small models, large models, or a mix of the two.</p></div>
     </div>
   </div>
@@ -226,10 +226,10 @@
   <div class="wrap">
     <div class="sec-head"><span class="label"><b>[05]</b> &nbsp;Ground rules</span><span class="label">How to read these sessions</span></div>
     <ol>
-      <li><b>We use other people's benchmarks.</b>We do not run our own tests. We collect public results, say who ran them, and say where they may be biased.</li>
+      <li><b>Results come from published benchmarks.</b>We do not run our own tests. We report public results, who produced them, and any likely bias.</li>
       <li><b>Every number has a source and a date.</b>Prices and scores change quickly. Each session is a snapshot from the date shown on it.</li>
-      <li><b>We only combine like with like.</b>Scores are blended only when the benchmarks measure the same thing. Each chart shows how many benchmarks back each point.</li>
-      <li><b>Picks are a starting point.</b>A default pick tells you what to test first on the client's own documents. It is not a final answer.</li>
+      <li><b>Benchmarks are combined only when comparable.</b>Scores are blended only when the benchmarks measure the same thing. Each chart shows how many benchmarks back each point.</li>
+      <li><b>Default picks indicate what to test first.</b>Each default pick identifies the option to test first on the client's own documents. It does not replace that test.</li>
     </ol>
   </div>
 </section>

@@ -22,11 +22,10 @@
     <div>
       <span class="kicker rise" style="--i:0">At The Frontier · Session 01</span>
       <h1 class="rise" style="--i:1">Document<br>extraction</h1>
-      <p class="lede rise" style="--i:2; margin-top:26px">How to get text, tables and data out of PDFs and scans, and how to choose between the many ways of doing it.</p>
+      <p class="lede rise" style="--i:2; margin-top:26px">Methods for extracting text, tables and data from PDFs and scanned documents, and how to choose between them.</p>
       <div class="meta-row rise" style="--i:3">
         <div><span class="label">For</span><div class="v">The DNA team</div></div>
         <div><span class="label">Snapshot</span><div class="v">22 October 2026</div></div>
-        <div><span class="label">Length</span><div class="v">40 min + discussion</div></div>
       </div>
       <p class="label rise" style="--i:4; margin-top:40px">Press → to start · O for overview · N for notes</p>
     </div>
@@ -49,10 +48,10 @@
 <section class="slide" data-section="Introduction">
   <span class="kicker">The question</span>
   <h2>"What is the best way to extract the contents of these PDFs?"</h2>
-  <p class="lede">We get asked this a lot. The honest answer is "it depends". These are the things it depends on.</p>
+  <p class="lede">This is a frequent client question. The answer depends on the following factors.</p>
   <div class="factors">
-    <div class="card factor rise" style="--i:0"><div class="q">How many?</div><div class="a">Fifty contracts can be checked by hand. Five million pages cannot. Volume decides how much cost per page matters.</div></div>
-    <div class="card factor rise" style="--i:1"><div class="q">Digital or scanned?</div><div class="a">A PDF made from Word already contains its text. A scan or a photo is just pixels.</div></div>
+    <div class="card factor rise" style="--i:0"><div class="q">How many?</div><div class="a">Fifty contracts can be reviewed manually; five million pages cannot. Volume determines how much the cost per page matters.</div></div>
+    <div class="card factor rise" style="--i:1"><div class="q">Digital or scanned?</div><div class="a">A PDF made from Word already contains its text. A scan or photograph contains only an image.</div></div>
     <div class="card factor rise" style="--i:2"><div class="q">How long, how complex?</div><div class="a">Two-column layouts, footnotes, tables that cross pages, and 300-page documents all make it harder.</div></div>
     <div class="card factor rise" style="--i:3"><div class="q">Tables, charts, handwriting?</div><div class="a">These are where most methods fail, and where the newest models have improved most.</div></div>
     <div class="card factor rise" style="--i:4"><div class="q">How accurate, how checkable?</div><div class="a">Is 98% good enough? Do we need to point to where each value came from on the page?</div></div>
@@ -65,20 +64,20 @@
 </section>
 
 <section class="slide" data-section="Introduction">
-  <span class="kicker">Plan for today</span>
-  <h2>Six parts, about 40 minutes.</h2>
+  <span class="kicker">Agenda</span>
+  <h2>The session has six parts.</h2>
   <div class="agenda">
-    <div class="rise" style="--i:0"><span class="label">01</span><span class="t">4 min</span><h3>How we got here</h3><p>Thirty years in one slide. Why so many approaches still exist side by side.</p></div>
-    <div class="rise" style="--i:1"><span class="label">02</span><span class="t">14 min</span><h3>How each approach works</h3><p>What actually happens inside each one, with real examples.</p></div>
-    <div class="rise" style="--i:2"><span class="label">03</span><span class="t">5 min</span><h3>Who the players are</h3><p>About 70 options, what they cost, and where they can run.</p></div>
-    <div class="rise" style="--i:3"><span class="label">04</span><span class="t">6 min</span><h3>How they are measured</h3><p>The main benchmarks, who runs them, and their weak spots.</p></div>
-    <div class="rise" style="--i:4"><span class="label">05</span><span class="t">6 min</span><h3>Where the frontier is</h3><p>Quality against cost for everyday pages, hard pages and field extraction.</p></div>
-    <div class="rise" style="--i:5"><span class="label">06</span><span class="t">5 min</span><h3>What to recommend</h3><p>A decision guide, default picks, and how to test on a client's own documents.</p></div>
+    <div class="rise" style="--i:0"><span class="label">01</span><h3>How we got here</h3><p>The main developments since 1993, and why several approaches remain in use.</p></div>
+    <div class="rise" style="--i:1"><span class="label">02</span><h3>How each approach works</h3><p>How each approach works internally, with real examples.</p></div>
+    <div class="rise" style="--i:2"><span class="label">03</span><h3>Who the players are</h3><p>About 70 options, what they cost, and where they can run.</p></div>
+    <div class="rise" style="--i:3"><span class="label">04</span><h3>How they are measured</h3><p>The main benchmarks, who runs them, and their limitations.</p></div>
+    <div class="rise" style="--i:4"><span class="label">05</span><h3>Where the frontier is</h3><p>Quality against cost for everyday pages, hard pages and field extraction.</p></div>
+    <div class="rise" style="--i:5"><span class="label">06</span><h3>What to recommend</h3><p>A decision guide, default picks, and how to test on a client's own documents.</p></div>
   </div>
 </section>
 
 <section class="slide" data-section="Introduction">
-  <span class="kicker">A simple way to compare them</span>
+  <span class="kicker">A framework for comparison</span>
   <h2>Every approach answers the same three questions.</h2>
   <div class="cols c3" style="margin-top:44px">
     <div class="card q3 rise" style="--i:0">
@@ -106,14 +105,14 @@
       </ul>
     </div>
   </div>
-  <div class="callout rise" style="--i:3; margin-top:30px">Over thirty years the field has traded <b>checkability and low cost</b> for <b>coverage of messy documents</b>. The newest tools are trying to get both back.</div>
-  <aside class="notes"><p>Keep these three questions in mind. For each approach we'll answer them. Question 3 is the one clients forget to ask until an auditor does.</p></aside>
+  <div class="callout rise" style="--i:3; margin-top:30px">Since the 1990s, each new approach has handled difficult documents better, but at a higher cost and with output that is harder to verify. Recent tools aim to provide both accuracy and verifiability.</div>
+  <aside class="notes"><p>Keep these three questions in mind. For each approach we'll answer them. Clients often overlook question 3 until an audit requires it.</p></aside>
 </section>
 
 <!-- ================= 01 HISTORY ================= -->
 <section class="slide" id="timeline" data-section="[01] How we got here">
   <span class="kicker">01 · How we got here</span>
-  <h2>Five eras, and all of them are still in use.</h2>
+  <h2>Five stages of development, all still in use.</h2>
   <div class="eras">
     <div class="era" data-step="1" style="--c:var(--ink-3)">
       <div class="era-h"><span class="label">1993–2017</span><b>Rules and classic OCR</b></div>
@@ -137,13 +136,13 @@
     </div>
   </div>
   <div class="callout" data-step="6" style="margin-top:22px">Each era added options without removing the old ones. A 2015 Python library is still the best answer for some jobs in 2026.</div>
-  <aside class="notes"><p>Click through each era. The point: this is not a story where new replaces old. Each era is still the right answer somewhere, which is why "it depends".</p><p>Sources: research pack dates from GitHub releases, arXiv and vendor blogs.</p></aside>
+  <aside class="notes"><p>Click through each stage. New approaches have not replaced old ones. Each era is still the right answer somewhere, which is why "it depends".</p><p>Sources: research pack dates from GitHub releases, arXiv and vendor blogs.</p></aside>
 </section>
 
 <!-- ================= 02 HOW IT WORKS ================= -->
 <section class="slide" data-section="[02] How it works">
   <span class="kicker">02 · How each approach works</span>
-  <h2>Five families of approach.</h2>
+  <h2>There are five main families of approach.</h2>
   <div class="land">
     <div class="card col rise" style="--i:0"><div class="bar" style="background:var(--ink-3)"></div><span class="sees">Reads the file</span><h3>PDF text libraries</h3><p>Read the text the PDF already contains, then rebuild lines, columns and tables using rules about position.</p><div class="eg">pdfplumber · PyMuPDF<br>pdfminer · Camelot<br><b>≈ free</b></div></div>
     <div class="card col rise" style="--i:1"><div class="bar" style="background:var(--orange)"></div><span class="sees">Reads pixels</span><h3>Classic OCR</h3><p>Find lines and words in an image, then recognise the characters one line at a time.</p><div class="eg">Tesseract · ABBYY<br>PaddleOCR (PP-OCR)<br><b>≈ free to cheap</b></div></div>
@@ -151,14 +150,14 @@
     <div class="card col rise" style="--i:3"><div class="bar" style="background:var(--blue)"></div><span class="sees">Reads pixels + file</span><h3>Specialist document models</h3><p>Small models trained only on documents. Some are pipelines of several models, some are one model that writes the page.</p><div class="eg">Datalab (Marker, Chandra) · Docling<br>MinerU · PaddleOCR-VL · olmOCR · Mistral OCR<br><b>$0.10–$15 / 1k pages</b></div></div>
     <div class="card col rise" style="--i:4"><div class="bar" style="background:var(--purple)"></div><span class="sees">Reads pixels</span><h3>General vision language models</h3><p>Large general models that look at a page image and write out text or JSON, following instructions.</p><div class="eg">Gemini · GPT · Claude · Qwen<br><br><b>$0.50–$80 / 1k pages</b></div></div>
   </div>
-  <div class="spectrum"><span>Exact, cheap, brittle</span><div class="arrow"></div><span>Flexible, understands more, can invent things</span></div>
-  <aside class="notes"><p>We'll go through each family in turn. Costs are list prices checked on 22 Oct 2026. The specialist family is where most of the action has been in the last 18 months.</p></aside>
+  <div class="spectrum"><span>Exact and cheap, but brittle</span><div class="arrow"></div><span>Flexible, but can produce text that is not there</span></div>
+  <aside class="notes"><p>We'll go through each family in turn. Costs are list prices checked on 22 Oct 2026. Most development in the last 18 months has been in the specialist family.</p></aside>
 </section>
 
 <!-- PDF internals -->
 <section class="slide" id="pdf-inside" data-section="[02] How it works">
   <span class="kicker">Family 1 · PDF text libraries</span>
-  <h2>A digital PDF stores drawing instructions, not sentences.</h2>
+  <h2>A PDF stores drawing instructions, not sentences.</h2>
   <div class="pdfdemo">
     <div class="code"><span class="c">% inside the page's content stream</span>
 <span class="ln2"><span class="op">BT</span> <span class="op">/F2</span> <span class="num">11</span> <span class="op">Tf</span></span><span class="ln2" data-t="0"><span class="num">46 590</span> <span class="op">Td</span> <span class="str">(1. Payment)</span> <span class="op">Tj</span></span><span class="ln2" data-t="4"><span class="num">290 590</span> <span class="op">Td</span> <span class="str">(2. Termination)</span> <span class="op">Tj</span></span><span class="ln2"><span class="op">/F1</span> <span class="num">10</span> <span class="op">Tf</span></span><span class="ln2" data-t="1"><span class="num">46 560</span> <span class="op">Td</span> <span class="str">[(The Client shall p)</span><span class="num">-12</span><span class="str">(ay all)]</span> <span class="op">TJ</span></span><span class="ln2" data-t="5"><span class="num">290 560</span> <span class="op">Td</span> <span class="str">(Either party may end this)</span> <span class="op">Tj</span></span><span class="ln2" data-t="2"><span class="num">46 536</span> <span class="op">Td</span> <span class="str">(invoices within 30 days)</span> <span class="op">Tj</span></span><span class="ln2" data-t="6"><span class="num">290 536</span> <span class="op">Td</span> <span class="str">(agreement with 90 days')</span> <span class="op">Tj</span></span><span class="ln2" data-t="3"><span class="num">46 512</span> <span class="op">Td</span> <span class="str">(of the invoice date.)</span> <span class="op">Tj</span></span><span class="ln2" data-t="7"><span class="num">290 512</span> <span class="op">Td</span> <span class="str">(written notice.)</span> <span class="op">Tj</span></span><span class="ln2"><span class="op">ET</span></span>
@@ -178,7 +177,7 @@
 
 <section class="slide" id="pdf-libs" data-section="[02] How it works">
   <span class="kicker">Family 1 · PDF text libraries</span>
-  <h2>Libraries rebuild structure from positions, using rules.</h2>
+  <h2>Libraries reconstruct structure from text positions.</h2>
   <div class="cols c55" style="margin-top:20px; gap:36px">
     <div>
       <div class="stepimgs" style="height:330px">
@@ -198,13 +197,13 @@
       <div class="callout" style="margin-top:18px">On one benchmark a pure text-layer tool scores <b>20</b>. Adding a small layout model raises it to <b>44</b>, at 24 pages a second on a CPU.<br><small>olmOCR-Bench figures from the Marker README (Datalab, vendor-run)</small></div>
     </div>
   </div>
-  <aside class="notes"><p>Click through the Camelot steps: it literally draws the page, finds the lines with image processing, and uses the crossings to build a grid. Clever, but only works when the table has lines.</p><p>Licence watch-out: PyMuPDF is AGPL. Fine for internal scripts, needs a paid licence inside a closed product.</p></aside>
+  <aside class="notes"><p>Click through the Camelot steps: it renders the page, finds the ruling lines with image processing, and uses their intersections to build a grid. This works only when the table has ruling lines.</p><p>Licence note: PyMuPDF is AGPL. It is acceptable for internal scripts but requires a paid licence in a closed-source product.</p></aside>
 </section>
 
 <!-- OCR pipeline -->
 <section class="slide" id="ocr-pipeline" data-section="[02] How it works">
   <span class="kicker">Family 2 · Classic OCR</span>
-  <h2>OCR turns pixels back into characters, step by step.</h2>
+  <h2>Classic OCR converts an image to text in five steps.</h2>
   <div class="ocr">
     <div>
       <div class="scan"><div class="txt"></div></div>
@@ -219,17 +218,17 @@
     </div>
   </div>
   <i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i><i data-step="5"></i>
-  <aside class="notes"><p>Click through the five steps. The output is words with boxes and confidences. Classic OCR does not know what a heading, a table or a column is. Errors are small and local, like "l" for "I" or "," for ".". Red marks show low-confidence words, which is where errors cluster.</p><p>Tesseract: free, about 3–5 seconds a page on CPU, 100+ languages, poor on handwriting and complex layouts. The idea is not dead: Datalab's new Indra OCR (Oct 2026) is a 1M-parameter classic-style model doing 49 pages a second on CPU.</p></aside>
+  <aside class="notes"><p>Click through the five steps. The output is words with boxes and confidences. Classic OCR does not know what a heading, a table or a column is. Errors are small and local, like "l" for "I" or "," for ".". Red marks show low-confidence words, which is where errors cluster.</p><p>Tesseract: free, about 3–5 seconds a page on CPU, 100+ languages, poor on handwriting and complex layouts. The approach is still developing: Datalab's new Indra OCR (Oct 2026) is a 1M-parameter classic-style model doing 49 pages a second on CPU.</p></aside>
 </section>
 
 <!-- Cloud -->
 <section class="slide" data-section="[02] How it works">
   <span class="kicker">Family 3 · Cloud document services</span>
-  <h2>The clouds sell OCR plus layers of trained models.</h2>
+  <h2>Cloud services add trained models to OCR.</h2>
   <div class="cols c46" style="margin-top:18px; gap:40px">
     <figure><img class="shot" src="../assets/doc-extraction/vendor/azure-di-layout-example.png" alt="Azure Document Intelligence layout roles" style="max-height:560px"><figcaption>Azure Document Intelligence: page roles found by its layout model. Image: Microsoft Learn</figcaption></figure>
     <div>
-      <p>Azure, AWS and Google all sell the same stack. Each layer is a separately trained model, and each costs more per page.</p>
+      <p>Azure, AWS and Google offer similar services. Each layer is a separately trained model, and each costs more per page.</p>
       <div class="ladder">
         <div class="rung" data-step="1"><span>OCR: words, boxes, confidence</span><b>$1.50</b><i style="--w:3%"></i></div>
         <div class="rung" data-step="2"><span>Layout: headings, paragraphs, reading order</span><b>$4–10</b><i style="--w:14%"></i></div>
@@ -250,22 +249,22 @@
 <!-- Research ideas -->
 <section class="slide" data-section="[02] How it works">
   <span class="kicker">Two ideas from research</span>
-  <h2>Two research ideas that everything now builds on.</h2>
+  <h2>Two research results behind current methods.</h2>
   <div class="cols c2" style="margin-top:26px; gap:48px">
     <div class="rise" style="--i:0">
       <span class="label">2019 · LayoutLM, Microsoft</span>
-      <h3 style="margin:10px 0 10px">Where a word sits matters as much as what it says.</h3>
+      <h3 style="margin:10px 0 10px">A word's position is as informative as its content.</h3>
       <figure><img class="shot" src="../assets/doc-extraction/vendor/layoutlm-architecture.png" alt="LayoutLM architecture" style="height:250px; object-fit:contain; width:100%"><figcaption>Each word is fed in with its box coordinates. Image: Xu et al., arXiv 1912.13318</figcaption></figure>
       <p style="margin-top:12px; font-size:17px">A number to the right of "Total" is probably the total. Feeding positions into a language model made form and invoice extraction much better.</p>
     </div>
     <div class="rise" style="--i:1">
       <span class="label">2021 · Donut, NAVER Clova</span>
-      <h3 style="margin:10px 0 10px">Skip OCR. Look at the image and write the answer.</h3>
+      <h3 style="margin:10px 0 10px">Generate the output directly from the image, without OCR.</h3>
       <figure><img class="shot" src="../assets/doc-extraction/vendor/donut-overview.png" alt="Donut overview" style="height:250px; object-fit:contain; width:100%"><figcaption>Image in, structured text out, in one model. Image: Kim et al. (MIT)</figcaption></figure>
-      <p style="margin-top:12px; font-size:17px">This switched the task from <b>recognising</b> characters to <b>generating</b> text. It copes far better with messy pages, but it can also write things that are not there.</p>
+      <p style="margin-top:12px; font-size:17px">This switched the task from <b>recognising</b> characters to <b>generating</b> text. It handles difficult pages better, but it can also produce text that is not on the page.</p>
     </div>
   </div>
-  <div class="callout warn" data-step="1" style="margin-top:20px">Meta's Nougat (2023) showed the downside early: on unfamiliar pages it got stuck repeating itself or made up text. Every modern model still has to manage this risk.</div>
+  <div class="callout warn" data-step="1" style="margin-top:20px">Meta's Nougat (2023) demonstrated this risk: on unfamiliar pages it repeated itself or generated text that was not on the page. Every modern model still has to manage this risk.</div>
 </section>
 
 <!-- Specialist patterns -->
@@ -293,7 +292,7 @@
     </div>
   </div>
   <p class="src" style="margin-top:10px">Images: IBM Docling (MIT), OpenDataLab MinerU2.5 (arXiv 2509.22186), Datalab Chandra 2 blog. Click to zoom.</p>
-  <aside class="notes"><p>A is the most checkable and cheapest; C is the simplest and handles the messiest pages; B tries to get the best of both. Many products mix designs: Marker uses A for clean digital pages and only calls a model where text is broken.</p></aside>
+  <aside class="notes"><p>A is the most checkable and cheapest; C is the simplest and handles the messiest pages; B aims to combine the strengths of both. Many products mix designs: Marker uses A for clean digital pages and only calls a model where text is broken.</p></aside>
 </section>
 
 <!-- Surya walkthrough -->
@@ -311,39 +310,39 @@
     <div class="pipe-steps walk">
       <div class="on cur" data-n="01"><b>Find every line of text</b><span>A detection model marks where text is, without reading it yet.</span></div>
       <div data-n="02"><b>Label the blocks</b><span>A layout model tags each region: section header, text, footnote, page header, table, figure.</span></div>
-      <div data-n="03"><b>Decide the reading order</b><span>Number the blocks in the order a person would read them. This fixes the two-column problem.</span></div>
+      <div data-n="03"><b>Decide the reading order</b><span>Number the blocks in the order a person would read them. This resolves the multi-column problem.</span></div>
       <div data-n="04"><b>Read the text</b><span>OCR each line, or reuse the PDF's own text where it is good.</span></div>
       <div data-n="05"><b>Rebuild the tables</b><span>Find rows, columns and cells, then place the text in them.</span></div>
       <p class="src" style="margin-top:14px">Images: Datalab Surya README (GitHub). Surya 2 (May 2026) now does layout, OCR and tables in one 650M-parameter model, and gives each block a confidence score.</p>
     </div>
   </div>
-  <aside class="notes"><p>This is Datalab's Surya on the first page of the "Attention Is All You Need" paper. The point: every step leaves something you can check, like a box, a label or an order number.</p></aside>
+  <aside class="notes"><p>This is Datalab's Surya on the first page of the "Attention Is All You Need" paper. Each step produces an output that can be checked: a box, a label or an order number.</p></aside>
 </section>
 
 <!-- Fewer tokens -->
 <section class="slide" data-section="[02] How it works">
   <span class="kicker">Family 4 · Making it cheap</span>
-  <h2>Newer models fit a page into far fewer tokens.</h2>
+  <h2>Newer models use far fewer tokens per page.</h2>
   <div class="cols c64" style="margin-top:20px; gap:40px">
     <div>
       <figure><img class="shot" src="../assets/doc-extraction/vendor/deepseek-ocr-compression-fig1.png" alt="DeepSeek-OCR compression results" style="max-height:330px"><figcaption>Left: accuracy against compression. Right: accuracy against image tokens per page, by model. Image: DeepSeek-AI, DeepSeek-OCR (arXiv 2510.18234)</figcaption></figure>
       <figure style="margin-top:18px"><img class="shot" src="../assets/doc-extraction/vendor/deepseek-ocr-architecture-deepencoder.png" alt="DeepSeek-OCR encoder" style="max-height:130px"><figcaption>The encoder compresses image patches 16 times before the language model sees them.</figcaption></figure>
     </div>
     <div>
-      <p>DeepSeek-OCR (Oct 2025) asked: how few tokens does a page really need?</p>
+      <p>DeepSeek-OCR (Oct 2025) tested how few tokens are needed to represent a page.</p>
       <div class="stat"><div class="big-num">64–400</div><span class="label">image tokens per page, depending on mode</span></div>
       <div class="stat"><div class="big-num">~97%</div><span class="label">accuracy with up to 10× compression</span></div>
       <div class="stat"><div class="big-num">200k</div><span class="label">pages a day on one A100 GPU</span></div>
-      <p style="font-size:17px; margin-top:14px">Compare a general model, which uses 560 to 2,700 image tokens per page. Fewer tokens means cheaper and faster. Combined with small models, this is why self-hosted costs are now <b>$0.10–0.70 per 1,000 pages</b> in GPU time.</p>
+      <p style="font-size:17px; margin-top:14px">Compare a general model, which uses 560 to 2,700 image tokens per page. Fewer tokens reduce cost and processing time. Together with smaller models, this explains why self-hosted costs are now <b>$0.10–0.70 per 1,000 pages</b> in GPU time.</p>
     </div>
   </div>
-  <aside class="notes"><p>MinerU 2.5 uses a similar trick: it finds the layout on a 1036×1036 downsized page, then reads only the text regions at full resolution. Cheap global view, sharp detail only where needed.</p><p>Self-host cost is GPU time only: publisher throughput at $2.50 per GPU hour. Engineering and licences are extra.</p></aside>
+  <aside class="notes"><p>MinerU 2.5 uses a similar method: it finds the layout on a 1036×1036 downsized page, then reads only the text regions at full resolution. This keeps the overall analysis cheap and applies full resolution only where needed.</p><p>Self-host cost is GPU time only: publisher throughput at $2.50 per GPU hour. Engineering and licences are extra.</p></aside>
 </section>
 
 <!-- VLM -->
 <section class="slide" id="vlm-reads" data-section="[02] How it works">
   <span class="kicker">Family 5 · General vision language models</span>
-  <h2>A general model reads the page as a grid of image patches.</h2>
+  <h2>General models read a page as image patches.</h2>
   <div class="vlm">
     <div class="vpage">
       <div class="h"></div><div class="ln" style="width:94%"></div><div class="ln" style="width:97%"></div><div class="ln" style="width:60%"></div>
@@ -361,7 +360,7 @@
       </div>
       <div class="tokens" data-step="2"></div>
       <div class="typing" data-step="3"></div>
-      <div class="callout" data-step="4" style="margin-top:14px; font-size:16px">There is no step that recognises characters. Reading, layout and understanding all happen in the same next-word prediction. That is why it handles handwriting and charts well, and why it can write something fluent that is not on the page.</div>
+      <div class="callout" data-step="4" style="margin-top:14px; font-size:16px">There is no step that recognises characters. Reading, layout and understanding all happen in the same next-word prediction. This explains both its strength with handwriting and charts and its tendency to produce fluent text that is not on the page.</div>
     </div>
   </div>
   <aside class="notes"><p>The model never sees characters, only pixels. Gemini and Claude also get the PDF's embedded text alongside the image when you send a PDF directly, which helps.</p></aside>
@@ -370,7 +369,7 @@
 <!-- Cost anatomy -->
 <section class="slide" id="vlm-cost" data-section="[02] How it works">
   <span class="kicker">Family 5 · What a page costs</span>
-  <h2>Most of the cost is writing the text back out.</h2>
+  <h2>Most of the cost comes from the output text.</h2>
   <div class="cols c46" style="margin-top:22px; gap:44px">
     <div>
       <table class="t">
@@ -381,7 +380,7 @@
         <tr><td>DeepSeek-OCR</td><td>64–400</td><td>Compressed by design</td></tr>
       </table>
       <p class="src" style="margin-top:8px">US Letter page at 150 DPI. Our arithmetic from each provider's documented formula, Oct 2026.</p>
-      <div class="callout" style="margin-top:16px; font-size:16px">A page of output is about 800 tokens, and output tokens cost 4–8× more than input tokens. "Thinking" tokens also count as output, and can multiply the cost by 2–5×. Turn thinking off for transcription.</div>
+      <div class="callout" style="margin-top:16px; font-size:16px">A page of output is about 800 tokens, and output tokens cost 4–8× more than input tokens. "Thinking" tokens also count as output, and can multiply the cost by 2–5×. Disable thinking for transcription tasks.</div>
     </div>
     <div class="card calc">
       <span class="label">Calculator</span>
@@ -394,7 +393,7 @@
         <div><span class="label">Total for this job</span><div class="big-num" id="calc-total">–</div></div>
       </div>
       <div class="calc-split"><i id="calc-in-bar"></i><i id="calc-out-bar"></i></div>
-      <div class="calc-legend"><span><i style="background:var(--blue-2)"></i>Input (page image + prompt)</span><span><i style="background:var(--orange)"></i>Output (the text written back)</span></div>
+      <div class="calc-legend"><span><i style="background:var(--blue-2)"></i>Input (page image + prompt)</span><span><i style="background:var(--orange)"></i>Output (the extracted text)</span></div>
       <p class="src" id="calc-compare" style="margin-top:12px"></p>
     </div>
   </div>
@@ -404,7 +403,7 @@
 <!-- VLM strengths -->
 <section class="slide" data-section="[02] How it works">
   <span class="kicker">Family 5 · Strengths</span>
-  <h2>General models do best on the hardest pages.</h2>
+  <h2>General models perform best on difficult pages.</h2>
   <div class="cols c3" style="margin-top:24px; gap:28px">
     <div class="rise" style="--i:0">
       <figure><img class="shot" src="../assets/doc-extraction/vendor/chandra25-chart-input-teacher-salary.png" alt="Bar chart" style="height:190px; width:100%; object-fit:contain"></figure>
@@ -418,7 +417,7 @@
     <div class="rise" style="--i:1">
       <figure><img class="shot" src="../assets/doc-extraction/vendor/chandra-handwritten-form.png" alt="Handwritten form" style="height:262px; width:100%; object-fit:cover; object-position:left top"></figure>
       <h3 style="margin-top:12px">Handwriting and forms</h3>
-      <p style="font-size:16px">Handwriting, ticked boxes, stamps and photos of paper. Models trained on huge varied data can read words that are only partly legible. Image: Datalab, Chandra README.</p>
+      <p style="font-size:16px">Handwriting, ticked boxes, stamps and photographs of documents. Training on large and varied data allows these models to read partly legible words. Image: Datalab, Chandra README.</p>
     </div>
     <div class="rise" style="--i:2">
       <pre class="json" style="height:262px">{
@@ -429,7 +428,7 @@
   "governing_law": "England and Wales",
   "auto_renews": false
 }</pre>
-      <h3 style="margin-top:12px">Straight to the fields you need</h3>
+      <h3 style="margin-top:12px">Direct extraction of specified fields</h3>
       <p style="font-size:16px">Give the model a schema and it returns those fields. The JSON is guaranteed to be valid. The values are not guaranteed to be right.</p>
     </div>
   </div>
@@ -438,20 +437,20 @@
 <!-- VLM failures -->
 <section class="slide" data-section="[02] How it works">
   <span class="kicker">Family 5 · Weaknesses</span>
-  <h2>The same strengths cause new kinds of error.</h2>
+  <h2>These strengths come with new types of error.</h2>
   <div class="cols c55" style="margin-top:22px; gap:40px">
     <div>
       <figure><img class="shot" src="../assets/doc-extraction/vendor/google-docai-competitor-table-misalignment.png" alt="Misaligned and hallucinated table values"><figcaption>A generative parser shifts the column headers and invents values in a 10-K table. Image: Google Cloud Document AI docs, comparing an unnamed competitor.</figcaption></figure>
-      <div class="callout warn" style="margin-top:18px">On a 121-page set of deliberately hard pages, Datalab found that a single pass of a raw model went wrong on about <b>61%</b> of pages. With retries and checks, this fell to nearly zero.<br><small>Datalab anti-hallucination blog, vendor-run</small></div>
+      <div class="callout warn" style="margin-top:18px">On a 121-page set of deliberately hard pages, Datalab found that a single pass of a raw model produced errors or degenerate output on about <b>61%</b> of pages. With retries and checks, this fell to nearly zero.<br><small>Datalab anti-hallucination blog, vendor-run</small></div>
     </div>
     <div>
       <table class="t fail">
         <tr><th>What happens</th><th>Why</th></tr>
-        <tr><td>It "fixes" the text</td><td>The model prefers likely words. It corrects typos, tidies dates and fills gaps.</td></tr>
+        <tr><td>It corrects the text</td><td>The model favours likely words, so it corrects typos, normalises dates and fills gaps.</td></tr>
         <tr><td>It leaves things out</td><td>It hits its output limit, skips repeated rows or summarises. There is no error message.</td></tr>
-        <tr><td>It repeats itself</td><td>Gets stuck in a loop on dense or unusual pages.</td></tr>
+        <tr><td>It repeats itself</td><td>It can loop on dense or unusual pages.</td></tr>
         <tr><td>It misreads small print</td><td>The page is shrunk to fit the model's limit, so tiny text blurs.</td></tr>
-        <tr><td>Long documents go wrong</td><td>Too many pages at once and it mixes them up. Send one page at a time.</td></tr>
+        <tr><td>Long documents go wrong</td><td>With many pages in one request, it confuses them. Send one page at a time.</td></tr>
         <tr><td>No confidence score</td><td>Nothing tells you which parts to check. Boxes it gives are estimates, not measurements.</td></tr>
         <tr><td>Results change</td><td>Model versions change behind the same name. Even at temperature 0, outputs vary.</td></tr>
       </table>
@@ -462,21 +461,21 @@
 
 <!-- Checks -->
 <section class="slide" data-section="[02] How it works">
-  <span class="kicker">Where things are heading</span>
-  <h2>The newest tools add checks back in.</h2>
+  <span class="kicker">Recent developments</span>
+  <h2>Recent tools add verification steps.</h2>
   <div class="cols c46" style="margin-top:18px; gap:44px">
     <figure><img class="shot" src="../assets/doc-extraction/vendor/datalab-word-confidence-boxes.png" alt="Word confidence boxes" style="max-height:600px; width:auto"><figcaption>Every word has a box and a confidence score. The one doubtful word (0.04) is flagged for review. Image: Datalab.</figcaption></figure>
     <div>
       <ul class="plain">
         <li data-step="1"><b>Use the PDF's own text when it is good.</b> Only read pixels where it is missing or broken. (Marker, Docling, Gemini and Claude with PDF input)</li>
-        <li data-step="2"><b>Find the layout cheaply, read details sharply.</b> Low resolution for the page, full resolution for each block. (MinerU, PaddleOCR-VL)</li>
+        <li data-step="2"><b>Detect layout at low resolution and read text at full resolution.</b> (MinerU, PaddleOCR-VL)</li>
         <li data-step="3"><b>Small model to transcribe, large model only for meaning.</b> (Marker with an LLM, Google Layout Parser)</li>
-        <li data-step="4"><b>Check, retry, and say when unsure.</b> Re-read doubtful blocks and mark text "[illegible]" instead of guessing. (Datalab)</li>
-        <li data-step="5"><b>Return positions again.</b> Mistral OCR 4, Chandra and Docling all return boxes, so a reviewer can see where each value came from.</li>
+        <li data-step="4"><b>Check, retry and flag uncertainty.</b> Re-read doubtful blocks and mark text "[illegible]" instead of guessing. (Datalab)</li>
+        <li data-step="5"><b>Return source positions.</b> Mistral OCR 4, Chandra and Docling all return boxes, so a reviewer can see where each value came from.</li>
       </ul>
     </div>
   </div>
-  <aside class="notes"><p>For clients in regulated work, this is the important trend. "Show me where on the page this number came from" is now possible with most modern tools, not only the cloud services.</p></aside>
+  <aside class="notes"><p>For clients in regulated work, this is the most relevant development. "Show me where on the page this number came from" is now possible with most modern tools, not only the cloud services.</p></aside>
 </section>
 
 <!-- Comparison -->
@@ -527,7 +526,7 @@
     <div>
       <h3 style="margin-bottom:14px">"Open" does not always mean free for clients</h3>
       <table class="t">
-        <tr><th>Model</th><th>The catch</th></tr>
+        <tr><th>Model</th><th>Restriction</th></tr>
         <tr><td>Marker, Surya (Datalab)</td><td>Model weights free only if revenue <b>and</b> funding are under $5M</td></tr>
         <tr><td>Chandra (Datalab)</td><td>Free only under $2M, and not to compete with Datalab's API</td></tr>
         <tr><td>MinerU</td><td>Needs a commercial licence above $20M monthly revenue</td></tr>
@@ -535,16 +534,16 @@
         <tr><td>Nanonets-OCR2</td><td>No licence stated; base model is research-only</td></tr>
         <tr><td>PyMuPDF</td><td>AGPL: closed products need a paid licence</td></tr>
       </table>
-      <p style="font-size:16px; margin-top:12px"><b>Clean, permissive options:</b> Docling, PaddleOCR-VL, olmOCR, DeepSeek-OCR, dots.ocr, GLM-OCR, LightOnOCR, Qwen3-VL.</p>
+      <p style="font-size:16px; margin-top:12px"><b>Options with permissive licences:</b> Docling, PaddleOCR-VL, olmOCR, DeepSeek-OCR, dots.ocr, GLM-OCR, LightOnOCR, Qwen3-VL.</p>
     </div>
     <div>
-      <h3 style="margin-bottom:14px">Prices move, sometimes with a date</h3>
+      <h3 style="margin-bottom:14px">Prices change, sometimes on announced dates</h3>
       <ul class="plain small">
         <li><b>Gemini 3.8 and 3.6 Flash</b> double on 1 January 2027 ($0.75 → $1.50 per million input tokens).</li>
         <li><b>Gemini 4 Argon</b> doubles on 1 December 2026.</li>
         <li><b>GPT-5.6 Sol</b> is on a promotional price until at least 21 November 2026.</li>
         <li><b>Mistral OCR</b> has gone from $1 to $2 to $4 per 1,000 pages across three versions.</li>
-        <li><b>Batch APIs</b> from OpenAI, Anthropic, Google, Mistral and Bedrock cut prices by half if you can wait.</li>
+        <li><b>Batch APIs</b> from OpenAI, Anthropic, Google, Mistral and Bedrock halve prices for jobs that can wait.</li>
         <li><b>Thinking tokens</b> are charged as output and can multiply a general model's cost by 2–5×.</li>
       </ul>
     </div>
@@ -556,11 +555,11 @@
   <span class="kicker">03 · By client cloud</span>
   <h2>What is available in each client's cloud.</h2>
   <div class="cols c3" style="margin-top:28px; gap:22px">
-    <div class="card cloudcol rise" style="--i:0"><span class="label">Microsoft Azure</span><h3>Azure shop</h3>
+    <div class="card cloudcol rise" style="--i:0"><span class="label">Microsoft Azure</span><h3>Azure clients</h3>
       <ul class="plain small"><li>Document Intelligence: Read, Layout, prebuilt and custom models</li><li>Content Understanding (generative)</li><li>Mistral OCR 4 and Mistral Document AI in Foundry</li><li>GPT models in Foundry</li><li>Claude in Foundry</li></ul></div>
-    <div class="card cloudcol rise" style="--i:1"><span class="label">Amazon Web Services</span><h3>AWS shop</h3>
+    <div class="card cloudcol rise" style="--i:1"><span class="label">Amazon Web Services</span><h3>AWS clients</h3>
       <ul class="plain small"><li>Textract: OCR, layout, tables, forms, queries</li><li>Bedrock Data Automation</li><li>Claude, Qwen3-VL, GPT-6 Astra, Nova on Bedrock</li><li>DeepSeek-OCR on SageMaker JumpStart</li><li>Reducto, LlamaParse, Unstructured, Upstage via AWS Marketplace</li></ul></div>
-    <div class="card cloudcol rise" style="--i:2"><span class="label">Google Cloud</span><h3>GCP shop</h3>
+    <div class="card cloudcol rise" style="--i:2"><span class="label">Google Cloud</span><h3>Google Cloud clients</h3>
       <ul class="plain small"><li>Document AI: OCR, Layout Parser (uses Gemini), Form Parser, custom extractors</li><li>Gemini (only available here)</li><li>Claude on Vertex AI</li><li>DeepSeek-OCR and an older Mistral OCR in Model Garden</li></ul></div>
   </div>
   <div class="callout" style="margin-top:22px">Any open-weights model can also run on a GPU in the client's own account. Datalab has no marketplace listing but offers an enterprise version inside the client's cloud. Databricks and Snowflake have their own document parsing functions.</div>
@@ -576,7 +575,7 @@
       <div class="truth">Total due: <b>$4,250.00</b><br>Payment within <b>30 days</b>.</div>
       <span class="label" style="display:block; margin-top:18px">A parser returns</span>
       <div class="truth out">**Total due:** $4,250<br>Payment within 30 days.</div>
-      <p style="font-size:16px; margin-top:14px">Is that right? It depends on how you score it.</p>
+      <p style="font-size:16px; margin-top:14px">Whether this is correct depends on the scoring method.</p>
     </div>
     <table class="t metrics">
       <tr><th>Method</th><th>How it works</th><th>Verdict here</th><th>Used by</th></tr>
@@ -584,7 +583,7 @@
       <tr data-step="2"><td>Pass/fail tests</td><td>Hundreds of small checks: "is this text present?", "does A come before B?", "is this value in the cell under this heading?"</td><td class="ok-t">Text present: pass. Exact amount: fail</td><td>olmOCR-Bench, OmniParseBench</td></tr>
       <tr data-step="3"><td>Table similarity</td><td>Compare the structure of rows, columns and cells as a tree</td><td>Not a table, not scored</td><td>OmniDocBench, ParseBench, RD-TableBench</td></tr>
       <tr data-step="4"><td>Field accuracy</td><td>Extract named fields to JSON and compare values</td><td class="ok-t">total_due = 4250: pass</td><td>ExtractBench, OmniExtractBench</td></tr>
-      <tr data-step="5"><td>Judges and votes</td><td>An LLM or people pick the better of two outputs</td><td>Probably preferred, it looks tidy</td><td>OCR Arena, older Datalab pages</td></tr>
+      <tr data-step="5"><td>Judges and votes</td><td>An LLM or people pick the better of two outputs</td><td>Likely preferred for its formatting</td><td>OCR Arena, older Datalab pages</td></tr>
     </table>
   </div>
   <aside class="notes"><p>The main point: always ask what a benchmark scores. Formatting conventions can move a system 20+ places on some boards.</p></aside>
@@ -615,11 +614,11 @@
 
 <section class="slide" id="datalab-bench" data-section="[04] Measurement">
   <span class="kicker">04 · Datalab's latest benchmark</span>
-  <h2>Datalab's benchmark separates easy pages from hard ones.</h2>
+  <h2>OmniParseBench separates easy and hard pages.</h2>
   <div class="cols c37" style="margin-top:16px; gap:36px">
     <div>
       <ul class="plain small">
-        <li><b>Nov 2025.</b> Datalab says olmOCR-Bench is saturated. When Gemini re-checked failed tests, Chandra's score rose from 85.5 to 93.9. Many "failures" were the test's fault.</li>
+        <li><b>Nov 2025.</b> Datalab says olmOCR-Bench is saturated. When Gemini re-checked failed tests, Chandra's score rose from 85.5 to 93.9. Many failures were caused by errors in the tests.</li>
         <li><b>Oct 2026.</b> Datalab launches OmniParseBench: 16,288 pass/fail tests, open scoring code, and every system's result on every test published.</li>
         <li><b>Two views.</b> The headline measures reliability on typical content. Tags (handwriting, degraded, rotated, tiny text, non-Latin) show the very hard cases.</li>
       </ul>
@@ -630,12 +629,12 @@
       <p class="src">OmniParseBench pass rates by slice, run 8 Oct 2026. Slices computed by our researcher from Datalab's public per-test results file. * Gemini 3.8 Flash and Claude Sonnet 5.5 helped create some tests.</p>
     </div>
   </div>
-  <aside class="notes"><p>This is the "reliability on simple cases vs performance on very hard cases" view. On plain pages almost everyone is fine. Handwriting splits the field: Gemini 3.8 Flash 81, Datalab accurate 76, Azure Layout 42. Non-Latin scripts are another trap: Reducto drops to 64.</p><p>Caveat: Datalab built this benchmark and its product comes top. It is two weeks old and nobody has replicated it yet.</p></aside>
+  <aside class="notes"><p>This is the "reliability on simple cases vs performance on very hard cases" view. On plain pages almost everyone is fine. Handwriting splits the field: Gemini 3.8 Flash 81, Datalab accurate 76, Azure Layout 42. Non-Latin scripts are another weakness: Reducto drops to 64.</p><p>Caveat: Datalab built this benchmark and its product comes top. It is two weeks old and nobody has replicated it yet.</p></aside>
 </section>
 
 <section class="slide" data-section="[04] Measurement">
   <span class="kicker">04 · Strengths and limits</span>
-  <h2>Every vendor wins its own benchmark.</h2>
+  <h2>Each vendor's product leads its own benchmark.</h2>
   <div class="cols c2" style="margin-top:22px; gap:44px">
     <div>
       <table class="t">
@@ -648,35 +647,35 @@
         <tr><td>LongExtractionBench</td><td>micro1 for Reducto</td><td>Reducto</td></tr>
         <tr><td>RealDoc-Bench</td><td>Extend</td><td>Extend</td></tr>
       </table>
-      <div class="callout" style="margin-top:16px; font-size:16px">Cross-checks are more telling. Datalab is <b>45th</b> on LlamaIndex's ParseBench. LlamaParse is <b>5th</b> on Datalab's OmniParseBench.</div>
+      <div class="callout" style="margin-top:16px; font-size:16px">Cross-checks are more informative. Datalab is <b>45th</b> on LlamaIndex's ParseBench. LlamaParse is <b>5th</b> on Datalab's OmniParseBench.</div>
     </div>
     <div>
       <h3 style="margin-bottom:10px">Where benchmarks mislead</h3>
       <ul class="plain small">
-        <li><b>They can be trained for.</b> Datalab moved its small Surya model from 23rd to 3rd on ParseBench with 70 training steps. A prompt change gave another vendor 22.6 points.</li>
-        <li><b>They saturate.</b> Top systems on olmOCR-Bench are within 2 points; on OmniDocBench within 1. Gaps that small are noise.</li>
-        <li><b>They are not your documents.</b> Most are English, academic or from the publisher's own customers.</li>
-        <li><b>Models help build them.</b> Gemini and Claude helped write some OmniParseBench tests.</li>
+        <li><b>Systems can be tuned to them.</b> Datalab moved its small Surya model from 23rd to 3rd on ParseBench with 70 training steps. A prompt change gave another vendor 22.6 points.</li>
+        <li><b>Top scores converge.</b> Top systems on olmOCR-Bench are within 2 points; on OmniDocBench within 1. Differences of this size are within noise.</li>
+        <li><b>They may not resemble client documents.</b> Most are English, academic or from the publisher's own customers.</li>
+        <li><b>Models are used to build them.</b> Gemini and Claude helped write some OmniParseBench tests.</li>
         <li><b>Cost is rarely measured.</b> Only vendor boards show it, from single runs at list price.</li>
         <li><b>Long documents are missing.</b> Most test single pages. Plain model calls score 5–38 on ExtractBench's long documents.</li>
       </ul>
     </div>
   </div>
-  <aside class="notes"><p>Who to watch regularly: OmniParseBench (Datalab, versioned), ParseBench and ExtractBench (LlamaIndex, live CSVs on GitHub), OmniDocBench (quarterly-ish), OCRBench v2 (quarterly, private set). Read them as evidence, not verdicts.</p></aside>
+  <aside class="notes"><p>Who to watch regularly: OmniParseBench (Datalab, versioned), ParseBench and ExtractBench (LlamaIndex, live CSVs on GitHub), OmniDocBench (roughly quarterly), OCRBench v2 (quarterly, private set). Read them as evidence, not verdicts.</p></aside>
 </section>
 
 <!-- ================= 05 FRONTIER ================= -->
 <section class="slide" data-section="[05] The frontier">
   <span class="kicker">05 · How we built the charts</span>
-  <h2>We only combine like with like.</h2>
+  <h2>Benchmarks are combined only when comparable.</h2>
   <div class="cols c3" style="margin-top:30px; gap:22px">
     <div class="card fam rise" style="--i:0"><span class="label">Family 1</span><h3>Everyday reliability</h3><p>Is the text all there, in the right order, on typical pages?</p><div class="eg">OmniParseBench plain pages<br>ParseBench content faithfulness</div><span class="tag blue"><i></i>Blended · 2 benchmarks</span></div>
     <div class="card fam rise" style="--i:1"><span class="label">Family 2</span><h3>Hard pages</h3><p>Handwriting, poor scans, rotated or tiny text, and complex tables.</p><div class="eg">OmniParseBench hard slices + tables<br>ParseBench tables</div><span class="tag blue"><i></i>Blended · 2 benchmarks</span></div>
     <div class="card fam rise" style="--i:2"><span class="label">Family 3</span><h3>Field extraction</h3><p>Named fields to JSON from business documents, short to long.</p><div class="eg">ExtractBench</div><span class="tag"><i></i>Single benchmark</span></div>
   </div>
   <ul class="plain small" style="margin-top:26px; columns:2; column-gap:44px">
-    <li><b>Same scale first.</b> 18 systems appear on both benchmarks. We use them to rescale each benchmark to the same average and spread, then average.</li>
-    <li><b>Own product, half weight.</b> Datalab on its own benchmark, and LlamaParse on its own, count half.</li>
+    <li><b>Common scale.</b> 18 systems appear on both benchmarks. We use them to rescale each benchmark to the same average and spread, then average.</li>
+    <li><b>Own products at half weight.</b> Datalab on its own benchmark, and LlamaParse on its own, count half.</li>
     <li><b>Hollow dots</b> appear on one benchmark only. Treat them as less certain.</li>
     <li><b>Cost.</b> List price for products. GPU time for self-hosted models. For general models, the token cost each benchmark actually paid, which includes "thinking".</li>
     <li><b>Why not blend extraction?</b> The extraction benchmarks share too few systems to put on one scale.</li>
@@ -686,15 +685,15 @@
 
 <section class="slide" id="pf-everyday" data-section="[05] The frontier">
   <span class="kicker">05 · Frontier · Everyday reliability</span>
-  <h2>On typical pages, cheap is nearly as good.</h2>
+  <h2>Low-cost options suffice for typical pages.</h2>
   <div class="pf-tabs"></div>
   <div class="pf-chart" id="pf-everyday-chart"></div>
-  <aside class="notes"><p>Things to show: the spread is only about 8 points among serious systems. Self-hosted small models (LightOnOCR, dots.mocr) and Claude Haiku 5.5 sit on the frontier at $0.10–2 per 1,000 pages. Try the "Available on Azure, GCP or AWS" filter: the frontier becomes Claude Haiku → LlamaParse (Marketplace) → Claude Opus.</p><p>Note the Datalab vs ParseBench dispute: Datalab scores 93 on its own plain-page slice, 84 on ParseBench's content score.</p></aside>
+  <aside class="notes"><p>Points to make: the spread is only about 8 points among serious systems. Self-hosted small models (LightOnOCR, dots.mocr) and Claude Haiku 5.5 sit on the frontier at $0.10–2 per 1,000 pages. Try the "Available on Azure, GCP or AWS" filter: the frontier becomes Claude Haiku → LlamaParse (Marketplace) → Claude Opus.</p><p>Note the Datalab vs ParseBench dispute: Datalab scores 93 on its own plain-page slice, 84 on ParseBench's content score.</p></aside>
 </section>
 
 <section class="slide" id="pf-hard" data-section="[05] The frontier">
   <span class="kicker">05 · Frontier · Hard pages</span>
-  <h2>On hard pages, quality costs more.</h2>
+  <h2>Hard pages require more expensive options.</h2>
   <div class="pf-tabs"></div>
   <div class="pf-chart" id="pf-hard-chart"></div>
   <aside class="notes"><p>Datalab accurate at about $10 is the cheapest system in the top group. General models (Claude Sonnet 5.5, Gemini 3.8 Flash) match or beat it but cost $30–35 per 1,000 pages as benchmarked, with thinking on. Small open models drop 10–30 points here, which is the price of self-hosting cheaply.</p><p>Charts are not in this blend. On ParseBench, products without a chart-to-table step score 1–10 on charts, while general models score 30–70.</p></aside>
@@ -702,11 +701,11 @@
 
 <section class="slide" id="pf-extract" data-section="[05] The frontier">
   <span class="kicker">05 · Frontier · Field extraction</span>
-  <h2>Long documents need a pipeline.</h2>
+  <h2>Long documents require a pipeline.</h2>
   <div class="cols c64" style="gap:30px; margin-top:6px">
     <div class="pf-chart" id="pf-extract-chart"></div>
     <div>
-      <div class="stat"><div class="big-num">93–97</div><span class="label">field F1 on short documents for any competent system</span></div>
+      <div class="stat"><div class="big-num">93–97</div><span class="label">field F1 on short documents for most established systems</span></div>
       <div class="stat"><div class="big-num">5–38</div><span class="label">field F1 for plain model calls on long documents</span></div>
       <div class="stat"><div class="big-num">58%</div><span class="label">of long-tail documents extracted perfectly by the best system, at $952 per 1,000 pages</span></div>
       <p style="font-size:15px; margin-top:12px">ExtractBench is run by LlamaIndex, whose product tops it. On Datalab's OmniExtractBench, Datalab (93.9) and Reducto (93.5) lead, with Claude Opus 5 at 91.0.</p>
@@ -717,20 +716,20 @@
 
 <section class="slide" data-section="[05] The frontier">
   <span class="kicker">05 · What the frontier tells us</span>
-  <h2>Five things the charts tell us.</h2>
+  <h2>Conclusions from the frontier charts.</h2>
   <div class="takeaways">
-    <div class="rise" style="--i:0"><span class="n">1</span><div><b>Don't overpay for easy pages.</b> On typical pages the best and the cheap are within a few points. A $0.10–4 option is usually enough.</div></div>
-    <div class="rise" style="--i:1"><span class="n">2</span><div><b>Spend where the pages are hard.</b> Handwriting, scans and complex tables split the field by 10–30 points. Route those pages to a stronger, pricier option.</div></div>
+    <div class="rise" style="--i:0"><span class="n">1</span><div><b>Avoid overpaying for simple pages.</b> On typical pages, the best and the low-cost options are within a few points. An option costing $0.10–4 is usually sufficient.</div></div>
+    <div class="rise" style="--i:1"><span class="n">2</span><div><b>Direct spending to difficult pages.</b> Handwriting, scans and complex tables separate systems by 10–30 points. Route those pages to a stronger, more expensive option.</div></div>
     <div class="rise" style="--i:2"><span class="n">3</span><div><b>The clouds' own services are rarely on the frontier,</b> but general models served in those clouds often are. Claude runs on all three; Gemini on Google; GPT and Mistral OCR on Azure.</div></div>
     <div class="rise" style="--i:3"><span class="n">4</span><div><b>"Thinking" settings change the cost by 5–10×.</b> Gemini 3.8 Flash costs about $7 per 1,000 pages with low thinking and $34 with high, for about 1–2 points.</div></div>
-    <div class="rise" style="--i:4"><span class="n">5</span><div><b>Long documents are a different problem.</b> For fields from 100-page contracts, use a pipeline or agent that splits, extracts and checks. Never one call.</div></div>
+    <div class="rise" style="--i:4"><span class="n">5</span><div><b>Long documents require a different approach.</b> For fields from 100-page contracts, use a pipeline or agent that splits, extracts and checks. A single model call is not sufficient.</div></div>
   </div>
 </section>
 
 <!-- ================= 06 RECOMMEND ================= -->
 <section class="slide" id="guide" data-section="[06] Recommendations">
   <span class="kicker">06 · Decision guide</span>
-  <h2>What to try first for a client.</h2>
+  <h2>Selecting the first option to test.</h2>
   <div class="guide">
     <div class="g-qs" id="g-qs"></div>
     <div class="g-out card" id="g-out"></div>
@@ -748,9 +747,9 @@
     <tr><td>Mixed scans and tables, client is on Azure</td><td>Mistral OCR 4 in Foundry ($4)</td><td>Azure DI Layout ($10); Claude Sonnet 5.5 in Foundry for hard pages</td><td>Azure Layout is weak on handwriting and non-Latin text</td></tr>
     <tr><td>Mixed scans and tables, client is on AWS</td><td>Claude Haiku 5.5 on Bedrock ($1–2)</td><td>Reducto via AWS Marketplace ($10); Textract when you need key–value pairs with boxes</td><td>Textract Forms costs $50 per 1,000 pages</td></tr>
     <tr><td>Mixed scans and tables, client is on Google Cloud</td><td>Gemini 3.8 Flash with low thinking ($4–7)</td><td>Gemini 3.1 Flash-Lite ($3); Document AI Layout Parser for chunks</td><td>Gemini 3.8 Flash prices double on 1 Jan 2027</td></tr>
-    <tr><td>Hard pages matter most: handwriting, poor scans, complex tables</td><td>Datalab accurate ($10)</td><td>Gemini 3.8 Flash or Claude Sonnet 5.5 ($30–35 as benchmarked); LlamaParse Agentic Plus ($56)</td><td>Ask for word-level confidence and send low scores to people</td></tr>
+    <tr><td>Hard pages matter most: handwriting, poor scans, complex tables</td><td>Datalab accurate ($10)</td><td>Gemini 3.8 Flash or Claude Sonnet 5.5 ($30–35 as benchmarked); LlamaParse Agentic Plus ($56)</td><td>Request word-level confidence scores and send low-confidence results for human review</td></tr>
     <tr><td>Data must stay on the client's own machines</td><td>dots.mocr or MinerU2.5-Pro (permissive licences)</td><td>Chandra 2 (needs a licence above $2M revenue) or Datalab on-premises</td><td>Small models drop 10–30 points on handwriting and non-Latin text</td></tr>
-    <tr><td>Fields from short documents (invoices, forms)</td><td>A general model with a JSON schema, plus validation rules</td><td>Reducto Extract, LlamaExtract or Datalab extract</td><td>Valid JSON is not correct JSON; check totals and dates</td></tr>
+    <tr><td>Fields from short documents (invoices, forms)</td><td>A general model with a JSON schema, plus validation rules</td><td>Reducto Extract, LlamaExtract or Datalab extract</td><td>Valid JSON may still contain wrong values; check totals and dates</td></tr>
     <tr><td>Fields from long documents (contracts, 100+ pages)</td><td>A vendor extraction pipeline (LlamaExtract, Reducto Deep Extract, Datalab)</td><td>A coding agent (Claude Code, Codex) for unusual one-off jobs</td><td>Single model calls silently miss most of the document</td></tr>
     <tr><td>Auditors need to see where each value came from</td><td>Tools that return boxes and confidence: Azure DI, Textract, Datalab, Mistral OCR 4</td><td>Docling with visual grounding (free)</td><td>Boxes from general models are estimates, not measurements</td></tr>
   </table>
@@ -760,16 +759,16 @@
 
 <section class="slide" data-section="[06] Recommendations">
   <span class="kicker">06 · Before recommending</span>
-  <h2>Always run a small test on the client's own documents.</h2>
+  <h2>Test on the client's own documents first.</h2>
   <div class="recipe">
-    <div class="rise" style="--i:0"><span class="label">Step 1</span><h3>Sample</h3><p>Take 50–200 pages that match the real mix. Include the worst 10%: the faxes, the handwritten notes, the 40-page schedules.</p></div>
-    <div class="rise" style="--i:1"><span class="label">Step 2</span><h3>Mark the answers</h3><p>Only for what matters: the fields, totals and tables the client will use. Not every word.</p></div>
+    <div class="rise" style="--i:0"><span class="label">Step 1</span><h3>Sample</h3><p>Take 50–200 pages that match the real mix. Include the most difficult 10%, such as faxes, handwritten notes and long schedules.</p></div>
+    <div class="rise" style="--i:1"><span class="label">Step 2</span><h3>Create reference answers</h3><p>Only for the fields, totals and tables the client will use, not for every word.</p></div>
     <div class="rise" style="--i:2"><span class="label">Step 3</span><h3>Test three options</h3><p>A cheap baseline, the default pick and a premium option. Use the same pages and settings for all.</p></div>
     <div class="rise" style="--i:3"><span class="label">Step 4</span><h3>Measure</h3><p>Field accuracy, table accuracy, pages that failed silently, cost at the real volume, and speed.</p></div>
-    <div class="rise" style="--i:4"><span class="label">Step 5</span><h3>Route</h3><p>Cheap path for easy pages, strong path for hard pages, people for low-confidence results.</p></div>
-    <div class="rise" style="--i:5"><span class="label">Step 6</span><h3>Repeat</h3><p>Re-run every quarter. Prices halve and models improve every few months.</p></div>
+    <div class="rise" style="--i:4"><span class="label">Step 5</span><h3>Route</h3><p>Send simple pages to a low-cost option, difficult pages to a stronger option, and low-confidence results to human review.</p></div>
+    <div class="rise" style="--i:5"><span class="label">Step 6</span><h3>Repeat</h3><p>Re-run every quarter. Prices and model quality change every few months.</p></div>
   </div>
-  <div class="callout" style="margin-top:22px">The benchmarks tell you which three options to test. Only the client's documents tell you which one to use.</div>
+  <div class="callout" style="margin-top:22px">Benchmarks identify which options to test. Testing on the client's documents determines which to use.</div>
 </section>
 
 <section class="slide" data-section="[06] Recommendations">
@@ -822,13 +821,13 @@
 <section class="slide" data-section="Discussion" data-nochrome>
   <div style="height:100%; display:flex; flex-direction:column; justify-content:center; max-width:1000px">
     <span class="kicker">Discussion</span>
-    <h1 style="font-size:84px">Questions for the room</h1>
+    <h1 style="font-size:84px">Discussion questions</h1>
     <ul class="plain" style="margin-top:34px">
       <li>Which client document problem would you run through the decision guide?</li>
-      <li>Where have you seen a model "fix" a document when it should have copied it?</li>
+      <li>Where have you seen a model alter text that it should have copied exactly?</li>
       <li>What should we test ourselves, on our own documents, before the next client asks?</li>
     </ul>
-    <p class="label" style="margin-top:40px">Next week: web search and research agents · <a href="../">All sessions</a></p>
+    <p class="label" style="margin-top:40px">Next session: web search and research agents · <a href="../">All sessions</a></p>
   </div>
 </section>
 
