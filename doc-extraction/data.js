@@ -10,9 +10,13 @@ window.DX = {
      "name": "pdfplumber",
      "cost": 0.0,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "MIT"
      },
      "licence": "MIT",
      "outputs": [
@@ -28,9 +32,13 @@ window.DX = {
      "name": "PyMuPDF",
      "cost": 0.0,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "AGPL-3.0 or paid Artifex commercial licence"
      },
      "licence": "AGPL-3.0 or paid Artifex commercial licence",
      "outputs": [
@@ -47,9 +55,13 @@ window.DX = {
      "name": "pymupdf4llm",
      "cost": 0.0,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "AGPL-3.0 or paid Artifex commercial licence"
      },
      "licence": "AGPL-3.0 or paid Artifex commercial licence",
      "outputs": [
@@ -65,9 +77,13 @@ window.DX = {
      "name": "pdfminer.six",
      "cost": 0.0,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "MIT"
      },
      "licence": "MIT",
      "outputs": [
@@ -82,9 +98,13 @@ window.DX = {
      "name": "pypdf",
      "cost": 0.0,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "BSD-3-Clause (GitHub shows NOASSERTION; project licence file is BSD-3)"
      },
      "licence": "BSD-3-Clause (GitHub shows NOASSERTION; project licence file is BSD-3)",
      "outputs": [
@@ -98,9 +118,13 @@ window.DX = {
      "name": "Camelot",
      "cost": 0.0,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "MIT"
      },
      "licence": "MIT",
      "outputs": [
@@ -114,9 +138,13 @@ window.DX = {
      "name": "Tabula",
      "cost": 0.0,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "MIT"
      },
      "licence": "MIT",
      "outputs": [
@@ -130,9 +158,13 @@ window.DX = {
      "name": "Tesseract",
      "cost": 0.0,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "licence": "Apache-2.0",
      "outputs": [
@@ -148,9 +180,13 @@ window.DX = {
      "name": "ABBYY",
      "cost": null,
      "deploy": {
-      "cloud": false,
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary; on-prem and cloud editions"
      },
      "licence": "Proprietary; on-prem and cloud editions",
      "outputs": [
@@ -174,9 +210,15 @@ window.DX = {
      "name": "Azure DI Read",
      "cost": 1.5,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
      },
      "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers",
      "outputs": [
@@ -193,9 +235,15 @@ window.DX = {
      "name": "Azure DI Layout",
      "cost": 10.0,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
      },
      "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers",
      "outputs": [
@@ -215,9 +263,15 @@ window.DX = {
      "name": "Azure DI prebuilt",
      "cost": 10.0,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
      },
      "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers",
      "outputs": [
@@ -234,9 +288,15 @@ window.DX = {
      "name": "Azure DI custom",
      "cost": 30.0,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
      },
      "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers",
      "outputs": [
@@ -252,9 +312,15 @@ window.DX = {
      "name": "Azure Content Understanding",
      "cost": 6.54,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -272,9 +338,15 @@ window.DX = {
      "name": "Textract OCR",
      "cost": 1.5,
      "deploy": {
-      "cloud": "AWS",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -290,9 +362,15 @@ window.DX = {
      "name": "Textract Layout",
      "cost": 4.0,
      "deploy": {
-      "cloud": "AWS",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -308,9 +386,15 @@ window.DX = {
      "name": "Textract Tables",
      "cost": 15.0,
      "deploy": {
-      "cloud": "AWS",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -326,9 +410,15 @@ window.DX = {
      "name": "Textract Forms",
      "cost": 50.0,
      "deploy": {
-      "cloud": "AWS",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -345,9 +435,15 @@ window.DX = {
      "name": "Bedrock Data Automation",
      "cost": 10.0,
      "deploy": {
-      "cloud": "AWS",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -364,9 +460,15 @@ window.DX = {
      "name": "BDA custom",
      "cost": 40.0,
      "deploy": {
-      "cloud": "AWS",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -382,9 +484,15 @@ window.DX = {
      "name": "Document AI OCR",
      "cost": 1.5,
      "deploy": {
-      "cloud": "GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -401,9 +509,15 @@ window.DX = {
      "name": "Document AI Layout Parser",
      "cost": 10.0,
      "deploy": {
-      "cloud": "GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Some Gemini-based processor versions route through a global endpoint and do not meet data-residency rules. Choose the processor version accordingly.",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -419,9 +533,15 @@ window.DX = {
      "name": "Document AI Form Parser",
      "cost": 30.0,
      "deploy": {
-      "cloud": "GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -439,9 +559,15 @@ window.DX = {
      "name": "Document AI custom",
      "cost": 30.0,
      "deploy": {
-      "cloud": "GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -464,9 +590,13 @@ window.DX = {
      "name": "Datalab API",
      "cost": 4.0,
      "deploy": {
-      "cloud": false,
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
      },
      "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)",
      "outputs": [
@@ -484,9 +614,13 @@ window.DX = {
      "name": "Datalab API (accurate)",
      "cost": 10.0,
      "deploy": {
-      "cloud": false,
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary API"
      },
      "licence": "Proprietary API",
      "outputs": [
@@ -502,9 +636,15 @@ window.DX = {
      "name": "Mistral OCR 4.1",
      "cost": 4.0,
      "deploy": {
-      "cloud": "Azure \u00b7 GCP (older version)",
-      "self": false,
-      "saas": true
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "Microsoft Foundry. Confirm the hosting option and region for your deployment. Google Vertex AI has only the older 25.05 version.",
+      "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence"
      },
      "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence",
      "outputs": [
@@ -523,9 +663,15 @@ window.DX = {
      "name": "Mistral Document AI",
      "cost": 5.0,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": true
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "Microsoft Foundry. Confirm the hosting option and region for your deployment.",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -542,9 +688,13 @@ window.DX = {
      "name": "Reducto Parse",
      "cost": 10.0,
      "deploy": {
-      "cloud": "AWS Marketplace",
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -563,9 +713,13 @@ window.DX = {
      "name": "Reducto Extract",
      "cost": 20.0,
      "deploy": {
-      "cloud": "AWS Marketplace",
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -580,9 +734,13 @@ window.DX = {
      "name": "LlamaParse (cost-effective)",
      "cost": 3.75,
      "deploy": {
-      "cloud": "AWS Marketplace",
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -600,9 +758,13 @@ window.DX = {
      "name": "LlamaParse (agentic)",
      "cost": 12.5,
      "deploy": {
-      "cloud": "AWS Marketplace",
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -620,9 +782,13 @@ window.DX = {
      "name": "Unstructured",
      "cost": 15.0,
      "deploy": {
-      "cloud": "AWS Marketplace",
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary platform; open-source 'unstructured' library Apache-2.0"
      },
      "licence": "Proprietary platform; open-source 'unstructured' library Apache-2.0",
      "outputs": [
@@ -639,9 +805,13 @@ window.DX = {
      "name": "LandingAI ADE",
      "cost": 15.0,
      "deploy": {
-      "cloud": false,
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": "Snowflake Marketplace native app",
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -659,9 +829,13 @@ window.DX = {
      "name": "Extend",
      "cost": 20.0,
      "deploy": {
-      "cloud": false,
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -680,9 +854,15 @@ window.DX = {
      "name": "Upstage",
      "cost": 10.0,
      "deploy": {
-      "cloud": "AWS Marketplace",
-      "self": false,
-      "saas": true
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "SageMaker model package deployed in your AWS account; the Marketplace SaaS listing is vendor-hosted.",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -699,9 +879,17 @@ window.DX = {
      "name": "Databricks ai_parse",
      "cost": null,
      "deploy": {
-      "cloud": "Databricks on any cloud",
-      "self": false,
-      "saas": true
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": true,
+      "note": "Runs on the Databricks platform in whichever cloud the client's workspace uses.",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -717,9 +905,13 @@ window.DX = {
      "name": "Hyperscience",
      "cost": null,
      "deploy": {
-      "cloud": "AWS Marketplace",
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": "AWS Marketplace",
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -736,9 +928,13 @@ window.DX = {
      "name": "Instabase",
      "cost": null,
      "deploy": {
-      "cloud": "AWS Marketplace",
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": "AWS Marketplace",
+      "private": true,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -755,9 +951,13 @@ window.DX = {
      "name": "Rossum",
      "cost": null,
      "deploy": {
-      "cloud": false,
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -774,9 +974,13 @@ window.DX = {
      "name": "Nanonets",
      "cost": null,
      "deploy": {
-      "cloud": false,
-      "self": false,
-      "saas": true
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": true,
+      "note": "",
+      "licence": "Proprietary"
      },
      "licence": "Proprietary",
      "outputs": [
@@ -799,9 +1003,13 @@ window.DX = {
      "name": "Marker",
      "cost": 0.239,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and orgs under $5M revenue AND funding; above that a commercial licence is required; no competitive use with Datalab API"
      },
      "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and orgs under $5M revenue AND funding; above that a commercial licence is required; no competitive use with Datalab API",
      "outputs": [
@@ -820,9 +1028,13 @@ window.DX = {
      "name": "Surya",
      "cost": 0.13,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "Code Apache-2.0; weights modified OpenRAIL-M (free under $5M revenue/funding; commercial licence above)"
      },
      "licence": "Code Apache-2.0; weights modified OpenRAIL-M (free under $5M revenue/funding; commercial licence above)",
      "outputs": [
@@ -840,9 +1052,13 @@ window.DX = {
      "name": "Chandra 2",
      "cost": 0.482,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence"
      },
      "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence",
      "outputs": [
@@ -862,9 +1078,13 @@ window.DX = {
      "name": "Docling",
      "cost": 0.331,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "MIT (code); bundled models have own licences (Heron layout, TableFormer, granite-docling Apache-2.0)"
      },
      "licence": "MIT (code); bundled models have own licences (Heron layout, TableFormer, granite-docling Apache-2.0)",
      "outputs": [
@@ -882,9 +1102,13 @@ window.DX = {
      "name": "Granite-Docling",
      "cost": null,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "licence": "Apache-2.0",
      "outputs": [
@@ -902,9 +1126,13 @@ window.DX = {
      "name": "MinerU",
      "cost": 0.328,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "MinerU Open Source License = Apache-2.0 + conditions: commercial licence required if org (with affiliates) exceeds 100M MAU or USD 20M monthly revenue; attribution required for online services. MinerU2.5-Pro weights Apache-2.0 (older MinerU2.5-2509 weights AGPL-3.0)"
      },
      "licence": "MinerU Open Source License = Apache-2.0 + conditions: commercial licence required if org (with affiliates) exceeds 100M MAU or USD 20M monthly revenue; attribution required for online services. MinerU2.5-Pro weights Apache-2.0 (older MinerU2.5-2509 weights AGPL-3.0)",
      "outputs": [
@@ -921,9 +1149,13 @@ window.DX = {
      "name": "PaddleOCR-VL",
      "cost": 0.429,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "licence": "Apache-2.0",
      "outputs": [
@@ -942,9 +1174,13 @@ window.DX = {
      "name": "olmOCR 2",
      "cost": 0.2,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "Apache-2.0 (code and weights; Qwen2.5-VL-7B base, Apache-2.0)"
      },
      "licence": "Apache-2.0 (code and weights; Qwen2.5-VL-7B base, Apache-2.0)",
      "outputs": [
@@ -961,9 +1197,16 @@ window.DX = {
      "name": "DeepSeek-OCR",
      "cost": 0.301,
      "deploy": {
-      "cloud": "GCP \u00b7 AWS",
-      "self": true,
-      "saas": false
+      "hosted": [
+       "GCP",
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "DeepSeek-OCR (version 1) on Vertex AI Model Garden and SageMaker JumpStart. DeepSeek-OCR 2 is self-host only.",
+      "licence": "DeepSeek-OCR MIT; DeepSeek-OCR-2 (Jan 2026) Apache-2.0"
      },
      "licence": "DeepSeek-OCR MIT; DeepSeek-OCR-2 (Jan 2026) Apache-2.0",
      "outputs": [
@@ -980,9 +1223,13 @@ window.DX = {
      "name": "dots.ocr",
      "cost": 1.972,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "MIT"
      },
      "licence": "MIT",
      "outputs": [
@@ -999,9 +1246,13 @@ window.DX = {
      "name": "GLM-OCR",
      "cost": 0.373,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "MIT"
      },
      "licence": "MIT",
      "outputs": [
@@ -1018,9 +1269,13 @@ window.DX = {
      "name": "LightOnOCR",
      "cost": 0.122,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "licence": "Apache-2.0",
      "outputs": [
@@ -1037,9 +1292,13 @@ window.DX = {
      "name": "Qianfan-OCR",
      "cost": 0.678,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "licence": "Apache-2.0",
      "outputs": [
@@ -1056,9 +1315,13 @@ window.DX = {
      "name": "Nanonets-OCR2",
      "cost": null,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "No licence declared on Hugging Face card (unverified; third-party listings say Apache-2.0). Base model Qwen2.5-VL-3B carries the 'qwen-research' licence - check before commercial use"
      },
      "licence": "No licence declared on Hugging Face card (unverified; third-party listings say Apache-2.0). Base model Qwen2.5-VL-3B carries the 'qwen-research' licence - check before commercial use",
      "outputs": [
@@ -1077,9 +1340,13 @@ window.DX = {
      "name": "HunyuanOCR",
      "cost": null,
      "deploy": {
-      "cloud": false,
-      "self": true,
-      "saas": false
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "",
+      "licence": "Tencent Hunyuan Community licence - does NOT apply in EU, UK or South Korea"
      },
      "licence": "Tencent Hunyuan Community licence - does NOT apply in EU, UK or South Korea",
      "outputs": [
@@ -1096,9 +1363,15 @@ window.DX = {
      "name": "Qwen3-VL",
      "cost": null,
      "deploy": {
-      "cloud": "AWS",
-      "self": true,
-      "saas": false
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "235B on Amazon Bedrock; 8B through SageMaker JumpStart in your account.",
+      "licence": "Apache-2.0 (Qwen3-VL, Qwen3.5, Qwen3.8-27B); note Qwen3.8-Flash-Next uses 'qwen-community-1.0' licence"
      },
      "licence": "Apache-2.0 (Qwen3-VL, Qwen3.5, Qwen3.8-27B); note Qwen3.8-Flash-Next uses 'qwen-community-1.0' licence",
      "outputs": [
@@ -1122,9 +1395,15 @@ window.DX = {
      "name": "Gemini 3.8 Flash",
      "cost": 4.07,
      "deploy": {
-      "cloud": "GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1141,9 +1420,15 @@ window.DX = {
      "name": "Gemini 3.1 Flash-Lite",
      "cost": 1.55,
      "deploy": {
-      "cloud": "GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1160,9 +1445,15 @@ window.DX = {
      "name": "Gemini 2.5 Flash-Lite",
      "cost": 0.5,
      "deploy": {
-      "cloud": "GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1179,9 +1470,15 @@ window.DX = {
      "name": "Gemini 3.1 Pro",
      "cost": 12.44,
      "deploy": {
-      "cloud": "GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1198,9 +1495,15 @@ window.DX = {
      "name": "Gemini 4 Argon",
      "cost": 10.84,
      "deploy": {
-      "cloud": "GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1217,9 +1520,15 @@ window.DX = {
      "name": "GPT-6 Luna",
      "cost": 0.68,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1236,9 +1545,15 @@ window.DX = {
      "name": "GPT-5.4 nano",
      "cost": 1.56,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1255,9 +1570,15 @@ window.DX = {
      "name": "GPT-5.4 mini",
      "cost": 5.7,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1274,9 +1595,15 @@ window.DX = {
      "name": "GPT-6 Sol",
      "cost": 13.59,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1293,9 +1620,15 @@ window.DX = {
      "name": "GPT-5.5",
      "cost": 37.98,
      "deploy": {
-      "cloud": "Azure",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1312,9 +1645,16 @@ window.DX = {
      "name": "GPT-6 Astra",
      "cost": 67.96,
      "deploy": {
-      "cloud": "Azure \u00b7 AWS",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure",
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Azure OpenAI in Foundry; Amazon Bedrock. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1331,9 +1671,17 @@ window.DX = {
      "name": "Claude Haiku 5.5",
      "cost": 0.83,
      "deploy": {
-      "cloud": "Azure \u00b7 AWS \u00b7 GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1350,9 +1698,17 @@ window.DX = {
      "name": "Claude Sonnet 5.5",
      "cost": 16.61,
      "deploy": {
-      "cloud": "Azure \u00b7 AWS \u00b7 GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1369,9 +1725,17 @@ window.DX = {
      "name": "Claude Opus 5.5",
      "cost": 33.22,
      "deploy": {
-      "cloud": "Azure \u00b7 AWS \u00b7 GCP",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
+      "saas": false,
+      "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+      "licence": "Proprietary (API only)"
      },
      "licence": "Proprietary (API only)",
      "outputs": [
@@ -1388,9 +1752,15 @@ window.DX = {
      "name": "Qwen3-VL 235B",
      "cost": 3.39,
      "deploy": {
-      "cloud": "AWS",
-      "self": false,
-      "saas": false
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": true,
+      "saas": false,
+      "note": "Amazon Bedrock serverless.",
+      "licence": "Apache-2.0 open weights"
      },
      "licence": "Apache-2.0 open weights",
      "outputs": [
@@ -1847,9 +2217,13 @@ window.DX = {
    "name": "pdfplumber",
    "cost": 0.0,
    "deploy": {
-    "cloud": false,
-    "self": true,
-    "saas": false
+    "hosted": [],
+    "billing": null,
+    "private": false,
+    "weights": true,
+    "saas": false,
+    "note": "",
+    "licence": "MIT"
    },
    "licence": "MIT",
    "outputs": [
@@ -1866,9 +2240,13 @@ window.DX = {
    "name": "Tesseract",
    "cost": 0.0,
    "deploy": {
-    "cloud": false,
-    "self": true,
-    "saas": false
+    "hosted": [],
+    "billing": null,
+    "private": false,
+    "weights": true,
+    "saas": false,
+    "note": "",
+    "licence": "Apache-2.0"
    },
    "licence": "Apache-2.0",
    "outputs": [
@@ -1885,9 +2263,13 @@ window.DX = {
    "name": "LightOnOCR",
    "cost": 0.122,
    "deploy": {
-    "cloud": false,
-    "self": true,
-    "saas": false
+    "hosted": [],
+    "billing": null,
+    "private": false,
+    "weights": true,
+    "saas": false,
+    "note": "",
+    "licence": "Apache-2.0"
    },
    "licence": "Apache-2.0",
    "outputs": [
@@ -1905,9 +2287,13 @@ window.DX = {
    "name": "olmOCR 2",
    "cost": 0.2,
    "deploy": {
-    "cloud": false,
-    "self": true,
-    "saas": false
+    "hosted": [],
+    "billing": null,
+    "private": false,
+    "weights": true,
+    "saas": false,
+    "note": "",
+    "licence": "Apache-2.0 (code and weights; Qwen2.5-VL-7B base, Apache-2.0)"
    },
    "licence": "Apache-2.0 (code and weights; Qwen2.5-VL-7B base, Apache-2.0)",
    "outputs": [
@@ -1925,9 +2311,13 @@ window.DX = {
    "name": "Marker",
    "cost": 0.239,
    "deploy": {
-    "cloud": false,
-    "self": true,
-    "saas": false
+    "hosted": [],
+    "billing": null,
+    "private": false,
+    "weights": true,
+    "saas": false,
+    "note": "",
+    "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and orgs under $5M revenue AND funding; above that a commercial licence is required; no competitive use with Datalab API"
    },
    "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and orgs under $5M revenue AND funding; above that a commercial licence is required; no competitive use with Datalab API",
    "outputs": [
@@ -1947,9 +2337,16 @@ window.DX = {
    "name": "DeepSeek-OCR",
    "cost": 0.301,
    "deploy": {
-    "cloud": "GCP \u00b7 AWS",
-    "self": true,
-    "saas": false
+    "hosted": [
+     "GCP",
+     "AWS"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": true,
+    "saas": false,
+    "note": "DeepSeek-OCR (version 1) on Vertex AI Model Garden and SageMaker JumpStart. DeepSeek-OCR 2 is self-host only.",
+    "licence": "DeepSeek-OCR MIT; DeepSeek-OCR-2 (Jan 2026) Apache-2.0"
    },
    "licence": "DeepSeek-OCR MIT; DeepSeek-OCR-2 (Jan 2026) Apache-2.0",
    "outputs": [
@@ -1967,9 +2364,13 @@ window.DX = {
    "name": "PaddleOCR-VL",
    "cost": 0.429,
    "deploy": {
-    "cloud": false,
-    "self": true,
-    "saas": false
+    "hosted": [],
+    "billing": null,
+    "private": false,
+    "weights": true,
+    "saas": false,
+    "note": "",
+    "licence": "Apache-2.0"
    },
    "licence": "Apache-2.0",
    "outputs": [
@@ -1989,9 +2390,13 @@ window.DX = {
    "name": "Chandra 2",
    "cost": 0.482,
    "deploy": {
-    "cloud": false,
-    "self": true,
-    "saas": false
+    "hosted": [],
+    "billing": null,
+    "private": false,
+    "weights": true,
+    "saas": false,
+    "note": "",
+    "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence"
    },
    "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence",
    "outputs": [
@@ -2012,9 +2417,15 @@ window.DX = {
    "name": "Gemini 2.5 Flash-Lite",
    "cost": 0.5,
    "deploy": {
-    "cloud": "GCP",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "GCP"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Vertex AI.",
+    "licence": "Proprietary (API only)"
    },
    "licence": "Proprietary (API only)",
    "outputs": [
@@ -2032,9 +2443,15 @@ window.DX = {
    "name": "GPT-6 Luna",
    "cost": 0.68,
    "deploy": {
-    "cloud": "Azure",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "Azure"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+    "licence": "Proprietary (API only)"
    },
    "licence": "Proprietary (API only)",
    "outputs": [
@@ -2052,9 +2469,17 @@ window.DX = {
    "name": "Claude Haiku 5.5",
    "cost": 0.83,
    "deploy": {
-    "cloud": "Azure \u00b7 AWS \u00b7 GCP",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "Azure",
+     "AWS",
+     "GCP"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+    "licence": "Proprietary (API only)"
    },
    "licence": "Proprietary (API only)",
    "outputs": [
@@ -2072,9 +2497,13 @@ window.DX = {
    "name": "LlamaParse - Fast tier",
    "cost": 1.25,
    "deploy": {
-    "cloud": "AWS Marketplace",
-    "self": false,
-    "saas": true
+    "hosted": [],
+    "billing": "AWS Marketplace (vendor-hosted SaaS)",
+    "private": true,
+    "weights": false,
+    "saas": true,
+    "note": "",
+    "licence": "Proprietary"
    },
    "licence": "Proprietary",
    "outputs": [
@@ -2093,9 +2522,15 @@ window.DX = {
    "name": "Azure DI Read",
    "cost": 1.5,
    "deploy": {
-    "cloud": "Azure",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "Azure"
+    ],
+    "billing": null,
+    "private": true,
+    "weights": false,
+    "saas": false,
+    "note": "",
+    "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
    },
    "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers",
    "outputs": [
@@ -2113,9 +2548,15 @@ window.DX = {
    "name": "Textract OCR",
    "cost": 1.5,
    "deploy": {
-    "cloud": "AWS",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "AWS"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "",
+    "licence": "Proprietary"
    },
    "licence": "Proprietary",
    "outputs": [
@@ -2132,9 +2573,15 @@ window.DX = {
    "name": "Gemini 3.1 Flash-Lite",
    "cost": 1.55,
    "deploy": {
-    "cloud": "GCP",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "GCP"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Vertex AI.",
+    "licence": "Proprietary (API only)"
    },
    "licence": "Proprietary (API only)",
    "outputs": [
@@ -2152,9 +2599,15 @@ window.DX = {
    "name": "Mistral OCR 4.1",
    "cost": 4.0,
    "deploy": {
-    "cloud": "Azure \u00b7 GCP (older version)",
-    "self": false,
-    "saas": true
+    "hosted": [
+     "Azure"
+    ],
+    "billing": null,
+    "private": true,
+    "weights": false,
+    "saas": true,
+    "note": "Microsoft Foundry. Confirm the hosting option and region for your deployment. Google Vertex AI has only the older 25.05 version.",
+    "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence"
    },
    "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence",
    "outputs": [
@@ -2174,9 +2627,13 @@ window.DX = {
    "name": "Datalab API",
    "cost": 4.0,
    "deploy": {
-    "cloud": false,
-    "self": false,
-    "saas": true
+    "hosted": [],
+    "billing": null,
+    "private": true,
+    "weights": false,
+    "saas": true,
+    "note": "",
+    "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
    },
    "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)",
    "outputs": [
@@ -2195,9 +2652,15 @@ window.DX = {
    "name": "Textract Layout",
    "cost": 4.0,
    "deploy": {
-    "cloud": "AWS",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "AWS"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "",
+    "licence": "Proprietary"
    },
    "licence": "Proprietary",
    "outputs": [
@@ -2214,9 +2677,15 @@ window.DX = {
    "name": "Gemini 3.8 Flash",
    "cost": 4.07,
    "deploy": {
-    "cloud": "GCP",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "GCP"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Vertex AI.",
+    "licence": "Proprietary (API only)"
    },
    "licence": "Proprietary (API only)",
    "outputs": [
@@ -2234,9 +2703,15 @@ window.DX = {
    "name": "GPT-5.4 mini",
    "cost": 5.7,
    "deploy": {
-    "cloud": "Azure",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "Azure"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+    "licence": "Proprietary (API only)"
    },
    "licence": "Proprietary (API only)",
    "outputs": [
@@ -2254,9 +2729,15 @@ window.DX = {
    "name": "Azure DI Layout",
    "cost": 10.0,
    "deploy": {
-    "cloud": "Azure",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "Azure"
+    ],
+    "billing": null,
+    "private": true,
+    "weights": false,
+    "saas": false,
+    "note": "",
+    "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
    },
    "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers",
    "outputs": [
@@ -2277,9 +2758,15 @@ window.DX = {
    "name": "Document AI Layout Parser",
    "cost": 10.0,
    "deploy": {
-    "cloud": "GCP",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "GCP"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Some Gemini-based processor versions route through a global endpoint and do not meet data-residency rules. Choose the processor version accordingly.",
+    "licence": "Proprietary"
    },
    "licence": "Proprietary",
    "outputs": [
@@ -2296,9 +2783,13 @@ window.DX = {
    "name": "Reducto Parse",
    "cost": 10.0,
    "deploy": {
-    "cloud": "AWS Marketplace",
-    "self": false,
-    "saas": true
+    "hosted": [],
+    "billing": "AWS Marketplace (vendor-hosted SaaS)",
+    "private": true,
+    "weights": false,
+    "saas": true,
+    "note": "",
+    "licence": "Proprietary"
    },
    "licence": "Proprietary",
    "outputs": [
@@ -2318,9 +2809,13 @@ window.DX = {
    "name": "Datalab API (accurate)",
    "cost": 10.0,
    "deploy": {
-    "cloud": false,
-    "self": false,
-    "saas": true
+    "hosted": [],
+    "billing": null,
+    "private": true,
+    "weights": false,
+    "saas": true,
+    "note": "",
+    "licence": "Proprietary API"
    },
    "licence": "Proprietary API",
    "outputs": [
@@ -2337,9 +2832,15 @@ window.DX = {
    "name": "Gemini 4 Argon",
    "cost": 10.84,
    "deploy": {
-    "cloud": "GCP",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "GCP"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Vertex AI.",
+    "licence": "Proprietary (API only)"
    },
    "licence": "Proprietary (API only)",
    "outputs": [
@@ -2357,9 +2858,13 @@ window.DX = {
    "name": "LlamaParse (agentic)",
    "cost": 12.5,
    "deploy": {
-    "cloud": "AWS Marketplace",
-    "self": false,
-    "saas": true
+    "hosted": [],
+    "billing": "AWS Marketplace (vendor-hosted SaaS)",
+    "private": true,
+    "weights": false,
+    "saas": true,
+    "note": "",
+    "licence": "Proprietary"
    },
    "licence": "Proprietary",
    "outputs": [
@@ -2378,9 +2883,13 @@ window.DX = {
    "name": "Unstructured",
    "cost": 15.0,
    "deploy": {
-    "cloud": "AWS Marketplace",
-    "self": false,
-    "saas": true
+    "hosted": [],
+    "billing": "AWS Marketplace (vendor-hosted SaaS)",
+    "private": true,
+    "weights": false,
+    "saas": true,
+    "note": "",
+    "licence": "Proprietary platform; open-source 'unstructured' library Apache-2.0"
    },
    "licence": "Proprietary platform; open-source 'unstructured' library Apache-2.0",
    "outputs": [
@@ -2398,9 +2907,13 @@ window.DX = {
    "name": "LandingAI ADE",
    "cost": 15.0,
    "deploy": {
-    "cloud": false,
-    "self": false,
-    "saas": true
+    "hosted": [],
+    "billing": "Snowflake Marketplace native app",
+    "private": true,
+    "weights": false,
+    "saas": true,
+    "note": "",
+    "licence": "Proprietary"
    },
    "licence": "Proprietary",
    "outputs": [
@@ -2419,9 +2932,17 @@ window.DX = {
    "name": "Claude Sonnet 5.5",
    "cost": 16.61,
    "deploy": {
-    "cloud": "Azure \u00b7 AWS \u00b7 GCP",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "Azure",
+     "AWS",
+     "GCP"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+    "licence": "Proprietary (API only)"
    },
    "licence": "Proprietary (API only)",
    "outputs": [
@@ -2439,9 +2960,13 @@ window.DX = {
    "name": "Extend",
    "cost": 20.0,
    "deploy": {
-    "cloud": false,
-    "self": false,
-    "saas": true
+    "hosted": [],
+    "billing": null,
+    "private": true,
+    "weights": false,
+    "saas": true,
+    "note": "",
+    "licence": "Proprietary"
    },
    "licence": "Proprietary",
    "outputs": [
@@ -2461,9 +2986,15 @@ window.DX = {
    "name": "Azure DI custom",
    "cost": 30.0,
    "deploy": {
-    "cloud": "Azure",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "Azure"
+    ],
+    "billing": null,
+    "private": true,
+    "weights": false,
+    "saas": false,
+    "note": "",
+    "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
    },
    "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers",
    "outputs": [
@@ -2480,9 +3011,17 @@ window.DX = {
    "name": "Claude Opus 5.5",
    "cost": 33.22,
    "deploy": {
-    "cloud": "Azure \u00b7 AWS \u00b7 GCP",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "Azure",
+     "AWS",
+     "GCP"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+    "licence": "Proprietary (API only)"
    },
    "licence": "Proprietary (API only)",
    "outputs": [
@@ -2500,9 +3039,15 @@ window.DX = {
    "name": "Textract Forms",
    "cost": 50.0,
    "deploy": {
-    "cloud": "AWS",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "AWS"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "",
+    "licence": "Proprietary"
    },
    "licence": "Proprietary",
    "outputs": [
@@ -2520,9 +3065,16 @@ window.DX = {
    "name": "GPT-6 Astra",
    "cost": 67.96,
    "deploy": {
-    "cloud": "Azure \u00b7 AWS",
-    "self": false,
-    "saas": false
+    "hosted": [
+     "Azure",
+     "AWS"
+    ],
+    "billing": null,
+    "private": false,
+    "weights": false,
+    "saas": false,
+    "note": "Azure OpenAI in Foundry; Amazon Bedrock. Confirm region availability.",
+    "licence": "Proprietary (API only)"
    },
    "licence": "Proprietary (API only)",
    "outputs": [
@@ -2544,16 +3096,20 @@ window.DX = {
     "ParseBench: content faithfulness"
    ],
    "anchors": 18,
-   "method": "Linear equating on 18 systems that appear on both benchmarks",
+   "method": "Measures whether text is complete and in order on typical pages \u00b7 index rescaled on 18 shared systems",
    "points": [
     {
      "id": "datalab-accurate",
      "name": "Datalab (accurate)",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "",
+      "licence": "Proprietary API"
      },
      "cost": 10,
      "score": 86.7,
@@ -2577,9 +3133,13 @@ window.DX = {
      "name": "Datalab (balanced)",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "",
+      "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
      },
      "cost": 4,
      "score": 86.4,
@@ -2603,9 +3163,13 @@ window.DX = {
      "name": "Reducto (r-1)",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 10,
      "score": 90.1,
@@ -2629,9 +3193,13 @@ window.DX = {
      "name": "LlamaParse Agentic Plus",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 56.25,
      "score": 91.0,
@@ -2655,9 +3223,13 @@ window.DX = {
      "name": "LlamaParse Agentic",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 12.5,
      "score": 92.2,
@@ -2676,9 +3248,13 @@ window.DX = {
      "name": "LlamaParse Cost-Effective",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 3.75,
      "score": 90.2,
@@ -2697,9 +3273,15 @@ window.DX = {
      "name": "Mistral OCR 4",
      "family": "saas",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "Azure Foundry"
+      "note": "Microsoft Foundry. Confirm the hosting option and region for your deployment. Google Vertex AI has only the older 25.05 version.",
+      "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence"
      },
      "cost": 4,
      "score": 88.6,
@@ -2723,9 +3305,15 @@ window.DX = {
      "name": "Azure DI Layout",
      "family": "cloud",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure"
+      "note": "",
+      "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
      },
      "cost": 10,
      "score": 85.2,
@@ -2749,9 +3337,13 @@ window.DX = {
      "name": "Extend Parse",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 20,
      "score": 84.9,
@@ -2775,9 +3367,17 @@ window.DX = {
      "name": "Databricks ai_parse",
      "family": "saas",
      "deploy": {
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "Databricks on any cloud"
+      "note": "Runs on the Databricks platform in whichever cloud the client's workspace uses.",
+      "licence": "Proprietary"
      },
      "cost": 3.5,
      "score": 88.5,
@@ -2796,9 +3396,15 @@ window.DX = {
      "name": "AWS Textract",
      "family": "cloud",
      "deploy": {
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "AWS"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 15,
      "score": 74.1,
@@ -2817,9 +3423,15 @@ window.DX = {
      "name": "Google Document AI",
      "family": "cloud",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Some Gemini-based processor versions route through a global endpoint and do not meet data-residency rules. Choose the processor version accordingly.",
+      "licence": "Proprietary"
      },
      "cost": 10,
      "score": 83.6,
@@ -2838,9 +3450,13 @@ window.DX = {
      "name": "LandingAI ADE",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "Snowflake Marketplace native app",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 15,
      "score": 88.8,
@@ -2859,9 +3475,13 @@ window.DX = {
      "name": "Pulse Ultra 2",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "Vendor-hosted API.",
+      "licence": null
      },
      "cost": 15,
      "score": 87.8,
@@ -2880,9 +3500,13 @@ window.DX = {
      "name": "Chandra 2 (open)",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence"
      },
      "cost": 0.48,
      "score": 87.1,
@@ -2906,9 +3530,13 @@ window.DX = {
      "name": "LightOnOCR-3 0.8B",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "cost": 0.12,
      "score": 88.2,
@@ -2932,9 +3560,13 @@ window.DX = {
      "name": "MinerU2.5-Pro",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "MinerU Open Source License = Apache-2.0 + conditions: commercial licence required if org (with affiliates) exceeds 100M MAU or USD 20M monthly revenue; attribution required for online services. MinerU2.5-Pro weights Apache-2.0 (older MinerU2.5-2509 weights AGPL-3.0)"
      },
      "cost": 0.33,
      "score": 87.2,
@@ -2958,9 +3590,13 @@ window.DX = {
      "name": "PaddleOCR-VL 1.6",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "cost": 0.43,
      "score": 81.9,
@@ -2984,9 +3620,13 @@ window.DX = {
      "name": "dots.mocr",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "MIT"
      },
      "cost": 1.97,
      "score": 88.9,
@@ -3010,9 +3650,13 @@ window.DX = {
      "name": "DeepSeek-OCR 2",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "DeepSeek-OCR 2 has no managed cloud listing; self-host only.",
+      "licence": "Apache-2.0"
      },
      "cost": 0.3,
      "score": 80.1,
@@ -3036,9 +3680,13 @@ window.DX = {
      "name": "GLM-OCR",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "MIT"
      },
      "cost": 0.37,
      "score": 78.8,
@@ -3062,9 +3710,13 @@ window.DX = {
      "name": "Surya 2",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Code Apache-2.0; weights modified OpenRAIL-M (free under $5M revenue/funding; commercial licence above)"
      },
      "cost": 0.13,
      "score": 86.4,
@@ -3088,9 +3740,13 @@ window.DX = {
      "name": "olmOCR 2",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Apache-2.0 (code and weights; Qwen2.5-VL-7B base, Apache-2.0)"
      },
      "cost": 0.2,
      "score": 71.4,
@@ -3109,9 +3765,13 @@ window.DX = {
      "name": "Docling",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "MIT (code); bundled models have own licences (Heron layout, TableFormer, granite-docling Apache-2.0)"
      },
      "cost": 0.33,
      "score": 65.8,
@@ -3130,9 +3790,13 @@ window.DX = {
      "name": "Tesseract",
      "family": "libs",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "cost": 0.03,
      "score": 36.6,
@@ -3151,9 +3815,13 @@ window.DX = {
      "name": "pymupdf4llm",
      "family": "libs",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "AGPL-3.0 or paid Artifex commercial licence"
      },
      "cost": 0.03,
      "score": 79.0,
@@ -3172,9 +3840,15 @@ window.DX = {
      "name": "Gemini 3.8 Flash",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 35.6,
      "score": 89.6,
@@ -3198,9 +3872,15 @@ window.DX = {
      "name": "Gemini 3.8 Flash (low thinking)",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 7.1,
      "score": 88.5,
@@ -3219,9 +3899,17 @@ window.DX = {
      "name": "Claude Sonnet 5.5",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 30.85,
      "score": 87.8,
@@ -3245,9 +3933,17 @@ window.DX = {
      "name": "Claude Opus 5.5",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 57.9,
      "score": 92.2,
@@ -3266,9 +3962,17 @@ window.DX = {
      "name": "Claude Haiku 5.5",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 1.4,
      "score": 90.6,
@@ -3287,9 +3991,15 @@ window.DX = {
      "name": "GPT-5.6 Sol",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure"
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 87.65,
      "score": 86.8,
@@ -3313,9 +4023,15 @@ window.DX = {
      "name": "GPT-6 Luna",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure"
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 0.9,
      "score": 85.1,
@@ -3334,9 +4050,15 @@ window.DX = {
      "name": "Gemini 3.1 Flash-Lite",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 2.9,
      "score": 89.7,
@@ -3355,9 +4077,15 @@ window.DX = {
      "name": "Gemini 3.1 Pro",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 84.9,
      "score": 90.5,
@@ -3381,9 +4109,13 @@ window.DX = {
        "name": "Datalab (accurate)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary API"
        },
        "cost": 10,
        "score": 93.0,
@@ -3396,9 +4128,13 @@ window.DX = {
        "name": "Datalab (balanced)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
        },
        "cost": 4,
        "score": 92.6,
@@ -3411,9 +4147,13 @@ window.DX = {
        "name": "Reducto (r-1)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 10,
        "score": 91.1,
@@ -3426,9 +4166,13 @@ window.DX = {
        "name": "LlamaParse Agentic Plus",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 56.25,
        "score": 90.4,
@@ -3441,9 +4185,15 @@ window.DX = {
        "name": "Mistral OCR 4",
        "family": "saas",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "Azure Foundry"
+        "note": "Microsoft Foundry. Confirm the hosting option and region for your deployment. Google Vertex AI has only the older 25.05 version.",
+        "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence"
        },
        "cost": 4,
        "score": 87.6,
@@ -3456,9 +4206,15 @@ window.DX = {
        "name": "Azure DI Layout",
        "family": "cloud",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure"
+        "note": "",
+        "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
        },
        "cost": 10,
        "score": 85.6,
@@ -3471,9 +4227,13 @@ window.DX = {
        "name": "Extend Parse",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 20,
        "score": 85.3,
@@ -3486,9 +4246,13 @@ window.DX = {
        "name": "Chandra 2 (open)",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence"
        },
        "cost": 0.48,
        "score": 90.9,
@@ -3501,9 +4265,13 @@ window.DX = {
        "name": "LightOnOCR-3 0.8B",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0"
        },
        "cost": 0.12,
        "score": 87.4,
@@ -3516,9 +4284,13 @@ window.DX = {
        "name": "MinerU2.5-Pro",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MinerU Open Source License = Apache-2.0 + conditions: commercial licence required if org (with affiliates) exceeds 100M MAU or USD 20M monthly revenue; attribution required for online services. MinerU2.5-Pro weights Apache-2.0 (older MinerU2.5-2509 weights AGPL-3.0)"
        },
        "cost": 0.33,
        "score": 86.4,
@@ -3531,9 +4303,13 @@ window.DX = {
        "name": "PaddleOCR-VL 1.6",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0"
        },
        "cost": 0.43,
        "score": 81.0,
@@ -3546,9 +4322,13 @@ window.DX = {
        "name": "dots.mocr",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MIT"
        },
        "cost": 1.97,
        "score": 87.5,
@@ -3561,9 +4341,13 @@ window.DX = {
        "name": "DeepSeek-OCR 2",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "DeepSeek-OCR 2 has no managed cloud listing; self-host only.",
+        "licence": "Apache-2.0"
        },
        "cost": 0.3,
        "score": 77.9,
@@ -3576,9 +4360,13 @@ window.DX = {
        "name": "GLM-OCR",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MIT"
        },
        "cost": 0.37,
        "score": 79.7,
@@ -3591,9 +4379,13 @@ window.DX = {
        "name": "Surya 2",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Code Apache-2.0; weights modified OpenRAIL-M (free under $5M revenue/funding; commercial licence above)"
        },
        "cost": 0.13,
        "score": 86.2,
@@ -3606,9 +4398,13 @@ window.DX = {
        "name": "olmOCR 2",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0 (code and weights; Qwen2.5-VL-7B base, Apache-2.0)"
        },
        "cost": 0.2,
        "score": 70.7,
@@ -3621,9 +4417,13 @@ window.DX = {
        "name": "Tesseract",
        "family": "libs",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0"
        },
        "cost": 0.03,
        "score": 33.8,
@@ -3636,9 +4436,15 @@ window.DX = {
        "name": "Gemini 3.8 Flash",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 37.1,
        "score": 89.5,
@@ -3651,9 +4457,17 @@ window.DX = {
        "name": "Claude Sonnet 5.5",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 34.3,
        "score": 83.4,
@@ -3666,9 +4480,15 @@ window.DX = {
        "name": "GPT-5.6 Sol",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure"
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 94.5,
        "score": 85.2,
@@ -3686,9 +4506,13 @@ window.DX = {
        "name": "Datalab (accurate)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary API"
        },
        "cost": 10,
        "score": 83.9,
@@ -3701,9 +4525,13 @@ window.DX = {
        "name": "Datalab (balanced)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
        },
        "cost": 4,
        "score": 83.6,
@@ -3716,9 +4544,13 @@ window.DX = {
        "name": "Reducto (r-1)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 10,
        "score": 89.2,
@@ -3731,9 +4563,13 @@ window.DX = {
        "name": "LlamaParse Agentic Plus",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 56.25,
        "score": 92.2,
@@ -3746,9 +4582,13 @@ window.DX = {
        "name": "LlamaParse Agentic",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 12.5,
        "score": 91.8,
@@ -3761,9 +4601,13 @@ window.DX = {
        "name": "LlamaParse Cost-Effective",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 3.75,
        "score": 89.9,
@@ -3776,9 +4620,15 @@ window.DX = {
        "name": "Mistral OCR 4",
        "family": "saas",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "Azure Foundry"
+        "note": "Microsoft Foundry. Confirm the hosting option and region for your deployment. Google Vertex AI has only the older 25.05 version.",
+        "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence"
        },
        "cost": 4,
        "score": 89.5,
@@ -3791,9 +4641,15 @@ window.DX = {
        "name": "Azure DI Layout",
        "family": "cloud",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure"
+        "note": "",
+        "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
        },
        "cost": 10,
        "score": 84.9,
@@ -3806,9 +4662,13 @@ window.DX = {
        "name": "Extend Parse",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 20,
        "score": 84.6,
@@ -3821,9 +4681,17 @@ window.DX = {
        "name": "Databricks ai_parse",
        "family": "saas",
        "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "Databricks on any cloud"
+        "note": "Runs on the Databricks platform in whichever cloud the client's workspace uses.",
+        "licence": "Proprietary"
        },
        "cost": 3.5,
        "score": 88.2,
@@ -3836,9 +4704,15 @@ window.DX = {
        "name": "AWS Textract",
        "family": "cloud",
        "deploy": {
+        "hosted": [
+         "AWS"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "AWS"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 15,
        "score": 74.8,
@@ -3851,9 +4725,15 @@ window.DX = {
        "name": "Google Document AI",
        "family": "cloud",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Some Gemini-based processor versions route through a global endpoint and do not meet data-residency rules. Choose the processor version accordingly.",
+        "licence": "Proprietary"
        },
        "cost": 10,
        "score": 83.7,
@@ -3866,9 +4746,13 @@ window.DX = {
        "name": "LandingAI ADE",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "Snowflake Marketplace native app",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 15,
        "score": 88.6,
@@ -3881,9 +4765,13 @@ window.DX = {
        "name": "Pulse Ultra 2",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "Vendor-hosted API.",
+        "licence": null
        },
        "cost": 15,
        "score": 87.6,
@@ -3896,9 +4784,13 @@ window.DX = {
        "name": "Chandra 2 (open)",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence"
        },
        "cost": 0.48,
        "score": 83.7,
@@ -3911,9 +4803,13 @@ window.DX = {
        "name": "LightOnOCR-3 0.8B",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0"
        },
        "cost": 0.12,
        "score": 88.9,
@@ -3926,9 +4822,13 @@ window.DX = {
        "name": "MinerU2.5-Pro",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MinerU Open Source License = Apache-2.0 + conditions: commercial licence required if org (with affiliates) exceeds 100M MAU or USD 20M monthly revenue; attribution required for online services. MinerU2.5-Pro weights Apache-2.0 (older MinerU2.5-2509 weights AGPL-3.0)"
        },
        "cost": 0.33,
        "score": 87.9,
@@ -3941,9 +4841,13 @@ window.DX = {
        "name": "PaddleOCR-VL 1.6",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0"
        },
        "cost": 0.43,
        "score": 82.7,
@@ -3956,9 +4860,13 @@ window.DX = {
        "name": "dots.mocr",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MIT"
        },
        "cost": 1.97,
        "score": 90.0,
@@ -3971,9 +4879,13 @@ window.DX = {
        "name": "DeepSeek-OCR 2",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "DeepSeek-OCR 2 has no managed cloud listing; self-host only.",
+        "licence": "Apache-2.0"
        },
        "cost": 0.3,
        "score": 82.0,
@@ -3986,9 +4898,13 @@ window.DX = {
        "name": "GLM-OCR",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MIT"
        },
        "cost": 0.37,
        "score": 78.0,
@@ -4001,9 +4917,13 @@ window.DX = {
        "name": "Surya 2",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Code Apache-2.0; weights modified OpenRAIL-M (free under $5M revenue/funding; commercial licence above)"
        },
        "cost": 0.13,
        "score": 86.6,
@@ -4016,9 +4936,13 @@ window.DX = {
        "name": "Docling",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MIT (code); bundled models have own licences (Heron layout, TableFormer, granite-docling Apache-2.0)"
        },
        "cost": 0.33,
        "score": 66.9,
@@ -4031,9 +4955,13 @@ window.DX = {
        "name": "pymupdf4llm",
        "family": "libs",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "AGPL-3.0 or paid Artifex commercial licence"
        },
        "cost": 0.03,
        "score": 79.3,
@@ -4046,9 +4974,15 @@ window.DX = {
        "name": "Gemini 3.8 Flash",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 34.1,
        "score": 89.7,
@@ -4061,9 +4995,15 @@ window.DX = {
        "name": "Gemini 3.8 Flash (low thinking)",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 7.1,
        "score": 88.2,
@@ -4076,9 +5016,17 @@ window.DX = {
        "name": "Claude Sonnet 5.5",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 27.4,
        "score": 91.6,
@@ -4091,9 +5039,17 @@ window.DX = {
        "name": "Claude Opus 5.5",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 57.9,
        "score": 91.8,
@@ -4106,9 +5062,17 @@ window.DX = {
        "name": "Claude Haiku 5.5",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 1.4,
        "score": 90.2,
@@ -4121,9 +5085,15 @@ window.DX = {
        "name": "GPT-5.6 Sol",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure"
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 80.8,
        "score": 88.2,
@@ -4136,9 +5106,15 @@ window.DX = {
        "name": "GPT-6 Luna",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure"
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 0.9,
        "score": 85.1,
@@ -4151,9 +5127,15 @@ window.DX = {
        "name": "Gemini 3.1 Flash-Lite",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 2.9,
        "score": 89.5,
@@ -4166,9 +5148,15 @@ window.DX = {
        "name": "Gemini 3.1 Pro",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 84.9,
        "score": 90.2,
@@ -4187,16 +5175,20 @@ window.DX = {
     "ParseBench: tables"
    ],
    "anchors": 18,
-   "method": "Linear equating on 18 systems that appear on both benchmarks",
+   "method": "Measures handwriting, degraded, rotated and tiny text, and tables. Not charts \u00b7 index rescaled on 18 shared systems",
    "points": [
     {
      "id": "datalab-accurate",
      "name": "Datalab (accurate)",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "",
+      "licence": "Proprietary API"
      },
      "cost": 10,
      "score": 89.9,
@@ -4220,9 +5212,13 @@ window.DX = {
      "name": "Datalab (balanced)",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "",
+      "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
      },
      "cost": 4,
      "score": 87.6,
@@ -4246,9 +5242,13 @@ window.DX = {
      "name": "Reducto (r-1)",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 10,
      "score": 85.9,
@@ -4272,9 +5272,13 @@ window.DX = {
      "name": "LlamaParse Agentic Plus",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 56.25,
      "score": 90.8,
@@ -4298,9 +5302,13 @@ window.DX = {
      "name": "LlamaParse Agentic",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 12.5,
      "score": 88.1,
@@ -4319,9 +5327,13 @@ window.DX = {
      "name": "LlamaParse Cost-Effective",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 3.75,
      "score": 83.2,
@@ -4340,9 +5352,15 @@ window.DX = {
      "name": "Mistral OCR 4",
      "family": "saas",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "Azure Foundry"
+      "note": "Microsoft Foundry. Confirm the hosting option and region for your deployment. Google Vertex AI has only the older 25.05 version.",
+      "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence"
      },
      "cost": 4,
      "score": 78.9,
@@ -4366,9 +5384,15 @@ window.DX = {
      "name": "Azure DI Layout",
      "family": "cloud",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure"
+      "note": "",
+      "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
      },
      "cost": 10,
      "score": 80.8,
@@ -4392,9 +5416,13 @@ window.DX = {
      "name": "Extend Parse",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 20,
      "score": 86.6,
@@ -4418,9 +5446,17 @@ window.DX = {
      "name": "Databricks ai_parse",
      "family": "saas",
      "deploy": {
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "Databricks on any cloud"
+      "note": "Runs on the Databricks platform in whichever cloud the client's workspace uses.",
+      "licence": "Proprietary"
      },
      "cost": 3.5,
      "score": 82.7,
@@ -4439,9 +5475,15 @@ window.DX = {
      "name": "AWS Textract",
      "family": "cloud",
      "deploy": {
+      "hosted": [
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "AWS"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 15,
      "score": 83.6,
@@ -4460,9 +5502,15 @@ window.DX = {
      "name": "Google Document AI",
      "family": "cloud",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Some Gemini-based processor versions route through a global endpoint and do not meet data-residency rules. Choose the processor version accordingly.",
+      "licence": "Proprietary"
      },
      "cost": 10,
      "score": 53.3,
@@ -4481,9 +5529,13 @@ window.DX = {
      "name": "LandingAI ADE",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "Snowflake Marketplace native app",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 15,
      "score": 72.5,
@@ -4502,9 +5554,13 @@ window.DX = {
      "name": "Pulse Ultra 2",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "Vendor-hosted API.",
+      "licence": null
      },
      "cost": 15,
      "score": 89.6,
@@ -4523,9 +5579,13 @@ window.DX = {
      "name": "Chandra 2 (open)",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence"
      },
      "cost": 0.48,
      "score": 86.5,
@@ -4549,9 +5609,13 @@ window.DX = {
      "name": "LightOnOCR-3 0.8B",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "cost": 0.12,
      "score": 78.4,
@@ -4575,9 +5639,13 @@ window.DX = {
      "name": "MinerU2.5-Pro",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "MinerU Open Source License = Apache-2.0 + conditions: commercial licence required if org (with affiliates) exceeds 100M MAU or USD 20M monthly revenue; attribution required for online services. MinerU2.5-Pro weights Apache-2.0 (older MinerU2.5-2509 weights AGPL-3.0)"
      },
      "cost": 0.33,
      "score": 79.5,
@@ -4601,9 +5669,13 @@ window.DX = {
      "name": "PaddleOCR-VL 1.6",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "cost": 0.43,
      "score": 69.6,
@@ -4627,9 +5699,13 @@ window.DX = {
      "name": "dots.mocr",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "MIT"
      },
      "cost": 1.97,
      "score": 82.7,
@@ -4653,9 +5729,13 @@ window.DX = {
      "name": "DeepSeek-OCR 2",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "DeepSeek-OCR 2 has no managed cloud listing; self-host only.",
+      "licence": "Apache-2.0"
      },
      "cost": 0.3,
      "score": 58.0,
@@ -4679,9 +5759,13 @@ window.DX = {
      "name": "GLM-OCR",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "MIT"
      },
      "cost": 0.37,
      "score": 69.5,
@@ -4705,9 +5789,13 @@ window.DX = {
      "name": "Surya 2",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Code Apache-2.0; weights modified OpenRAIL-M (free under $5M revenue/funding; commercial licence above)"
      },
      "cost": 0.13,
      "score": 75.3,
@@ -4731,9 +5819,13 @@ window.DX = {
      "name": "olmOCR 2",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Apache-2.0 (code and weights; Qwen2.5-VL-7B base, Apache-2.0)"
      },
      "cost": 0.2,
      "score": 61.0,
@@ -4752,9 +5844,13 @@ window.DX = {
      "name": "Docling",
      "family": "open",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "MIT (code); bundled models have own licences (Heron layout, TableFormer, granite-docling Apache-2.0)"
      },
      "cost": 0.33,
      "score": 64.9,
@@ -4773,9 +5869,13 @@ window.DX = {
      "name": "Tesseract",
      "family": "libs",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "Apache-2.0"
      },
      "cost": 0.03,
      "score": 10.5,
@@ -4794,9 +5894,13 @@ window.DX = {
      "name": "pymupdf4llm",
      "family": "libs",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "",
+      "licence": "AGPL-3.0 or paid Artifex commercial licence"
      },
      "cost": 0.03,
      "score": 70.7,
@@ -4815,9 +5919,15 @@ window.DX = {
      "name": "Gemini 3.8 Flash",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 35.6,
      "score": 90.6,
@@ -4841,9 +5951,15 @@ window.DX = {
      "name": "Gemini 3.8 Flash (low thinking)",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 7.1,
      "score": 87.3,
@@ -4862,9 +5978,17 @@ window.DX = {
      "name": "Claude Sonnet 5.5",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 30.85,
      "score": 91.4,
@@ -4888,9 +6012,17 @@ window.DX = {
      "name": "Claude Opus 5.5",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 57.9,
      "score": 93.2,
@@ -4909,9 +6041,17 @@ window.DX = {
      "name": "Claude Haiku 5.5",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 1.4,
      "score": 86.0,
@@ -4930,9 +6070,15 @@ window.DX = {
      "name": "GPT-5.6 Sol",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure"
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 87.65,
      "score": 88.7,
@@ -4956,9 +6102,15 @@ window.DX = {
      "name": "GPT-6 Luna",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure"
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 0.9,
      "score": 80.4,
@@ -4977,9 +6129,15 @@ window.DX = {
      "name": "Gemini 3.1 Flash-Lite",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 2.9,
      "score": 84.6,
@@ -4998,9 +6156,15 @@ window.DX = {
      "name": "Gemini 3.1 Pro",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 84.9,
      "score": 90.2,
@@ -5024,9 +6188,13 @@ window.DX = {
        "name": "Datalab (accurate)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary API"
        },
        "cost": 10,
        "score": 89.8,
@@ -5039,9 +6207,13 @@ window.DX = {
        "name": "Datalab (balanced)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
        },
        "cost": 4,
        "score": 85.2,
@@ -5054,9 +6226,13 @@ window.DX = {
        "name": "Reducto (r-1)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 10,
        "score": 86.8,
@@ -5069,9 +6245,13 @@ window.DX = {
        "name": "LlamaParse Agentic Plus",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 56.25,
        "score": 89.1,
@@ -5084,9 +6264,15 @@ window.DX = {
        "name": "Mistral OCR 4",
        "family": "saas",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "Azure Foundry"
+        "note": "Microsoft Foundry. Confirm the hosting option and region for your deployment. Google Vertex AI has only the older 25.05 version.",
+        "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence"
        },
        "cost": 4,
        "score": 84.1,
@@ -5099,9 +6285,15 @@ window.DX = {
        "name": "Azure DI Layout",
        "family": "cloud",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure"
+        "note": "",
+        "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
        },
        "cost": 10,
        "score": 75.3,
@@ -5114,9 +6306,13 @@ window.DX = {
        "name": "Extend Parse",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 20,
        "score": 88.5,
@@ -5129,9 +6325,13 @@ window.DX = {
        "name": "Chandra 2 (open)",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence"
        },
        "cost": 0.48,
        "score": 83.8,
@@ -5144,9 +6344,13 @@ window.DX = {
        "name": "LightOnOCR-3 0.8B",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0"
        },
        "cost": 0.12,
        "score": 71.9,
@@ -5159,9 +6363,13 @@ window.DX = {
        "name": "MinerU2.5-Pro",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MinerU Open Source License = Apache-2.0 + conditions: commercial licence required if org (with affiliates) exceeds 100M MAU or USD 20M monthly revenue; attribution required for online services. MinerU2.5-Pro weights Apache-2.0 (older MinerU2.5-2509 weights AGPL-3.0)"
        },
        "cost": 0.33,
        "score": 81.6,
@@ -5174,9 +6382,13 @@ window.DX = {
        "name": "PaddleOCR-VL 1.6",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0"
        },
        "cost": 0.43,
        "score": 71.7,
@@ -5189,9 +6401,13 @@ window.DX = {
        "name": "dots.mocr",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MIT"
        },
        "cost": 1.97,
        "score": 80.1,
@@ -5204,9 +6420,13 @@ window.DX = {
        "name": "DeepSeek-OCR 2",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "DeepSeek-OCR 2 has no managed cloud listing; self-host only.",
+        "licence": "Apache-2.0"
        },
        "cost": 0.3,
        "score": 54.3,
@@ -5219,9 +6439,13 @@ window.DX = {
        "name": "GLM-OCR",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MIT"
        },
        "cost": 0.37,
        "score": 73.1,
@@ -5234,9 +6458,13 @@ window.DX = {
        "name": "Surya 2",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Code Apache-2.0; weights modified OpenRAIL-M (free under $5M revenue/funding; commercial licence above)"
        },
        "cost": 0.13,
        "score": 67.6,
@@ -5249,9 +6477,13 @@ window.DX = {
        "name": "olmOCR 2",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0 (code and weights; Qwen2.5-VL-7B base, Apache-2.0)"
        },
        "cost": 0.2,
        "score": 59.4,
@@ -5264,9 +6496,13 @@ window.DX = {
        "name": "Tesseract",
        "family": "libs",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0"
        },
        "cost": 0.03,
        "score": 7.4,
@@ -5279,9 +6515,15 @@ window.DX = {
        "name": "Gemini 3.8 Flash",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 37.1,
        "score": 92.2,
@@ -5294,9 +6536,17 @@ window.DX = {
        "name": "Claude Sonnet 5.5",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 34.3,
        "score": 91.9,
@@ -5309,9 +6559,15 @@ window.DX = {
        "name": "GPT-5.6 Sol",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure"
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 94.5,
        "score": 86.0,
@@ -5329,9 +6585,13 @@ window.DX = {
        "name": "Datalab (accurate)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary API"
        },
        "cost": 10,
        "score": 90.3,
@@ -5344,9 +6604,13 @@ window.DX = {
        "name": "Datalab (balanced)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
        },
        "cost": 4,
        "score": 89.1,
@@ -5359,9 +6623,13 @@ window.DX = {
        "name": "Reducto (r-1)",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 10,
        "score": 85.2,
@@ -5374,9 +6642,13 @@ window.DX = {
        "name": "LlamaParse Agentic Plus",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 56.25,
        "score": 93.4,
@@ -5389,9 +6661,13 @@ window.DX = {
        "name": "LlamaParse Agentic",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 12.5,
        "score": 88.9,
@@ -5404,9 +6680,13 @@ window.DX = {
        "name": "LlamaParse Cost-Effective",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "AWS Marketplace"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 3.75,
        "score": 84.2,
@@ -5419,9 +6699,15 @@ window.DX = {
        "name": "Mistral OCR 4",
        "family": "saas",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "Azure Foundry"
+        "note": "Microsoft Foundry. Confirm the hosting option and region for your deployment. Google Vertex AI has only the older 25.05 version.",
+        "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence"
        },
        "cost": 4,
        "score": 73.9,
@@ -5434,9 +6720,15 @@ window.DX = {
        "name": "Azure DI Layout",
        "family": "cloud",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure"
+        "note": "",
+        "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
        },
        "cost": 10,
        "score": 86.0,
@@ -5449,9 +6741,13 @@ window.DX = {
        "name": "Extend Parse",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 20,
        "score": 84.8,
@@ -5464,9 +6760,17 @@ window.DX = {
        "name": "Databricks ai_parse",
        "family": "saas",
        "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": "Databricks on any cloud"
+        "note": "Runs on the Databricks platform in whichever cloud the client's workspace uses.",
+        "licence": "Proprietary"
        },
        "cost": 3.5,
        "score": 83.7,
@@ -5479,9 +6783,15 @@ window.DX = {
        "name": "AWS Textract",
        "family": "cloud",
        "deploy": {
+        "hosted": [
+         "AWS"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "AWS"
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 15,
        "score": 84.6,
@@ -5494,9 +6804,15 @@ window.DX = {
        "name": "Google Document AI",
        "family": "cloud",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Some Gemini-based processor versions route through a global endpoint and do not meet data-residency rules. Choose the processor version accordingly.",
+        "licence": "Proprietary"
        },
        "cost": 10,
        "score": 55.1,
@@ -5509,9 +6825,13 @@ window.DX = {
        "name": "LandingAI ADE",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": "Snowflake Marketplace native app",
+        "private": true,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "",
+        "licence": "Proprietary"
        },
        "cost": 15,
        "score": 73.7,
@@ -5524,9 +6844,13 @@ window.DX = {
        "name": "Pulse Ultra 2",
        "family": "saas",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": true,
-        "self": false,
-        "cloud": false
+        "note": "Vendor-hosted API.",
+        "licence": null
        },
        "cost": 15,
        "score": 90.3,
@@ -5539,9 +6863,13 @@ window.DX = {
        "name": "Chandra 2 (open)",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence"
        },
        "cost": 0.48,
        "score": 89.2,
@@ -5554,9 +6882,13 @@ window.DX = {
        "name": "LightOnOCR-3 0.8B",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0"
        },
        "cost": 0.12,
        "score": 84.5,
@@ -5569,9 +6901,13 @@ window.DX = {
        "name": "MinerU2.5-Pro",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MinerU Open Source License = Apache-2.0 + conditions: commercial licence required if org (with affiliates) exceeds 100M MAU or USD 20M monthly revenue; attribution required for online services. MinerU2.5-Pro weights Apache-2.0 (older MinerU2.5-2509 weights AGPL-3.0)"
        },
        "cost": 0.33,
        "score": 77.6,
@@ -5584,9 +6920,13 @@ window.DX = {
        "name": "PaddleOCR-VL 1.6",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Apache-2.0"
        },
        "cost": 0.43,
        "score": 67.8,
@@ -5599,9 +6939,13 @@ window.DX = {
        "name": "dots.mocr",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MIT"
        },
        "cost": 1.97,
        "score": 85.2,
@@ -5614,9 +6958,13 @@ window.DX = {
        "name": "DeepSeek-OCR 2",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "DeepSeek-OCR 2 has no managed cloud listing; self-host only.",
+        "licence": "Apache-2.0"
        },
        "cost": 0.3,
        "score": 61.7,
@@ -5629,9 +6977,13 @@ window.DX = {
        "name": "GLM-OCR",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MIT"
        },
        "cost": 0.37,
        "score": 66.1,
@@ -5644,9 +6996,13 @@ window.DX = {
        "name": "Surya 2",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "Code Apache-2.0; weights modified OpenRAIL-M (free under $5M revenue/funding; commercial licence above)"
        },
        "cost": 0.13,
        "score": 82.7,
@@ -5659,9 +7015,13 @@ window.DX = {
        "name": "Docling",
        "family": "open",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "MIT (code); bundled models have own licences (Heron layout, TableFormer, granite-docling Apache-2.0)"
        },
        "cost": 0.33,
        "score": 66.4,
@@ -5674,9 +7034,13 @@ window.DX = {
        "name": "pymupdf4llm",
        "family": "libs",
        "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
         "saas": false,
-        "self": true,
-        "cloud": false
+        "note": "",
+        "licence": "AGPL-3.0 or paid Artifex commercial licence"
        },
        "cost": 0.03,
        "score": 72.0,
@@ -5689,9 +7053,15 @@ window.DX = {
        "name": "Gemini 3.8 Flash",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 34.1,
        "score": 89.1,
@@ -5704,9 +7074,15 @@ window.DX = {
        "name": "Gemini 3.8 Flash (low thinking)",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 7.1,
        "score": 88.2,
@@ -5719,9 +7095,17 @@ window.DX = {
        "name": "Claude Sonnet 5.5",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 27.4,
        "score": 91.0,
@@ -5734,9 +7118,17 @@ window.DX = {
        "name": "Claude Opus 5.5",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 57.9,
        "score": 93.9,
@@ -5749,9 +7141,17 @@ window.DX = {
        "name": "Claude Haiku 5.5",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 1.4,
        "score": 86.8,
@@ -5764,9 +7164,15 @@ window.DX = {
        "name": "GPT-5.6 Sol",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure"
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 80.8,
        "score": 91.4,
@@ -5779,9 +7185,15 @@ window.DX = {
        "name": "GPT-6 Luna",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "Azure"
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 0.9,
        "score": 81.4,
@@ -5794,9 +7206,15 @@ window.DX = {
        "name": "Gemini 3.1 Flash-Lite",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 2.9,
        "score": 85.5,
@@ -5809,9 +7227,15 @@ window.DX = {
        "name": "Gemini 3.1 Pro",
        "family": "vlm",
        "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
         "saas": false,
-        "self": false,
-        "cloud": "GCP"
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
        },
        "cost": 84.9,
        "score": 91.0,
@@ -5826,27 +7250,40 @@ window.DX = {
   "extraction": {
    "title": "Field extraction",
    "benches": [
-    "ExtractBench (LlamaIndex): value F1"
+    "ExtractBench (LlamaIndex)"
    ],
    "anchors": 0,
-   "method": "Single benchmark. Other extraction benchmarks share too few systems to blend.",
+   "method": "ExtractBench value F1 only. Other extraction benchmarks share too few systems to blend",
+   "metricLabel": "Value F1, all documents (ExtractBench)",
    "points": [
     {
      "id": "llamaextract-agentic-plus",
      "name": "LlamaExtract Agentic Plus",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 75.0,
      "score": 96.2,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 96.2
+      },
+      {
        "bench": "Short documents",
        "score": 97.0
+      },
+      {
+       "bench": "Medium documents",
+       "score": 94.3
       },
       {
        "bench": "Long documents",
@@ -5860,17 +7297,29 @@ window.DX = {
      "name": "LlamaExtract Agentic",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 31.2,
      "score": 95.7,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 95.7
+      },
+      {
        "bench": "Short documents",
        "score": 96.1
+      },
+      {
+       "bench": "Medium documents",
+       "score": 94.8
       },
       {
        "bench": "Long documents",
@@ -5884,17 +7333,29 @@ window.DX = {
      "name": "LlamaExtract Cost-Effective",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 10.0,
      "score": 94.2,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 94.2
+      },
+      {
        "bench": "Short documents",
        "score": 95.5
+      },
+      {
+       "bench": "Medium documents",
+       "score": 91.6
       },
       {
        "bench": "Long documents",
@@ -5908,17 +7369,29 @@ window.DX = {
      "name": "Reducto Deep Extract",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 63.5,
      "score": 96.1,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 96.1
+      },
+      {
        "bench": "Short documents",
        "score": 96.8
+      },
+      {
+       "bench": "Medium documents",
+       "score": 94.8
       },
       {
        "bench": "Long documents",
@@ -5932,17 +7405,29 @@ window.DX = {
      "name": "Reducto Extract",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": "AWS Marketplace (vendor-hosted SaaS)",
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": "AWS Marketplace"
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 45.7,
      "score": 83.8,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 83.8
+      },
+      {
        "bench": "Short documents",
        "score": 92.3
+      },
+      {
+       "bench": "Medium documents",
+       "score": 73.3
       },
       {
        "bench": "Long documents",
@@ -5956,17 +7441,29 @@ window.DX = {
      "name": "Pulse (effort)",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "Vendor-hosted API.",
+      "licence": null
      },
      "cost": 105.0,
      "score": 96.1,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 96.1
+      },
+      {
        "bench": "Short documents",
        "score": 96.8
+      },
+      {
+       "bench": "Medium documents",
+       "score": 94.7
       },
       {
        "bench": "Long documents",
@@ -5980,17 +7477,29 @@ window.DX = {
      "name": "Pulse",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "Vendor-hosted API.",
+      "licence": null
      },
      "cost": 30.0,
      "score": 94.5,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 94.5
+      },
+      {
        "bench": "Short documents",
        "score": 95.4
+      },
+      {
+       "bench": "Medium documents",
+       "score": 92.5
       },
       {
        "bench": "Long documents",
@@ -6004,17 +7513,29 @@ window.DX = {
      "name": "Extend Extract",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "",
+      "licence": "Proprietary"
      },
      "cost": 68.0,
      "score": 85.7,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 85.7
+      },
+      {
        "bench": "Short documents",
        "score": 89.4
+      },
+      {
+       "bench": "Medium documents",
+       "score": 84.1
       },
       {
        "bench": "Long documents",
@@ -6028,17 +7549,29 @@ window.DX = {
      "name": "Datalab extract",
      "family": "saas",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": true,
+      "weights": false,
       "saas": true,
-      "self": false,
-      "cloud": false
+      "note": "",
+      "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
      },
      "cost": 35.0,
      "score": 85.7,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 85.7
+      },
+      {
        "bench": "Short documents",
        "score": 89.4
+      },
+      {
+       "bench": "Medium documents",
+       "score": 85.1
       },
       {
        "bench": "Long documents",
@@ -6050,91 +7583,150 @@ window.DX = {
     {
      "id": "claude-code-sonnet-5.5-evidence",
      "name": "Claude Code agent (Sonnet 5.5)",
-     "family": "vlm",
+     "family": "agent",
      "deploy": {
+      "hosted": [
+       "Azure",
+       "AWS",
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 56.9,
      "score": 94.7,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 94.7
+      },
+      {
        "bench": "Short documents",
        "score": 96.2
+      },
+      {
+       "bench": "Medium documents",
+       "score": 93.0
       },
       {
        "bench": "Long documents",
        "score": 83.7
       }
      ],
-     "costBasis": "Cost as reported by ExtractBench"
+     "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
     },
     {
      "id": "codex-gpt-6-sol-evidence",
      "name": "Codex agent (GPT-6 Sol)",
-     "family": "vlm",
+     "family": "agent",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure"
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 98.0,
      "score": 94.6,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 94.6
+      },
+      {
        "bench": "Short documents",
        "score": 96.0
+      },
+      {
+       "bench": "Medium documents",
+       "score": 92.4
       },
       {
        "bench": "Long documents",
        "score": 87.2
       }
      ],
-     "costBasis": "Cost as reported by ExtractBench"
+     "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
     },
     {
      "id": "codex-gpt-6-luna-evidence",
      "name": "Codex agent (GPT-6 Luna)",
-     "family": "vlm",
+     "family": "agent",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure"
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 9.7,
      "score": 91.0,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 91.0
+      },
+      {
        "bench": "Short documents",
        "score": 93.1
+      },
+      {
+       "bench": "Medium documents",
+       "score": 87.7
       },
       {
        "bench": "Long documents",
        "score": 80.9
       }
      ],
-     "costBasis": "Cost as reported by ExtractBench"
+     "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
     },
     {
      "id": "gpt-6-astra",
      "name": "GPT-6 Astra",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure",
+       "AWS"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure \u00b7 AWS"
+      "note": "Azure OpenAI in Foundry; Amazon Bedrock. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 110.9,
      "score": 91.9,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 91.9
+      },
+      {
        "bench": "Short documents",
        "score": 97.2
+      },
+      {
+       "bench": "Medium documents",
+       "score": 90.6
       },
       {
        "bench": "Long documents",
@@ -6148,17 +7740,29 @@ window.DX = {
      "name": "DeepSeek V4.1 Flash",
      "family": "vlm",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+      "licence": null
      },
      "cost": 3.2,
      "score": 87.1,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 87.1
+      },
+      {
        "bench": "Short documents",
        "score": 94.4
+      },
+      {
+       "bench": "Medium documents",
+       "score": 81.5
       },
       {
        "bench": "Long documents",
@@ -6172,17 +7776,29 @@ window.DX = {
      "name": "GLM-5.3 Flash",
      "family": "vlm",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+      "licence": null
      },
      "cost": 3.4,
      "score": 80.8,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 80.8
+      },
+      {
        "bench": "Short documents",
        "score": 96.3
+      },
+      {
+       "bench": "Medium documents",
+       "score": 51.6
       },
       {
        "bench": "Long documents",
@@ -6196,17 +7812,31 @@ window.DX = {
      "name": "Gemini 3.8 Flash",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 4.3,
      "score": 80.7,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 80.7
+      },
+      {
        "bench": "Short documents",
        "score": 88.1
+      },
+      {
+       "bench": "Medium documents",
+       "score": 72.2
       },
       {
        "bench": "Long documents",
@@ -6220,17 +7850,31 @@ window.DX = {
      "name": "Gemini 3.5 Flash",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "GCP"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "GCP"
+      "note": "Vertex AI.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 10.0,
      "score": 79.8,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 79.8
+      },
+      {
        "bench": "Short documents",
        "score": 87.9
+      },
+      {
+       "bench": "Medium documents",
+       "score": 69.8
       },
       {
        "bench": "Long documents",
@@ -6244,17 +7888,31 @@ window.DX = {
      "name": "GPT-5.4 nano",
      "family": "vlm",
      "deploy": {
+      "hosted": [
+       "Azure"
+      ],
+      "billing": null,
+      "private": false,
+      "weights": false,
       "saas": false,
-      "self": false,
-      "cloud": "Azure"
+      "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+      "licence": "Proprietary (API only)"
      },
      "cost": 2.1,
      "score": 74.9,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 74.9
+      },
+      {
        "bench": "Short documents",
        "score": 77.4
+      },
+      {
+       "bench": "Medium documents",
+       "score": 76.4
       },
       {
        "bench": "Long documents",
@@ -6268,17 +7926,29 @@ window.DX = {
      "name": "Kimi K3",
      "family": "vlm",
      "deploy": {
+      "hosted": [],
+      "billing": null,
+      "private": false,
+      "weights": true,
       "saas": false,
-      "self": true,
-      "cloud": false
+      "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+      "licence": null
      },
      "cost": 67.5,
      "score": 83.2,
      "n": 1,
      "raw": [
       {
+       "bench": "All documents",
+       "score": 83.2
+      },
+      {
        "bench": "Short documents",
        "score": 94.6
+      },
+      {
+       "bench": "Medium documents",
+       "score": 69.6
       },
       {
        "bench": "Long documents",
@@ -6286,6 +7956,2129 @@ window.DX = {
       }
      ],
      "costBasis": "Cost as reported by ExtractBench"
+    }
+   ],
+   "rawViews": [
+    {
+     "label": "Short documents",
+     "metricLabel": "Value F1, short documents (ExtractBench)",
+     "points": [
+      {
+       "id": "llamaextract-agentic-plus",
+       "name": "LlamaExtract Agentic Plus",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 75.0,
+       "score": 97.0,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 96.2
+        },
+        {
+         "bench": "Short documents",
+         "score": 97.0
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.3
+        },
+        {
+         "bench": "Long documents",
+         "score": 94.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+      },
+      {
+       "id": "llamaextract-agentic",
+       "name": "LlamaExtract Agentic",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 31.2,
+       "score": 96.1,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 95.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.1
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.8
+        },
+        {
+         "bench": "Long documents",
+         "score": 94.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+      },
+      {
+       "id": "llamaextract-cost-effective",
+       "name": "LlamaExtract Cost-Effective",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 10.0,
+       "score": 95.5,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.2
+        },
+        {
+         "bench": "Short documents",
+         "score": 95.5
+        },
+        {
+         "bench": "Medium documents",
+         "score": 91.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 90.9
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+      },
+      {
+       "id": "reducto-deep-extract",
+       "name": "Reducto Deep Extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 63.5,
+       "score": 96.8,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 96.1
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.8
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.8
+        },
+        {
+         "bench": "Long documents",
+         "score": 92.8
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "reducto-extract",
+       "name": "Reducto Extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 45.7,
+       "score": 92.3,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 83.8
+        },
+        {
+         "bench": "Short documents",
+         "score": 92.3
+        },
+        {
+         "bench": "Medium documents",
+         "score": 73.3
+        },
+        {
+         "bench": "Long documents",
+         "score": 27.3
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "pulse-effort",
+       "name": "Pulse (effort)",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": true,
+        "note": "Vendor-hosted API.",
+        "licence": null
+       },
+       "cost": 105.0,
+       "score": 96.8,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 96.1
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.8
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.7
+        },
+        {
+         "bench": "Long documents",
+         "score": 93.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "pulse-non-effort",
+       "name": "Pulse",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": true,
+        "note": "Vendor-hosted API.",
+        "licence": null
+       },
+       "cost": 30.0,
+       "score": 95.4,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.5
+        },
+        {
+         "bench": "Short documents",
+         "score": 95.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 92.5
+        },
+        {
+         "bench": "Long documents",
+         "score": 93.3
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "extend-extract",
+       "name": "Extend Extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 68.0,
+       "score": 89.4,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 85.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 89.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 84.1
+        },
+        {
+         "bench": "Long documents",
+         "score": 47.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "datalab-accurate-balanced",
+       "name": "Datalab extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
+       },
+       "cost": 35.0,
+       "score": 89.4,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 85.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 89.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 85.1
+        },
+        {
+         "bench": "Long documents",
+         "score": 42.0
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "claude-code-sonnet-5.5-evidence",
+       "name": "Claude Code agent (Sonnet 5.5)",
+       "family": "agent",
+       "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 56.9,
+       "score": 96.2,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.2
+        },
+        {
+         "bench": "Medium documents",
+         "score": 93.0
+        },
+        {
+         "bench": "Long documents",
+         "score": 83.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
+      },
+      {
+       "id": "codex-gpt-6-sol-evidence",
+       "name": "Codex agent (GPT-6 Sol)",
+       "family": "agent",
+       "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 98.0,
+       "score": 96.0,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.6
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.0
+        },
+        {
+         "bench": "Medium documents",
+         "score": 92.4
+        },
+        {
+         "bench": "Long documents",
+         "score": 87.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
+      },
+      {
+       "id": "codex-gpt-6-luna-evidence",
+       "name": "Codex agent (GPT-6 Luna)",
+       "family": "agent",
+       "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 9.7,
+       "score": 93.1,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 91.0
+        },
+        {
+         "bench": "Short documents",
+         "score": 93.1
+        },
+        {
+         "bench": "Medium documents",
+         "score": 87.7
+        },
+        {
+         "bench": "Long documents",
+         "score": 80.9
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
+      },
+      {
+       "id": "gpt-6-astra",
+       "name": "GPT-6 Astra",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Foundry; Amazon Bedrock. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 110.9,
+       "score": 97.2,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 91.9
+        },
+        {
+         "bench": "Short documents",
+         "score": 97.2
+        },
+        {
+         "bench": "Medium documents",
+         "score": 90.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 31.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "deepseek-v4.1-flash",
+       "name": "DeepSeek V4.1 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
+        "saas": false,
+        "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+        "licence": null
+       },
+       "cost": 3.2,
+       "score": 94.4,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 87.1
+        },
+        {
+         "bench": "Short documents",
+         "score": 94.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 81.5
+        },
+        {
+         "bench": "Long documents",
+         "score": 22.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "glm-5.3-flash",
+       "name": "GLM-5.3 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
+        "saas": false,
+        "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+        "licence": null
+       },
+       "cost": 3.4,
+       "score": 96.3,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 80.8
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.3
+        },
+        {
+         "bench": "Medium documents",
+         "score": 51.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 27.8
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "gemini-3.8-flash",
+       "name": "Gemini 3.8 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 4.3,
+       "score": 88.1,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 80.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 88.1
+        },
+        {
+         "bench": "Medium documents",
+         "score": 72.2
+        },
+        {
+         "bench": "Long documents",
+         "score": 28.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "gemini-3.5-flash",
+       "name": "Gemini 3.5 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 10.0,
+       "score": 87.9,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 79.8
+        },
+        {
+         "bench": "Short documents",
+         "score": 87.9
+        },
+        {
+         "bench": "Medium documents",
+         "score": 69.8
+        },
+        {
+         "bench": "Long documents",
+         "score": 27.9
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "gpt-5.4-nano",
+       "name": "GPT-5.4 nano",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 2.1,
+       "score": 77.4,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 74.9
+        },
+        {
+         "bench": "Short documents",
+         "score": 77.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 76.4
+        },
+        {
+         "bench": "Long documents",
+         "score": 35.8
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "kimi-k3",
+       "name": "Kimi K3",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
+        "saas": false,
+        "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+        "licence": null
+       },
+       "cost": 67.5,
+       "score": 94.6,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 83.2
+        },
+        {
+         "bench": "Short documents",
+         "score": 94.6
+        },
+        {
+         "bench": "Medium documents",
+         "score": 69.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 5.0
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      }
+     ]
+    },
+    {
+     "label": "Medium documents",
+     "metricLabel": "Value F1, medium documents (ExtractBench)",
+     "points": [
+      {
+       "id": "llamaextract-agentic-plus",
+       "name": "LlamaExtract Agentic Plus",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 75.0,
+       "score": 94.3,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 96.2
+        },
+        {
+         "bench": "Short documents",
+         "score": 97.0
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.3
+        },
+        {
+         "bench": "Long documents",
+         "score": 94.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+      },
+      {
+       "id": "llamaextract-agentic",
+       "name": "LlamaExtract Agentic",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 31.2,
+       "score": 94.8,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 95.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.1
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.8
+        },
+        {
+         "bench": "Long documents",
+         "score": 94.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+      },
+      {
+       "id": "llamaextract-cost-effective",
+       "name": "LlamaExtract Cost-Effective",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 10.0,
+       "score": 91.6,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.2
+        },
+        {
+         "bench": "Short documents",
+         "score": 95.5
+        },
+        {
+         "bench": "Medium documents",
+         "score": 91.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 90.9
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+      },
+      {
+       "id": "reducto-deep-extract",
+       "name": "Reducto Deep Extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 63.5,
+       "score": 94.8,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 96.1
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.8
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.8
+        },
+        {
+         "bench": "Long documents",
+         "score": 92.8
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "reducto-extract",
+       "name": "Reducto Extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 45.7,
+       "score": 73.3,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 83.8
+        },
+        {
+         "bench": "Short documents",
+         "score": 92.3
+        },
+        {
+         "bench": "Medium documents",
+         "score": 73.3
+        },
+        {
+         "bench": "Long documents",
+         "score": 27.3
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "pulse-effort",
+       "name": "Pulse (effort)",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": true,
+        "note": "Vendor-hosted API.",
+        "licence": null
+       },
+       "cost": 105.0,
+       "score": 94.7,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 96.1
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.8
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.7
+        },
+        {
+         "bench": "Long documents",
+         "score": 93.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "pulse-non-effort",
+       "name": "Pulse",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": true,
+        "note": "Vendor-hosted API.",
+        "licence": null
+       },
+       "cost": 30.0,
+       "score": 92.5,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.5
+        },
+        {
+         "bench": "Short documents",
+         "score": 95.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 92.5
+        },
+        {
+         "bench": "Long documents",
+         "score": 93.3
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "extend-extract",
+       "name": "Extend Extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 68.0,
+       "score": 84.1,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 85.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 89.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 84.1
+        },
+        {
+         "bench": "Long documents",
+         "score": 47.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "datalab-accurate-balanced",
+       "name": "Datalab extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
+       },
+       "cost": 35.0,
+       "score": 85.1,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 85.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 89.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 85.1
+        },
+        {
+         "bench": "Long documents",
+         "score": 42.0
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "claude-code-sonnet-5.5-evidence",
+       "name": "Claude Code agent (Sonnet 5.5)",
+       "family": "agent",
+       "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 56.9,
+       "score": 93.0,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.2
+        },
+        {
+         "bench": "Medium documents",
+         "score": 93.0
+        },
+        {
+         "bench": "Long documents",
+         "score": 83.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
+      },
+      {
+       "id": "codex-gpt-6-sol-evidence",
+       "name": "Codex agent (GPT-6 Sol)",
+       "family": "agent",
+       "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 98.0,
+       "score": 92.4,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.6
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.0
+        },
+        {
+         "bench": "Medium documents",
+         "score": 92.4
+        },
+        {
+         "bench": "Long documents",
+         "score": 87.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
+      },
+      {
+       "id": "codex-gpt-6-luna-evidence",
+       "name": "Codex agent (GPT-6 Luna)",
+       "family": "agent",
+       "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 9.7,
+       "score": 87.7,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 91.0
+        },
+        {
+         "bench": "Short documents",
+         "score": 93.1
+        },
+        {
+         "bench": "Medium documents",
+         "score": 87.7
+        },
+        {
+         "bench": "Long documents",
+         "score": 80.9
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
+      },
+      {
+       "id": "gpt-6-astra",
+       "name": "GPT-6 Astra",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Foundry; Amazon Bedrock. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 110.9,
+       "score": 90.6,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 91.9
+        },
+        {
+         "bench": "Short documents",
+         "score": 97.2
+        },
+        {
+         "bench": "Medium documents",
+         "score": 90.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 31.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "deepseek-v4.1-flash",
+       "name": "DeepSeek V4.1 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
+        "saas": false,
+        "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+        "licence": null
+       },
+       "cost": 3.2,
+       "score": 81.5,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 87.1
+        },
+        {
+         "bench": "Short documents",
+         "score": 94.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 81.5
+        },
+        {
+         "bench": "Long documents",
+         "score": 22.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "glm-5.3-flash",
+       "name": "GLM-5.3 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
+        "saas": false,
+        "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+        "licence": null
+       },
+       "cost": 3.4,
+       "score": 51.6,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 80.8
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.3
+        },
+        {
+         "bench": "Medium documents",
+         "score": 51.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 27.8
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "gemini-3.8-flash",
+       "name": "Gemini 3.8 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 4.3,
+       "score": 72.2,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 80.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 88.1
+        },
+        {
+         "bench": "Medium documents",
+         "score": 72.2
+        },
+        {
+         "bench": "Long documents",
+         "score": 28.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "gemini-3.5-flash",
+       "name": "Gemini 3.5 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 10.0,
+       "score": 69.8,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 79.8
+        },
+        {
+         "bench": "Short documents",
+         "score": 87.9
+        },
+        {
+         "bench": "Medium documents",
+         "score": 69.8
+        },
+        {
+         "bench": "Long documents",
+         "score": 27.9
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "gpt-5.4-nano",
+       "name": "GPT-5.4 nano",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 2.1,
+       "score": 76.4,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 74.9
+        },
+        {
+         "bench": "Short documents",
+         "score": 77.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 76.4
+        },
+        {
+         "bench": "Long documents",
+         "score": 35.8
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "kimi-k3",
+       "name": "Kimi K3",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
+        "saas": false,
+        "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+        "licence": null
+       },
+       "cost": 67.5,
+       "score": 69.6,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 83.2
+        },
+        {
+         "bench": "Short documents",
+         "score": 94.6
+        },
+        {
+         "bench": "Medium documents",
+         "score": 69.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 5.0
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      }
+     ]
+    },
+    {
+     "label": "Long documents",
+     "metricLabel": "Value F1, long documents (ExtractBench)",
+     "points": [
+      {
+       "id": "llamaextract-agentic-plus",
+       "name": "LlamaExtract Agentic Plus",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 75.0,
+       "score": 94.7,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 96.2
+        },
+        {
+         "bench": "Short documents",
+         "score": 97.0
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.3
+        },
+        {
+         "bench": "Long documents",
+         "score": 94.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+      },
+      {
+       "id": "llamaextract-agentic",
+       "name": "LlamaExtract Agentic",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 31.2,
+       "score": 94.7,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 95.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.1
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.8
+        },
+        {
+         "bench": "Long documents",
+         "score": 94.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+      },
+      {
+       "id": "llamaextract-cost-effective",
+       "name": "LlamaExtract Cost-Effective",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 10.0,
+       "score": 90.9,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.2
+        },
+        {
+         "bench": "Short documents",
+         "score": 95.5
+        },
+        {
+         "bench": "Medium documents",
+         "score": 91.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 90.9
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+      },
+      {
+       "id": "reducto-deep-extract",
+       "name": "Reducto Deep Extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 63.5,
+       "score": 92.8,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 96.1
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.8
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.8
+        },
+        {
+         "bench": "Long documents",
+         "score": 92.8
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "reducto-extract",
+       "name": "Reducto Extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": "AWS Marketplace (vendor-hosted SaaS)",
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 45.7,
+       "score": 27.3,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 83.8
+        },
+        {
+         "bench": "Short documents",
+         "score": 92.3
+        },
+        {
+         "bench": "Medium documents",
+         "score": 73.3
+        },
+        {
+         "bench": "Long documents",
+         "score": 27.3
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "pulse-effort",
+       "name": "Pulse (effort)",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": true,
+        "note": "Vendor-hosted API.",
+        "licence": null
+       },
+       "cost": 105.0,
+       "score": 93.2,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 96.1
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.8
+        },
+        {
+         "bench": "Medium documents",
+         "score": 94.7
+        },
+        {
+         "bench": "Long documents",
+         "score": 93.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "pulse-non-effort",
+       "name": "Pulse",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": true,
+        "note": "Vendor-hosted API.",
+        "licence": null
+       },
+       "cost": 30.0,
+       "score": 93.3,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.5
+        },
+        {
+         "bench": "Short documents",
+         "score": 95.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 92.5
+        },
+        {
+         "bench": "Long documents",
+         "score": 93.3
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "extend-extract",
+       "name": "Extend Extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary"
+       },
+       "cost": 68.0,
+       "score": 47.2,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 85.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 89.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 84.1
+        },
+        {
+         "bench": "Long documents",
+         "score": 47.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "datalab-accurate-balanced",
+       "name": "Datalab extract",
+       "family": "saas",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": true,
+        "weights": false,
+        "saas": true,
+        "note": "",
+        "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
+       },
+       "cost": 35.0,
+       "score": 42.0,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 85.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 89.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 85.1
+        },
+        {
+         "bench": "Long documents",
+         "score": 42.0
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "claude-code-sonnet-5.5-evidence",
+       "name": "Claude Code agent (Sonnet 5.5)",
+       "family": "agent",
+       "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS",
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Bedrock (AWS) and Vertex AI (Google) host Claude on those clouds. In Microsoft Foundry, choose the 'hosted on Azure' option, an Anthropic-operated service on Azure infrastructure; the other option runs on Anthropic's infrastructure.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 56.9,
+       "score": 83.7,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.2
+        },
+        {
+         "bench": "Medium documents",
+         "score": 93.0
+        },
+        {
+         "bench": "Long documents",
+         "score": 83.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
+      },
+      {
+       "id": "codex-gpt-6-sol-evidence",
+       "name": "Codex agent (GPT-6 Sol)",
+       "family": "agent",
+       "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 98.0,
+       "score": 87.2,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 94.6
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.0
+        },
+        {
+         "bench": "Medium documents",
+         "score": 92.4
+        },
+        {
+         "bench": "Long documents",
+         "score": 87.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
+      },
+      {
+       "id": "codex-gpt-6-luna-evidence",
+       "name": "Codex agent (GPT-6 Luna)",
+       "family": "agent",
+       "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 9.7,
+       "score": 80.9,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 91.0
+        },
+        {
+         "bench": "Short documents",
+         "score": 93.1
+        },
+        {
+         "bench": "Medium documents",
+         "score": 87.7
+        },
+        {
+         "bench": "Long documents",
+         "score": 80.9
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench. A coding agent writes and runs its own extraction code."
+      },
+      {
+       "id": "gpt-6-astra",
+       "name": "GPT-6 Astra",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "Azure",
+         "AWS"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Foundry; Amazon Bedrock. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 110.9,
+       "score": 31.7,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 91.9
+        },
+        {
+         "bench": "Short documents",
+         "score": 97.2
+        },
+        {
+         "bench": "Medium documents",
+         "score": 90.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 31.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "deepseek-v4.1-flash",
+       "name": "DeepSeek V4.1 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
+        "saas": false,
+        "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+        "licence": null
+       },
+       "cost": 3.2,
+       "score": 22.2,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 87.1
+        },
+        {
+         "bench": "Short documents",
+         "score": 94.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 81.5
+        },
+        {
+         "bench": "Long documents",
+         "score": 22.2
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "glm-5.3-flash",
+       "name": "GLM-5.3 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
+        "saas": false,
+        "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+        "licence": null
+       },
+       "cost": 3.4,
+       "score": 27.8,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 80.8
+        },
+        {
+         "bench": "Short documents",
+         "score": 96.3
+        },
+        {
+         "bench": "Medium documents",
+         "score": 51.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 27.8
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "gemini-3.8-flash",
+       "name": "Gemini 3.8 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 4.3,
+       "score": 28.7,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 80.7
+        },
+        {
+         "bench": "Short documents",
+         "score": 88.1
+        },
+        {
+         "bench": "Medium documents",
+         "score": 72.2
+        },
+        {
+         "bench": "Long documents",
+         "score": 28.7
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "gemini-3.5-flash",
+       "name": "Gemini 3.5 Flash",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "GCP"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Vertex AI.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 10.0,
+       "score": 27.9,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 79.8
+        },
+        {
+         "bench": "Short documents",
+         "score": 87.9
+        },
+        {
+         "bench": "Medium documents",
+         "score": 69.8
+        },
+        {
+         "bench": "Long documents",
+         "score": 27.9
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "gpt-5.4-nano",
+       "name": "GPT-5.4 nano",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [
+         "Azure"
+        ],
+        "billing": null,
+        "private": false,
+        "weights": false,
+        "saas": false,
+        "note": "Azure OpenAI in Microsoft Foundry. Confirm region availability.",
+        "licence": "Proprietary (API only)"
+       },
+       "cost": 2.1,
+       "score": 35.8,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 74.9
+        },
+        {
+         "bench": "Short documents",
+         "score": 77.4
+        },
+        {
+         "bench": "Medium documents",
+         "score": 76.4
+        },
+        {
+         "bench": "Long documents",
+         "score": 35.8
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      },
+      {
+       "id": "kimi-k3",
+       "name": "Kimi K3",
+       "family": "vlm",
+       "deploy": {
+        "hosted": [],
+        "billing": null,
+        "private": false,
+        "weights": true,
+        "saas": false,
+        "note": "Open weights; cost as reported by ExtractBench for a hosted API.",
+        "licence": null
+       },
+       "cost": 67.5,
+       "score": 5.0,
+       "n": 1,
+       "raw": [
+        {
+         "bench": "All documents",
+         "score": 83.2
+        },
+        {
+         "bench": "Short documents",
+         "score": 94.6
+        },
+        {
+         "bench": "Medium documents",
+         "score": 69.6
+        },
+        {
+         "bench": "Long documents",
+         "score": 5.0
+        }
+       ],
+       "costBasis": "Cost as reported by ExtractBench"
+      }
+     ]
     }
    ]
   }

@@ -173,10 +173,10 @@
       <div>
         <h2 style="font-size:44px; margin-bottom:22px">The Pareto frontier</h2>
         <div class="steps-list" id="conceptSteps">
-          <div data-k="0"><b>Plot every option</b><p>Each dot is one way of doing the task. Up means better results on a fair test. Right means more expensive per unit of work.</p></div>
-          <div data-k="1"><b>Draw the frontier</b><p>An option is on the frontier if nothing else is both better and cheaper. Only these options merit detailed evaluation.</p></div>
-          <div data-k="2"><b>Exclude dominated options</b><p>Every option below the line is beaten on both quality and cost by an option on it. This is usually most of the market.</p></div>
-          <div data-k="3"><b>Apply client constraints</b><p>Constraints such as "must run in our Azure tenant" remove options. This moves the frontier and may change the best choice.</p></div>
+          <div data-k="0" tabindex="0" role="button"><b>Plot every option</b><p>Each dot is one way of doing the task. Up means better results on a fair test. Right means more expensive per unit of work.</p></div>
+          <div data-k="1" tabindex="0" role="button"><b>Draw the frontier</b><p>An option is on the frontier if nothing else is both better and cheaper. Only these options merit detailed evaluation.</p></div>
+          <div data-k="2" tabindex="0" role="button"><b>Exclude dominated options</b><p>Every option below the line is beaten on both quality and cost by an option on it. This is usually most of the market.</p></div>
+          <div data-k="3" tabindex="0" role="button"><b>Apply client constraints</b><p>Constraints such as "must run in our Azure tenant" remove options. This moves the frontier and may change the best choice.</p></div>
         </div>
         <p class="label" style="margin-top:14px">Illustrative data. Real charts are in each session.</p>
       </div>
@@ -278,8 +278,9 @@ document.querySelectorAll('.rise').forEach(el => io.observe(el));
     made.forEach((m, i) => setTimeout(() => m.classList.add('on'), 300 + i * 330));
     rows.forEach((r, i) => setTimeout(() => r.classList.add('on'), 700 + i * 380));
   }
-  setTimeout(run, 500);
-  setInterval(run, 9000);
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(run, calm ? 0 : 500);
+  if (!calm) setInterval(run, 9000);
   addEventListener('resize', build);
 })();
 
@@ -337,10 +338,14 @@ document.querySelectorAll('.rise').forEach(el => io.observe(el));
   }
   let k = -1, timer;
   const cycle = () => { k = (k + 1) % 4; stage(k); };
+  const pick = d => { clearInterval(timer); timer = 1; k = +d.dataset.k; stage(k); };
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { timer = 1; stage(1); }
   new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting && !timer) { cycle(); timer = setInterval(cycle, 3200); }
   }), { threshold: .4 }).observe(svg);
-  document.querySelectorAll('#conceptSteps div').forEach(d => d.addEventListener('mouseenter', () => { clearInterval(timer); timer = 1; k = +d.dataset.k; stage(k); }));
+  document.querySelectorAll('#conceptSteps div').forEach(d => {
+    ['mouseenter', 'click', 'focus'].forEach(ev => d.addEventListener(ev, () => pick(d)));
+  });
 })();
 </script>
 </body>

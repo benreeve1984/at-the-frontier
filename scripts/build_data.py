@@ -9,33 +9,9 @@ ROOT = Path(__file__).resolve().parent.parent
 RES = ROOT / "doc-extraction" / "research"
 players = {p["id"]: p for p in json.loads((RES / "B-players.json").read_text())}
 
-# Which clouds serve each player (first-party, Foundry / Vertex / Bedrock, or marketplace).
-CLOUD = {
-    **{k: "Azure" for k in players if k.startswith("azure-")},
-    **{k: "AWS" for k in players if k.startswith("aws-")},
-    **{k: "GCP" for k in players if k.startswith("gcp-")},
-    **{k: "GCP" for k in players if k.startswith("gemini-")},
-    **{k: "Azure" for k in players if k.startswith("gpt-")},
-    **{k: "Azure · AWS · GCP" for k in players if k.startswith("claude-")},
-    "gpt-6-astra": "Azure · AWS",
-    "qwen3-vl-235b": "AWS",
-    "qwen3-vl": "AWS",
-    "mistral-ocr": "Azure · GCP (older version)",
-    "mistral-document-ai": "Azure",
-    "deepseek-ocr": "GCP · AWS",
-    "reducto-parse": "AWS Marketplace",
-    "reducto-extract": "AWS Marketplace",
-    "llamaparse-agentic": "AWS Marketplace",
-    "llamaparse-fast": "AWS Marketplace",
-    "llamaparse-cost-effective": "AWS Marketplace",
-    "unstructured": "AWS Marketplace",
-    "upstage-document-parse": "AWS Marketplace",
-    "hyperscience": "AWS Marketplace",
-    "instabase": "AWS Marketplace",
-    "databricks-ai-parse-document": "Databricks on any cloud",
-}
-SELF = {k for k, p in players.items() if p["category"] in ("code library", "open weights")} | {"tesseract"}
-SAAS = {k for k, p in players.items() if p["category"] == "specialist SaaS"} | {"abbyy-vantage"}
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from deploy import deploy  # noqa: E402
 
 COLUMNS = [
     ("libs", "PDF libraries and OCR", "var(--ink-3)",
@@ -84,10 +60,6 @@ SHORT = {  # tidier display names
 
 def name(pid):
     return SHORT.get(pid, players[pid]["name"])
-
-
-def deploy(pid):
-    return {"cloud": CLOUD.get(pid, False), "self": pid in SELF, "saas": pid in SAAS}
 
 
 def player(pid):

@@ -52,7 +52,7 @@
   <p class="lede">This is a frequent client question. The answer depends on the following factors.</p>
   <div class="factors">
     <div class="card factor rise" style="--i:0"><div class="q">How many?</div><div class="a">Fifty contracts can be reviewed manually; five million pages cannot. Volume determines how much the cost per page matters.</div></div>
-    <div class="card factor rise" style="--i:1"><div class="q">Digital or scanned?</div><div class="a">A PDF made from Word already contains its text. A scan or photograph contains only an image.</div></div>
+    <div class="card factor rise" style="--i:1"><div class="q">Digital or scanned?</div><div class="a">A PDF made from Word usually contains its text. A scan is an image; some scanned PDFs carry a hidden OCR text layer, which may contain errors.</div></div>
     <div class="card factor rise" style="--i:2"><div class="q">How long, how complex?</div><div class="a">Two-column layouts, footnotes, tables that cross pages, and 300-page documents all make it harder.</div></div>
     <div class="card factor rise" style="--i:3"><div class="q">Tables, charts, handwriting?</div><div class="a">These are where most methods fail, and where the newest models have improved most.</div></div>
     <div class="card factor rise" style="--i:4"><div class="q">How accurate, how checkable?</div><div class="a">Is 98% good enough? Do we need to point to where each value came from on the page?</div></div>
@@ -161,12 +161,11 @@
   <h2>How a digital PDF stores text</h2>
   <div class="pdfdemo">
     <div class="code"><span class="c">% inside the page's content stream</span>
-<span class="ln2"><span class="op">BT</span> <span class="op">/F2</span> <span class="num">11</span> <span class="op">Tf</span></span><span class="ln2" data-t="0"><span class="num">46 590</span> <span class="op">Td</span> <span class="str">(1. Payment)</span> <span class="op">Tj</span></span><span class="ln2" data-t="4"><span class="num">290 590</span> <span class="op">Td</span> <span class="str">(2. Termination)</span> <span class="op">Tj</span></span><span class="ln2"><span class="op">/F1</span> <span class="num">10</span> <span class="op">Tf</span></span><span class="ln2" data-t="1"><span class="num">46 560</span> <span class="op">Td</span> <span class="str">[(The Client shall p)</span><span class="num">-12</span><span class="str">(ay all)]</span> <span class="op">TJ</span></span><span class="ln2" data-t="5"><span class="num">290 560</span> <span class="op">Td</span> <span class="str">(Either party may end this)</span> <span class="op">Tj</span></span><span class="ln2" data-t="2"><span class="num">46 536</span> <span class="op">Td</span> <span class="str">(invoices within 30 days)</span> <span class="op">Tj</span></span><span class="ln2" data-t="6"><span class="num">290 536</span> <span class="op">Td</span> <span class="str">(agreement with 90 days')</span> <span class="op">Tj</span></span><span class="ln2" data-t="3"><span class="num">46 512</span> <span class="op">Td</span> <span class="str">(of the invoice date.)</span> <span class="op">Tj</span></span><span class="ln2" data-t="7"><span class="num">290 512</span> <span class="op">Td</span> <span class="str">(written notice.)</span> <span class="op">Tj</span></span><span class="ln2"><span class="op">ET</span></span>
-<span class="c">% Td = move the text position, Tj/TJ = draw glyphs</span>
-<span class="c">% No paragraphs. No columns. No tables.</span>
-<span class="c">% Not even spaces, in many files.</span>
-<span class="c">% Just glyphs at positions, in whatever order</span>
-<span class="c">% the software that made the PDF chose.</span></div>
+<span class="ln2"><span class="op">BT</span> <span class="op">/F2</span> <span class="num">11</span> <span class="op">Tf</span></span><span class="ln2" data-t="0"><span class="num">1 0 0 1 46 590</span> <span class="op">Tm</span> <span class="str">(1. Payment)</span> <span class="op">Tj</span></span><span class="ln2" data-t="4"><span class="num">1 0 0 1 290 590</span> <span class="op">Tm</span> <span class="str">(2. Termination)</span> <span class="op">Tj</span></span><span class="ln2"><span class="op">/F1</span> <span class="num">10</span> <span class="op">Tf</span></span><span class="ln2" data-t="1"><span class="num">1 0 0 1 46 560</span> <span class="op">Tm</span> <span class="str">[(The Client shall p)</span><span class="num">-12</span><span class="str">(ay all)]</span> <span class="op">TJ</span></span><span class="ln2" data-t="5"><span class="num">1 0 0 1 290 560</span> <span class="op">Tm</span> <span class="str">(Either party may end this)</span> <span class="op">Tj</span></span><span class="ln2" data-t="2"><span class="num">1 0 0 1 46 536</span> <span class="op">Tm</span> <span class="str">(invoices within 30 days)</span> <span class="op">Tj</span></span><span class="ln2" data-t="6"><span class="num">1 0 0 1 290 536</span> <span class="op">Tm</span> <span class="str">(agreement with 90 days')</span> <span class="op">Tj</span></span><span class="ln2" data-t="3"><span class="num">1 0 0 1 46 512</span> <span class="op">Tm</span> <span class="str">(of the invoice date.)</span> <span class="op">Tj</span></span><span class="ln2" data-t="7"><span class="num">1 0 0 1 290 512</span> <span class="op">Tm</span> <span class="str">(written notice.)</span> <span class="op">Tj</span></span><span class="ln2"><span class="op">ET</span></span>
+<span class="c">% Tm = set the text position, Tj/TJ = draw glyphs</span>
+<span class="c">% Glyphs at positions, in the order the software chose.</span>
+<span class="c">% No paragraphs, columns or tables unless the PDF is</span>
+<span class="c">% tagged. Many files do not even store spaces.</span></div>
     <div class="paper"></div>
   </div>
   <div class="pdf-outs">
@@ -191,9 +190,9 @@
     <div>
       <div class="procon">
         <div><span class="label" style="color:var(--green)">Good at</span>
-          <ul class="plain small"><li>Exact characters and exact positions, with no recognition errors</li><li>Milliseconds per page on a laptop, so millions of pages cost almost nothing</li><li>Completely repeatable and easy to audit</li></ul></div>
+          <ul class="plain small"><li>The characters stored in the file, with exact positions, and no new recognition step</li><li>Milliseconds per page on a laptop, so millions of pages cost almost nothing</li><li>Completely repeatable and easy to audit</li></ul></div>
         <div><span class="label" style="color:var(--red)">Bad at</span>
-          <ul class="plain small"><li>Scans (there is no text to read)</li><li>Columns, headers and footnotes in the wrong order</li><li>Tables without ruling lines, and tables that span pages</li><li>Maths, and files with broken font maps</li></ul></div>
+          <ul class="plain small"><li>Scans with no text layer, or a poor hidden OCR layer</li><li>Text layers that are garbled, incomplete or wrong</li><li>Columns, headers and footnotes in the wrong order</li><li>Tables without ruling lines, and tables that span pages</li><li>Maths, and files with broken font maps</li></ul></div>
       </div>
       <div class="callout" style="margin-top:18px">On one benchmark a pure text-layer tool scores <b>20</b>. Adding a small layout model raises it to <b>44</b>, at 24 pages a second on a CPU.<br><small>olmOCR-Bench figures from the Marker README (Datalab, vendor-run)</small></div>
     </div>
@@ -385,10 +384,11 @@
     </div>
     <div class="card calc">
       <span class="label">Calculator</span>
-      <div class="calc-row"><label>Model</label><select id="calc-model"></select></div>
-      <div class="calc-row"><label>Pages</label><input type="range" id="calc-pages" min="2" max="7" step="0.01" value="5"><span id="calc-pages-v" class="mono"></span></div>
-      <div class="calc-row"><label>Output tokens / page</label><input type="range" id="calc-out" min="200" max="3000" step="50" value="800"><span id="calc-out-v" class="mono"></span></div>
-      <div class="calc-row"><label>Batch API (half price)</label><input type="checkbox" id="calc-batch"></div>
+      <div class="calc-row"><label for="calc-model">Model</label><select id="calc-model"></select></div>
+      <div class="calc-row"><label for="calc-pages">Pages</label><input type="range" id="calc-pages" min="2" max="7" step="0.01" value="5"><span id="calc-pages-v" class="mono"></span></div>
+      <div class="calc-row"><label for="calc-out">Output tokens / page</label><input type="range" id="calc-out" min="200" max="3000" step="10" value="800"><span id="calc-out-v" class="mono"></span></div>
+      <div class="calc-row"><label for="calc-batch">Batch API (half price)</label><input type="checkbox" id="calc-batch"></div>
+      <p class="src" id="calc-note" style="margin:8px 0 0"></p>
       <div class="calc-res">
         <div><span class="label">Per 1,000 pages</span><div class="big-num" id="calc-per">–</div></div>
         <div><span class="label">Total for this job</span><div class="big-num" id="calc-total">–</div></div>
@@ -403,8 +403,8 @@
 
 <!-- VLM strengths -->
 <section class="slide" data-section="[02] How it works">
-  <span class="kicker">Family 5 · Strengths</span>
-  <h2>Strengths of general models</h2>
+  <span class="kicker">Families 4 and 5 · Generative models</span>
+  <h2>Strengths of generative models</h2>
   <div class="cols c3" style="margin-top:24px; gap:28px">
     <div class="rise" style="--i:0">
       <figure><img class="shot" src="../assets/doc-extraction/vendor/chandra25-chart-input-teacher-salary.png" alt="Bar chart" style="height:190px; width:100%; object-fit:contain"></figure>
@@ -413,12 +413,12 @@
 "description": "Average salary
   fell, then recovered…"</pre>
       <h3 style="margin-top:12px">Chart data extraction</h3>
-      <p style="font-size:16px">Values are read off the axes, marked "~" when estimated. OCR can only return the axis labels. Image: Datalab, Chandra 2.5 blog.</p>
+      <p style="font-size:16px">Values are read off the axes, marked "~" when estimated. OCR can only return the axis labels. Example from Chandra 2.5, a specialist model; general models such as Gemini and Claude handle the same cases. Image: Datalab blog.</p>
     </div>
     <div class="rise" style="--i:1">
       <figure><img class="shot" src="../assets/doc-extraction/vendor/chandra-handwritten-form.png" alt="Handwritten form" style="height:262px; width:100%; object-fit:cover; object-position:left top"></figure>
       <h3 style="margin-top:12px">Handwriting and forms</h3>
-      <p style="font-size:16px">Handwriting, ticked boxes, stamps and photographs of documents. Training on large and varied data allows these models to read partly legible words. Image: Datalab, Chandra README.</p>
+      <p style="font-size:16px">Handwriting, ticked boxes, stamps and photographs of documents. Training on large and varied data allows these models to read partly legible words. Example from Chandra, a specialist model. Image: Datalab README.</p>
     </div>
     <div class="rise" style="--i:2">
       <pre class="json" style="height:262px">{
@@ -426,11 +426,13 @@
   "party_b": "Example Services LLC",
   "notice_period_days": 90,
   "payment_terms_days": 30,
-  "governing_law": "England and Wales",
-  "auto_renews": false
-}</pre>
+  "governing_law": null,
+  "auto_renews": null
+}
+// null = not stated on the page.
+// Never default a missing value to false.</pre>
       <h3 style="margin-top:12px">Direct extraction of specified fields</h3>
-      <p style="font-size:16px">Give the model a schema and it returns those fields. The JSON is guaranteed to be valid. The values are not guaranteed to be right.</p>
+      <p style="font-size:16px">Fields from the slide 7 contract. Use the provider's structured-output mode with a schema: the output then matches the schema's format, but values can still be wrong and responses can be refused or cut off. Validate before use.</p>
     </div>
   </div>
 </section>
@@ -448,10 +450,10 @@
       <table class="t fail">
         <tr><th>What happens</th><th>Why</th></tr>
         <tr><td>It corrects the text</td><td>The model favours likely words, so it corrects typos, normalises dates and fills gaps.</td></tr>
-        <tr><td>It leaves things out</td><td>It hits its output limit, skips repeated rows or summarises. There is no error message.</td></tr>
+        <tr><td>It leaves things out</td><td>It hits its output limit, skips repeated rows or summarises. The request still succeeds: check the finish reason and compare row counts.</td></tr>
         <tr><td>It repeats itself</td><td>It can loop on dense or unusual pages.</td></tr>
         <tr><td>It misreads small print</td><td>The page image is reduced to fit the model's size limit, which can make small text illegible.</td></tr>
-        <tr><td>Errors on long documents</td><td>When many pages are sent in one request, content from different pages can be mixed up. Send one page at a time.</td></tr>
+        <tr><td>Errors on long documents</td><td>When many pages are sent in one request, content from different pages can be mixed up. Parse page by page, then combine the results and reconcile values that span pages.</td></tr>
         <tr><td>No confidence scores</td><td>The output does not show which parts are uncertain, so reviewers cannot tell where to check. If asked for word or block locations, the model generates approximate coordinates rather than measuring them from the page.</td></tr>
         <tr><td>Results change</td><td>Providers update models under the same name, and outputs can differ between runs even at temperature 0.</td></tr>
       </table>
@@ -503,13 +505,10 @@
   <h2>Products, models and where they run</h2>
   <div class="pl-filters">
     <span class="label">Show</span>
-    <button class="on" data-f="all">All</button>
-    <button data-f="cloud">Available on Azure, GCP or AWS</button>
-    <button data-f="self">Self-host</button>
-    <button data-f="saas">Vendor API</button>
+
   </div>
   <div class="pl-grid" id="pl-grid"></div>
-  <aside class="notes"><p>"Available on Azure, GCP or AWS" includes first-party services and models served through Azure AI Foundry, Vertex AI or Bedrock, plus AWS Marketplace listings. Self-hosted open models count too, since they can run in the client's own cloud account. Hover a tile for details.</p></aside>
+  <aside class="notes"><p>"Hosted on Azure / AWS / Google Cloud" means the processing runs on that cloud's infrastructure: first-party services, the cloud's managed model service, or a package deployed into the client's account. A marketplace listing is a billing route only: Reducto or LlamaParse bought through AWS Marketplace still process documents on the vendor's systems. Self-host covers open weights and vendors' private enterprise deployments. Hover or tab to a tile for details.</p></aside>
 </section>
 
 <section class="slide" id="price-ladder" data-section="[03] Players">
@@ -557,11 +556,11 @@
   <h2>Options by cloud provider</h2>
   <div class="cols c3" style="margin-top:28px; gap:22px">
     <div class="card cloudcol rise" style="--i:0"><span class="label">Microsoft Azure</span><h3>Azure clients</h3>
-      <ul class="plain small"><li>Document Intelligence: Read, Layout, prebuilt and custom models</li><li>Content Understanding (generative)</li><li>Mistral OCR 4 and Mistral Document AI in Foundry</li><li>GPT models in Foundry</li><li>Claude in Foundry</li></ul></div>
+      <ul class="plain small"><li>Document Intelligence: Read, Layout, prebuilt and custom models</li><li>Content Understanding (generative)</li><li>Mistral OCR 4 and Mistral Document AI in Foundry (confirm the hosting option and region)</li><li>GPT models in Azure OpenAI</li><li>Claude in Foundry, using the hosted-on-Azure option</li></ul></div>
     <div class="card cloudcol rise" style="--i:1"><span class="label">Amazon Web Services</span><h3>AWS clients</h3>
-      <ul class="plain small"><li>Textract: OCR, layout, tables, forms, queries</li><li>Bedrock Data Automation</li><li>Claude, Qwen3-VL, GPT-6 Astra, Nova on Bedrock</li><li>DeepSeek-OCR on SageMaker JumpStart</li><li>Reducto, LlamaParse, Unstructured, Upstage via AWS Marketplace</li></ul></div>
+      <ul class="plain small"><li>Textract: OCR, layout, tables, forms, queries</li><li>Bedrock Data Automation</li><li>Claude, Qwen3-VL, GPT-6 Astra, Nova on Bedrock</li><li>DeepSeek-OCR and Upstage deployed into your account through SageMaker</li><li>Billing only, vendor-hosted: Reducto, LlamaParse and Unstructured on AWS Marketplace</li></ul></div>
     <div class="card cloudcol rise" style="--i:2"><span class="label">Google Cloud</span><h3>Google Cloud clients</h3>
-      <ul class="plain small"><li>Document AI: OCR, Layout Parser (uses Gemini), Form Parser, custom extractors</li><li>Gemini (only available here)</li><li>Claude on Vertex AI</li><li>DeepSeek-OCR and an older Mistral OCR in Model Garden</li></ul></div>
+      <ul class="plain small"><li>Document AI: OCR, Layout Parser (uses Gemini; some versions use a global endpoint), Form Parser, custom extractors</li><li>Gemini (only available here)</li><li>Claude on Vertex AI</li><li>DeepSeek-OCR and an older Mistral OCR in Model Garden</li></ul></div>
   </div>
   <div class="callout" style="margin-top:22px">Any open-weights model can also run on a GPU in the client's own account. Datalab has no marketplace listing but offers an enterprise version inside the client's cloud. Databricks and Snowflake have their own document parsing functions.</div>
 </section>
@@ -670,17 +669,17 @@
   <span class="kicker">05 · How we built the charts</span>
   <h2>Method for the frontier charts</h2>
   <div class="cols c3" style="margin-top:30px; gap:22px">
-    <div class="card fam rise" style="--i:0"><span class="label">Family 1</span><h3>Everyday reliability</h3><p>Is the text all there, in the right order, on typical pages?</p><div class="eg">OmniParseBench plain pages<br>ParseBench content faithfulness</div><span class="tag blue"><i></i>Blended · 2 benchmarks</span></div>
-    <div class="card fam rise" style="--i:1"><span class="label">Family 2</span><h3>Hard pages</h3><p>Handwriting, poor scans, rotated or tiny text, and complex tables.</p><div class="eg">OmniParseBench hard slices + tables<br>ParseBench tables</div><span class="tag blue"><i></i>Blended · 2 benchmarks</span></div>
-    <div class="card fam rise" style="--i:2"><span class="label">Family 3</span><h3>Field extraction</h3><p>Named fields to JSON from business documents, short to long.</p><div class="eg">ExtractBench</div><span class="tag"><i></i>Single benchmark</span></div>
+    <div class="card fam rise" style="--i:0"><span class="label">Task 1</span><h3>Everyday reliability</h3><p>Is the text all there, in the right order, on typical pages?</p><div class="eg">OmniParseBench plain pages<br>ParseBench content faithfulness</div><span class="tag blue"><i></i>Blended · 2 benchmarks</span></div>
+    <div class="card fam rise" style="--i:1"><span class="label">Task 2</span><h3>Hard pages</h3><p>Handwriting, poor scans, rotated or tiny text, and complex tables.</p><div class="eg">OmniParseBench hard slices + tables<br>ParseBench tables</div><span class="tag blue"><i></i>Blended · 2 benchmarks</span></div>
+    <div class="card fam rise" style="--i:2"><span class="label">Task 3</span><h3>Field extraction</h3><p>Named fields to JSON from business documents, short to long.</p><div class="eg">ExtractBench</div><span class="tag"><i></i>Single benchmark</span></div>
   </div>
   <ul class="plain small" style="margin-top:26px; columns:2; column-gap:44px">
-    <li><b>Common scale.</b> 18 systems appear on both benchmarks. We use them to rescale each benchmark to the same average and spread, then average.</li>
-    <li><b>Own products at half weight.</b> Datalab on its own benchmark, and LlamaParse on its own, count half.</li>
-    <li><b>Hollow dots</b> appear on one benchmark only. Treat them as less certain.</li>
+    <li><b>An index, not a percentage.</b> 18 systems appear on both benchmarks. We rescale each benchmark to the same average and spread on those systems, then average. The two agree only partly (correlation 0.40 on everyday pages, 0.75 on hard pages), so check the separate views.</li>
+    <li><b>Own products at half weight.</b> Datalab on its own benchmark, and LlamaParse on its own, count half. This only matters when a product appears on both benchmarks.</li>
+    <li><b>Hollow dots</b> appear on one benchmark only. They can lead the chart, so tick "Both benchmarks only" to see the better-supported frontier.</li>
     <li><b>Cost.</b> List price for products. GPU time for self-hosted models. For general models, the token cost each benchmark actually paid, which includes "thinking".</li>
     <li><b>Why not blend extraction?</b> The extraction benchmarks share too few systems to put on one scale.</li>
-    <li><b>Ties.</b> Treat differences under about 1–2 points as a tie.</li>
+    <li><b>Near the frontier.</b> Dashed rings mark options within 1 point of the frontier. Treat these as practical ties; the benchmarks do not publish uncertainty ranges.</li>
   </ul>
 </section>
 
@@ -689,7 +688,7 @@
   <h2>Frontier: everyday reliability</h2>
   <div class="pf-tabs"></div>
   <div class="pf-chart" id="pf-everyday-chart"></div>
-  <aside class="notes"><p>Points to make: the spread is only about 8 points among serious systems. Self-hosted small models (LightOnOCR, dots.mocr) and Claude Haiku 5.5 sit on the frontier at $0.10–2 per 1,000 pages. Try the "Available on Azure, GCP or AWS" filter: the frontier becomes Claude Haiku → LlamaParse (Marketplace) → Claude Opus.</p><p>Note the Datalab vs ParseBench dispute: Datalab scores 93 on its own plain-page slice, 84 on ParseBench's content score.</p></aside>
+  <aside class="notes"><p>Points to make: the spread is only about 8 points among serious systems. With all options, the frontier is pymupdf4llm → LightOnOCR-3 → Claude Haiku 5.5 → LlamaParse Agentic, but Haiku and LlamaParse Agentic each rest on one benchmark. Tick "Both benchmarks only": it becomes LightOnOCR-3 → dots.mocr → Reducto → LlamaParse Agentic Plus. With "Hosted on Azure": GPT-6 Luna → Claude Haiku 5.5 → Claude Opus 5.5.</p><p>Note the Datalab vs ParseBench dispute: Datalab scores 93 on its own plain-page slice, 84 on ParseBench's content score.</p></aside>
 </section>
 
 <section class="slide" id="pf-hard" data-section="[05] The frontier">
@@ -697,31 +696,32 @@
   <h2>Frontier: hard pages</h2>
   <div class="pf-tabs"></div>
   <div class="pf-chart" id="pf-hard-chart"></div>
-  <aside class="notes"><p>Datalab accurate at about $10 is the cheapest system in the top group. General models (Claude Sonnet 5.5, Gemini 3.8 Flash) match or beat it but cost $30–35 per 1,000 pages as benchmarked, with thinking on. Small open models drop 10–30 points here, which is the price of self-hosting cheaply.</p><p>Charts are not in this blend. On ParseBench, products without a chart-to-table step score 1–10 on charts, while general models score 30–70.</p></aside>
+  <aside class="notes"><p>This chart measures handwriting, degraded, rotated and tiny text, plus tables. It does not measure charts. Datalab accurate at about $10 is the cheapest system in the top group. General models (Claude Sonnet 5.5, Gemini 3.8 Flash) match or beat it but cost $30–35 per 1,000 pages as benchmarked, with thinking on. Small open models drop 10–30 points here, which is the price of self-hosting cheaply.</p><p>Charts are not in this blend. On ParseBench, products without a chart-to-table step score 1–10 on charts, while general models score 30–70.</p></aside>
 </section>
 
 <section class="slide" id="pf-extract" data-section="[05] The frontier">
   <span class="kicker">05 · Where the frontier is</span>
   <h2>Frontier: field extraction</h2>
+  <div class="pf-tabs"></div>
   <div class="cols c64" style="gap:30px; margin-top:6px">
     <div class="pf-chart" id="pf-extract-chart"></div>
     <div>
-      <div class="stat"><div class="big-num">93–97</div><span class="label">field F1 on short documents for most established systems</span></div>
-      <div class="stat"><div class="big-num">5–38</div><span class="label">field F1 for plain model calls on long documents</span></div>
-      <div class="stat"><div class="big-num">58%</div><span class="label">of long-tail documents extracted perfectly by the best system, at $952 per 1,000 pages</span></div>
+      <div class="stat"><div class="big-num">93–97</div><span class="label">field F1 on short documents for vendor extraction products (ExtractBench)</span></div>
+      <div class="stat"><div class="big-num">5–38</div><span class="label">field F1 for plain model calls on long documents (ExtractBench)</span></div>
+      <div class="stat"><div class="big-num">58%</div><span class="label">of documents with every field correct for the best system on ExtractBench Pro, a separate long-tail test (a Codex agent using GPT-6 Astra, $952 per 1,000 pages)</span></div>
       <p style="font-size:15px; margin-top:12px">ExtractBench is run by LlamaIndex, whose product tops it. On Datalab's OmniExtractBench, Datalab (93.9) and Reducto (93.5) lead, with Claude Opus 5 at 91.0.</p>
     </div>
   </div>
-  <aside class="notes"><p>Hover any point to see its short vs long score. The pattern: plain model calls are fine on short documents and collapse on long ones. Vendor pipelines and coding agents that chunk and check hold up. "Coding agents" here are Claude Code and Codex writing their own extraction scripts.</p></aside>
+  <aside class="notes"><p>The chart plots value F1 across all documents; use the view buttons for short, medium and long documents. GPT-6 Astra scores 91.9 overall but 31.7 on long documents. Hover any point to see all three. The pattern: plain model calls are fine on short documents and collapse on long ones. Vendor pipelines and coding agents that chunk and check hold up. "Coding agents" here are Claude Code and Codex writing their own extraction scripts.</p></aside>
 </section>
 
 <section class="slide" data-section="[05] The frontier">
   <span class="kicker">05 · Where the frontier is</span>
   <h2>Conclusions</h2>
   <div class="takeaways">
-    <div class="rise" style="--i:0"><span class="n">1</span><div><b>Simple pages.</b> On typical pages, the best and the low-cost options are within a few points. An option costing $0.10–4 is usually sufficient.</div></div>
+    <div class="rise" style="--i:0"><span class="n">1</span><div><b>Simple pages.</b> On typical pages, the best and the low-cost options are within a few points. An option costing $0.10–4 is usually sufficient. Some low-cost leaders rest on one benchmark, so test them.</div></div>
     <div class="rise" style="--i:1"><span class="n">2</span><div><b>Difficult pages.</b> Handwriting, scans and complex tables separate systems by 10–30 points. Route those pages to a stronger, more expensive option.</div></div>
-    <div class="rise" style="--i:2"><span class="n">3</span><div><b>Cloud availability.</b> The cloud providers' own document services are rarely on the frontier, but general models served through those clouds often are. Claude is available on all three; Gemini on Google Cloud; GPT and Mistral OCR on Azure.</div></div>
+    <div class="rise" style="--i:2"><span class="n">3</span><div><b>Cloud availability.</b> The cloud providers' own document services are rarely on the frontier, but general models served through those clouds often are. Claude is hosted on all three (in Foundry, choose the hosted-on-Azure option); Gemini on Google Cloud; GPT on Azure. A marketplace listing changes billing, not where documents are processed.</div></div>
     <div class="rise" style="--i:3"><span class="n">4</span><div><b>"Thinking" settings.</b> These change the cost by 5–10×. Gemini 3.8 Flash costs about $7 per 1,000 pages with low thinking and $34 with high, for about 1–2 points.</div></div>
     <div class="rise" style="--i:4"><span class="n">5</span><div><b>Long documents.</b> For fields from 100-page contracts, use a pipeline or agent that splits, extracts and checks. A single model call is not sufficient.</div></div>
   </div>
@@ -745,14 +745,15 @@
   <table class="t picks">
     <tr><th>Situation</th><th>Start with</th><th>Test against</th><th>Watch out for</th></tr>
     <tr><td>Digital PDFs, mostly text, high volume (search, RAG)</td><td>Text-layer tool (pymupdf4llm, Docling) and send only failed pages to a model</td><td>Mistral OCR 4 ($4) or Datalab balanced ($4)</td><td>Columns and headers in the wrong order; PyMuPDF's AGPL licence</td></tr>
-    <tr><td>Mixed scans and tables, client is on Azure</td><td>Mistral OCR 4 in Foundry ($4)</td><td>Azure DI Layout ($10); Claude Sonnet 5.5 in Foundry for hard pages</td><td>Azure Layout is weak on handwriting and non-Latin text</td></tr>
-    <tr><td>Mixed scans and tables, client is on AWS</td><td>Claude Haiku 5.5 on Bedrock ($1–2)</td><td>Reducto via AWS Marketplace ($10); Textract when you need key–value pairs with boxes</td><td>Textract Forms costs $50 per 1,000 pages</td></tr>
-    <tr><td>Mixed scans and tables, client is on Google Cloud</td><td>Gemini 3.8 Flash with low thinking ($4–7)</td><td>Gemini 3.1 Flash-Lite ($3); Document AI Layout Parser for chunks</td><td>Gemini 3.8 Flash prices double on 1 Jan 2027</td></tr>
-    <tr><td>Hard pages matter most: handwriting, poor scans, complex tables</td><td>Datalab accurate ($10)</td><td>Gemini 3.8 Flash or Claude Sonnet 5.5 ($30–35 as benchmarked); LlamaParse Agentic Plus ($56)</td><td>Request word-level confidence scores and send low-confidence results for human review</td></tr>
-    <tr><td>Data must stay on the client's own machines</td><td>dots.mocr or MinerU2.5-Pro (permissive licences)</td><td>Chandra 2 (needs a licence above $2M revenue) or Datalab on-premises</td><td>Small models drop 10–30 points on handwriting and non-Latin text</td></tr>
-    <tr><td>Fields from short documents (invoices, forms)</td><td>A general model with a JSON schema, plus validation rules</td><td>Reducto Extract, LlamaExtract or Datalab extract</td><td>Valid JSON may still contain wrong values; check totals and dates</td></tr>
-    <tr><td>Fields from long documents (contracts, 100+ pages)</td><td>A vendor extraction pipeline (LlamaExtract, Reducto Deep Extract, Datalab)</td><td>A coding agent (Claude Code, Codex) for unusual one-off jobs</td><td>Single model calls silently miss most of the document</td></tr>
-    <tr><td>Auditors need to see where each value came from</td><td>Tools that return boxes and confidence: Azure DI, Textract, Datalab, Mistral OCR 4</td><td>Docling with visual grounding (free)</td><td>Locations returned by general models are approximate and should not be relied on for audit</td></tr>
+    <tr><td>Mixed scans and tables, documents must stay in Azure</td><td>Azure DI Layout ($10)</td><td>Mistral OCR 4 in Foundry ($4; confirm hosting and region); Claude Sonnet 5.5 in Foundry (hosted-on-Azure option) for hard pages</td><td>Azure DI Layout scores 42% on handwriting and 50% on non-Latin text</td></tr>
+    <tr><td>Mixed scans and tables, documents must stay in AWS</td><td>Claude Haiku 5.5 on Bedrock ($1–2)</td><td>Textract Tables ($15); Textract Forms when you need key–value pairs with boxes ($50)</td><td>Reducto and LlamaParse on AWS Marketplace are vendor-hosted, so documents leave your account</td></tr>
+    <tr><td>Mixed scans and tables, documents must stay in Google Cloud</td><td>Gemini 3.8 Flash with low thinking ($4–7)</td><td>Gemini 3.1 Flash-Lite ($3); Document AI Layout Parser for chunks ($10)</td><td>Gemini 3.8 Flash prices double on 1 Jan 2027; some Layout Parser versions use a global endpoint</td></tr>
+    <tr><td>Handwriting and poor scans matter most</td><td>Datalab accurate ($10; $13 with word boxes)</td><td>Gemini 3.8 Flash or Claude Sonnet 5.5 ($30–37 as benchmarked); LlamaParse Agentic Plus ($56)</td><td>Datalab's word confidence scores measure reading, not field correctness. General models give no reliable confidence scores</td></tr>
+    <tr><td>Charts and diagrams matter most</td><td>LlamaParse Agentic ($12.50)</td><td>Claude Opus 5.5 ($33–60)</td><td>The hard-pages chart does not measure charts; ParseBench (run by LlamaIndex) does. Chart values read off axes are estimates</td></tr>
+    <tr><td>Data must stay on the client's own machines</td><td>dots.mocr (MIT) or MinerU2.5-Pro</td><td>Chandra 2 (licence needed above $2M revenue), or a vendor on-premises deployment (Datalab, Reducto)</td><td>MinerU needs a commercial licence above $20M monthly revenue or 100M monthly users. Small models drop 10–30 points on handwriting and non-Latin text</td></tr>
+    <tr><td>Fields from short documents (invoices, forms)</td><td>A general model with a structured-output mode, plus validation rules</td><td>Reducto Extract, LlamaExtract or Datalab extract (94–96 on ExtractBench short documents)</td><td>Gemini 3.8 Flash scores 88 on short documents. Structured output constrains the format, not the values; record missing fields as missing</td></tr>
+    <tr><td>Fields from long documents (contracts, 100+ pages)</td><td>A vendor extraction pipeline (LlamaExtract, Reducto Deep Extract), or a cloud pipeline that parses, extracts, then reconciles across pages</td><td>A coding agent (Claude Code, Codex) for unusual one-off jobs</td><td>Plain model calls score 5–38 on long documents. Evaluate on whole documents, including amendments and tables that span pages</td></tr>
+    <tr><td>Auditors need to see where each value came from</td><td>Extraction that returns each field with its page region: Azure DI custom extraction, Textract Queries, Document AI Custom Extractor, LandingAI ADE, Reducto</td><td>Docling (free) plus matching each value to its source text</td><td>Text positions alone do not show which occurrence supports a field. Check repeated, reformatted and inferred values</td></tr>
   </table>
   </div>
   <p class="src" style="margin-top:8px">Our judgement from the benchmarks and prices in this session, dated 22 October 2026. Prices per 1,000 pages at list price.</p>
@@ -762,10 +763,10 @@
   <span class="kicker">06 · Before recommending</span>
   <h2>Testing on client documents</h2>
   <div class="recipe">
-    <div class="rise" style="--i:0"><span class="label">Step 1</span><h3>Sample</h3><p>Take 50–200 pages that match the real mix. Include the most difficult 10%, such as faxes, handwritten notes and long schedules.</p></div>
+    <div class="rise" style="--i:0"><span class="label">Step 1</span><h3>Sample</h3><p>Sample whole documents, not just pages: short, medium and long ones, including the most difficult 10%. Keep some back as a held-out check.</p></div>
     <div class="rise" style="--i:1"><span class="label">Step 2</span><h3>Create reference answers</h3><p>Only for the fields, totals and tables the client will use, not for every word.</p></div>
     <div class="rise" style="--i:2"><span class="label">Step 3</span><h3>Test three options</h3><p>A cheap baseline, the default pick and a premium option. Use the same pages and settings for all.</p></div>
-    <div class="rise" style="--i:3"><span class="label">Step 4</span><h3>Measure</h3><p>Field accuracy, table accuracy, pages that failed silently, cost at the real volume, and speed.</p></div>
+    <div class="rise" style="--i:3"><span class="label">Step 4</span><h3>Measure</h3><p>Field and table accuracy, omissions, rows dropped at output limits, values that depend on other pages, cost at the real volume, and speed.</p></div>
     <div class="rise" style="--i:4"><span class="label">Step 5</span><h3>Route</h3><p>Send simple pages to a low-cost option, difficult pages to a stronger option, and low-confidence results to human review.</p></div>
     <div class="rise" style="--i:5"><span class="label">Step 6</span><h3>Repeat</h3><p>Re-run every quarter. Prices and model quality change every few months.</p></div>
   </div>
@@ -834,7 +835,7 @@
 
 
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="../assets/vendor/d3-7.9.0.min.js"></script>
 <script src="../assets/js/pareto.js"></script>
 <script src="data.js"></script>
 <script src="../assets/js/deck.js"></script>

@@ -267,3 +267,16 @@ table.bench td, table.picks td { font-size: 14.5px; }
 
 .home-link { position: absolute; left: 96px; top: 34px; z-index: 6; font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); padding: 6px 10px; margin-left: -10px; border: 1px solid transparent; }
 .home-link:hover { color: var(--blue); border-color: var(--line-2); background: #fff; text-decoration: none; }
+.g-q button:disabled { cursor: not-allowed; }
+.g-q { padding: 6px 0 8px; }
+.g-q .label { margin-bottom: 5px; }
+.g-q button { padding: 5px 10px; font-size: 13.5px; }
+.g-out ul { font-size: 14.5px; }
+.g-out .pick { font-size: 23px; }
+.g-out .why { font-size: 14.5px; }
+.g-out { padding: 18px 22px; }
+.g-out { max-height: 640px; overflow-y: auto; overscroll-behavior: contain; }
+.pl-grid { height: auto; }
+.pl { padding: 3px 7px; font-size: 12.5px; line-height: 1.2; }
+.pl .pr { font-size: 10.5px; }
+.pl-col { gap: 3px; }

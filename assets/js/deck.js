@@ -48,6 +48,9 @@
     slides.forEach((s, j) => {
       s.classList.toggle('active', j === i);
       s.classList.toggle('past', j < i);
+      // hide inactive slides from keyboard and screen readers
+      s.inert = j !== i && !overview;
+      s.setAttribute('aria-hidden', j !== i && !overview);
     });
     idx = i; step = st === 'end' ? maxStep(slides[i]) : st;
     applyStep();
@@ -62,10 +65,19 @@
   // notes
   const drawer = document.createElement('div');
   drawer.className = 'notes-drawer';
+  drawer.setAttribute('aria-hidden', 'true');
+  drawer.setAttribute('aria-label', 'Presenter notes');
   document.body.appendChild(drawer);
+  function setNotes(open) {
+    drawer.classList.toggle('open', open);
+    drawer.setAttribute('aria-hidden', !open);
+    drawer.inert = !open;
+  }
+  drawer.inert = true;
   function renderNotes() {
     const n = slides[idx].querySelector('.notes');
-    drawer.innerHTML = `<span class="label">Notes · slide ${idx + 1}</span>` + (n ? n.innerHTML : '<em>No notes.</em>');
+    drawer.innerHTML = `<button type="button" class="notes-close" aria-label="Close notes">Close notes ×</button><span class="label">Notes · slide ${idx + 1}</span>` + (n ? n.innerHTML : '<em>No notes.</em>');
+    drawer.querySelector('.notes-close').addEventListener('click', () => setNotes(false));
   }
 
   // overview
@@ -81,6 +93,7 @@
   function toggleOverview(on = !overview) {
     overview = on;
     document.body.classList.toggle('overview', on);
+    slides.forEach((s, j) => { s.inert = !on && j !== idx; s.setAttribute('aria-hidden', !on && j !== idx); });
     if (on) {
       stage.style.transform = 'none'; stage.style.left = '0'; stage.style.top = '0';
       layoutOverview();
@@ -130,16 +143,19 @@
     if (a === 'prev') prev();
     if (a === 'next') next();
     if (a === 'o') toggleOverview();
-    if (a === 'n') drawer.classList.toggle('open');
+    if (a === 'n') setNotes(!drawer.classList.contains('open'));
     if (a === 'help') help.classList.toggle('open');
   });
 
   document.addEventListener('keydown', e => {
-    if (e.target.closest('input, select, textarea, [contenteditable]')) return;
+    const t = e.target instanceof Element ? e.target : document.body;
+    if (t.closest('input, select, textarea, [contenteditable]')) return;
+    // let focused buttons and links handle their own activation keys
+    if ((e.key === ' ' || e.key === 'Enter') && t.closest('button, a, [role="button"], [tabindex]')) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     const k = e.key;
     if (lb.classList.contains('open') && k === 'Escape') { lb.classList.remove('open'); return; }
-    if (k === 'Escape') { help.classList.remove('open'); if (overview) toggleOverview(false); return; }
+    if (k === 'Escape') { help.classList.remove('open'); setNotes(false); if (overview) toggleOverview(false); return; }
     if (overview) {
       if (k === 'ArrowRight') { idx = Math.min(slides.length - 1, idx + 1); slides.forEach((s, j) => s.classList.toggle('active', j === idx)); }
       if (k === 'ArrowLeft') { idx = Math.max(0, idx - 1); slides.forEach((s, j) => s.classList.toggle('active', j === idx)); }
@@ -151,7 +167,7 @@
     else if (k === 'Home') go(0);
     else if (k === 'End') go(slides.length - 1);
     else if (k === 'o' || k === 'O') toggleOverview();
-    else if (k === 'n' || k === 'N') drawer.classList.toggle('open');
+    else if (k === 'n' || k === 'N') setNotes(!drawer.classList.contains('open'));
     else if (k === 'f' || k === 'F') document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
     else if (k === '?') help.classList.toggle('open');
   });
