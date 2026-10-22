@@ -279,43 +279,73 @@ const fmt$ = v => v == null ? '–' : v === 0 ? '$0' : v < 0.1 ? '<$0.10' : v < 
 
   function pick(a) {
     const W = a.where, r = { test: [], watch: [] };
-    const by = (o) => o[W] || o.any;
+    const by = o => o[W] ?? o.any;
+    const hard = a.hard === 'messy', digitalPlain = a.docs === 'digital' && a.hard === 'plain';
+    const review = 'Request word-level confidence scores and send low-confidence results for human review.';
+    // options that return source positions and confidence, per cloud
+    const boxes = by({ any: 'Datalab (word boxes and confidence scores)', azure: 'Azure DI Layout or Mistral OCR 4 (boxes and confidence scores)', aws: 'Textract (boxes and confidence scores)', gcp: 'Document AI OCR or Layout Parser (boxes and confidence scores)', local: 'Docling or Surya (block positions and confidence scores)' });
+    const fieldBoxes = by({ any: 'Reducto Extract or Datalab extract (fields with source citations)', azure: 'Azure DI custom extraction (fields with boxes and confidence scores)', aws: 'Textract Queries or Bedrock Data Automation (fields with boxes)', gcp: 'Document AI Custom Extractor (fields with boxes and confidence scores)', local: 'Docling, then match each extracted value to its position in the text' });
+
     if (a.output === 'fields') {
       if (a.length === 'long') {
         r.start = by({ any: 'A vendor extraction pipeline: LlamaExtract, Reducto Deep Extract or Datalab', aws: 'Reducto Deep Extract or LlamaExtract through AWS Marketplace', azure: 'Claude Sonnet 5.5 in Foundry, inside a split, extract and check pipeline', gcp: 'Gemini 3.8 Flash inside a split, extract and check pipeline', local: 'A self-hosted model (Qwen3.8 27B) inside a split, extract and check pipeline' });
         r.why = 'Single model calls score 5–38 on long documents. Pipelines that split and check score above 90.';
         r.test.push(W === 'local' ? 'A second open model on the same pipeline' : 'A coding agent (Claude Code or Codex) on a sample, for unusual layouts');
         r.cost = by({ any: '$30–65 per 1,000 pages (LlamaExtract Agentic about $31, Reducto Deep Extract about $64)', aws: '$30–65 per 1,000 pages through AWS Marketplace', azure: 'About $17 per 1,000 pages per extraction pass with Claude Sonnet 5.5, plus any checking passes', gcp: 'About $4–7 per 1,000 pages per extraction pass with Gemini 3.8 Flash, plus any checking passes', local: 'Under $2 per 1,000 pages in GPU time, plus engineering effort' });
+        if (hard) r.watch.push(review);
+      } else if (digitalPlain) {
+        r.start = 'Extract the PDF text layer, then pass the text to ' + by({ any: 'Gemini 3.8 Flash', aws: 'Claude Haiku 5.5 on Bedrock', azure: 'GPT-6 Luna in Foundry', gcp: 'Gemini 3.8 Flash', local: 'a self-hosted model (Qwen3.8 27B)' }) + ' with a JSON schema';
+        r.why = 'The PDF already contains exact text, so the model only has to find the fields. This avoids recognition errors and costs less than sending page images.';
+        r.test.push('The same model reading page images, to check that nothing is lost from tables or layout');
+        r.cost = by({ any: 'About $1–3 per 1,000 pages', aws: 'Under $1 per 1,000 pages', azure: 'Under $1 per 1,000 pages', gcp: 'About $1–3 per 1,000 pages', local: 'Under $1 per 1,000 pages in GPU time' });
+      } else if (hard) {
+        r.start = by({ any: 'Gemini 3.8 Flash or Claude Sonnet 5.5 with a JSON schema and thinking enabled', aws: 'Claude Sonnet 5.5 on Bedrock with a JSON schema', azure: 'Claude Sonnet 5.5 in Foundry with a JSON schema', gcp: 'Gemini 3.8 Flash with a JSON schema and thinking enabled', local: 'A self-hosted model (Qwen3.8 27B) with a JSON schema' });
+        r.why = 'Handwriting and poor scans need a stronger model. The cheapest models are adequate only for clean pages.';
+        if (W !== 'local') r.test.push('Reducto Extract or Datalab extract');
+        else r.test.push('A hosted frontier model on a sample, to measure the accuracy gap');
+        r.cost = by({ any: 'About $7–35 per 1,000 pages, depending on the model and thinking setting', aws: 'About $17–31 per 1,000 pages', azure: 'About $17–31 per 1,000 pages', gcp: 'About $7–35 per 1,000 pages, depending on the thinking setting', local: 'Under $2 per 1,000 pages in GPU time' });
+        r.watch.push(review);
       } else {
         r.start = by({ any: 'Gemini 3.8 Flash with low thinking and a JSON schema', aws: 'Claude Haiku 5.5 or Sonnet 5.5 on Bedrock with a JSON schema', azure: 'GPT-6 Luna or Claude Sonnet 5.5 in Foundry with a JSON schema', gcp: 'Gemini 3.8 Flash with low thinking and a JSON schema', local: 'A self-hosted model (Qwen3.8 27B) with a JSON schema' });
         r.why = 'Most established systems score 93–97 on short documents.';
-        if (W !== 'local') r.test.push('Reducto Extract, LlamaExtract or Datalab extract');
+        r.test.push(W === 'local' ? 'A hosted frontier model on a sample, to measure the accuracy gap' : 'Reducto Extract, LlamaExtract or Datalab extract');
         r.cost = by({ any: 'About $4–7 per 1,000 pages', aws: 'About $1–2 per 1,000 pages with Haiku 5.5; $17–27 with Sonnet 5.5', azure: 'About $1 per 1,000 pages with GPT-6 Luna; $17–27 with Claude Sonnet 5.5', gcp: 'About $4–7 per 1,000 pages', local: 'Under $2 per 1,000 pages in GPU time' });
       }
       r.watch.push('Valid JSON may still contain wrong values. Add checks on totals, dates and required fields.');
-    } else if (a.docs === 'digital' && a.hard === 'plain') {
+    } else if (digitalPlain) {
       r.start = 'Text-layer extraction (pymupdf4llm or Docling), sending only failed pages to a model';
       r.why = 'The PDF already contains exact text. Use it, and apply a model only where the text layer is missing or broken.';
-      r.test.push(by({ any: 'Mistral OCR 4 or Datalab balanced ($4)', aws: 'Claude Haiku 5.5 on Bedrock', azure: 'Mistral OCR 4 in Foundry ($4)', gcp: 'Gemini 3.1 Flash-Lite', local: 'Marker or MinerU, self-hosted' }));
+      r.test.push(by({ any: 'Mistral OCR 4 or Datalab balanced ($4)', aws: 'Claude Haiku 5.5 on Bedrock', azure: 'Mistral OCR 4 in Foundry ($4)', gcp: 'Gemini 3.1 Flash-Lite', local: 'MinerU2.5-Pro, self-hosted' }));
       r.cost = 'Close to $0, plus the cost of the failed pages';
       r.watch.push('Multi-column layouts and headers can come out in the wrong order. PyMuPDF is AGPL.');
-    } else if (a.hard === 'messy') {
+    } else if (hard) {
       r.start = by({ any: 'Datalab accurate ($10)', aws: 'Claude Sonnet 5.5 on Bedrock', azure: 'Claude Sonnet 5.5 in Foundry', gcp: 'Gemini 3.8 Flash', local: 'Chandra 2 (licence needed) or dots.mocr' });
       r.why = 'Difficult pages separate systems by 10–30 points. These options are at the top of the hard-pages frontier.';
       r.test.push(by({ any: 'Gemini 3.8 Flash or Claude Sonnet 5.5', aws: 'Reducto via AWS Marketplace', azure: 'Mistral OCR 4 in Foundry', gcp: 'Claude Sonnet 5.5 on Vertex', local: 'MinerU2.5-Pro' }));
       r.cost = by({ any: 'About $10 per 1,000 pages', aws: 'About $17–31 per 1,000 pages, higher with thinking enabled', azure: 'About $17–31 per 1,000 pages, higher with thinking enabled', gcp: 'About $4 per 1,000 pages with thinking off, up to $35 with high thinking', local: 'Under $2 per 1,000 pages in GPU time' });
-      r.watch.push('Request word-level confidence scores and send low-confidence results for human review.');
+      r.watch.push(review);
+      if (a.volume === 'high' && W !== 'local') r.watch.push('At millions of pages, send only the difficult pages to this option and process the rest with a cheaper one.');
     } else {
       r.start = by({ any: a.volume === 'high' ? 'Datalab balanced or Mistral OCR 4 ($4)' : 'Datalab balanced ($4) or Claude Haiku 5.5', aws: 'Claude Haiku 5.5 on Bedrock', azure: 'Mistral OCR 4 in Foundry ($4)', gcp: 'Gemini 3.8 Flash with low thinking', local: 'MinerU2.5-Pro or dots.mocr' });
       r.why = 'Low-cost options on or near the frontier for typical pages and tables.';
       r.test.push(by({ any: 'Reducto ($10)', aws: 'Textract Tables ($15)', azure: 'Azure DI Layout ($10)', gcp: 'Document AI Layout Parser ($10)', local: 'PaddleOCR-VL 1.6' }));
-      r.cost = by({ any: 'About $4 per 1,000 pages', aws: 'About $1–2 per 1,000 pages', azure: 'About $4 per 1,000 pages ($2 with batch)', gcp: 'About $4–7 per 1,000 pages', local: 'Under $1 per 1,000 pages in GPU time' });
+      if (a.docs === 'digital') r.test.push('Docling (free; takes table cell text from the PDF itself)');
+      r.cost = by({ any: a.volume === 'high' ? 'About $4 per 1,000 pages' : 'About $1–4 per 1,000 pages', aws: 'About $1–2 per 1,000 pages', azure: 'About $4 per 1,000 pages ($2 with batch)', gcp: 'About $4–7 per 1,000 pages', local: 'Under $1 per 1,000 pages in GPU time' });
+      if (a.volume === 'high' && W !== 'local') r.test.push('A self-hosted small model (LightOnOCR, MinerU) for 10–30× lower cost on simple pages');
     }
-    if (a.volume === 'high' && W !== 'local' && a.output === 'text') r.test.push('A self-hosted small model (LightOnOCR, MinerU) for 10–30× lower cost on easy pages');
-    if (a.audit === 'yes') { r.watch.push('Choose an option that returns boxes and confidence (Azure DI, Textract, Datalab, Mistral OCR 4, Docling). Locations returned by general models are approximate and should not be relied on for audit.'); }
-    if (a.docs !== 'digital' && W === 'azure') r.watch.push('Azure DI Layout scores 42% on handwriting and 50% on non-Latin text in OmniParseBench.');
-    if (W === 'gcp' || /Gemini 3.8/.test(r.start)) r.watch.push('Gemini 3.8 Flash prices double on 1 January 2027.');
-    if (W === 'local') r.watch.push('Check model licences: Chandra, Marker and Surya need a licence above $2–5M revenue.');
+
+    if (a.audit === 'yes') {
+      const startHasPositions = /text layer|Text-layer|Datalab|Mistral OCR|Docling|Chandra|MinerU|dots\.mocr|Textract|Azure DI|Document AI|Reducto|LlamaExtract/.test(r.start);
+      if (!startHasPositions) {
+        r.test.push(a.output === 'fields' ? fieldBoxes : boxes);
+        r.watch.push('Locations returned by general models are approximate and should not be relied on for audit.');
+      } else r.watch.push('Confirm that the chosen option returns positions at the level needed (word, line or block).');
+    }
+    const named = r.start + ' ' + r.test.join(' ');
+    if (/Azure DI/.test(named) && a.docs !== 'digital') r.watch.push('Azure DI Layout scores 42% on handwriting and 50% on non-Latin text in OmniParseBench.');
+    if (/Gemini 3\.8/.test(named)) r.watch.push('Gemini 3.8 Flash prices double on 1 January 2027.');
+    if (/Chandra|Marker|Surya/.test(named)) r.watch.push('Chandra, Marker and Surya model weights need a commercial licence above $2–5M revenue.');
+    if (/MinerU/.test(named)) r.watch.push('MinerU needs a commercial licence above $20M monthly revenue.');
     return r;
   }
   function run() {

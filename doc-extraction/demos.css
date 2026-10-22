@@ -264,3 +264,6 @@ table.bench td, table.picks td { font-size: 14.5px; }
 .dumb svg { width: 100%; height: auto; display: block; }
 .dumb text { font-family: var(--f-body); font-size: 13px; fill: var(--ink-2); }
 .dumb .ax text { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+
+.home-link { position: absolute; left: 96px; top: 34px; z-index: 6; font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); padding: 6px 10px; margin-left: -10px; border: 1px solid transparent; }
+.home-link:hover { color: var(--blue); border-color: var(--line-2); background: #fff; text-decoration: none; }
