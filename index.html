@@ -304,7 +304,8 @@ document.querySelectorAll('.rise').forEach(el => io.observe(el));
   el('line', { x1: m.l, x2: m.l, y1: m.t, y2: H - m.b, stroke: '#cfd2d9' }, ax);
   const tx = (x, y, s, a = {}) => { const t = el('text', { x, y, ...a }, ax); t.textContent = s; return t; };
   tx(W - m.r, H - 12, 'COST PER UNIT OF WORK (LOG SCALE) →', { 'text-anchor': 'end' });
-  tx(m.l - 10, m.t + 4, 'QUALITY ↑', { 'text-anchor': 'start', transform: `rotate(-90 ${m.l - 30} ${m.t + 4})` });
+  // rotated to read bottom-to-top, so → points up the axis
+  tx(0, 0, 'QUALITY →', { 'text-anchor': 'end', transform: `translate(${m.l - 16} ${m.t}) rotate(-90)` });
   tx(m.l + 4, H - m.b + 16, 'cheaper');
   const frontierOf = set => {
     const s = pts.map((p, i) => ({ ...p, i })).filter(p => set.has(p.i)).sort((a, b) => a.x - b.x);
@@ -318,7 +319,8 @@ document.querySelectorAll('.rise').forEach(el => io.observe(el));
     const c = el('circle', { cx: lx(p.x), cy: ly(p.y), r: 0, fill: '#0c0d12' });
     c.style.transition = `r .4s ${i * 40}ms, fill .4s, opacity .4s`; return c;
   });
-  const labels = pts.map(p => p.n ? tx(lx(p.x) + 9, ly(p.y) - 9, p.n, { fill: '#2f323a', style: 'font-size:11px' }) : null);
+  const labels = pts.map(p => { if (!p.n) return null; const right = lx(p.x) > W - 140;
+    return tx(lx(p.x) + (right ? -9 : 9), ly(p.y) + (p.y < 60 ? 18 : -9), p.n, { fill: '#2f323a', style: 'font-size:11px', 'text-anchor': right ? 'end' : 'start' }); });
   function stage(k) {
     document.querySelectorAll('#conceptSteps div').forEach(d => d.classList.toggle('on', +d.dataset.k <= k));
     const set = k >= 3 ? allowed : all;
