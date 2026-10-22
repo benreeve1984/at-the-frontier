@@ -312,7 +312,7 @@ const fmt$ = v => v == null ? '–' : v === 0 ? '$0' : v < 0.1 ? '<$0.10' : v < 
       r.cost = W === 'local' ? 'Under $1 per 1,000 pages in GPU time' : '$1–10 per 1,000 pages';
     }
     if (a.volume === 'high' && W !== 'local' && a.output === 'text') r.test.push('A self-hosted small model (LightOnOCR, MinerU) for 10–30× lower cost on easy pages');
-    if (a.audit === 'yes') { r.watch.push('Choose an option that returns boxes and confidence (Azure DI, Textract, Datalab, Mistral OCR 4, Docling). Boxes from general models are estimates.'); }
+    if (a.audit === 'yes') { r.watch.push('Choose an option that returns boxes and confidence (Azure DI, Textract, Datalab, Mistral OCR 4, Docling). Locations returned by general models are approximate and should not be relied on for audit.'); }
     if (a.docs !== 'digital' && W === 'azure') r.watch.push('Azure DI Layout scores 42% on handwriting and 50% on non-Latin text in OmniParseBench.');
     if (W === 'gcp' || /Gemini 3.8/.test(r.start)) r.watch.push('Gemini 3.8 Flash prices double on 1 January 2027.');
     if (W === 'local') r.watch.push('Check model licences: Chandra, Marker and Surya need a licence above $2–5M revenue.');

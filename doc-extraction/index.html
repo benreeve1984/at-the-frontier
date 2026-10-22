@@ -449,10 +449,10 @@
         <tr><td>It corrects the text</td><td>The model favours likely words, so it corrects typos, normalises dates and fills gaps.</td></tr>
         <tr><td>It leaves things out</td><td>It hits its output limit, skips repeated rows or summarises. There is no error message.</td></tr>
         <tr><td>It repeats itself</td><td>It can loop on dense or unusual pages.</td></tr>
-        <tr><td>It misreads small print</td><td>The page is shrunk to fit the model's limit, so tiny text blurs.</td></tr>
-        <tr><td>Long documents go wrong</td><td>With many pages in one request, it confuses them. Send one page at a time.</td></tr>
-        <tr><td>No confidence score</td><td>Nothing tells you which parts to check. Boxes it gives are estimates, not measurements.</td></tr>
-        <tr><td>Results change</td><td>Model versions change behind the same name. Even at temperature 0, outputs vary.</td></tr>
+        <tr><td>It misreads small print</td><td>The page image is reduced to fit the model's size limit, which can make small text illegible.</td></tr>
+        <tr><td>Errors on long documents</td><td>When many pages are sent in one request, content from different pages can be mixed up. Send one page at a time.</td></tr>
+        <tr><td>No confidence scores</td><td>The output does not show which parts are uncertain, so reviewers cannot tell where to check. If asked for word or block locations, the model generates approximate coordinates rather than measuring them from the page.</td></tr>
+        <tr><td>Results change</td><td>Providers update models under the same name, and outputs can differ between runs even at temperature 0.</td></tr>
       </table>
     </div>
   </div>
@@ -751,7 +751,7 @@
     <tr><td>Data must stay on the client's own machines</td><td>dots.mocr or MinerU2.5-Pro (permissive licences)</td><td>Chandra 2 (needs a licence above $2M revenue) or Datalab on-premises</td><td>Small models drop 10–30 points on handwriting and non-Latin text</td></tr>
     <tr><td>Fields from short documents (invoices, forms)</td><td>A general model with a JSON schema, plus validation rules</td><td>Reducto Extract, LlamaExtract or Datalab extract</td><td>Valid JSON may still contain wrong values; check totals and dates</td></tr>
     <tr><td>Fields from long documents (contracts, 100+ pages)</td><td>A vendor extraction pipeline (LlamaExtract, Reducto Deep Extract, Datalab)</td><td>A coding agent (Claude Code, Codex) for unusual one-off jobs</td><td>Single model calls silently miss most of the document</td></tr>
-    <tr><td>Auditors need to see where each value came from</td><td>Tools that return boxes and confidence: Azure DI, Textract, Datalab, Mistral OCR 4</td><td>Docling with visual grounding (free)</td><td>Boxes from general models are estimates, not measurements</td></tr>
+    <tr><td>Auditors need to see where each value came from</td><td>Tools that return boxes and confidence: Azure DI, Textract, Datalab, Mistral OCR 4</td><td>Docling with visual grounding (free)</td><td>Locations returned by general models are approximate and should not be relied on for audit</td></tr>
   </table>
   </div>
   <p class="src" style="margin-top:8px">Our judgement from the benchmarks and prices in this session, dated 22 October 2026. Prices per 1,000 pages at list price.</p>
