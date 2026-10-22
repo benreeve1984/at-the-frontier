@@ -1,0 +1,3754 @@
+{
+ "everyday": {
+  "title": "Everyday reliability",
+  "benches": [
+   "OmniParseBench: plain pages",
+   "ParseBench: content faithfulness"
+  ],
+  "anchors": 18,
+  "method": "Linear equating on 18 systems that appear on both benchmarks",
+  "points": [
+   {
+    "id": "datalab-accurate",
+    "name": "Datalab (accurate)",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 10,
+    "score": 86.7,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages (own product, half weight)",
+      "score": 93.0,
+      "cost": 7.5
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 83.9,
+      "cost": 10.0
+     }
+    ],
+    "costBasis": "Datalab list price, accurate mode"
+   },
+   {
+    "id": "datalab-balanced",
+    "name": "Datalab (balanced)",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 4,
+    "score": 86.4,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages (own product, half weight)",
+      "score": 92.6,
+      "cost": 3.0
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 83.6,
+      "cost": 4.0
+     }
+    ],
+    "costBasis": "Datalab list price, balanced mode"
+   },
+   {
+    "id": "reducto",
+    "name": "Reducto (r-1)",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 10,
+    "score": 90.1,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 91.1,
+      "cost": 10.0
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 89.2,
+      "cost": 10.0
+     }
+    ],
+    "costBasis": "Reducto list price"
+   },
+   {
+    "id": "llamaparse-ap",
+    "name": "LlamaParse Agentic Plus",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 56.25,
+    "score": 91.0,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 90.4,
+      "cost": 56.3
+     },
+     {
+      "bench": "ParseBench: content faithfulness (own product, half weight)",
+      "score": 92.2,
+      "cost": 56.25
+     }
+    ],
+    "costBasis": "LlamaParse list price (45 credits/page)"
+   },
+   {
+    "id": "llamaparse-a",
+    "name": "LlamaParse Agentic",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 12.5,
+    "score": 92.2,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness (own product, half weight)",
+      "score": 91.8,
+      "cost": 12.5
+     }
+    ],
+    "costBasis": "LlamaParse list price (10 credits/page)"
+   },
+   {
+    "id": "llamaparse-ce",
+    "name": "LlamaParse Cost-Effective",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 3.75,
+    "score": 90.2,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness (own product, half weight)",
+      "score": 89.9,
+      "cost": 3.75
+     }
+    ],
+    "costBasis": "LlamaParse list price (3 credits/page)"
+   },
+   {
+    "id": "mistral-ocr",
+    "name": "Mistral OCR 4",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "Azure Foundry"
+    },
+    "cost": 4,
+    "score": 88.6,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 87.6,
+      "cost": 4.0
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 89.5,
+      "cost": 4.0
+     }
+    ],
+    "costBasis": "Mistral list price; OCR 4.1 on OmniParseBench, OCR 4 on ParseBench"
+   },
+   {
+    "id": "azure-layout",
+    "name": "Azure DI Layout",
+    "family": "cloud",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure"
+    },
+    "cost": 10,
+    "score": 85.2,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 85.6,
+      "cost": 5.0
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 84.9,
+      "cost": 10.0
+     }
+    ],
+    "costBasis": "Azure list price, first tier"
+   },
+   {
+    "id": "extend",
+    "name": "Extend Parse",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 20,
+    "score": 84.9,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 85.3,
+      "cost": 33.7
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 84.6,
+      "cost": 25.0
+     }
+    ],
+    "costBasis": "Extend list price, performance tier"
+   },
+   {
+    "id": "databricks",
+    "name": "Databricks ai_parse",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "Databricks on any cloud"
+    },
+    "cost": 3.5,
+    "score": 88.5,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 88.2,
+      "cost": 3.5
+     }
+    ],
+    "costBasis": "ParseBench-reported cost"
+   },
+   {
+    "id": "textract",
+    "name": "AWS Textract",
+    "family": "cloud",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "AWS"
+    },
+    "cost": 15,
+    "score": 74.1,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 74.8,
+      "cost": 15.0
+     }
+    ],
+    "costBasis": "Textract tables list price"
+   },
+   {
+    "id": "docai",
+    "name": "Google Document AI",
+    "family": "cloud",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 10,
+    "score": 83.6,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 83.7,
+      "cost": 10.0
+     }
+    ],
+    "costBasis": "Document AI layout list price"
+   },
+   {
+    "id": "landingai",
+    "name": "LandingAI ADE",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 15,
+    "score": 88.8,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 88.6,
+      "cost": 30.0
+     }
+    ],
+    "costBasis": "LandingAI typical credits per page"
+   },
+   {
+    "id": "pulse",
+    "name": "Pulse Ultra 2",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 15,
+    "score": 87.8,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 87.6,
+      "cost": 15.0
+     }
+    ],
+    "costBasis": "ParseBench-reported cost"
+   },
+   {
+    "id": "chandra-2",
+    "name": "Chandra 2 (open)",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.48,
+    "score": 87.1,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 90.9,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 83.7,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr; licence needed above $2M revenue"
+   },
+   {
+    "id": "lighton-08",
+    "name": "LightOnOCR-3 0.8B",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.12,
+    "score": 88.2,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 87.4,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 88.9,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr (throughput of the 1B model)"
+   },
+   {
+    "id": "mineru",
+    "name": "MinerU2.5-Pro",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.33,
+    "score": 87.2,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 86.4,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 87.9,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr"
+   },
+   {
+    "id": "paddle",
+    "name": "PaddleOCR-VL 1.6",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.43,
+    "score": 81.9,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 81.0,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 82.7,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr"
+   },
+   {
+    "id": "dots",
+    "name": "dots.mocr",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 1.97,
+    "score": 88.9,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 87.5,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 90.0,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr (dots.ocr throughput)"
+   },
+   {
+    "id": "deepseek-2",
+    "name": "DeepSeek-OCR 2",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.3,
+    "score": 80.1,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 77.9,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 82.0,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr"
+   },
+   {
+    "id": "glm-ocr",
+    "name": "GLM-OCR",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.37,
+    "score": 78.8,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 79.7,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 78.0,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr"
+   },
+   {
+    "id": "surya-2",
+    "name": "Surya 2",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.13,
+    "score": 86.4,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 86.2,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 86.6,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr; licence needed above $5M revenue"
+   },
+   {
+    "id": "olmocr-2",
+    "name": "olmOCR 2",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.2,
+    "score": 71.4,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 70.7,
+      "cost": null
+     }
+    ],
+    "costBasis": "AI2: under $200 per million pages"
+   },
+   {
+    "id": "docling",
+    "name": "Docling",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.33,
+    "score": 65.8,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 66.9,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr"
+   },
+   {
+    "id": "tesseract",
+    "name": "Tesseract",
+    "family": "libs",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.03,
+    "score": 36.6,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 33.8,
+      "cost": null
+     }
+    ],
+    "costBasis": "Free; CPU time only"
+   },
+   {
+    "id": "pymupdf4llm",
+    "name": "pymupdf4llm",
+    "family": "libs",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.03,
+    "score": 79.0,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 79.3,
+      "cost": null
+     }
+    ],
+    "costBasis": "Free (AGPL); CPU time only"
+   },
+   {
+    "id": "gemini-38-flash",
+    "name": "Gemini 3.8 Flash",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 35.6,
+    "score": 89.6,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 89.5,
+      "cost": 37.1
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 89.7,
+      "cost": 34.1
+     }
+    ],
+    "costBasis": "Token cost as billed in each benchmark (thinking on)"
+   },
+   {
+    "id": "gemini-38-flash-low",
+    "name": "Gemini 3.8 Flash (low thinking)",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 7.1,
+    "score": 88.5,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 88.2,
+      "cost": 7.1
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench"
+   },
+   {
+    "id": "claude-sonnet-55",
+    "name": "Claude Sonnet 5.5",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+    },
+    "cost": 30.85,
+    "score": 87.8,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 83.4,
+      "cost": 34.3
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 91.6,
+      "cost": 27.4
+     }
+    ],
+    "costBasis": "Token cost as billed in each benchmark"
+   },
+   {
+    "id": "claude-opus-55",
+    "name": "Claude Opus 5.5",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+    },
+    "cost": 57.9,
+    "score": 92.2,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 91.8,
+      "cost": 57.9
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench"
+   },
+   {
+    "id": "claude-haiku-55",
+    "name": "Claude Haiku 5.5",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+    },
+    "cost": 1.4,
+    "score": 90.6,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 90.2,
+      "cost": 1.4
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench"
+   },
+   {
+    "id": "gpt-56-sol",
+    "name": "GPT-5.6 Sol",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure"
+    },
+    "cost": 87.65,
+    "score": 86.8,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: plain pages",
+      "score": 85.2,
+      "cost": 94.5
+     },
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 88.2,
+      "cost": 80.8
+     }
+    ],
+    "costBasis": "Token cost as billed in each benchmark (reasoning high)"
+   },
+   {
+    "id": "gpt-6-luna",
+    "name": "GPT-6 Luna",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure"
+    },
+    "cost": 0.9,
+    "score": 85.1,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 85.1,
+      "cost": 0.9
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench (no reasoning)"
+   },
+   {
+    "id": "gemini-31-flash-lite",
+    "name": "Gemini 3.1 Flash-Lite",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 2.9,
+    "score": 89.7,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 89.5,
+      "cost": 2.9
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench"
+   },
+   {
+    "id": "gemini-31-pro",
+    "name": "Gemini 3.1 Pro",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 84.9,
+    "score": 90.5,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: content faithfulness",
+      "score": 90.2,
+      "cost": 84.9
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench"
+   }
+  ],
+  "rawViews": [
+   {
+    "label": "OmniParseBench: plain pages",
+    "points": [
+     {
+      "id": "datalab-accurate",
+      "name": "Datalab (accurate)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 10,
+      "score": 93.0,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Datalab list price, accurate mode"
+     },
+     {
+      "id": "datalab-balanced",
+      "name": "Datalab (balanced)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 4,
+      "score": 92.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Datalab list price, balanced mode"
+     },
+     {
+      "id": "reducto",
+      "name": "Reducto (r-1)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 10,
+      "score": 91.1,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Reducto list price"
+     },
+     {
+      "id": "llamaparse-ap",
+      "name": "LlamaParse Agentic Plus",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 56.25,
+      "score": 90.4,
+      "n": 1,
+      "raw": [],
+      "costBasis": "LlamaParse list price (45 credits/page)"
+     },
+     {
+      "id": "mistral-ocr",
+      "name": "Mistral OCR 4",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "Azure Foundry"
+      },
+      "cost": 4,
+      "score": 87.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Mistral list price; OCR 4.1 on OmniParseBench, OCR 4 on ParseBench"
+     },
+     {
+      "id": "azure-layout",
+      "name": "Azure DI Layout",
+      "family": "cloud",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure"
+      },
+      "cost": 10,
+      "score": 85.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Azure list price, first tier"
+     },
+     {
+      "id": "extend",
+      "name": "Extend Parse",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 20,
+      "score": 85.3,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Extend list price, performance tier"
+     },
+     {
+      "id": "chandra-2",
+      "name": "Chandra 2 (open)",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.48,
+      "score": 90.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr; licence needed above $2M revenue"
+     },
+     {
+      "id": "lighton-08",
+      "name": "LightOnOCR-3 0.8B",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.12,
+      "score": 87.4,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr (throughput of the 1B model)"
+     },
+     {
+      "id": "mineru",
+      "name": "MinerU2.5-Pro",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.33,
+      "score": 86.4,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "paddle",
+      "name": "PaddleOCR-VL 1.6",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.43,
+      "score": 81.0,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "dots",
+      "name": "dots.mocr",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 1.97,
+      "score": 87.5,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr (dots.ocr throughput)"
+     },
+     {
+      "id": "deepseek-2",
+      "name": "DeepSeek-OCR 2",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.3,
+      "score": 77.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "glm-ocr",
+      "name": "GLM-OCR",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.37,
+      "score": 79.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "surya-2",
+      "name": "Surya 2",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.13,
+      "score": 86.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr; licence needed above $5M revenue"
+     },
+     {
+      "id": "olmocr-2",
+      "name": "olmOCR 2",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.2,
+      "score": 70.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "AI2: under $200 per million pages"
+     },
+     {
+      "id": "tesseract",
+      "name": "Tesseract",
+      "family": "libs",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.03,
+      "score": 33.8,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Free; CPU time only"
+     },
+     {
+      "id": "gemini-38-flash",
+      "name": "Gemini 3.8 Flash",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 37.1,
+      "score": 89.5,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in OmniParseBench (Datalab)"
+     },
+     {
+      "id": "claude-sonnet-55",
+      "name": "Claude Sonnet 5.5",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      },
+      "cost": 34.3,
+      "score": 83.4,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in OmniParseBench (Datalab)"
+     },
+     {
+      "id": "gpt-56-sol",
+      "name": "GPT-5.6 Sol",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure"
+      },
+      "cost": 94.5,
+      "score": 85.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in OmniParseBench (Datalab)"
+     }
+    ]
+   },
+   {
+    "label": "ParseBench: content faithfulness",
+    "points": [
+     {
+      "id": "datalab-accurate",
+      "name": "Datalab (accurate)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 10,
+      "score": 83.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Datalab list price, accurate mode"
+     },
+     {
+      "id": "datalab-balanced",
+      "name": "Datalab (balanced)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 4,
+      "score": 83.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Datalab list price, balanced mode"
+     },
+     {
+      "id": "reducto",
+      "name": "Reducto (r-1)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 10,
+      "score": 89.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Reducto list price"
+     },
+     {
+      "id": "llamaparse-ap",
+      "name": "LlamaParse Agentic Plus",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 56.25,
+      "score": 92.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "LlamaParse list price (45 credits/page)"
+     },
+     {
+      "id": "llamaparse-a",
+      "name": "LlamaParse Agentic",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 12.5,
+      "score": 91.8,
+      "n": 1,
+      "raw": [],
+      "costBasis": "LlamaParse list price (10 credits/page)"
+     },
+     {
+      "id": "llamaparse-ce",
+      "name": "LlamaParse Cost-Effective",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 3.75,
+      "score": 89.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "LlamaParse list price (3 credits/page)"
+     },
+     {
+      "id": "mistral-ocr",
+      "name": "Mistral OCR 4",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "Azure Foundry"
+      },
+      "cost": 4,
+      "score": 89.5,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Mistral list price; OCR 4.1 on OmniParseBench, OCR 4 on ParseBench"
+     },
+     {
+      "id": "azure-layout",
+      "name": "Azure DI Layout",
+      "family": "cloud",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure"
+      },
+      "cost": 10,
+      "score": 84.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Azure list price, first tier"
+     },
+     {
+      "id": "extend",
+      "name": "Extend Parse",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 20,
+      "score": 84.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Extend list price, performance tier"
+     },
+     {
+      "id": "databricks",
+      "name": "Databricks ai_parse",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "Databricks on any cloud"
+      },
+      "cost": 3.5,
+      "score": 88.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "ParseBench-reported cost"
+     },
+     {
+      "id": "textract",
+      "name": "AWS Textract",
+      "family": "cloud",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "AWS"
+      },
+      "cost": 15,
+      "score": 74.8,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Textract tables list price"
+     },
+     {
+      "id": "docai",
+      "name": "Google Document AI",
+      "family": "cloud",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 10,
+      "score": 83.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Document AI layout list price"
+     },
+     {
+      "id": "landingai",
+      "name": "LandingAI ADE",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 15,
+      "score": 88.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "LandingAI typical credits per page"
+     },
+     {
+      "id": "pulse",
+      "name": "Pulse Ultra 2",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 15,
+      "score": 87.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "ParseBench-reported cost"
+     },
+     {
+      "id": "chandra-2",
+      "name": "Chandra 2 (open)",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.48,
+      "score": 83.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr; licence needed above $2M revenue"
+     },
+     {
+      "id": "lighton-08",
+      "name": "LightOnOCR-3 0.8B",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.12,
+      "score": 88.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr (throughput of the 1B model)"
+     },
+     {
+      "id": "mineru",
+      "name": "MinerU2.5-Pro",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.33,
+      "score": 87.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "paddle",
+      "name": "PaddleOCR-VL 1.6",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.43,
+      "score": 82.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "dots",
+      "name": "dots.mocr",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 1.97,
+      "score": 90.0,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr (dots.ocr throughput)"
+     },
+     {
+      "id": "deepseek-2",
+      "name": "DeepSeek-OCR 2",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.3,
+      "score": 82.0,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "glm-ocr",
+      "name": "GLM-OCR",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.37,
+      "score": 78.0,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "surya-2",
+      "name": "Surya 2",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.13,
+      "score": 86.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr; licence needed above $5M revenue"
+     },
+     {
+      "id": "docling",
+      "name": "Docling",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.33,
+      "score": 66.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "pymupdf4llm",
+      "name": "pymupdf4llm",
+      "family": "libs",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.03,
+      "score": 79.3,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Free (AGPL); CPU time only"
+     },
+     {
+      "id": "gemini-38-flash",
+      "name": "Gemini 3.8 Flash",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 34.1,
+      "score": 89.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "gemini-38-flash-low",
+      "name": "Gemini 3.8 Flash (low thinking)",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 7.1,
+      "score": 88.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "claude-sonnet-55",
+      "name": "Claude Sonnet 5.5",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      },
+      "cost": 27.4,
+      "score": 91.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "claude-opus-55",
+      "name": "Claude Opus 5.5",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      },
+      "cost": 57.9,
+      "score": 91.8,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "claude-haiku-55",
+      "name": "Claude Haiku 5.5",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      },
+      "cost": 1.4,
+      "score": 90.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "gpt-56-sol",
+      "name": "GPT-5.6 Sol",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure"
+      },
+      "cost": 80.8,
+      "score": 88.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "gpt-6-luna",
+      "name": "GPT-6 Luna",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure"
+      },
+      "cost": 0.9,
+      "score": 85.1,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "gemini-31-flash-lite",
+      "name": "Gemini 3.1 Flash-Lite",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 2.9,
+      "score": 89.5,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "gemini-31-pro",
+      "name": "Gemini 3.1 Pro",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 84.9,
+      "score": 90.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     }
+    ]
+   }
+  ]
+ },
+ "hard": {
+  "title": "Hard pages",
+  "benches": [
+   "OmniParseBench: hard pages + tables",
+   "ParseBench: tables"
+  ],
+  "anchors": 18,
+  "method": "Linear equating on 18 systems that appear on both benchmarks",
+  "points": [
+   {
+    "id": "datalab-accurate",
+    "name": "Datalab (accurate)",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 10,
+    "score": 89.9,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables (own product, half weight)",
+      "score": 89.8,
+      "cost": 7.5
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 90.3,
+      "cost": 10.0
+     }
+    ],
+    "costBasis": "Datalab list price, accurate mode"
+   },
+   {
+    "id": "datalab-balanced",
+    "name": "Datalab (balanced)",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 4,
+    "score": 87.6,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables (own product, half weight)",
+      "score": 85.2,
+      "cost": 3.0
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 89.1,
+      "cost": 4.0
+     }
+    ],
+    "costBasis": "Datalab list price, balanced mode"
+   },
+   {
+    "id": "reducto",
+    "name": "Reducto (r-1)",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 10,
+    "score": 85.9,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 86.8,
+      "cost": 10.0
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 85.2,
+      "cost": 10.0
+     }
+    ],
+    "costBasis": "Reducto list price"
+   },
+   {
+    "id": "llamaparse-ap",
+    "name": "LlamaParse Agentic Plus",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 56.25,
+    "score": 90.8,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 89.1,
+      "cost": 56.3
+     },
+     {
+      "bench": "ParseBench: tables (own product, half weight)",
+      "score": 93.4,
+      "cost": 56.25
+     }
+    ],
+    "costBasis": "LlamaParse list price (45 credits/page)"
+   },
+   {
+    "id": "llamaparse-a",
+    "name": "LlamaParse Agentic",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 12.5,
+    "score": 88.1,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables (own product, half weight)",
+      "score": 88.9,
+      "cost": 12.5
+     }
+    ],
+    "costBasis": "LlamaParse list price (10 credits/page)"
+   },
+   {
+    "id": "llamaparse-ce",
+    "name": "LlamaParse Cost-Effective",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 3.75,
+    "score": 83.2,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables (own product, half weight)",
+      "score": 84.2,
+      "cost": 3.75
+     }
+    ],
+    "costBasis": "LlamaParse list price (3 credits/page)"
+   },
+   {
+    "id": "mistral-ocr",
+    "name": "Mistral OCR 4",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "Azure Foundry"
+    },
+    "cost": 4,
+    "score": 78.9,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 84.1,
+      "cost": 4.0
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 73.9,
+      "cost": 4.0
+     }
+    ],
+    "costBasis": "Mistral list price; OCR 4.1 on OmniParseBench, OCR 4 on ParseBench"
+   },
+   {
+    "id": "azure-layout",
+    "name": "Azure DI Layout",
+    "family": "cloud",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure"
+    },
+    "cost": 10,
+    "score": 80.8,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 75.3,
+      "cost": 5.0
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 86.0,
+      "cost": 10.0
+     }
+    ],
+    "costBasis": "Azure list price, first tier"
+   },
+   {
+    "id": "extend",
+    "name": "Extend Parse",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 20,
+    "score": 86.6,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 88.5,
+      "cost": 33.7
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 84.8,
+      "cost": 25.0
+     }
+    ],
+    "costBasis": "Extend list price, performance tier"
+   },
+   {
+    "id": "databricks",
+    "name": "Databricks ai_parse",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "Databricks on any cloud"
+    },
+    "cost": 3.5,
+    "score": 82.7,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 83.7,
+      "cost": 3.5
+     }
+    ],
+    "costBasis": "ParseBench-reported cost"
+   },
+   {
+    "id": "textract",
+    "name": "AWS Textract",
+    "family": "cloud",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "AWS"
+    },
+    "cost": 15,
+    "score": 83.6,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 84.6,
+      "cost": 15.0
+     }
+    ],
+    "costBasis": "Textract tables list price"
+   },
+   {
+    "id": "docai",
+    "name": "Google Document AI",
+    "family": "cloud",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 10,
+    "score": 53.3,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 55.1,
+      "cost": 10.0
+     }
+    ],
+    "costBasis": "Document AI layout list price"
+   },
+   {
+    "id": "landingai",
+    "name": "LandingAI ADE",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 15,
+    "score": 72.5,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 73.7,
+      "cost": 30.0
+     }
+    ],
+    "costBasis": "LandingAI typical credits per page"
+   },
+   {
+    "id": "pulse",
+    "name": "Pulse Ultra 2",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 15,
+    "score": 89.6,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 90.3,
+      "cost": 15.0
+     }
+    ],
+    "costBasis": "ParseBench-reported cost"
+   },
+   {
+    "id": "chandra-2",
+    "name": "Chandra 2 (open)",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.48,
+    "score": 86.5,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 83.8,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 89.2,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr; licence needed above $2M revenue"
+   },
+   {
+    "id": "lighton-08",
+    "name": "LightOnOCR-3 0.8B",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.12,
+    "score": 78.4,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 71.9,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 84.5,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr (throughput of the 1B model)"
+   },
+   {
+    "id": "mineru",
+    "name": "MinerU2.5-Pro",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.33,
+    "score": 79.5,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 81.6,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 77.6,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr"
+   },
+   {
+    "id": "paddle",
+    "name": "PaddleOCR-VL 1.6",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.43,
+    "score": 69.6,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 71.7,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 67.8,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr"
+   },
+   {
+    "id": "dots",
+    "name": "dots.mocr",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 1.97,
+    "score": 82.7,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 80.1,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 85.2,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr (dots.ocr throughput)"
+   },
+   {
+    "id": "deepseek-2",
+    "name": "DeepSeek-OCR 2",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.3,
+    "score": 58.0,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 54.3,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 61.7,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr"
+   },
+   {
+    "id": "glm-ocr",
+    "name": "GLM-OCR",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.37,
+    "score": 69.5,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 73.1,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 66.1,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr"
+   },
+   {
+    "id": "surya-2",
+    "name": "Surya 2",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.13,
+    "score": 75.3,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 67.6,
+      "cost": null
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 82.7,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr; licence needed above $5M revenue"
+   },
+   {
+    "id": "olmocr-2",
+    "name": "olmOCR 2",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.2,
+    "score": 61.0,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 59.4,
+      "cost": null
+     }
+    ],
+    "costBasis": "AI2: under $200 per million pages"
+   },
+   {
+    "id": "docling",
+    "name": "Docling",
+    "family": "open",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.33,
+    "score": 64.9,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 66.4,
+      "cost": null
+     }
+    ],
+    "costBasis": "GPU time at $2.50/hr"
+   },
+   {
+    "id": "tesseract",
+    "name": "Tesseract",
+    "family": "libs",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.03,
+    "score": 10.5,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 7.4,
+      "cost": null
+     }
+    ],
+    "costBasis": "Free; CPU time only"
+   },
+   {
+    "id": "pymupdf4llm",
+    "name": "pymupdf4llm",
+    "family": "libs",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 0.03,
+    "score": 70.7,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 72.0,
+      "cost": null
+     }
+    ],
+    "costBasis": "Free (AGPL); CPU time only"
+   },
+   {
+    "id": "gemini-38-flash",
+    "name": "Gemini 3.8 Flash",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 35.6,
+    "score": 90.6,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 92.2,
+      "cost": 37.1
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 89.1,
+      "cost": 34.1
+     }
+    ],
+    "costBasis": "Token cost as billed in each benchmark (thinking on)"
+   },
+   {
+    "id": "gemini-38-flash-low",
+    "name": "Gemini 3.8 Flash (low thinking)",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 7.1,
+    "score": 87.3,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 88.2,
+      "cost": 7.1
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench"
+   },
+   {
+    "id": "claude-sonnet-55",
+    "name": "Claude Sonnet 5.5",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+    },
+    "cost": 30.85,
+    "score": 91.4,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 91.9,
+      "cost": 34.3
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 91.0,
+      "cost": 27.4
+     }
+    ],
+    "costBasis": "Token cost as billed in each benchmark"
+   },
+   {
+    "id": "claude-opus-55",
+    "name": "Claude Opus 5.5",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+    },
+    "cost": 57.9,
+    "score": 93.2,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 93.9,
+      "cost": 57.9
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench"
+   },
+   {
+    "id": "claude-haiku-55",
+    "name": "Claude Haiku 5.5",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+    },
+    "cost": 1.4,
+    "score": 86.0,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 86.8,
+      "cost": 1.4
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench"
+   },
+   {
+    "id": "gpt-56-sol",
+    "name": "GPT-5.6 Sol",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure"
+    },
+    "cost": 87.65,
+    "score": 88.7,
+    "n": 2,
+    "raw": [
+     {
+      "bench": "OmniParseBench: hard pages + tables",
+      "score": 86.0,
+      "cost": 94.5
+     },
+     {
+      "bench": "ParseBench: tables",
+      "score": 91.4,
+      "cost": 80.8
+     }
+    ],
+    "costBasis": "Token cost as billed in each benchmark (reasoning high)"
+   },
+   {
+    "id": "gpt-6-luna",
+    "name": "GPT-6 Luna",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure"
+    },
+    "cost": 0.9,
+    "score": 80.4,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 81.4,
+      "cost": 0.9
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench (no reasoning)"
+   },
+   {
+    "id": "gemini-31-flash-lite",
+    "name": "Gemini 3.1 Flash-Lite",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 2.9,
+    "score": 84.6,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 85.5,
+      "cost": 2.9
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench"
+   },
+   {
+    "id": "gemini-31-pro",
+    "name": "Gemini 3.1 Pro",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 84.9,
+    "score": 90.2,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "ParseBench: tables",
+      "score": 91.0,
+      "cost": 84.9
+     }
+    ],
+    "costBasis": "Token cost as billed in ParseBench"
+   }
+  ],
+  "rawViews": [
+   {
+    "label": "OmniParseBench: hard pages + tables",
+    "points": [
+     {
+      "id": "datalab-accurate",
+      "name": "Datalab (accurate)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 10,
+      "score": 89.8,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Datalab list price, accurate mode"
+     },
+     {
+      "id": "datalab-balanced",
+      "name": "Datalab (balanced)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 4,
+      "score": 85.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Datalab list price, balanced mode"
+     },
+     {
+      "id": "reducto",
+      "name": "Reducto (r-1)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 10,
+      "score": 86.8,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Reducto list price"
+     },
+     {
+      "id": "llamaparse-ap",
+      "name": "LlamaParse Agentic Plus",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 56.25,
+      "score": 89.1,
+      "n": 1,
+      "raw": [],
+      "costBasis": "LlamaParse list price (45 credits/page)"
+     },
+     {
+      "id": "mistral-ocr",
+      "name": "Mistral OCR 4",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "Azure Foundry"
+      },
+      "cost": 4,
+      "score": 84.1,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Mistral list price; OCR 4.1 on OmniParseBench, OCR 4 on ParseBench"
+     },
+     {
+      "id": "azure-layout",
+      "name": "Azure DI Layout",
+      "family": "cloud",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure"
+      },
+      "cost": 10,
+      "score": 75.3,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Azure list price, first tier"
+     },
+     {
+      "id": "extend",
+      "name": "Extend Parse",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 20,
+      "score": 88.5,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Extend list price, performance tier"
+     },
+     {
+      "id": "chandra-2",
+      "name": "Chandra 2 (open)",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.48,
+      "score": 83.8,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr; licence needed above $2M revenue"
+     },
+     {
+      "id": "lighton-08",
+      "name": "LightOnOCR-3 0.8B",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.12,
+      "score": 71.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr (throughput of the 1B model)"
+     },
+     {
+      "id": "mineru",
+      "name": "MinerU2.5-Pro",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.33,
+      "score": 81.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "paddle",
+      "name": "PaddleOCR-VL 1.6",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.43,
+      "score": 71.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "dots",
+      "name": "dots.mocr",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 1.97,
+      "score": 80.1,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr (dots.ocr throughput)"
+     },
+     {
+      "id": "deepseek-2",
+      "name": "DeepSeek-OCR 2",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.3,
+      "score": 54.3,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "glm-ocr",
+      "name": "GLM-OCR",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.37,
+      "score": 73.1,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "surya-2",
+      "name": "Surya 2",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.13,
+      "score": 67.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr; licence needed above $5M revenue"
+     },
+     {
+      "id": "olmocr-2",
+      "name": "olmOCR 2",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.2,
+      "score": 59.4,
+      "n": 1,
+      "raw": [],
+      "costBasis": "AI2: under $200 per million pages"
+     },
+     {
+      "id": "tesseract",
+      "name": "Tesseract",
+      "family": "libs",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.03,
+      "score": 7.4,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Free; CPU time only"
+     },
+     {
+      "id": "gemini-38-flash",
+      "name": "Gemini 3.8 Flash",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 37.1,
+      "score": 92.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in OmniParseBench (Datalab)"
+     },
+     {
+      "id": "claude-sonnet-55",
+      "name": "Claude Sonnet 5.5",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      },
+      "cost": 34.3,
+      "score": 91.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in OmniParseBench (Datalab)"
+     },
+     {
+      "id": "gpt-56-sol",
+      "name": "GPT-5.6 Sol",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure"
+      },
+      "cost": 94.5,
+      "score": 86.0,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in OmniParseBench (Datalab)"
+     }
+    ]
+   },
+   {
+    "label": "ParseBench: tables",
+    "points": [
+     {
+      "id": "datalab-accurate",
+      "name": "Datalab (accurate)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 10,
+      "score": 90.3,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Datalab list price, accurate mode"
+     },
+     {
+      "id": "datalab-balanced",
+      "name": "Datalab (balanced)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 4,
+      "score": 89.1,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Datalab list price, balanced mode"
+     },
+     {
+      "id": "reducto",
+      "name": "Reducto (r-1)",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 10,
+      "score": 85.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Reducto list price"
+     },
+     {
+      "id": "llamaparse-ap",
+      "name": "LlamaParse Agentic Plus",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 56.25,
+      "score": 93.4,
+      "n": 1,
+      "raw": [],
+      "costBasis": "LlamaParse list price (45 credits/page)"
+     },
+     {
+      "id": "llamaparse-a",
+      "name": "LlamaParse Agentic",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 12.5,
+      "score": 88.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "LlamaParse list price (10 credits/page)"
+     },
+     {
+      "id": "llamaparse-ce",
+      "name": "LlamaParse Cost-Effective",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "AWS Marketplace"
+      },
+      "cost": 3.75,
+      "score": 84.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "LlamaParse list price (3 credits/page)"
+     },
+     {
+      "id": "mistral-ocr",
+      "name": "Mistral OCR 4",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "Azure Foundry"
+      },
+      "cost": 4,
+      "score": 73.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Mistral list price; OCR 4.1 on OmniParseBench, OCR 4 on ParseBench"
+     },
+     {
+      "id": "azure-layout",
+      "name": "Azure DI Layout",
+      "family": "cloud",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure"
+      },
+      "cost": 10,
+      "score": 86.0,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Azure list price, first tier"
+     },
+     {
+      "id": "extend",
+      "name": "Extend Parse",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 20,
+      "score": 84.8,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Extend list price, performance tier"
+     },
+     {
+      "id": "databricks",
+      "name": "Databricks ai_parse",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": "Databricks on any cloud"
+      },
+      "cost": 3.5,
+      "score": 83.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "ParseBench-reported cost"
+     },
+     {
+      "id": "textract",
+      "name": "AWS Textract",
+      "family": "cloud",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "AWS"
+      },
+      "cost": 15,
+      "score": 84.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Textract tables list price"
+     },
+     {
+      "id": "docai",
+      "name": "Google Document AI",
+      "family": "cloud",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 10,
+      "score": 55.1,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Document AI layout list price"
+     },
+     {
+      "id": "landingai",
+      "name": "LandingAI ADE",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 15,
+      "score": 73.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "LandingAI typical credits per page"
+     },
+     {
+      "id": "pulse",
+      "name": "Pulse Ultra 2",
+      "family": "saas",
+      "deploy": {
+       "saas": true,
+       "self": false,
+       "cloud": false
+      },
+      "cost": 15,
+      "score": 90.3,
+      "n": 1,
+      "raw": [],
+      "costBasis": "ParseBench-reported cost"
+     },
+     {
+      "id": "chandra-2",
+      "name": "Chandra 2 (open)",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.48,
+      "score": 89.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr; licence needed above $2M revenue"
+     },
+     {
+      "id": "lighton-08",
+      "name": "LightOnOCR-3 0.8B",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.12,
+      "score": 84.5,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr (throughput of the 1B model)"
+     },
+     {
+      "id": "mineru",
+      "name": "MinerU2.5-Pro",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.33,
+      "score": 77.6,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "paddle",
+      "name": "PaddleOCR-VL 1.6",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.43,
+      "score": 67.8,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "dots",
+      "name": "dots.mocr",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 1.97,
+      "score": 85.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr (dots.ocr throughput)"
+     },
+     {
+      "id": "deepseek-2",
+      "name": "DeepSeek-OCR 2",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.3,
+      "score": 61.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "glm-ocr",
+      "name": "GLM-OCR",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.37,
+      "score": 66.1,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "surya-2",
+      "name": "Surya 2",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.13,
+      "score": 82.7,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr; licence needed above $5M revenue"
+     },
+     {
+      "id": "docling",
+      "name": "Docling",
+      "family": "open",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.33,
+      "score": 66.4,
+      "n": 1,
+      "raw": [],
+      "costBasis": "GPU time at $2.50/hr"
+     },
+     {
+      "id": "pymupdf4llm",
+      "name": "pymupdf4llm",
+      "family": "libs",
+      "deploy": {
+       "saas": false,
+       "self": true,
+       "cloud": false
+      },
+      "cost": 0.03,
+      "score": 72.0,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Free (AGPL); CPU time only"
+     },
+     {
+      "id": "gemini-38-flash",
+      "name": "Gemini 3.8 Flash",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 34.1,
+      "score": 89.1,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "gemini-38-flash-low",
+      "name": "Gemini 3.8 Flash (low thinking)",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 7.1,
+      "score": 88.2,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "claude-sonnet-55",
+      "name": "Claude Sonnet 5.5",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      },
+      "cost": 27.4,
+      "score": 91.0,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "claude-opus-55",
+      "name": "Claude Opus 5.5",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      },
+      "cost": 57.9,
+      "score": 93.9,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "claude-haiku-55",
+      "name": "Claude Haiku 5.5",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+      },
+      "cost": 1.4,
+      "score": 86.8,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "gpt-56-sol",
+      "name": "GPT-5.6 Sol",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure"
+      },
+      "cost": 80.8,
+      "score": 91.4,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "gpt-6-luna",
+      "name": "GPT-6 Luna",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "Azure"
+      },
+      "cost": 0.9,
+      "score": 81.4,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "gemini-31-flash-lite",
+      "name": "Gemini 3.1 Flash-Lite",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 2.9,
+      "score": 85.5,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     },
+     {
+      "id": "gemini-31-pro",
+      "name": "Gemini 3.1 Pro",
+      "family": "vlm",
+      "deploy": {
+       "saas": false,
+       "self": false,
+       "cloud": "GCP"
+      },
+      "cost": 84.9,
+      "score": 91.0,
+      "n": 1,
+      "raw": [],
+      "costBasis": "Token cost as billed in ParseBench (LlamaIndex)"
+     }
+    ]
+   }
+  ]
+ },
+ "extraction": {
+  "title": "Field extraction",
+  "benches": [
+   "ExtractBench (LlamaIndex): value F1"
+  ],
+  "anchors": 0,
+  "method": "Single benchmark. Other extraction benchmarks share too few systems to blend.",
+  "points": [
+   {
+    "id": "llamaextract-agentic-plus",
+    "name": "LlamaExtract Agentic Plus",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 75.0,
+    "score": 96.2,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 97.0
+     },
+     {
+      "bench": "Long documents",
+      "score": 94.7
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+   },
+   {
+    "id": "llamaextract-agentic",
+    "name": "LlamaExtract Agentic",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 31.2,
+    "score": 95.7,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 96.1
+     },
+     {
+      "bench": "Long documents",
+      "score": 94.7
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+   },
+   {
+    "id": "llamaextract-cost-effective",
+    "name": "LlamaExtract Cost-Effective",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 10.0,
+    "score": 94.2,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 95.5
+     },
+     {
+      "bench": "Long documents",
+      "score": 90.9
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench (LlamaIndex's own product)"
+   },
+   {
+    "id": "reducto-deep-extract",
+    "name": "Reducto Deep Extract",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 63.5,
+    "score": 96.1,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 96.8
+     },
+     {
+      "bench": "Long documents",
+      "score": 92.8
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "reducto-extract",
+    "name": "Reducto Extract",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": "AWS Marketplace"
+    },
+    "cost": 45.7,
+    "score": 83.8,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 92.3
+     },
+     {
+      "bench": "Long documents",
+      "score": 27.3
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "pulse-effort",
+    "name": "Pulse (effort)",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 105.0,
+    "score": 96.1,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 96.8
+     },
+     {
+      "bench": "Long documents",
+      "score": 93.2
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "pulse-non-effort",
+    "name": "Pulse",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 30.0,
+    "score": 94.5,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 95.4
+     },
+     {
+      "bench": "Long documents",
+      "score": 93.3
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "extend-extract",
+    "name": "Extend Extract",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 68.0,
+    "score": 85.7,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 89.4
+     },
+     {
+      "bench": "Long documents",
+      "score": 47.2
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "datalab-accurate-balanced",
+    "name": "Datalab extract",
+    "family": "saas",
+    "deploy": {
+     "saas": true,
+     "self": false,
+     "cloud": false
+    },
+    "cost": 35.0,
+    "score": 85.7,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 89.4
+     },
+     {
+      "bench": "Long documents",
+      "score": 42.0
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "claude-code-sonnet-5.5-evidence",
+    "name": "Claude Code agent (Sonnet 5.5)",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure \u00b7 AWS \u00b7 GCP"
+    },
+    "cost": 56.9,
+    "score": 94.7,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 96.2
+     },
+     {
+      "bench": "Long documents",
+      "score": 83.7
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "codex-gpt-6-sol-evidence",
+    "name": "Codex agent (GPT-6 Sol)",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure"
+    },
+    "cost": 98.0,
+    "score": 94.6,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 96.0
+     },
+     {
+      "bench": "Long documents",
+      "score": 87.2
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "codex-gpt-6-luna-evidence",
+    "name": "Codex agent (GPT-6 Luna)",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure"
+    },
+    "cost": 9.7,
+    "score": 91.0,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 93.1
+     },
+     {
+      "bench": "Long documents",
+      "score": 80.9
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "gpt-6-astra",
+    "name": "GPT-6 Astra",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure \u00b7 AWS"
+    },
+    "cost": 110.9,
+    "score": 91.9,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 97.2
+     },
+     {
+      "bench": "Long documents",
+      "score": 31.7
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "deepseek-v4.1-flash",
+    "name": "DeepSeek V4.1 Flash",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 3.2,
+    "score": 87.1,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 94.4
+     },
+     {
+      "bench": "Long documents",
+      "score": 22.2
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "glm-5.3-flash",
+    "name": "GLM-5.3 Flash",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 3.4,
+    "score": 80.8,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 96.3
+     },
+     {
+      "bench": "Long documents",
+      "score": 27.8
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "gemini-3.8-flash",
+    "name": "Gemini 3.8 Flash",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 4.3,
+    "score": 80.7,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 88.1
+     },
+     {
+      "bench": "Long documents",
+      "score": 28.7
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "gemini-3.5-flash",
+    "name": "Gemini 3.5 Flash",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "GCP"
+    },
+    "cost": 10.0,
+    "score": 79.8,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 87.9
+     },
+     {
+      "bench": "Long documents",
+      "score": 27.9
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "gpt-5.4-nano",
+    "name": "GPT-5.4 nano",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": false,
+     "cloud": "Azure"
+    },
+    "cost": 2.1,
+    "score": 74.9,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 77.4
+     },
+     {
+      "bench": "Long documents",
+      "score": 35.8
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   },
+   {
+    "id": "kimi-k3",
+    "name": "Kimi K3",
+    "family": "vlm",
+    "deploy": {
+     "saas": false,
+     "self": true,
+     "cloud": false
+    },
+    "cost": 67.5,
+    "score": 83.2,
+    "n": 1,
+    "raw": [
+     {
+      "bench": "Short documents",
+      "score": 94.6
+     },
+     {
+      "bench": "Long documents",
+      "score": 5.0
+     }
+    ],
+    "costBasis": "Cost as reported by ExtractBench"
+   }
+  ]
+ }
+}

@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>At The Frontier</title>
+<meta name="description" content="A weekly series for the DNA team on the best current ways to use AI for common tasks, and what they cost.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 22 22%27%3E%3Cpath d=%27M2 20 C 6 9, 11 5, 20 3%27 fill=%27none%27 stroke=%27%231a2fd0%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%272%27 cy=%2720%27 r=%272.2%27 fill=%27%231a2fd0%27/%3E%3Ccircle cx=%2720%27 cy=%273%27 r=%272.2%27 fill=%27%231a2fd0%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..500&family=Manrope:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<style>
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+  header.nav { position: sticky; top: 0; z-index: 10; background: rgba(250,250,251,.86); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  header.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--f-head); font-weight: 600; letter-spacing: -0.02em; font-size: 17px; color: var(--ink); }
+  .brand svg { display: block; }
+  nav a { font-size: 14px; color: var(--ink-3); margin-left: 26px; }
+
+  section { border-bottom: 1px solid var(--line); }
+  .sec-head { display: flex; justify-content: space-between; align-items: baseline; padding: 26px 0 0; }
+
+  .hero { padding: 92px 0 96px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(44px, 5vw, 68px); letter-spacing: -0.045em; }
+  .hero p.lede { font-size: 20px; line-height: 1.55; color: var(--ink-3); max-width: 560px; margin: 26px 0 32px; }
+  .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* parse motif */
+  .parse { position: relative; }
+  .page { position: relative; background: #fff; border: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(20,25,60,.18); aspect-ratio: 0.78; padding: 34px 30px; overflow: hidden; }
+  .page .ln { height: 7px; background: #e7e9ee; margin: 0 0 8px; border-radius: 1px; }
+  .page .h { height: 14px; background: #c9ccd4; width: 62%; margin-bottom: 16px; }
+  .page .tbl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 14px 0; }
+  .page .tbl span { height: 12px; background: #eceef2; }
+  .page .tbl span.th { background: #d6d9e0; }
+  .page .fig { height: 80px; margin: 14px 0; background: linear-gradient(135deg, #eef0f6, #e1e5f0); position: relative; }
+  .page .fig::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: 14px; height: 46px; background: linear-gradient(to top, transparent 0 0); border-left: 2px solid #c3c8d6; border-bottom: 2px solid #c3c8d6; }
+  .page .bbox { opacity: 0; transform: scale(.985); transition: opacity .4s var(--ease), transform .4s var(--ease); }
+  .page .bbox.on { opacity: 1; transform: none; }
+  .scanline { position: absolute; left: 0; right: 0; height: 2px; background: var(--blue); box-shadow: 0 0 18px 4px rgba(26,47,208,.35); top: 0; opacity: 0; }
+  .inspector { position: absolute; right: -18px; bottom: -34px; width: 66%; background: #fff; border: 1px solid var(--line-2); box-shadow: 0 20px 40px -20px rgba(20,25,60,.25); font-family: var(--f-mono); font-size: 11px; }
+  .inspector .ih { display: flex; justify-content: space-between; padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; font-size: 10px; }
+  .inspector .row { display: grid; grid-template-columns: 14px 1fr auto; gap: 10px; padding: 7px 12px; border-bottom: 1px solid var(--rule); align-items: center; opacity: 0; transform: translateX(6px); transition: all .35s var(--ease); }
+  .inspector .row.on { opacity: 1; transform: none; }
+  .inspector .row i { width: 10px; height: 10px; display: block; }
+  .inspector .row span:last-child { color: var(--muted); }
+
+  .two { display: grid; grid-template-columns: 1fr 1.25fr; gap: 64px; padding: 70px 0 84px; align-items: start; }
+  .two h2 { font-size: 44px; }
+  .prose p { font-size: 18px; line-height: 1.65; color: var(--ink-2); margin: 0 0 16px; }
+  .prose p.big { font-size: 22px; color: var(--ink); }
+  .quotes { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 6px; }
+
+  /* pareto concept */
+  .concept { padding: 70px 0 84px; }
+  .concept-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px; align-items: center; margin-top: 30px; }
+  .chartcard { padding: 18px 18px 8px; }
+  .chartcard svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .chartcard .axis text { font-family: var(--f-mono); font-size: 10px; fill: var(--muted); }
+  .steps-list { counter-reset: s; }
+  .steps-list div { padding: 16px 0 16px 46px; border-top: 1px solid var(--line); position: relative; cursor: default; transition: background .2s; }
+  .steps-list div::before { counter-increment: s; content: "0" counter(s); position: absolute; left: 0; top: 18px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+  .steps-list div.on::before { color: var(--blue); }
+  .steps-list b { font-family: var(--f-head); font-weight: 500; font-size: 19px; letter-spacing: -0.02em; display: block; margin-bottom: 4px; }
+  .steps-list p { margin: 0; font-size: 15.5px; color: var(--ink-3); line-height: 1.55; }
+
+  /* session format */
+  .format { padding: 70px 0 84px; }
+  .fgrid { display: grid; grid-template-columns: repeat(3, 1fr); border-left: 1px solid var(--line); border-top: 1px solid var(--line); margin-top: 34px; }
+  .fgrid > div { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 22px 26px; background: rgba(255,255,255,.6); }
+  .fgrid h3 { font-size: 21px; margin: 10px 0 8px; }
+  .fgrid p { margin: 0; font-size: 15px; color: var(--ink-3); line-height: 1.55; }
+
+  /* roadmap */
+  .roadmap { padding: 70px 0 90px; }
+  .rgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 34px; }
+  .topic { padding: 22px 22px 24px; display: flex; flex-direction: column; min-height: 196px; transition: border-color .2s, transform .2s var(--ease); position: relative; }
+  .topic .top { display: flex; justify-content: space-between; align-items: center; }
+  .topic h3 { font-size: 23px; margin: 18px 0 8px; }
+  .topic p { margin: 0; font-size: 14.5px; color: var(--ink-3); line-height: 1.55; }
+  .topic.live { border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+  .topic.live:hover { transform: translateY(-3px); text-decoration: none; }
+  .topic.live .go { margin-top: auto; padding-top: 16px; font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+  .topic.soon { background: rgba(255,255,255,.55); }
+  .topic.soon h3 { color: var(--ink-2); }
+
+  .rules { padding: 70px 0 90px; }
+  .rules ol { list-style: none; padding: 0; margin: 30px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 56px; }
+  .rules li { border-top: 1px solid var(--line); padding: 18px 0 18px; font-size: 17px; color: var(--ink-2); line-height: 1.55; }
+  .rules li b { font-family: var(--f-head); font-weight: 500; display: block; font-size: 19px; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 4px; }
+
+  footer { padding: 30px 0 50px; }
+  footer .wrap { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    .wrap { padding: 0 16px; }
+    .hero .wrap, .two, .concept-grid { grid-template-columns: 1fr; }
+    .fgrid, .rgrid, .rules ol { grid-template-columns: 1fr; }
+    .inspector { right: 0; }
+    nav a { margin-left: 14px; }
+  }
+  @media (max-width: 600px) { nav a:not(:last-child) { display: none; } .brand { white-space: nowrap; } }
+</style>
+</head>
+<body class="ruled">
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="At The Frontier home">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 20 C 6 9, 11 5, 20 3" fill="none" stroke="#1a2fd0" stroke-width="2"/><circle cx="2" cy="20" r="2" fill="#1a2fd0"/><circle cx="8.5" cy="10.5" r="2" fill="#1a2fd0"/><circle cx="20" cy="3" r="2" fill="#1a2fd0"/><circle cx="15" cy="14" r="1.6" fill="#b9bdc8"/></svg>
+      At The Frontier
+    </a>
+    <nav><a href="#why">Why</a><a href="#frontier">The idea</a><a href="#format">Format</a><a href="#sessions">Sessions</a></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="label rise" style="--i:0">A weekly series for the DNA team</div>
+      <h1 class="rise" style="--i:1; margin-top:18px">What is the best way to do this with AI, right now?</h1>
+      <p class="lede rise" style="--i:2">Clients keep asking us that question. The honest answer is usually "it depends". This series works out what it depends on, one task at a time, so we can give a better answer.</p>
+      <div class="ctas rise" style="--i:3">
+        <a class="btn" href="doc-extraction/">Session 1: Document extraction →</a>
+        <a class="btn ghost" href="#frontier">How the series works</a>
+      </div>
+    </div>
+    <div class="parse rise" style="--i:2" aria-hidden="true">
+      <div class="page" id="page">
+        <div class="scanline" id="scan"></div>
+        <div class="h"></div>
+        <div class="ln" style="width:96%"></div><div class="ln" style="width:92%"></div><div class="ln" style="width:97%"></div><div class="ln" style="width:58%"></div>
+        <div class="tbl"><span class="th"></span><span class="th"></span><span class="th"></span><span class="th"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="ln" style="width:94%"></div><div class="ln" style="width:89%"></div><div class="ln" style="width:72%"></div>
+        <div class="fig"></div>
+        <div class="ln" style="width:96%"></div><div class="ln" style="width:40%"></div>
+      </div>
+      <div class="inspector">
+        <div class="ih"><span>Parsed blocks</span><span>Confidence</span></div>
+        <div class="row"><i style="background:var(--ink-3)"></i><span>Title</span><span>0.99</span></div>
+        <div class="row"><i style="background:var(--blue)"></i><span>Text</span><span>0.97</span></div>
+        <div class="row"><i style="background:var(--orange)"></i><span>Table · 4×4</span><span>0.91</span></div>
+        <div class="row"><i style="background:var(--green)"></i><span>Chart</span><span>0.88</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head"><span class="label"><b>[01]</b> &nbsp;Why this series</span><span class="label">The problem</span></div>
+    <div class="two">
+      <h2>"It depends" is true, but it is not useful on its own.</h2>
+      <div class="prose">
+        <p class="big">Take a common question: what is the best way to get the contents out of a few thousand PDF contracts?</p>
+        <p>There is no single answer. Small scripts, classic OCR, cloud document services, specialist vendors, open models and the big general models like Gemini, GPT and Claude can all do it. Each is the right choice somewhere. Which one depends on things like:</p>
+        <div class="quotes">
+          <span class="tag">How many documents?</span><span class="tag">Digital or scanned?</span><span class="tag">How long?</span><span class="tag">Lots of tables?</span><span class="tag">Charts and diagrams?</span><span class="tag">How accurate?</span><span class="tag">Budget?</span><span class="tag">Where can the data go?</span><span class="tag">What happens next?</span>
+        </div>
+        <p>These options also change every few months. Something that was too expensive last year may now be the cheapest good option. Each session takes one task and works out what the current options are, how they work, what they cost, and which to try first in different situations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="frontier" class="concept">
+  <div class="wrap">
+    <div class="sec-head"><span class="label"><b>[02]</b> &nbsp;The idea</span><span class="label">The Pareto frontier</span></div>
+    <div class="concept-grid">
+      <div class="card chartcard"><svg id="concept" viewBox="0 0 640 420" role="img" aria-label="Illustrative chart of quality against cost, showing the Pareto frontier"></svg></div>
+      <div>
+        <h2 style="font-size:44px; margin-bottom:22px">Find the options worth considering.</h2>
+        <div class="steps-list" id="conceptSteps">
+          <div data-k="0"><b>Plot every option</b><p>Each dot is one way of doing the task. Up means better results on a fair test. Right means more expensive per unit of work.</p></div>
+          <div data-k="1"><b>Draw the frontier</b><p>An option is on the frontier if nothing else is both better and cheaper. These are the only ones worth a serious look.</p></div>
+          <div data-k="2"><b>Ignore the rest</b><p>Everything below the line is beaten on both counts by something on it. That is most of the market.</p></div>
+          <div data-k="3"><b>Apply the client's limits</b><p>Rules like "must run in our Azure tenant" remove options. The frontier moves, and the best choice may change.</p></div>
+        </div>
+        <p class="label" style="margin-top:14px">Illustrative data. Real charts are in each session.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="format" class="format">
+  <div class="wrap">
+    <div class="sec-head"><span class="label"><b>[03]</b> &nbsp;Format</span><span class="label">One hour, every week</span></div>
+    <h2 style="font-size:44px; margin-top:44px; max-width:820px">Each session covers the same six things.</h2>
+    <div class="fgrid">
+      <div><span class="label">01</span><h3>How we got here</h3><p>A short history. It explains why so many different approaches still exist side by side.</p></div>
+      <div><span class="label">02</span><h3>How each approach works</h3><p>What is actually happening inside, with real examples, rather than a list of tools to score.</p></div>
+      <div><span class="label">03</span><h3>Who the players are</h3><p>Vendors, open models and cloud services, including which can run on Azure, Google Cloud or AWS.</p></div>
+      <div><span class="label">04</span><h3>How they are measured</h3><p>The main public benchmarks, who runs them, and what they do and do not tell you.</p></div>
+      <div><span class="label">05</span><h3>Where the frontier is</h3><p>Quality against cost, from benchmarks other people have run, with sources and dates.</p></div>
+      <div><span class="label">06</span><h3>What to recommend</h3><p>Dated default picks for common client situations, and what to test them against.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sessions" class="roadmap">
+  <div class="wrap">
+    <div class="sec-head"><span class="label"><b>[04]</b> &nbsp;Sessions</span><span class="label">Order may change</span></div>
+    <h2 style="font-size:44px; margin-top:44px">Sessions</h2>
+    <div class="rgrid">
+      <a class="card topic live" href="doc-extraction/">
+        <div class="top"><span class="label"><b>01</b></span><span class="tag blue"><i></i>Ready</span></div>
+        <h3>Document extraction</h3>
+        <p>Getting text, tables and fields out of PDFs and scans. Covers PDF libraries, OCR, cloud services, specialist models and vision language models.</p>
+        <span class="go">Open the session →</span>
+      </a>
+      <div class="card topic soon"><div class="top"><span class="label">02</span><span class="tag">Planned</span></div><h3>Web search and research agents</h3><p>Search APIs, "deep research" tools and agents that browse. How good are they, and what do they cost per answer?</p></div>
+      <div class="card topic soon"><div class="top"><span class="label">03</span><span class="tag">Planned</span></div><h3>Automated research and optimisation</h3><p>Agents that run experiments in a loop to improve a model, a prompt, a piece of code or a business metric.</p></div>
+      <div class="card topic soon"><div class="top"><span class="label">04</span><span class="tag">Planned</span></div><h3>Coding agents</h3><p>From autocomplete to agents that take a ticket and open a pull request. What they are good for in data work.</p></div>
+      <div class="card topic soon"><div class="top"><span class="label">05</span><span class="tag">Planned</span></div><h3>Structured outputs and data cleaning</h3><p>Turning messy text and tables into clean, typed data. Schemas, validation, and matching records.</p></div>
+      <div class="card topic soon"><div class="top"><span class="label">06</span><span class="tag">Planned</span></div><h3>Retrieval and RAG</h3><p>Chunking, embeddings, rerankers, and when a long context window is simpler than retrieval.</p></div>
+      <div class="card topic soon"><div class="top"><span class="label">07</span><span class="tag">Planned</span></div><h3>Speech and transcription</h3><p>Speech to text, telling speakers apart, and turning calls and meetings into usable data.</p></div>
+      <div class="card topic soon"><div class="top"><span class="label">08</span><span class="tag">Planned</span></div><h3>Questions to SQL</h3><p>Answering plain-English questions over a data warehouse. Where it works and where it goes wrong.</p></div>
+      <div class="card topic soon"><div class="top"><span class="label">09</span><span class="tag">Planned</span></div><h3>Classification and tagging at scale</h3><p>Labelling millions of records with small models, large models, or a mix of the two.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="rules">
+  <div class="wrap">
+    <div class="sec-head"><span class="label"><b>[05]</b> &nbsp;Ground rules</span><span class="label">How to read these sessions</span></div>
+    <ol>
+      <li><b>We use other people's benchmarks.</b>We do not run our own tests. We collect public results, say who ran them, and say where they may be biased.</li>
+      <li><b>Every number has a source and a date.</b>Prices and scores change quickly. Each session is a snapshot from the date shown on it.</li>
+      <li><b>We only combine like with like.</b>Scores are blended only when the benchmarks measure the same thing. Each chart shows how many benchmarks back each point.</li>
+      <li><b>Picks are a starting point.</b>A default pick tells you what to test first on the client's own documents. It is not a final answer.</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span>At The Frontier · a personal learning series for the DNA team</span><span>Views are my own · <a href="https://github.com/benreeve1984/at-the-frontier">Source</a></span></div>
+</footer>
+
+<script>
+// scroll reveal
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), { threshold: .15 });
+document.querySelectorAll('.rise').forEach(el => io.observe(el));
+
+// hero parse animation
+(function () {
+  const page = document.getElementById('page'), scan = document.getElementById('scan');
+  const rows = [...document.querySelectorAll('.inspector .row')];
+  const boxes = [
+    { sel: '.h', c: 'var(--ink-3)', t: 'TITLE' },
+    { sel: '.ln', n: 4, c: 'var(--blue)', t: 'TEXT' },
+    { sel: '.tbl', c: 'var(--orange)', t: 'TABLE' },
+    { sel: '.fig', c: 'var(--green)', t: 'CHART' },
+  ];
+  const lines = [...page.querySelectorAll('.ln')];
+  function rect(els) {
+    // offset* ignores the parent's entry transform, unlike getBoundingClientRect
+    const l = Math.min(...els.map(e => e.offsetLeft)) - 5, t = Math.min(...els.map(e => e.offsetTop)) - 5;
+    const r = Math.max(...els.map(e => e.offsetLeft + e.offsetWidth)) + 5, b = Math.max(...els.map(e => e.offsetTop + e.offsetHeight)) + 5;
+    return { l, t, w: r - l, h: b - t };
+  }
+  let made = [];
+  function build() {
+    made.forEach(m => m.remove()); made = [];
+    const groups = [[page.querySelector('.h')], lines.slice(0, 4), [page.querySelector('.tbl')], [page.querySelector('.fig')], lines.slice(4, 7), lines.slice(7)];
+    const meta = [boxes[0], boxes[1], boxes[2], boxes[3], boxes[1], boxes[1]];
+    groups.forEach((g, i) => {
+      const r = rect(g), d = document.createElement('div');
+      d.className = 'bbox'; d.style.cssText = `left:${r.l}px;top:${r.t}px;width:${r.w}px;height:${r.h}px;--c:${meta[i].c}`;
+      d.innerHTML = `<span class="bbox-tag">${String(i + 1).padStart(2, '0')} ${meta[i].t}</span>`;
+      page.appendChild(d); made.push(d);
+    });
+  }
+  function run() {
+    build();
+    made.forEach(m => m.classList.remove('on')); rows.forEach(r => r.classList.remove('on'));
+    scan.animate([{ top: '0%', opacity: 0 }, { opacity: 1, offset: .1 }, { opacity: 1, offset: .9 }, { top: '100%', opacity: 0 }], { duration: 2200, easing: 'ease-in-out' });
+    made.forEach((m, i) => setTimeout(() => m.classList.add('on'), 300 + i * 330));
+    rows.forEach((r, i) => setTimeout(() => r.classList.add('on'), 700 + i * 380));
+  }
+  setTimeout(run, 500);
+  setInterval(run, 9000);
+  addEventListener('resize', build);
+})();
+
+// concept Pareto chart
+(function () {
+  const svg = document.getElementById('concept');
+  const W = 640, H = 420, m = { l: 48, r: 18, t: 16, b: 44 };
+  const pts = [
+    { x: .03, y: 52, n: 'Simple script' }, { x: .4, y: 61, n: '' }, { x: 1.2, y: 74, n: '' }, { x: 2.5, y: 70, n: '' },
+    { x: 4, y: 83, n: '' }, { x: 8, y: 79, n: '' }, { x: 15, y: 88, n: '' }, { x: 12, y: 72, n: '', cloud: false },
+    { x: 30, y: 85, n: '' }, { x: 60, y: 90.5, n: 'Most capable' }, { x: 90, y: 86, n: '' }, { x: .9, y: 55, n: '' }, { x: 25, y: 77, n: '' },
+  ];
+  const allowed = new Set([0, 1, 3, 5, 7, 8, 10, 12, 11]); // illustrative "in-tenant" subset
+  const lx = v => m.l + (Math.log10(v) - Math.log10(.02)) / (Math.log10(150) - Math.log10(.02)) * (W - m.l - m.r);
+  const ly = v => H - m.b - (v - 45) / (95 - 45) * (H - m.t - m.b);
+  const ns = 'http://www.w3.org/2000/svg';
+  const el = (t, a, p = svg) => { const e = document.createElementNS(ns, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  const ax = el('g', { class: 'axis' });
+  [.1, 1, 10, 100].forEach(v => { el('line', { x1: lx(v), x2: lx(v), y1: m.t, y2: H - m.b, stroke: '#eceef2' }, ax); });
+  [50, 60, 70, 80, 90].forEach(v => { el('line', { x1: m.l, x2: W - m.r, y1: ly(v), y2: ly(v), stroke: '#eceef2' }, ax); });
+  el('line', { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: '#cfd2d9' }, ax);
+  el('line', { x1: m.l, x2: m.l, y1: m.t, y2: H - m.b, stroke: '#cfd2d9' }, ax);
+  const tx = (x, y, s, a = {}) => { const t = el('text', { x, y, ...a }, ax); t.textContent = s; return t; };
+  tx(W - m.r, H - 12, 'COST PER UNIT OF WORK (LOG SCALE) →', { 'text-anchor': 'end' });
+  tx(m.l - 10, m.t + 4, 'QUALITY ↑', { 'text-anchor': 'start', transform: `rotate(-90 ${m.l - 30} ${m.t + 4})` });
+  tx(m.l + 4, H - m.b + 16, 'cheaper');
+  const frontierOf = set => {
+    const s = pts.map((p, i) => ({ ...p, i })).filter(p => set.has(p.i)).sort((a, b) => a.x - b.x);
+    const f = []; let best = -1; s.forEach(p => { if (p.y > best) { f.push(p); best = p.y; } }); return f;
+  };
+  const all = new Set(pts.map((_, i) => i));
+  const pathD = f => f.map((p, i) => (i ? 'L' : 'M') + lx(p.x) + ',' + ly(p.y)).join(' ');
+  const line = el('path', { fill: 'none', stroke: '#1a2fd0', 'stroke-width': 2.5, 'stroke-dasharray': 2000, 'stroke-dashoffset': 2000 });
+  line.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.2,.7,.1,1), d .6s';
+  const dots = pts.map((p, i) => {
+    const c = el('circle', { cx: lx(p.x), cy: ly(p.y), r: 0, fill: '#0c0d12' });
+    c.style.transition = `r .4s ${i * 40}ms, fill .4s, opacity .4s`; return c;
+  });
+  const labels = pts.map(p => p.n ? tx(lx(p.x) + 9, ly(p.y) - 9, p.n, { fill: '#2f323a', style: 'font-size:11px' }) : null);
+  function stage(k) {
+    document.querySelectorAll('#conceptSteps div').forEach(d => d.classList.toggle('on', +d.dataset.k <= k));
+    const set = k >= 3 ? allowed : all;
+    const f = frontierOf(set), fi = new Set(f.map(p => p.i));
+    dots.forEach((c, i) => {
+      c.setAttribute('r', 5.5);
+      const on = k >= 1 && fi.has(i), gone = k >= 3 && !set.has(i);
+      c.setAttribute('fill', on ? '#1a2fd0' : (k >= 2 ? '#c4c8d2' : '#0c0d12'));
+      c.style.opacity = gone ? .12 : 1;
+    });
+    labels.forEach((l, i) => l && (l.style.opacity = k >= 3 && !set.has(i) ? .15 : 1));
+    if (k >= 1) { line.setAttribute('d', pathD(f)); line.style.strokeDashoffset = 0; }
+    else line.style.strokeDashoffset = 2000;
+  }
+  let k = -1, timer;
+  const cycle = () => { k = (k + 1) % 4; stage(k); };
+  new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting && !timer) { cycle(); timer = setInterval(cycle, 3200); }
+  }), { threshold: .4 }).observe(svg);
+  document.querySelectorAll('#conceptSteps div').forEach(d => d.addEventListener('mouseenter', () => { clearInterval(timer); timer = 1; k = +d.dataset.k; stage(k); }));
+})();
+</script>
+</body>
+</html>

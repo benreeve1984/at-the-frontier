@@ -1,0 +1,106 @@
+/* Shared tokens and base styles for At The Frontier */
+:root {
+  --paper: #fafafb;
+  --paper-2: #f3f4f6;
+  --card: #ffffff;
+  --rule: #eceef2;
+  --line: #e2e4e9;
+  --line-2: #cfd2d9;
+  --ink: #0c0d12;
+  --ink-2: #2f323a;
+  --ink-3: #5b5f6a;
+  --muted: #8b8f99;
+  --blue: #1a2fd0;
+  --blue-2: #3d50e6;
+  --blue-soft: #e9ecff;
+  --orange: #e5892a;
+  --red: #d6453b;
+  --green: #2c9a58;
+  --purple: #7b4fd6;
+  --teal: #12909a;
+  --yellow: #d9a90f;
+  --pink: #d64f97;
+
+  --f-head: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --f-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --f-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ease: cubic-bezier(.2, .7, .1, 1);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+h1, h2, h3, h4 { font-family: var(--f-head); font-weight: 500; margin: 0; letter-spacing: -0.035em; line-height: 1.05; color: var(--ink); }
+
+.mono, .label { font-family: var(--f-mono); }
+.label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.label b { color: var(--ink-2); font-weight: 500; }
+
+/* ruled paper background */
+.ruled {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(to bottom, var(--rule) 1px, transparent 1px);
+  background-size: 100% 28px;
+}
+.gridded {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(to right, var(--rule) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rule) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  padding: 3px 7px; border: 1px solid var(--line-2); color: var(--ink-3); background: var(--card);
+}
+.tag i { width: 8px; height: 8px; display: inline-block; background: currentColor; }
+.tag.blue { color: var(--blue); border-color: color-mix(in srgb, var(--blue) 40%, white); background: var(--blue-soft); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--f-body); font-size: 14px; font-weight: 500;
+  padding: 10px 16px; border: 1px solid var(--ink); background: var(--ink); color: #fff;
+}
+.btn:hover { text-decoration: none; background: var(--blue); border-color: var(--blue); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line-2); }
+.btn.ghost:hover { border-color: var(--ink); background: var(--card); }
+
+/* reveal on scroll / on slide entry */
+.rise { opacity: 0; transform: translateY(14px); transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: calc(var(--i, 0) * 70ms); }
+.in .rise, .rise.in { opacity: 1; transform: none; }
+
+/* bounding-box motif */
+.bbox {
+  position: absolute; border: 1.5px solid var(--c, var(--blue));
+  background: color-mix(in srgb, var(--c, var(--blue)) 10%, transparent);
+}
+.bbox > .bbox-tag {
+  position: absolute; left: -1.5px; top: -17px; height: 16px; padding: 0 5px;
+  font-family: var(--f-mono); font-size: 9.5px; line-height: 16px; color: #fff; background: var(--c, var(--blue));
+  white-space: nowrap; letter-spacing: .04em;
+}

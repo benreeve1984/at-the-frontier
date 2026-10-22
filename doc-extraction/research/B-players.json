@@ -1,0 +1,3511 @@
+[
+ {
+  "id": "pdfplumber",
+  "name": "pdfplumber",
+  "vendor": "jsvine (OSS)",
+  "category": "code library",
+  "deployment": {
+   "cloud": [
+    "Any cloud VM/container (self-run library)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "MIT"
+  },
+  "cost_per_1k_pages_usd": 0.0,
+  "cost_basis": "Free licence; CPU-only, compute negligible (well under $0.01 per 1k pages). PyMuPDF AGPL commercial licence cost not public.",
+  "outputs": [
+   "plain text",
+   "chars/words with bounding boxes",
+   "tables (heuristic)"
+  ],
+  "notes": "Born-digital PDFs only (no OCR). Best for precise coordinate-level text and rule-based table extraction; pure Python, slow on big files.",
+  "sources": [
+   "https://github.com/jsvine/pdfplumber"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "pymupdf",
+  "name": "PyMuPDF (fitz)",
+  "vendor": "Artifex",
+  "category": "code library",
+  "deployment": {
+   "cloud": [
+    "Any cloud VM/container (self-run library)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "AGPL-3.0 or paid Artifex commercial licence"
+  },
+  "cost_per_1k_pages_usd": 0.0,
+  "cost_basis": "Free licence; CPU-only, compute negligible (well under $0.01 per 1k pages). PyMuPDF AGPL commercial licence cost not public.",
+  "outputs": [
+   "plain text",
+   "blocks/words with bounding boxes",
+   "tables (find_tables)",
+   "page images"
+  ],
+  "notes": "Fastest general PDF library (C/MuPDF). AGPL: closed-source/commercial distribution needs an Artifex licence (price not public). Can call Tesseract for OCR.",
+  "sources": [
+   "https://github.com/pymupdf/PyMuPDF"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "pymupdf4llm",
+  "name": "pymupdf4llm",
+  "vendor": "Artifex",
+  "category": "code library",
+  "deployment": {
+   "cloud": [
+    "Any cloud VM/container (self-run library)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "AGPL-3.0 or paid Artifex commercial licence"
+  },
+  "cost_per_1k_pages_usd": 0.0,
+  "cost_basis": "Free licence; CPU-only, compute negligible (well under $0.01 per 1k pages). PyMuPDF AGPL commercial licence cost not public.",
+  "outputs": [
+   "markdown",
+   "tables as markdown",
+   "page chunks with metadata"
+  ],
+  "notes": "Thin PDF->Markdown layer over PyMuPDF for RAG. Very fast on born-digital; no layout model, so complex layouts/scans degrade. Same AGPL caveat.",
+  "sources": [
+   "https://github.com/pymupdf/pymupdf4llm"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "pypdf",
+  "name": "pypdf",
+  "vendor": "py-pdf (OSS)",
+  "category": "code library",
+  "deployment": {
+   "cloud": [
+    "Any cloud VM/container (self-run library)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "BSD-3-Clause (GitHub shows NOASSERTION; project licence file is BSD-3)"
+  },
+  "cost_per_1k_pages_usd": 0.0,
+  "cost_basis": "Free licence; CPU-only, compute negligible (well under $0.01 per 1k pages). PyMuPDF AGPL commercial licence cost not public.",
+  "outputs": [
+   "plain text"
+  ],
+  "notes": "Pure-Python PDF manipulation (split/merge/encrypt) with basic text extraction. Not a layout or table tool.",
+  "sources": [
+   "https://github.com/py-pdf/pypdf"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "pdfminer.six",
+  "name": "pdfminer.six",
+  "vendor": "pdfminer (OSS)",
+  "category": "code library",
+  "deployment": {
+   "cloud": [
+    "Any cloud VM/container (self-run library)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "MIT"
+  },
+  "cost_per_1k_pages_usd": 0.0,
+  "cost_basis": "Free licence; CPU-only, compute negligible (well under $0.01 per 1k pages). PyMuPDF AGPL commercial licence cost not public.",
+  "outputs": [
+   "plain text",
+   "layout objects with bounding boxes"
+  ],
+  "notes": "Low-level text-layer parser that pdfplumber builds on. Accurate character positions, slow, no OCR, no tables.",
+  "sources": [
+   "https://github.com/pdfminer/pdfminer.six"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "camelot",
+  "name": "Camelot",
+  "vendor": "camelot-dev (OSS)",
+  "category": "code library",
+  "deployment": {
+   "cloud": [
+    "Any cloud VM/container (self-run library)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "MIT"
+  },
+  "cost_per_1k_pages_usd": 0.0,
+  "cost_basis": "Free licence; CPU-only, compute negligible (well under $0.01 per 1k pages). PyMuPDF AGPL commercial licence cost not public.",
+  "outputs": [
+   "tables -> DataFrame/CSV/JSON/HTML/Excel"
+  ],
+  "notes": "Table-only extraction from born-digital PDFs (lattice = ruled lines, stream = whitespace). Good on clean ruled tables; needs per-layout tuning.",
+  "sources": [
+   "https://github.com/camelot-dev/camelot"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "tabula",
+  "name": "Tabula (tabula-java / tabula-py)",
+  "vendor": "tabulapdf (OSS)",
+  "category": "code library",
+  "deployment": {
+   "cloud": [
+    "Any cloud VM/container (self-run library)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "MIT"
+  },
+  "cost_per_1k_pages_usd": 0.0,
+  "cost_basis": "Free licence; CPU-only, compute negligible (well under $0.01 per 1k pages). PyMuPDF AGPL commercial licence cost not public.",
+  "outputs": [
+   "tables -> CSV/TSV/JSON/DataFrame"
+  ],
+  "notes": "Java table extractor with Python wrapper. Similar niche to Camelot; low maintenance activity (tabula-py last push Dec 2024).",
+  "sources": [
+   "https://github.com/tabulapdf/tabula-java"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "tesseract",
+  "name": "Tesseract OCR",
+  "vendor": "Open source (originally HP/Google)",
+  "category": "classic OCR",
+  "deployment": {
+   "cloud": [
+    "Any cloud VM/container (self-run)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Apache-2.0"
+  },
+  "cost_per_1k_pages_usd": 0.0,
+  "cost_basis": "Free licence; CPU-only. Compute cost not published by maintainers (roughly seconds of CPU per page; not verified).",
+  "outputs": [
+   "plain text",
+   "hOCR / ALTO / TSV with word bounding boxes and confidences",
+   "searchable PDF"
+  ],
+  "notes": "Baseline LSTM OCR. Fine on clean printed scans; weak on tables, layout, handwriting and reading order. Often the hidden OCR inside OSS pipelines.",
+  "sources": [
+   "https://github.com/tesseract-ocr/tesseract"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "abbyy-vantage",
+  "name": "ABBYY Vantage (and FineReader Engine/Server)",
+  "vendor": "ABBYY",
+  "category": "classic OCR",
+  "deployment": {
+   "cloud": [
+    "Vendor cloud hosted on Microsoft Azure (Vantage cloud); no Azure/AWS marketplace listing found"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary; on-prem and cloud editions"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "No public list price. UK G-Cloud 15 doc (Jan 2026) lists Vantage 'Core Cognitive Skills' at 0.1134 per transaction at 100K pages falling to 0.0616 at 1M (currency per G-Cloud, likely GBP); third-party estimates $0.04-0.10/page. FineReader PDF desktop is a per-seat subscription. Unverified with vendor.",
+  "outputs": [
+   "text",
+   "searchable PDF",
+   "XML/JSON with bounding boxes and confidences",
+   "pre-trained 'skills' for invoices, IDs etc."
+  ],
+  "notes": "Incumbent enterprise OCR/IDP with strong multilingual print OCR, human-in-the-loop validation and on-prem options. Expensive and implementation-heavy relative to VLM-era APIs.",
+  "sources": [
+   "https://assets.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/documents/720427/153701239400241-pricing-document-2026-01-28-2049.pdf",
+   "https://erpresearch.com/erp-add-ons/ocr/abbyy-vantage/pricing"
+  ],
+  "verified": false,
+  "aliases": [],
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "azure-di-read",
+  "name": "Azure AI Document Intelligence - Read",
+  "vendor": "Microsoft",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "Azure (first-party Azure AI Document Intelligence, Foundry Tools)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
+  },
+  "cost_per_1k_pages_usd": 1.5,
+  "cost_basis": "S0 Read Pages $1.50/1k pages for first 1M/month, $0.60/1k above 1M (Azure retail price API, eastus). Commitment tiers lower.",
+  "outputs": [
+   "plain text",
+   "lines/words with bounding polygons",
+   "word confidences",
+   "language"
+  ],
+  "notes": "Commodity OCR; cheap and robust incl. handwriting. No tables/structure.",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)",
+   "https://azure.microsoft.com/en-us/pricing/details/document-intelligence/"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "azure-di-layout",
+  "name": "Azure AI Document Intelligence - Layout",
+  "vendor": "Microsoft",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "Azure (first-party Azure AI Document Intelligence, Foundry Tools)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
+  },
+  "cost_per_1k_pages_usd": 10.0,
+  "cost_basis": "S0 Layout pages $10/1k (retail API meter 'S0 Batch Layout Pages' $10, effective 2026-01-01; Layout historically billed at the prebuilt rate). Add-ons (high-res, formulas, fonts) +$6/1k; query fields +$10/1k.",
+  "outputs": [
+   "markdown",
+   "tables (cells, spans)",
+   "paragraph roles/sections",
+   "selection marks",
+   "bounding polygons",
+   "confidences",
+   "figures"
+  ],
+  "notes": "The usual Azure default for RAG ingestion; markdown output is decent. Struggles on dense nested tables vs newer VLM parsers.",
+  "aliases": [
+   "azure-document-intelligence",
+   "azure-di",
+   "prebuilt-layout"
+  ],
+  "sources": [
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)",
+   "https://azure.microsoft.com/en-us/pricing/details/document-intelligence/"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "azure-di-prebuilt",
+  "name": "Azure AI Document Intelligence - Prebuilt models (invoice, receipt, ID, tax, etc.)",
+  "vendor": "Microsoft",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "Azure (first-party Azure AI Document Intelligence, Foundry Tools)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
+  },
+  "cost_per_1k_pages_usd": 10.0,
+  "cost_basis": "S0 Pre-built Pages $10/1k pages (retail API). Commitment tiers from ~$7.50/1k at 1M/month.",
+  "outputs": [
+   "JSON key-value fields with fixed schema",
+   "tables",
+   "bounding polygons",
+   "field confidences"
+  ],
+  "notes": "Fixed schemas for common documents; no training. Good for invoices/receipts/IDs at scale.",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)",
+   "https://azure.microsoft.com/en-us/pricing/details/document-intelligence/"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "azure-di-custom",
+  "name": "Azure AI Document Intelligence - Custom extraction (template/neural/generative)",
+  "vendor": "Microsoft",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "Azure (first-party Azure AI Document Intelligence, Foundry Tools)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Proprietary; disconnected/on-prem containers available on commitment tiers"
+  },
+  "cost_per_1k_pages_usd": 30.0,
+  "cost_basis": "S0 Custom Pages and S0 Custom Generative Pages $30/1k pages; training $3/hour; custom classifier $3/1k pages (retail API).",
+  "outputs": [
+   "JSON fields with your schema",
+   "bounding polygons",
+   "field confidences"
+  ],
+  "notes": "Trainable on a handful of labelled samples; generative variant uses an LLM under the hood.",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)",
+   "https://azure.microsoft.com/en-us/pricing/details/document-intelligence/"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "azure-content-understanding",
+  "name": "Azure Content Understanding (Foundry Tools)",
+  "vendor": "Microsoft",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "Azure (first-party, Foundry Tools)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 6.54,
+  "cost_basis": "Layered meters: content extraction Basic $1/1k or Standard $5/1k pages (sync $1.5/$7.5), Layout add-on $5/1k, contextualization ~1,000 tokens/page at $1/1M std tokens, plus LLM input/output tokens from your Foundry model deployment for field extraction. $6.54/1k is Microsoft's own illustrative worked example, not a quote.",
+  "outputs": [
+   "markdown",
+   "JSON fields with schema (generative)",
+   "confidence scores",
+   "grounding/source spans",
+   "multimodal (audio/video too)"
+  ],
+  "notes": "Microsoft's LLM-native successor direction for extraction across docs/audio/video. Total cost depends on chosen GPT model and schema size.",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)",
+   "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/pricing-explainer"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "aws-textract-detect",
+  "name": "Amazon Textract - DetectDocumentText",
+  "vendor": "Amazon Web Services",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "AWS (first-party Amazon Textract)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 1.5,
+  "cost_basis": "$1.50/1k pages first 1M/month, $0.60/1k above (us-east-1 price list, published 2026-10-20).",
+  "outputs": [
+   "plain text",
+   "lines/words with bounding boxes",
+   "confidences"
+  ],
+  "notes": "Commodity OCR, incl. handwriting.",
+  "sources": [
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonTextract/current/us-east-1/index.json",
+   "https://aws.amazon.com/textract/pricing/"
+  ],
+  "aliases": [
+   "textract",
+   "amazon-textract"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "aws-textract-layout",
+  "name": "Amazon Textract - AnalyzeDocument Layout",
+  "vendor": "Amazon Web Services",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "AWS (first-party Amazon Textract)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 4.0,
+  "cost_basis": "$4/1k pages first 1M, $3/1k above.",
+  "outputs": [
+   "layout blocks (title, header, paragraph, list, table, figure) with bounding boxes",
+   "reading order",
+   "confidences"
+  ],
+  "notes": "Cheap layout/reading-order; you assemble markdown yourself (or via textractor helper).",
+  "sources": [
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonTextract/current/us-east-1/index.json",
+   "https://aws.amazon.com/textract/pricing/"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "aws-textract-tables",
+  "name": "Amazon Textract - AnalyzeDocument Tables",
+  "vendor": "Amazon Web Services",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "AWS (first-party Amazon Textract)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 15.0,
+  "cost_basis": "$15/1k pages first 1M, $10/1k above.",
+  "outputs": [
+   "tables (cells, merged cells, headers)",
+   "bounding boxes",
+   "confidences"
+  ],
+  "notes": "Solid ruled-table extraction.",
+  "sources": [
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonTextract/current/us-east-1/index.json",
+   "https://aws.amazon.com/textract/pricing/"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "aws-textract-forms",
+  "name": "Amazon Textract - AnalyzeDocument Forms",
+  "vendor": "Amazon Web Services",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "AWS (first-party Amazon Textract)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 50.0,
+  "cost_basis": "$50/1k pages first 1M, $40/1k above.",
+  "outputs": [
+   "key-value pairs",
+   "selection marks",
+   "bounding boxes",
+   "confidences"
+  ],
+  "notes": "Expensive; key-value detection rather than schema extraction.",
+  "sources": [
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonTextract/current/us-east-1/index.json",
+   "https://aws.amazon.com/textract/pricing/"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "aws-textract-queries",
+  "name": "Amazon Textract - AnalyzeDocument Queries",
+  "vendor": "Amazon Web Services",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "AWS (first-party Amazon Textract)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 15.0,
+  "cost_basis": "$15/1k pages first 1M, $10/1k above; custom queries (adapters) $25/1k. Forms+Tables+Queries combined $70/1k.",
+  "outputs": [
+   "answers to natural-language queries with bounding boxes and confidences"
+  ],
+  "notes": "Question-style field extraction; adapters allow fine-tuning.",
+  "sources": [
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonTextract/current/us-east-1/index.json",
+   "https://aws.amazon.com/textract/pricing/"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "aws-textract-expense",
+  "name": "Amazon Textract - AnalyzeExpense",
+  "vendor": "Amazon Web Services",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "AWS (first-party Amazon Textract)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 10.0,
+  "cost_basis": "$10/1k pages first 1M, $8/1k above. (AnalyzeID $25/1k first 100k; AnalyzeLending $70/1k.)",
+  "outputs": [
+   "normalized invoice/receipt fields",
+   "line items",
+   "bounding boxes",
+   "confidences"
+  ],
+  "notes": "Prebuilt invoice/receipt model.",
+  "sources": [
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonTextract/current/us-east-1/index.json",
+   "https://aws.amazon.com/textract/pricing/"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "aws-bda-standard",
+  "name": "Amazon Bedrock Data Automation - standard output (documents)",
+  "vendor": "Amazon Web Services",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "AWS (first-party, Amazon Bedrock)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 10.0,
+  "cost_basis": "$0.01 per page standard output (us-east-1 Bedrock price list).",
+  "outputs": [
+   "markdown/HTML/CSV/text per page",
+   "element bounding boxes",
+   "summaries",
+   "JSON"
+  ],
+  "notes": "GenAI-native AWS parser; one API for docs, images, audio, video.",
+  "aliases": [
+   "bedrock-data-automation",
+   "bda"
+  ],
+  "sources": [
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-east-1/index.json",
+   "https://aws.amazon.com/bedrock/bda/"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "aws-bda-custom",
+  "name": "Amazon Bedrock Data Automation - custom output (blueprints)",
+  "vendor": "Amazon Web Services",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "AWS (first-party, Amazon Bedrock)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 40.0,
+  "cost_basis": "$0.04 per page custom output; +$0.0005 per field per page above 30 fields (us-east-1 Bedrock price list).",
+  "outputs": [
+   "JSON fields per blueprint schema",
+   "confidence scores",
+   "bounding boxes / explainability"
+  ],
+  "notes": "Schema-driven extraction with blueprints; competes with Azure custom/CU and Google custom extractor.",
+  "sources": [
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-east-1/index.json",
+   "https://aws.amazon.com/bedrock/bda/"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "gcp-docai-ocr",
+  "name": "Google Document AI - Enterprise Document OCR",
+  "vendor": "Google Cloud",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "GCP (first-party Google Cloud Document AI)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 1.5,
+  "cost_basis": "$1.50/1k pages (1k-5M/month; first 1k free), $0.60/1k above 5M. OCR add-ons (math, font style, selection marks etc.) $6/1k. 1-yr/3-yr savings plans 10%/20% off.",
+  "outputs": [
+   "text",
+   "blocks/lines/tokens with bounding boxes",
+   "confidences",
+   "language"
+  ],
+  "notes": "Commodity OCR, strong multilingual.",
+  "sources": [
+   "https://cloud.google.com/document-ai/pricing"
+  ],
+  "aliases": [
+   "google-document-ai",
+   "document-ai"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "gcp-docai-layout-parser",
+  "name": "Google Document AI - Layout Parser (Gemini-powered)",
+  "vendor": "Google Cloud",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "GCP (first-party Google Cloud Document AI)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 10.0,
+  "cost_basis": "$10/1k pages flat, includes initial chunking; re-chunking $0.02/1k.",
+  "outputs": [
+   "structured blocks (headings, paragraphs, lists, tables)",
+   "RAG-ready chunks",
+   "markdown-like layout"
+  ],
+  "notes": "Google's RAG ingestion parser; newer versions run on Gemini. Weaker on coordinates than classic OCR processors.",
+  "sources": [
+   "https://cloud.google.com/document-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "gcp-docai-form-parser",
+  "name": "Google Document AI - Form Parser",
+  "vendor": "Google Cloud",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "GCP (first-party Google Cloud Document AI)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 30.0,
+  "cost_basis": "$30/1k pages first 1M/month, $20/1k above.",
+  "outputs": [
+   "key-value pairs",
+   "tables",
+   "checkboxes",
+   "bounding boxes",
+   "confidences"
+  ],
+  "notes": "Generic forms/tables.",
+  "sources": [
+   "https://cloud.google.com/document-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "gcp-docai-custom-extractor",
+  "name": "Google Document AI - Custom Extractor (generative)",
+  "vendor": "Google Cloud",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "GCP (first-party Google Cloud Document AI)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 30.0,
+  "cost_basis": "$30/1k pages first 1M, $20/1k above; custom processor hosting $0.05/hour.",
+  "outputs": [
+   "JSON fields with your schema",
+   "bounding boxes",
+   "confidences"
+  ],
+  "notes": "Gemini-based few-shot/zero-shot schema extraction.",
+  "sources": [
+   "https://cloud.google.com/document-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "gcp-docai-invoice",
+  "name": "Google Document AI - Invoice / Expense parser",
+  "vendor": "Google Cloud",
+  "category": "hyperscaler doc AI",
+  "deployment": {
+   "cloud": [
+    "GCP (first-party Google Cloud Document AI)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 10.0,
+  "cost_basis": "$0.10 per 'count' where 1 count = up to 10 pages, i.e. ~$10/1k pages (more for short docs: a 1-page invoice still costs $0.10).",
+  "outputs": [
+   "normalized invoice fields",
+   "line items",
+   "bounding boxes",
+   "confidences"
+  ],
+  "notes": "Prebuilt; note per-document minimum makes 1-page invoices $100/1k docs.",
+  "sources": [
+   "https://cloud.google.com/document-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "datalab-api",
+  "name": "Datalab API - Convert (fast/balanced)",
+  "vendor": "Datalab",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "Vendor SaaS; Enterprise plan offers run-in-your-VPC or air-gapped (any cloud). No hyperscaler marketplace listing found."
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary API; underlying Marker/Surya/Chandra weights OpenRAIL-M (modified)"
+  },
+  "cost_per_1k_pages_usd": 4.0,
+  "cost_basis": "Convert fast/balanced $4/1k pages; lite (CPU) $0.50; accurate $10. Team plan $400/mo includes $400 usage. EU residency +25%. Word bbox add-on +$3/1k.",
+  "outputs": [
+   "markdown",
+   "HTML",
+   "JSON blocks with bounding boxes",
+   "chunks",
+   "optional word/table-cell bboxes + confidences"
+  ],
+  "notes": "Hosted Marker/Chandra with improved models. Top-tier olmOCR-bench scores (Chandra 2 85.8 per Datalab). Extraction: fast $6, balanced $15, accurate $20 per 1k pages.",
+  "aliases": [
+   "datalab",
+   "marker-api",
+   "chandra-api"
+  ],
+  "sources": [
+   "https://www.datalab.to/pricing"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "datalab-api-accurate",
+  "name": "Datalab API - Convert (accurate)",
+  "vendor": "Datalab",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "Vendor SaaS; VPC/air-gapped on Enterprise"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary API"
+  },
+  "cost_per_1k_pages_usd": 10.0,
+  "cost_basis": "Convert accurate $10/1k pages (list).",
+  "outputs": [
+   "markdown",
+   "HTML",
+   "JSON with bounding boxes"
+  ],
+  "notes": "Highest-fidelity Datalab mode (Chandra-class model).",
+  "aliases": [
+   "chandra-hosted"
+  ],
+  "sources": [
+   "https://www.datalab.to/pricing"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "reducto-parse",
+  "name": "Reducto Parse (r-1)",
+  "vendor": "Reducto",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "AWS Marketplace (SaaS listing, Feb 2026; burns AWS commit)",
+    "Enterprise: VPC / on-prem"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 10.0,
+  "cost_basis": "Parse r-1 $10/1k pages list; batch -20% ($8); Extract $20 (parse included); Deep Extract $40; Classify $7.50; Split $20. $150 free usage.",
+  "outputs": [
+   "markdown",
+   "structured blocks JSON with bounding boxes",
+   "tables (HTML/markdown)",
+   "chart extraction",
+   "JSON with schema (Extract)",
+   "citations"
+  ],
+  "notes": "Strong on complex tables/financial docs and agentic extraction; enterprise focus (ZDR, VPC). Launched own r-1 model 2026.",
+  "aliases": [
+   "reducto"
+  ],
+  "sources": [
+   "https://reducto.ai/pricing",
+   "https://reducto.ai/blog/aws-marketplace-reducto"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "reducto-extract",
+  "name": "Reducto Extract",
+  "vendor": "Reducto",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "AWS Marketplace (SaaS)",
+    "VPC/on-prem on Enterprise"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 20.0,
+  "cost_basis": "$20/1k pages incl. parsing; Deep Extract (agentic) $40/1k.",
+  "outputs": [
+   "JSON with schema",
+   "per-field citations/bounding boxes"
+  ],
+  "notes": "Schema extraction on top of Parse.",
+  "sources": [
+   "https://reducto.ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "llamaparse-fast",
+  "name": "LlamaParse - Fast tier",
+  "vendor": "LlamaIndex",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "AWS Marketplace (vendor 'Document AI on AWS Marketplace' page)",
+    "Enterprise: VPC/self-hosted LlamaCloud"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 1.25,
+  "cost_basis": "1 credits/page x $1.25 per 1,000 credits = $1.25/1k pages. Layout extraction +3 credits/page (+$3.75/1k). Plans: Free 10k credits, Starter $50/mo, Pro $500/mo.",
+  "outputs": [
+   "markdown",
+   "JSON items with bounding boxes (layout extraction)",
+   "tables",
+   "images",
+   "LlamaExtract JSON with schema, citations and confidences"
+  ],
+  "notes": "No-AI text extraction tier. Auto mode routes pages between tiers.",
+  "aliases": [],
+  "sources": [
+   "https://developers.llamaindex.ai/llamaparse/general/pricing/",
+   "https://www.llamaindex.ai/services/document-ai-aws-marketplace"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "llamaparse-cost-effective",
+  "name": "LlamaParse - Cost-effective tier",
+  "vendor": "LlamaIndex",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "AWS Marketplace (vendor 'Document AI on AWS Marketplace' page)",
+    "Enterprise: VPC/self-hosted LlamaCloud"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 3.75,
+  "cost_basis": "3 credits/page x $1.25 per 1,000 credits = $3.75/1k pages. Layout extraction +3 credits/page (+$3.75/1k). Plans: Free 10k credits, Starter $50/mo, Pro $500/mo.",
+  "outputs": [
+   "markdown",
+   "JSON items with bounding boxes (layout extraction)",
+   "tables",
+   "images",
+   "LlamaExtract JSON with schema, citations and confidences"
+  ],
+  "notes": "LLM-assisted parse. Auto mode routes pages between tiers.",
+  "aliases": [],
+  "sources": [
+   "https://developers.llamaindex.ai/llamaparse/general/pricing/",
+   "https://www.llamaindex.ai/services/document-ai-aws-marketplace"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "llamaparse-agentic",
+  "name": "LlamaParse - Agentic tier",
+  "vendor": "LlamaIndex",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "AWS Marketplace (vendor 'Document AI on AWS Marketplace' page)",
+    "Enterprise: VPC/self-hosted LlamaCloud"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 12.5,
+  "cost_basis": "10 credits/page x $1.25 per 1,000 credits = $12.50/1k pages. Layout extraction +3 credits/page (+$3.75/1k). Plans: Free 10k credits, Starter $50/mo, Pro $500/mo.",
+  "outputs": [
+   "markdown",
+   "JSON items with bounding boxes (layout extraction)",
+   "tables",
+   "images",
+   "LlamaExtract JSON with schema, citations and confidences"
+  ],
+  "notes": "VLM/agentic page parsing; the usual default for complex docs. Auto mode routes pages between tiers.",
+  "aliases": [
+   "llamaparse"
+  ],
+  "sources": [
+   "https://developers.llamaindex.ai/llamaparse/general/pricing/",
+   "https://www.llamaindex.ai/services/document-ai-aws-marketplace"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "llamaparse-agentic-plus",
+  "name": "LlamaParse - Agentic Plus tier",
+  "vendor": "LlamaIndex",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "AWS Marketplace (vendor 'Document AI on AWS Marketplace' page)",
+    "Enterprise: VPC/self-hosted LlamaCloud"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 56.25,
+  "cost_basis": "45 credits/page x $1.25 per 1,000 credits = $56.25/1k pages. Layout extraction +3 credits/page (+$3.75/1k). Plans: Free 10k credits, Starter $50/mo, Pro $500/mo.",
+  "outputs": [
+   "markdown",
+   "JSON items with bounding boxes (layout extraction)",
+   "tables",
+   "images",
+   "LlamaExtract JSON with schema, citations and confidences"
+  ],
+  "notes": "Highest-accuracy tier using frontier VLMs. Auto mode routes pages between tiers.",
+  "aliases": [],
+  "sources": [
+   "https://developers.llamaindex.ai/llamaparse/general/pricing/",
+   "https://www.llamaindex.ai/services/document-ai-aws-marketplace"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "unstructured",
+  "name": "Unstructured Platform / API",
+  "vendor": "Unstructured",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "AWS Marketplace (private offer)",
+    "Business plan: dedicated instance or your VPC"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary platform; open-source 'unstructured' library Apache-2.0"
+  },
+  "cost_per_1k_pages_usd": 15.0,
+  "cost_basis": "Pay-as-you-go $0.015/page after 10,000 free pages; all features included.",
+  "outputs": [
+   "JSON elements (Title, NarrativeText, Table...) with coordinates",
+   "HTML tables",
+   "chunks",
+   "embeddings via connectors"
+  ],
+  "notes": "ETL-style ingestion with many connectors and chunking; parsing quality is mid-pack versus VLM-first parsers. OSS library usable free.",
+  "sources": [
+   "https://unstructured.io/pricing",
+   "https://docs.unstructured.io/api-reference/legacy-api/overview",
+   "https://github.com/unstructured-io/unstructured"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "mistral-ocr",
+  "name": "Mistral OCR 4.1 (mistral-ocr-latest)",
+  "vendor": "Mistral AI",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "Azure AI Foundry (Mistral OCR 4 global $4/1k; OCR 2512 $2/1k; original OCR $1/1k)",
+    "Vertex AI Model Garden (Mistral OCR 25.05 only)"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary; on-prem/self-deployment via Mistral enterprise licence"
+  },
+  "cost_per_1k_pages_usd": 4.0,
+  "cost_basis": "$4/1k pages (Mistral docs model card, OCR 4.1); Batch API 50% off -> ~$2/1k (Mistral pricing FAQ says batch halves API prices; OCR-specific batch rate from secondary sources). Azure Foundry OCR 4 global $4/1k, data-zone $4.40/1k.",
+  "outputs": [
+   "markdown per page",
+   "HTML/markdown tables",
+   "image and paragraph bounding boxes",
+   "block labels",
+   "block/page confidence scores",
+   "headers/footers"
+  ],
+  "notes": "Cheap, fast VLM OCR with 2026 upgrades (bboxes, block labels, confidences). Price doubled vs OCR 3 ($2) and 4x OCR 1 ($1).",
+  "aliases": [
+   "mistral-ocr-4.1",
+   "mistral-ocr-4",
+   "mistral-ocr-latest"
+  ],
+  "sources": [
+   "https://docs.mistral.ai/models/ocr-4-1",
+   "https://mistral.ai/pricing",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "mistral-document-ai",
+  "name": "Mistral Document AI (OCR + annotations)",
+  "vendor": "Mistral AI",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "Azure AI Foundry (mistral-document-ai-2505/2512; 'OCR 4 annot' meter $5/1k)"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 5.0,
+  "cost_basis": "$5 per 1,000 annotated pages (Mistral model card; Azure retail 'OCR 4 annot glbl' $5/1k, DZ $5.50).",
+  "outputs": [
+   "markdown",
+   "JSON with schema (document and bbox annotations)",
+   "bounding boxes",
+   "confidences"
+  ],
+  "notes": "Schema-driven extraction on top of Mistral OCR.",
+  "aliases": [
+   "mistral-ocr-annotations"
+  ],
+  "sources": [
+   "https://docs.mistral.ai/models/ocr-4-1",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)",
+   "https://ai.azure.com/catalog/models/mistral-document-ai-2505"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "nanonets-idp",
+  "name": "Nanonets (IDP workflows)",
+  "vendor": "Nanonets",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "Vendor SaaS (no hyperscaler listing verified)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "Priced per workflow block run, not per page: simple $0.02, standard AI $0.10, complex AI (extraction) $0.30 per run. Vendor: typical invoice workflow 4-6 blocks, 'under $2 per invoice'. $50 free credits.",
+  "outputs": [
+   "JSON fields",
+   "tables/line items",
+   "exports to ERP/Sheets"
+  ],
+  "notes": "No-code AP/IDP workflows aimed at operations teams; per-document cost far above raw parsers. Also publishes open Nanonets-OCR models.",
+  "sources": [
+   "https://nanonets.com/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "landing-ade",
+  "name": "LandingAI Agentic Document Extraction (DPT-3 Pro)",
+  "vendor": "LandingAI",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "Snowflake Marketplace Native App (Snowflake runs on AWS/Azure/GCP; billing via LandingAI)",
+    "Enterprise: VPC / on-prem",
+    "AWS Marketplace claimed by third parties - unverified"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 15.0,
+  "cost_basis": "PAYG $1 = 100 credits. Parse with DPT-3 Pro ~1.5 credits per typical 4,000-char page on Standard tier = ~$15/1k pages; DPT-3 Verity (preview) ~0.55 credits = ~$5.50/1k; Priority tier costs 2x. Extract adds ~1.5 credits/page (~$15/1k). Content-heavy pages cost more.",
+  "outputs": [
+   "markdown",
+   "JSON chunks with types",
+   "visual grounding bounding boxes",
+   "JSON with schema (Extract)",
+   "citations"
+  ],
+  "notes": "Strong visual grounding (every value traceable to page region). Variable per-page cost.",
+  "aliases": [
+   "agentic-document-extraction",
+   "landingai-ade",
+   "ade"
+  ],
+  "sources": [
+   "https://landing.ai/pricing",
+   "https://docs.landing.ai/dpt3/credit-consumption",
+   "https://landing.ai/news/landingai-launches-agentic-document-extraction-on-snowflake-marketplace-to-tackle-complex-document-workflows-and-understanding"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "extend-parse",
+  "name": "Extend Parse (Performance mode)",
+  "vendor": "Extend",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "Vendor SaaS; Enterprise BYOC/hybrid"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 20.0,
+  "cost_basis": "$0.01/credit PAYG. Parse Performance 2 credits/page ($20/1k), Light 0.5 ($5/1k), Auto $5-20. Extract Performance +3 credits ($30/1k) plus parse => $50/1k for extraction; Light extract total ~$12/1k.",
+  "outputs": [
+   "markdown",
+   "JSON blocks with bounding boxes",
+   "tables",
+   "checkboxes",
+   "JSON with schema (Extract)",
+   "citations/confidence"
+  ],
+  "notes": "Full document-workflow platform (parse/extract/classify/split/edit, evals, review agent). Positioned upmarket on accuracy.",
+  "aliases": [
+   "extend"
+  ],
+  "sources": [
+   "https://www.extend.ai/pricing"
+  ],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "upstage-document-parse",
+  "name": "Upstage Document Parse",
+  "vendor": "Upstage",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "AWS Marketplace (SaaS and SageMaker model package listings)"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": 10.0,
+  "cost_basis": "Standard $0.01/page ($10/1k), Enhanced $0.03/page ($30/1k), ex-VAT (Upstage pricing page). AWS Marketplace listing shows Enhanced at $0.036/page (search snippet). Information Extract $0.04-0.06/page.",
+  "outputs": [
+   "HTML/markdown/text",
+   "elements with coordinates",
+   "tables",
+   "JSON with schema (Information Extract)"
+  ],
+  "notes": "Korean vendor; notable for being deployable inside AWS via SageMaker/Marketplace.",
+  "sources": [
+   "https://www.upstage.ai/pricing",
+   "https://aws.amazon.com/marketplace/pp/prodview-lv5bnpdco7xoq"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "instabase",
+  "name": "Instabase AI Hub / Automation Platform",
+  "vendor": "Instabase",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "AWS Marketplace",
+    "Enterprise deployments in customer cloud"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "No public per-page list price. Third-party profile: consumption units, 100 CU = $1; enterprise contracts quote-based. Unverified.",
+  "outputs": [
+   "JSON fields",
+   "classification",
+   "validation workflows",
+   "apps/agents"
+  ],
+  "notes": "Enterprise IDP platform for banks/insurers; heavyweight, workflow + LLM orchestration.",
+  "sources": [
+   "https://www.bigdatawire.com/this-just-in/instabase-launches-on-aws-marketplace",
+   "https://us.fitgap.com/products/instabase-ai-hub"
+  ],
+  "verified": false,
+  "aliases": [],
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "hyperscience",
+  "name": "Hyperscience Hypercell",
+  "vendor": "Hyperscience",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "AWS Marketplace (SaaS, private offers)",
+    "On-prem / private cloud"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "Annual contracts; AWS Marketplace listing shows a 12-month 'Private Cloud Professional' at $50,000 (seen via search snippet, not opened). Vendr median ~$17k/yr. Unverified.",
+  "outputs": [
+   "JSON fields",
+   "tables",
+   "human-in-the-loop QA",
+   "confidence-based routing"
+  ],
+  "notes": "Strong on handwriting/forms and accuracy SLAs via HITL; government/insurance heavy.",
+  "sources": [
+   "https://aws.amazon.com/marketplace/pp/B09Y99T5XP"
+  ],
+  "verified": false,
+  "aliases": [],
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "rossum",
+  "name": "Rossum (Aurora)",
+  "vendor": "Rossum",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "Vendor SaaS"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "Starter plan 'starting at $18,000 per year'; volume-based quotes.",
+  "outputs": [
+   "JSON fields",
+   "line items",
+   "validation UI",
+   "ERP export"
+  ],
+  "notes": "Transactional docs (AP invoices, logistics) with validation UI.",
+  "sources": [
+   "https://rossum.ai/pricing/"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "docsumo",
+  "name": "Docsumo",
+  "vendor": "Docsumo",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "Vendor SaaS"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "Quote-only (14-day trial with 1,000 pages; setup fees extra).",
+  "outputs": [
+   "JSON fields",
+   "tables",
+   "Excel/API export",
+   "review UI"
+  ],
+  "notes": "Mid-market IDP for lending/insurance/AP.",
+  "sources": [
+   "https://www.docsumo.com/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true,
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "databricks-ai-parse-document",
+  "name": "Databricks ai_parse_document",
+  "vendor": "Databricks",
+  "category": "specialist SaaS",
+  "deployment": {
+   "cloud": [
+    "Databricks on Azure / AWS / GCP (inside customer's lakehouse)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "Directional DBU estimates: ~10-15 DBUs per 1k simple pages (~$0.70-1.05) up to ~85-90 DBUs for complex pages (~$6). From search snippet of Databricks AI Functions pricing page; promo ended 2026-06-30. Unverified.",
+  "outputs": [
+   "JSON elements with bounding boxes",
+   "tables",
+   "markdown-like text"
+  ],
+  "notes": "Notable because it runs inside the client's existing data platform on any hyperscaler. Snowflake AI_PARSE_DOCUMENT is the equivalent (per-page AI credits; rate not verified).",
+  "sources": [
+   "https://www.databricks.com/product/pricing/ai-functions"
+  ],
+  "verified": false,
+  "aliases": [],
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "marker",
+  "name": "Marker (pipeline)",
+  "vendor": "Datalab",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and orgs under $5M revenue AND funding; above that a commercial licence is required; no competitive use with Datalab API"
+  },
+  "cost_per_1k_pages_usd": 0.239,
+  "cost_basis": "Datalab README: balanced mode 2.9 pages/s sustained on ONE B200 (fast 7.4 pg/s; CPU-only no-OCR 23.7 pg/s). At $2.5/hr GPU proxy: balanced $0.239/1k, fast $0.094/1k. B200 rents above H100, so real cost maybe 1.5-2x. Excludes commercial licence fee.",
+  "outputs": [
+   "markdown",
+   "HTML",
+   "JSON blocks with bounding boxes",
+   "chunks",
+   "tables",
+   "LaTeX math"
+  ],
+  "notes": "Pipeline: PDF text layer + layout model + selective VLM OCR (Surya). Self-reported olmOCR-bench 76.0 balanced. Licence threshold makes most enterprise clients paying customers.",
+  "sources": [
+   "https://github.com/datalab-to/marker",
+   "https://www.datalab.to/pricing"
+  ],
+  "aliases": [
+   "marker-pdf"
+  ],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "surya",
+  "name": "Surya OCR 2",
+  "vendor": "Datalab",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Code Apache-2.0; weights modified OpenRAIL-M (free under $5M revenue/funding; commercial licence above)"
+  },
+  "cost_per_1k_pages_usd": 0.13,
+  "cost_basis": "README: 5.35 pages/s on a single RTX 5090 (vLLM, concurrency 128, 96 DPI, ~2,400 output tokens/page). At $2.5/hr proxy = $0.13/1k (an RTX 5090 rents for much less, so this overstates).",
+  "outputs": [
+   "text lines with bounding boxes",
+   "layout",
+   "reading order",
+   "tables",
+   "HTML"
+  ],
+  "notes": "OCR/layout VLM used inside Marker; 90+ languages.",
+  "sources": [
+   "https://github.com/datalab-to/surya",
+   "https://huggingface.co/datalab-to/surya-ocr-2"
+  ],
+  "aliases": [
+   "surya-ocr-2"
+  ],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "chandra",
+  "name": "Chandra OCR 2",
+  "vendor": "Datalab",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Code Apache-2.0; weights modified OpenRAIL-M: free for research/personal and startups under $2M funding/revenue; no competitive use with Datalab API; commercial self-hosting requires licence"
+  },
+  "cost_per_1k_pages_usd": 0.482,
+  "cost_basis": "README: 1.44 pages/s on one H100 80GB (vLLM, 96 concurrent, olmOCR-bench mix); Datalab estimates ~2 pg/s real-world. At $2.5/hr: $0.482/1k (bench) or $0.347/1k (real-world est.). Excludes licence fee.",
+  "outputs": [
+   "markdown",
+   "HTML",
+   "JSON with layout blocks and bounding boxes",
+   "tables",
+   "math",
+   "handwriting",
+   "forms/checkboxes"
+  ],
+  "notes": "Released Mar 2026 (v2). Datalab-reported olmOCR-bench 85.8 (hosted, improved version) - top of public charts. Tightest licence of the group ($2M threshold).",
+  "sources": [
+   "https://github.com/datalab-to/chandra",
+   "https://huggingface.co/datalab-to/chandra-ocr-2",
+   "https://www.datalab.to/pricing"
+  ],
+  "aliases": [
+   "chandra-ocr-2",
+   "chandra-2"
+  ],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "docling",
+  "name": "Docling",
+  "vendor": "IBM / LF AI & Data (docling-project)",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom); IBM watsonx / Red Hat integrations"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "MIT (code); bundled models have own licences (Heron layout, TableFormer, granite-docling Apache-2.0)"
+  },
+  "cost_per_1k_pages_usd": 0.331,
+  "cost_basis": "No vendor H100 figure. Competitor-measured (Marker README): 2.1 pages/s on one B200 in default pipeline -> $0.331/1k at $2.5/hr proxy. Runs on CPU too.",
+  "outputs": [
+   "markdown",
+   "HTML",
+   "DoclingDocument JSON with bounding boxes and provenance",
+   "tables",
+   "chunks"
+  ],
+  "notes": "Most permissive enterprise-friendly pipeline (MIT), huge adoption (69k GitHub stars). Mid accuracy on hard scans/tables vs VLM-first models (Marker-measured olmOCR-bench 50.3).",
+  "sources": [
+   "https://github.com/docling-project/docling",
+   "https://github.com/datalab-to/marker"
+  ],
+  "aliases": [],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "granite-docling",
+  "name": "granite-docling-258M",
+  "vendor": "IBM",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)",
+    "Runs via Docling VLM pipeline; IBM watsonx"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Apache-2.0"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "No published throughput. Tiny (258M) - runs on CPU/Apple MLX; GPU cost would be negligible.",
+  "outputs": [
+   "DocTags -> markdown/HTML/JSON",
+   "tables",
+   "code",
+   "equations",
+   "layout with locations"
+  ],
+  "notes": "Successor to SmolDocling; end-to-end tiny VLM for Docling.",
+  "sources": [
+   "https://huggingface.co/ibm-granite/granite-docling-258M"
+  ],
+  "aliases": [],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "smoldocling",
+  "name": "SmolDocling-256M-preview",
+  "vendor": "IBM / Hugging Face",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "CDLA-Permissive-2.0"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "No published throughput; 256M params (CPU-capable).",
+  "outputs": [
+   "DocTags -> markdown/HTML/JSON"
+  ],
+  "notes": "Preview predecessor of granite-docling; superseded.",
+  "sources": [
+   "https://huggingface.co/docling-project/SmolDocling-256M-preview"
+  ],
+  "aliases": [],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "mineru",
+  "name": "MinerU (incl. MinerU2.5-Pro 1.2B VLM)",
+  "vendor": "OpenDataLab (Shanghai AI Lab)",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "MinerU Open Source License = Apache-2.0 + conditions: commercial licence required if org (with affiliates) exceeds 100M MAU or USD 20M monthly revenue; attribution required for online services. MinerU2.5-Pro weights Apache-2.0 (older MinerU2.5-2509 weights AGPL-3.0)"
+  },
+  "cost_per_1k_pages_usd": 0.328,
+  "cost_basis": "MinerU2.5-Pro model card: ~2.12 pages/s concurrent on one A100 (vLLM async) -> $0.328/1k at $2.5/hr. Pipeline backend measured 0.54 pg/s on B200 by Datalab (competitor) -> $1.286/1k.",
+  "outputs": [
+   "markdown",
+   "JSON (content list with bounding boxes)",
+   "tables (HTML)",
+   "LaTeX formulas"
+  ],
+  "notes": "Top-tier on OmniDocBench; very popular (82k stars). The $20M/month revenue clause matters for large enterprises.",
+  "sources": [
+   "https://github.com/opendatalab/MinerU",
+   "https://github.com/opendatalab/MinerU/blob/master/LICENSE.md",
+   "https://huggingface.co/opendatalab/MinerU2.5-Pro-2605-1.2B"
+  ],
+  "aliases": [
+   "mineru2.5",
+   "mineru2.5-pro"
+  ],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "paddleocr-vl",
+  "name": "PaddleOCR-VL 1.6 (0.9B)",
+  "vendor": "Baidu PaddlePaddle",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Apache-2.0"
+  },
+  "cost_per_1k_pages_usd": 0.429,
+  "cost_basis": "PaddleOCR-VL tech report (v1, Oct 2025) Table 13: 1.62 pages/s on one A100 (FastDeploy), 1.35 (vLLM); 2.23 pg/s on H800. -> $0.429/1k at $2.5/hr. No separate figure for v1.6.",
+  "outputs": [
+   "markdown",
+   "JSON with layout blocks and bounding boxes",
+   "tables",
+   "formulas",
+   "charts",
+   "seals"
+  ],
+  "notes": "v1.6 released 2026-05-28; reports 96.3 on OmniDocBench v1.6 (near top). Small and cheap; Apache licence is enterprise-friendly.",
+  "sources": [
+   "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6",
+   "https://arxiv.org/html/2510.14528",
+   "https://github.com/PaddlePaddle/PaddleOCR"
+  ],
+  "aliases": [
+   "paddleocr-vl-1.6",
+   "paddleocr-vl-1.5",
+   "paddleocr"
+  ],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "olmocr",
+  "name": "olmOCR 2 (olmOCR-2-7B-1025)",
+  "vendor": "Allen Institute for AI (Ai2)",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)",
+    "Hosted endpoints: DeepInfra ($0.09/$0.19 per M tokens), Parasail, Cirrascale"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Apache-2.0 (code and weights; Qwen2.5-VL-7B base, Apache-2.0)"
+  },
+  "cost_per_1k_pages_usd": 0.2,
+  "cost_basis": "Ai2 README: 'less than $200 USD per million pages' (= <$0.20/1k) on own GPUs. Hosted: DeepInfra $0.09 in / $0.19 out per M tokens.",
+  "outputs": [
+   "markdown",
+   "plain text (natural reading order)",
+   "tables (HTML/markdown)",
+   "LaTeX equations"
+  ],
+  "notes": "Open training data and benchmark (olmOCR-bench is the de-facto open benchmark). No bounding boxes.",
+  "sources": [
+   "https://github.com/allenai/olmocr",
+   "https://huggingface.co/allenai/olmOCR-2-7B-1025"
+  ],
+  "aliases": [
+   "olmocr-2",
+   "olmocr-2-7b"
+  ],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "deepseek-ocr",
+  "name": "DeepSeek-OCR / DeepSeek-OCR-2",
+  "vendor": "DeepSeek",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "SageMaker JumpStart (DeepSeek OCR, Feb 2026)",
+    "Vertex AI Model Garden MaaS (DeepSeek-OCR $0.30 in / $1.20 out per M tokens)",
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "DeepSeek-OCR MIT; DeepSeek-OCR-2 (Jan 2026) Apache-2.0"
+  },
+  "cost_per_1k_pages_usd": 0.301,
+  "cost_basis": "Paper: 200k+ pages/day on one A100-40G (~2.3 pg/s) -> $0.301/1k at $2.5/hr. Vertex MaaS at ~800 in + 800 out tokens/page ~= $1.20/1k (estimate).",
+  "outputs": [
+   "markdown",
+   "text",
+   "grounding boxes (prompted)",
+   "charts/chemical formulas"
+  ],
+  "notes": "Optical context compression (<800 vision tokens/page). Accuracy behind PaddleOCR-VL/MinerU on public benchmarks but very cheap tokens.",
+  "sources": [
+   "https://github.com/deepseek-ai/DeepSeek-OCR",
+   "https://huggingface.co/deepseek-ai/DeepSeek-OCR-2",
+   "https://arxiv.org/abs/2510.18234",
+   "https://aws.amazon.com/about-aws/whats-new/2026/01/new-models-on-sagemaker-jumpstart",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [
+   "deepseek-ocr-2"
+  ],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "dots-ocr",
+  "name": "dots.ocr / dots.mocr",
+  "vendor": "rednote hi lab (dots-studio)",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "MIT"
+  },
+  "cost_per_1k_pages_usd": 1.972,
+  "cost_basis": "Only third-party figure: 0.35 pages/s on A100 (vLLM, measured in PaddleOCR-VL report) -> $1.972/1k at $2.5/hr. dots.mocr (Mar 2026) not benchmarked for speed.",
+  "outputs": [
+   "markdown",
+   "JSON layout with bounding boxes and categories",
+   "tables (HTML)",
+   "LaTeX formulas"
+  ],
+  "notes": "1.7B single-model layout+OCR; strong multilingual. dots.mocr reported ~83.9 olmOCR-bench (secondary source).",
+  "sources": [
+   "https://huggingface.co/dots-studio/dots.ocr",
+   "https://huggingface.co/dots-studio/dots.mocr",
+   "https://arxiv.org/html/2510.14528"
+  ],
+  "aliases": [
+   "dots.ocr",
+   "dots.mocr"
+  ],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "nanonets-ocr2",
+  "name": "Nanonets-OCR2-3B",
+  "vendor": "Nanonets",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "No licence declared on Hugging Face card (unverified; third-party listings say Apache-2.0). Base model Qwen2.5-VL-3B carries the 'qwen-research' licence - check before commercial use"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "No published throughput.",
+  "outputs": [
+   "markdown",
+   "HTML tables",
+   "LaTeX",
+   "checkboxes",
+   "signatures/watermark tags",
+   "flowcharts (mermaid)"
+  ],
+  "notes": "Image-to-markdown with semantic tags; olmOCR-bench ~69.5 per Ai2 table.",
+  "sources": [
+   "https://huggingface.co/nanonets/Nanonets-OCR2-3B",
+   "https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct"
+  ],
+  "aliases": [
+   "nanonets-ocr-s",
+   "nanonets-ocr2-3b"
+  ],
+  "verified": false,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "glm-ocr",
+  "name": "GLM-OCR",
+  "vendor": "Z.ai (Zhipu)",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "MIT"
+  },
+  "cost_per_1k_pages_usd": 0.373,
+  "cost_basis": "Model card: 1.86 pages/s for PDFs at single concurrency (upper-bound cost; batching would be far cheaper) -> $0.373/1k at $2.5/hr.",
+  "outputs": [
+   "markdown",
+   "JSON with layout",
+   "tables",
+   "formulas"
+  ],
+  "notes": "Jan 2026 release; ~95 on OmniDocBench (secondary). Very popular download.",
+  "sources": [
+   "https://huggingface.co/zai-org/GLM-OCR"
+  ],
+  "aliases": [],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "lightonocr",
+  "name": "LightOnOCR-3 (0.8B/1B/4B) and LightOnOCR-2-1B",
+  "vendor": "LightOn",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Apache-2.0"
+  },
+  "cost_per_1k_pages_usd": 0.122,
+  "cost_basis": "LightOnOCR-2-1B card: 5.71 pages/s on one H100 -> $0.122/1k at $2.5/hr (vendor claims '<$0.01 per 1,000 pages', which implies a far lower GPU rate). LightOnOCR-3 (Oct 2026) claims faster; no figure captured.",
+  "outputs": [
+   "markdown",
+   "grounding mode: block labels + bounding boxes",
+   "chart -> data tables",
+   "image descriptions"
+  ],
+  "notes": "Brand-new (2026-10-06) LightOnOCR-3 family on Qwen3.5 architecture; French vendor, Apache licence.",
+  "sources": [
+   "https://huggingface.co/lightonai/LightOnOCR-3-4B",
+   "https://huggingface.co/lightonai/LightOnOCR-2-1B"
+  ],
+  "aliases": [
+   "lightonocr-3-4b",
+   "lightonocr-2-1b"
+  ],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "qianfan-ocr",
+  "name": "Qianfan-OCR",
+  "vendor": "Baidu (Qianfan)",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Apache-2.0"
+  },
+  "cost_per_1k_pages_usd": 0.678,
+  "cost_basis": "Model card: 1.024 pages/s on one A100 with W8A8 -> $0.678/1k at $2.5/hr.",
+  "outputs": [
+   "markdown",
+   "structured JSON",
+   "tables",
+   "key information extraction"
+  ],
+  "notes": "Mar 2026 end-to-end document model.",
+  "sources": [
+   "https://huggingface.co/baidu/Qianfan-OCR",
+   "https://arxiv.org/abs/2603.13398"
+  ],
+  "aliases": [],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "hunyuan-ocr",
+  "name": "HunyuanOCR",
+  "vendor": "Tencent",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Tencent Hunyuan Community licence - does NOT apply in EU, UK or South Korea"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "No throughput captured.",
+  "outputs": [
+   "markdown",
+   "text spotting with boxes",
+   "parsing",
+   "translation"
+  ],
+  "notes": "Territorial licence exclusion is a blocker for EU/UK clients.",
+  "sources": [
+   "https://huggingface.co/tencent/HunyuanOCR"
+  ],
+  "aliases": [],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "teleocr",
+  "name": "TeleOCR (1.2B)",
+  "vendor": "XingChen-AGI (China Telecom)",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Apache-2.0"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "No throughput captured.",
+  "outputs": [
+   "markdown",
+   "tables",
+   "formulas"
+  ],
+  "notes": "Aug 2026; claims #1 on OmniDocBench v1.6 (96.9) per a secondary roundup - unverified.",
+  "sources": [
+   "https://huggingface.co/XingChen-AGI/TeleOCR"
+  ],
+  "aliases": [],
+  "verified": false,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "ovisocr2",
+  "name": "OvisOCR2",
+  "vendor": "Alibaba AIDC (ATH-MaaS)",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Apache-2.0 (Qwen3.5-0.8B base)"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "No throughput captured.",
+  "outputs": [
+   "markdown",
+   "tables",
+   "formulas"
+  ],
+  "notes": "Jul 2026; ~96.5 OmniDocBench v1.6 per secondary roundup - unverified.",
+  "sources": [
+   "https://huggingface.co/ATH-MaaS/OvisOCR2"
+  ],
+  "aliases": [],
+  "verified": false,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "qwen3-vl",
+  "name": "Qwen3-VL (2B-235B) / Qwen3.5 / Qwen3.8-27B (general open VLMs)",
+  "vendor": "Alibaba Qwen",
+  "category": "open weights",
+  "deployment": {
+   "cloud": [
+    "Amazon Bedrock serverless (Qwen3-VL-235B-A22B: $0.53 in / $2.66 out per M)",
+    "SageMaker JumpStart (Qwen3-VL-8B-Instruct)",
+    "Self-host on any cloud GPU (EC2/SageMaker, Azure ML/AKS, GKE/Vertex custom)"
+   ],
+   "saas": false,
+   "self_host": true,
+   "licence": "Apache-2.0 (Qwen3-VL, Qwen3.5, Qwen3.8-27B); note Qwen3.8-Flash-Next uses 'qwen-community-1.0' licence"
+  },
+  "cost_per_1k_pages_usd": null,
+  "cost_basis": "No vendor pages/s. Serverless on Bedrock priced per token (see qwen3-vl-235b in frontier VLM table).",
+  "outputs": [
+   "markdown",
+   "HTML/JSON (prompted)",
+   "grounding boxes (prompted)",
+   "JSON with schema (via guided decoding)"
+  ],
+  "notes": "Base model for many OCR specialists (olmOCR, Nanonets, LightOnOCR-3, OvisOCR2). Good generalist; Qwen3.8 (Aug 2026) is the newest generation.",
+  "sources": [
+   "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct",
+   "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-east-1/index.json",
+   "https://aws.amazon.com/about-aws/whats-new/2026/01/new-models-on-sagemaker-jumpstart"
+  ],
+  "aliases": [
+   "qwen2.5-vl",
+   "qwen3.5",
+   "qwen3.8-27b"
+  ],
+  "verified": true,
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "gemini-4-argon",
+  "name": "Gemini 4 Argon",
+  "vendor": "Google",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Google Vertex AI (first-party; global price = Gemini API, non-global +10%)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 10.84,
+  "cost_per_1k_pages_batch_usd": 5.42,
+  "token_prices_per_m": {
+   "input": 2.0,
+   "output": 10.0,
+   "batch_input": 1.0,
+   "batch_output": 5.0
+  },
+  "tokens_per_page": {
+   "input": 1420,
+   "output": 800
+  },
+  "cost_basis": "List $2.0/M in, $10.0/M out (batch $1.0/$5.0). Per page: 1,120 image tokens/page (Gemini 3+/4 default for images = 'high'; PDFs default to 'medium' 560 + native text tokens) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $10.84/1k pages, batch $5.42/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Flagship reasoning; intro price to 2026-11-30, then $4/$20 (doubles).",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/media-resolution",
+   "https://ai.google.dev/gemini-api/docs/tokens",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gemini-3.8-flash",
+  "name": "Gemini 3.8 Flash",
+  "vendor": "Google",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Google Vertex AI (first-party; global price = Gemini API, non-global +10%)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 4.07,
+  "cost_per_1k_pages_batch_usd": 2.03,
+  "token_prices_per_m": {
+   "input": 0.75,
+   "output": 3.75,
+   "batch_input": 0.375,
+   "batch_output": 1.875
+  },
+  "tokens_per_page": {
+   "input": 1420,
+   "output": 800
+  },
+  "cost_basis": "List $0.75/M in, $3.75/M out (batch $0.375/$1.875). Per page: 1,120 image tokens/page (Gemini 3+/4 default for images = 'high'; PDFs default to 'medium' 560 + native text tokens) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $4.07/1k pages, batch $2.03/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Intro price to 2026-12-31, then $1.50/$7.50 (doubles to ~$8.13/1k).",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/media-resolution",
+   "https://ai.google.dev/gemini-api/docs/tokens",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gemini-3.6-flash",
+  "name": "Gemini 3.6 Flash",
+  "vendor": "Google",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Google Vertex AI (first-party; global price = Gemini API, non-global +10%)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 4.07,
+  "cost_per_1k_pages_batch_usd": 2.03,
+  "token_prices_per_m": {
+   "input": 0.75,
+   "output": 3.75,
+   "batch_input": 0.375,
+   "batch_output": 1.875
+  },
+  "tokens_per_page": {
+   "input": 1420,
+   "output": 800
+  },
+  "cost_basis": "List $0.75/M in, $3.75/M out (batch $0.375/$1.875). Per page: 1,120 image tokens/page (Gemini 3+/4 default for images = 'high'; PDFs default to 'medium' 560 + native text tokens) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $4.07/1k pages, batch $2.03/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Previous-gen Flash; same intro pricing and same Jan-2027 doubling as 3.8.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/media-resolution",
+   "https://ai.google.dev/gemini-api/docs/tokens",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gemini-3.1-pro-preview",
+  "name": "Gemini 3.1 Pro Preview",
+  "vendor": "Google",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Google Vertex AI (first-party; global price = Gemini API, non-global +10%)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 12.44,
+  "cost_per_1k_pages_batch_usd": 6.22,
+  "token_prices_per_m": {
+   "input": 2.0,
+   "output": 12.0,
+   "batch_input": 1.0,
+   "batch_output": 6.0
+  },
+  "tokens_per_page": {
+   "input": 1420,
+   "output": 800
+  },
+  "cost_basis": "List $2.0/M in, $12.0/M out (batch $1.0/$6.0). Per page: 1,120 image tokens/page (Gemini 3+/4 default for images = 'high'; PDFs default to 'medium' 560 + native text tokens) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $12.44/1k pages, batch $6.22/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Preview status; >200k-token prompts cost more.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/media-resolution",
+   "https://ai.google.dev/gemini-api/docs/tokens",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gemini-3.5-flash-lite",
+  "name": "Gemini 3.5 Flash-Lite",
+  "vendor": "Google",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Google Vertex AI (first-party; global price = Gemini API, non-global +10%)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 2.43,
+  "cost_per_1k_pages_batch_usd": 1.21,
+  "token_prices_per_m": {
+   "input": 0.3,
+   "output": 2.5,
+   "batch_input": 0.15,
+   "batch_output": 1.25
+  },
+  "tokens_per_page": {
+   "input": 1420,
+   "output": 800
+  },
+  "cost_basis": "List $0.3/M in, $2.5/M out (batch $0.15/$1.25). Per page: 1,120 image tokens/page (Gemini 3+/4 default for images = 'high'; PDFs default to 'medium' 560 + native text tokens) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $2.43/1k pages, batch $1.21/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Cheap high-volume tier.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/media-resolution",
+   "https://ai.google.dev/gemini-api/docs/tokens",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gemini-3.1-flash-lite",
+  "name": "Gemini 3.1 Flash-Lite",
+  "vendor": "Google",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Google Vertex AI (first-party; global price = Gemini API, non-global +10%)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 1.55,
+  "cost_per_1k_pages_batch_usd": 0.78,
+  "token_prices_per_m": {
+   "input": 0.25,
+   "output": 1.5,
+   "batch_input": 0.125,
+   "batch_output": 0.75
+  },
+  "tokens_per_page": {
+   "input": 1420,
+   "output": 800
+  },
+  "cost_basis": "List $0.25/M in, $1.5/M out (batch $0.125/$0.75). Per page: 1,120 image tokens/page (Gemini 3+/4 default for images = 'high'; PDFs default to 'medium' 560 + native text tokens) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $1.55/1k pages, batch $0.78/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Cheapest Gemini 3-gen tier.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/media-resolution",
+   "https://ai.google.dev/gemini-api/docs/tokens",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gemini-3-flash-preview",
+  "name": "Gemini 3 Flash Preview",
+  "vendor": "Google",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Google Vertex AI (first-party; global price = Gemini API, non-global +10%)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 3.11,
+  "cost_per_1k_pages_batch_usd": 1.55,
+  "token_prices_per_m": {
+   "input": 0.5,
+   "output": 3.0,
+   "batch_input": 0.25,
+   "batch_output": 1.5
+  },
+  "tokens_per_page": {
+   "input": 1420,
+   "output": 800
+  },
+  "cost_basis": "List $0.5/M in, $3.0/M out (batch $0.25/$1.5). Per page: 1,120 image tokens/page (Gemini 3+/4 default for images = 'high'; PDFs default to 'medium' 560 + native text tokens) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $3.11/1k pages, batch $1.55/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Labelled 'legacy' Flash.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/media-resolution",
+   "https://ai.google.dev/gemini-api/docs/tokens",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gemini-2.5-pro",
+  "name": "Gemini 2.5 Pro",
+  "vendor": "Google",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Google Vertex AI (first-party; global price = Gemini API, non-global +10%)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 10.31,
+  "cost_per_1k_pages_batch_usd": 5.16,
+  "token_prices_per_m": {
+   "input": 1.25,
+   "output": 10.0,
+   "batch_input": 0.625,
+   "batch_output": 5.0
+  },
+  "tokens_per_page": {
+   "input": 1848,
+   "output": 800
+  },
+  "cost_basis": "List $1.25/M in, $10.0/M out (batch $0.625/$5.0). Per page: ~1,548 image tokens/page (estimate: 1275x1650 px tiled into 768px tiles x 258 tokens; native PDF input is 258 tokens/page, much cheaper) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $10.31/1k pages, batch $5.16/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Older Pro; via native PDF input (258 tok/page) cost drops to ~$8.70/1k.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/media-resolution",
+   "https://ai.google.dev/gemini-api/docs/tokens",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gemini-2.5-flash",
+  "name": "Gemini 2.5 Flash",
+  "vendor": "Google",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Google Vertex AI (first-party; global price = Gemini API, non-global +10%)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 2.55,
+  "cost_per_1k_pages_batch_usd": 1.28,
+  "token_prices_per_m": {
+   "input": 0.3,
+   "output": 2.5,
+   "batch_input": 0.15,
+   "batch_output": 1.25
+  },
+  "tokens_per_page": {
+   "input": 1848,
+   "output": 800
+  },
+  "cost_basis": "List $0.3/M in, $2.5/M out (batch $0.15/$1.25). Per page: ~1,548 image tokens/page (estimate: 1275x1650 px tiled into 768px tiles x 258 tokens; native PDF input is 258 tokens/page, much cheaper) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $2.55/1k pages, batch $1.28/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Widely benchmarked baseline; native PDF input ~$2.17/1k.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/media-resolution",
+   "https://ai.google.dev/gemini-api/docs/tokens",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gemini-2.5-flash-lite",
+  "name": "Gemini 2.5 Flash-Lite",
+  "vendor": "Google",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Google Vertex AI (first-party; global price = Gemini API, non-global +10%)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 0.5,
+  "cost_per_1k_pages_batch_usd": 0.25,
+  "token_prices_per_m": {
+   "input": 0.1,
+   "output": 0.4,
+   "batch_input": 0.05,
+   "batch_output": 0.2
+  },
+  "tokens_per_page": {
+   "input": 1848,
+   "output": 800
+  },
+  "cost_basis": "List $0.1/M in, $0.4/M out (batch $0.05/$0.2). Per page: ~1,548 image tokens/page (estimate: 1275x1650 px tiled into 768px tiles x 258 tokens; native PDF input is 258 tokens/page, much cheaper) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $0.50/1k pages, batch $0.25/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Rock-bottom price; native PDF input ~$0.38/1k.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/media-resolution",
+   "https://ai.google.dev/gemini-api/docs/tokens",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-6-astra",
+  "name": "GPT-6 Astra",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)",
+    "Amazon Bedrock (OpenAI GPT-6 Astra, $10/$50)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 67.96,
+  "cost_per_1k_pages_batch_usd": 33.98,
+  "token_prices_per_m": {
+   "input": 10.0,
+   "output": 50.0,
+   "batch_input": 5.0,
+   "batch_output": 25.0
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $10.0/M in, $50.0/M out (batch $5.0/$25.0). Per page: 2,496 image tokens/page (1275x1650 px = 2,080 32px patches x 1.2 multiplier, detail=high, within 2,500-patch budget) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $67.96/1k pages, batch $33.98/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "OpenAI flagship; also on Amazon Bedrock (same $10/$50).",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-6.1-sol",
+  "name": "GPT-6.1 Sol",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 13.59,
+  "cost_per_1k_pages_batch_usd": 6.8,
+  "token_prices_per_m": {
+   "input": 2.0,
+   "output": 10.0,
+   "batch_input": 1.0,
+   "batch_output": 5.0
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $2.0/M in, $10.0/M out (batch $1.0/$5.0). Per page: 2,496 image tokens/page ASSUMED (model not in OpenAI's multiplier table; assumed same 1.2x patch rule as gpt-6-astra) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $13.59/1k pages, batch $6.80/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Mid-tier GPT-6.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-6-sol",
+  "name": "GPT-6 Sol",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 13.59,
+  "cost_per_1k_pages_batch_usd": 6.8,
+  "token_prices_per_m": {
+   "input": 2.0,
+   "output": 10.0,
+   "batch_input": 1.0,
+   "batch_output": 5.0
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $2.0/M in, $10.0/M out (batch $1.0/$5.0). Per page: 2,496 image tokens/page ASSUMED (model not in OpenAI's multiplier table; assumed same 1.2x patch rule as gpt-6-astra) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $13.59/1k pages, batch $6.80/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Mid-tier GPT-6.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-6-luna",
+  "name": "GPT-6 Luna",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 0.68,
+  "cost_per_1k_pages_batch_usd": 0.34,
+  "token_prices_per_m": {
+   "input": 0.1,
+   "output": 0.5,
+   "batch_input": 0.05,
+   "batch_output": 0.25
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $0.1/M in, $0.5/M out (batch $0.05/$0.25). Per page: 2,496 image tokens/page ASSUMED (model not in OpenAI's multiplier table; assumed same 1.2x patch rule as gpt-6-astra) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $0.68/1k pages, batch $0.34/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Small/cheap GPT-6 tier.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-5.6-sol",
+  "name": "GPT-5.6 Sol",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 27.18,
+  "cost_per_1k_pages_batch_usd": 13.59,
+  "token_prices_per_m": {
+   "input": 4.0,
+   "output": 20.0,
+   "batch_input": 2.0,
+   "batch_output": 10.0
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $4.0/M in, $20.0/M out (batch $2.0/$10.0). Per page: 2,496 image tokens/page (1275x1650 px = 2,080 32px patches x 1.2 multiplier, detail=high, within 2,500-patch budget) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $27.18/1k pages, batch $13.59/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Promotional pricing at least through 2026-11-21.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-5.6-terra",
+  "name": "GPT-5.6 Terra",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 15.19,
+  "cost_per_1k_pages_batch_usd": 7.6,
+  "token_prices_per_m": {
+   "input": 2.0,
+   "output": 12.0,
+   "batch_input": 1.0,
+   "batch_output": 6.0
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $2.0/M in, $12.0/M out (batch $1.0/$6.0). Per page: 2,496 image tokens/page (1275x1650 px = 2,080 32px patches x 1.2 multiplier, detail=high, within 2,500-patch budget) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $15.19/1k pages, batch $7.60/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-5.6-luna",
+  "name": "GPT-5.6 Luna",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 1.52,
+  "cost_per_1k_pages_batch_usd": 0.76,
+  "token_prices_per_m": {
+   "input": 0.2,
+   "output": 1.2,
+   "batch_input": 0.1,
+   "batch_output": 0.6
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $0.2/M in, $1.2/M out (batch $0.1/$0.6). Per page: 2,496 image tokens/page (1275x1650 px = 2,080 32px patches x 1.2 multiplier, detail=high, within 2,500-patch budget) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $1.52/1k pages, batch $0.76/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-5.5",
+  "name": "GPT-5.5",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 37.98,
+  "cost_per_1k_pages_batch_usd": 18.99,
+  "token_prices_per_m": {
+   "input": 5.0,
+   "output": 30.0,
+   "batch_input": 2.5,
+   "batch_output": 15.0
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $5.0/M in, $30.0/M out (batch $2.5/$15.0). Per page: 2,496 image tokens/page (1275x1650 px = 2,080 32px patches x 1.2 multiplier, detail=high, within 2,500-patch budget) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $37.98/1k pages, batch $18.99/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-5.4",
+  "name": "GPT-5.4",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 18.99,
+  "cost_per_1k_pages_batch_usd": 9.49,
+  "token_prices_per_m": {
+   "input": 2.5,
+   "output": 15.0,
+   "batch_input": 1.25,
+   "batch_output": 7.5
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $2.5/M in, $15.0/M out (batch $1.25/$7.5). Per page: 2,496 image tokens/page (1275x1650 px = 2,080 32px patches x 1.2 multiplier, detail=high, within 2,500-patch budget) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $18.99/1k pages, batch $9.49/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-5.4-mini",
+  "name": "GPT-5.4 mini",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 5.7,
+  "cost_per_1k_pages_batch_usd": 2.85,
+  "token_prices_per_m": {
+   "input": 0.75,
+   "output": 4.5,
+   "batch_input": 0.375,
+   "batch_output": 2.25
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $0.75/M in, $4.5/M out (batch $0.375/$2.25). Per page: 2,496 image tokens/page (1275x1650 px = 2,080 32px patches x 1.2 multiplier, detail=high, within 2,500-patch budget) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $5.70/1k pages, batch $2.85/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-5.4-nano",
+  "name": "GPT-5.4 nano",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 1.56,
+  "cost_per_1k_pages_batch_usd": 0.78,
+  "token_prices_per_m": {
+   "input": 0.2,
+   "output": 1.25,
+   "batch_input": 0.1,
+   "batch_output": 0.625
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $0.2/M in, $1.25/M out (batch $0.1/$0.625). Per page: 2,496 image tokens/page (1275x1650 px = 2,080 32px patches x 1.2 multiplier, detail=high, within 2,500-patch budget) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $1.56/1k pages, batch $0.78/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-5.2",
+  "name": "GPT-5.2",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 16.09,
+  "cost_per_1k_pages_batch_usd": 8.05,
+  "token_prices_per_m": {
+   "input": 1.75,
+   "output": 14.0,
+   "batch_input": 0.875,
+   "batch_output": 7.0
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $1.75/M in, $14.0/M out (batch $0.875/$7.0). Per page: 2,496 image tokens/page (1275x1650 px = 2,080 32px patches x 1.2 multiplier, detail=high, within 2,500-patch budget) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $16.09/1k pages, batch $8.05/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-5-mini",
+  "name": "GPT-5 mini (deprecated)",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 2.3,
+  "cost_per_1k_pages_batch_usd": 1.15,
+  "token_prices_per_m": {
+   "input": 0.25,
+   "output": 2.0,
+   "batch_input": 0.125,
+   "batch_output": 1.0
+  },
+  "tokens_per_page": {
+   "input": 2796,
+   "output": 800
+  },
+  "cost_basis": "List $0.25/M in, $2.0/M out (batch $0.125/$1.0). Per page: 2,496 image tokens/page (1275x1650 px = 2,080 32px patches x 1.2 multiplier, detail=high, within 2,500-patch budget) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $2.30/1k pages, batch $1.15/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Deprecated, scheduled for shutdown.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "gpt-5-nano",
+  "name": "GPT-5 nano (deprecated)",
+  "vendor": "OpenAI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure OpenAI in Microsoft Foundry (prices match OpenAI list per Azure retail API)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 0.49,
+  "cost_per_1k_pages_batch_usd": 0.25,
+  "token_prices_per_m": {
+   "input": 0.05,
+   "output": 0.4,
+   "batch_input": 0.025,
+   "batch_output": 0.2
+  },
+  "tokens_per_page": {
+   "input": 3420,
+   "output": 800
+  },
+  "cost_basis": "List $0.05/M in, $0.4/M out (batch $0.025/$0.2). Per page: 3,120 image tokens/page (2,080 patches x 1.5 multiplier) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $0.49/1k pages, batch $0.25/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Deprecated; 1.5x image multiplier.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/images-vision",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "claude-fable-5.1",
+  "name": "Claude Fable 5.1",
+  "vendor": "Anthropic",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Amazon Bedrock",
+    "Google Vertex AI",
+    "Microsoft Foundry (Anthropic-operated, billed via Azure Marketplace)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 83.04,
+  "cost_per_1k_pages_batch_usd": 41.52,
+  "token_prices_per_m": {
+   "input": 10.0,
+   "output": 50.0,
+   "batch_input": 5.0,
+   "batch_output": 25.0
+  },
+  "tokens_per_page": {
+   "input": 3104,
+   "output": 1040
+  },
+  "cost_basis": "List $10.0/M in, $50.0/M out (batch $5.0/$25.0). Per page: 2,714 image tokens/page (ceil(1275/28) x ceil(1650/28) = 46x59; Claude 4.7+ high-res tier); text tokens x1.3 for the newer tokenizer + 390 prompt tokens in; 1040 output tokens (800 base, no reasoning tokens). => standard $83.04/1k pages, batch $41.52/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Top Anthropic tier.",
+  "sources": [
+   "https://platform.claude.com/docs/en/docs/about-claude/pricing",
+   "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/us-east-1/index.json",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "claude-opus-5.5",
+  "name": "Claude Opus 5.5",
+  "vendor": "Anthropic",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Amazon Bedrock",
+    "Google Vertex AI",
+    "Microsoft Foundry (Anthropic-operated, billed via Azure Marketplace)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 33.22,
+  "cost_per_1k_pages_batch_usd": 16.61,
+  "token_prices_per_m": {
+   "input": 4.0,
+   "output": 20.0,
+   "batch_input": 2.0,
+   "batch_output": 10.0
+  },
+  "tokens_per_page": {
+   "input": 3104,
+   "output": 1040
+  },
+  "cost_basis": "List $4.0/M in, $20.0/M out (batch $2.0/$10.0). Per page: 2,714 image tokens/page (ceil(1275/28) x ceil(1650/28) = 46x59; Claude 4.7+ high-res tier); text tokens x1.3 for the newer tokenizer + 390 prompt tokens in; 1040 output tokens (800 base, no reasoning tokens). => standard $33.22/1k pages, batch $16.61/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://platform.claude.com/docs/en/docs/about-claude/pricing",
+   "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/us-east-1/index.json",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "claude-sonnet-5.5",
+  "name": "Claude Sonnet 5.5",
+  "vendor": "Anthropic",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Amazon Bedrock",
+    "Google Vertex AI",
+    "Microsoft Foundry (Anthropic-operated, billed via Azure Marketplace)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 16.61,
+  "cost_per_1k_pages_batch_usd": 8.3,
+  "token_prices_per_m": {
+   "input": 2.0,
+   "output": 10.0,
+   "batch_input": 1.0,
+   "batch_output": 5.0
+  },
+  "tokens_per_page": {
+   "input": 3104,
+   "output": 1040
+  },
+  "cost_basis": "List $2.0/M in, $10.0/M out (batch $1.0/$5.0). Per page: 2,714 image tokens/page (ceil(1275/28) x ceil(1650/28) = 46x59; Claude 4.7+ high-res tier); text tokens x1.3 for the newer tokenizer + 390 prompt tokens in; 1040 output tokens (800 base, no reasoning tokens). => standard $16.61/1k pages, batch $8.30/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://platform.claude.com/docs/en/docs/about-claude/pricing",
+   "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/us-east-1/index.json",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "claude-haiku-5.5",
+  "name": "Claude Haiku 5.5",
+  "vendor": "Anthropic",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Amazon Bedrock",
+    "Google Vertex AI",
+    "Microsoft Foundry (Anthropic-operated, billed via Azure Marketplace)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 0.83,
+  "cost_per_1k_pages_batch_usd": 0.42,
+  "token_prices_per_m": {
+   "input": 0.1,
+   "output": 0.5,
+   "batch_input": 0.05,
+   "batch_output": 0.25
+  },
+  "tokens_per_page": {
+   "input": 3104,
+   "output": 1040
+  },
+  "cost_basis": "List $0.1/M in, $0.5/M out (batch $0.05/$0.25). Per page: 2,714 image tokens/page (ceil(1275/28) x ceil(1650/28) = 46x59; Claude 4.7+ high-res tier); text tokens x1.3 for the newer tokenizer + 390 prompt tokens in; 1040 output tokens (800 base, no reasoning tokens). => standard $0.83/1k pages, batch $0.42/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Very cheap; >100k-token prompts priced 5x higher (irrelevant per page).",
+  "sources": [
+   "https://platform.claude.com/docs/en/docs/about-claude/pricing",
+   "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/us-east-1/index.json",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "claude-sonnet-4.6",
+  "name": "Claude Sonnet 4.6",
+  "vendor": "Anthropic",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Amazon Bedrock",
+    "Google Vertex AI",
+    "Microsoft Foundry (Anthropic-operated, billed via Azure Marketplace)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 17.58,
+  "cost_per_1k_pages_batch_usd": 8.79,
+  "token_prices_per_m": {
+   "input": 3.0,
+   "output": 15.0,
+   "batch_input": 1.5,
+   "batch_output": 7.5
+  },
+  "tokens_per_page": {
+   "input": 1860,
+   "output": 800
+  },
+  "cost_basis": "List $3.0/M in, $15.0/M out (batch $1.5/$7.5). Per page: ~1,560 image tokens/page (standard tier caps at 1,568 visual tokens, page is downscaled) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $17.58/1k pages, batch $8.79/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Older tokenizer; standard-res images.",
+  "sources": [
+   "https://platform.claude.com/docs/en/docs/about-claude/pricing",
+   "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/us-east-1/index.json",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "claude-haiku-4.5",
+  "name": "Claude Haiku 4.5",
+  "vendor": "Anthropic",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Amazon Bedrock",
+    "Google Vertex AI",
+    "Microsoft Foundry (Anthropic-operated, billed via Azure Marketplace)"
+   ],
+   "saas": true,
+   "self_host": false,
+   "licence": "Proprietary (API only)"
+  },
+  "cost_per_1k_pages_usd": 5.86,
+  "cost_per_1k_pages_batch_usd": 2.93,
+  "token_prices_per_m": {
+   "input": 1.0,
+   "output": 5.0,
+   "batch_input": 0.5,
+   "batch_output": 2.5
+  },
+  "tokens_per_page": {
+   "input": 1860,
+   "output": 800
+  },
+  "cost_basis": "List $1.0/M in, $5.0/M out (batch $0.5/$2.5). Per page: ~1,560 image tokens/page (standard tier caps at 1,568 visual tokens, page is downscaled) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $5.86/1k pages, batch $2.93/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Older tokenizer; standard-res images.",
+  "sources": [
+   "https://platform.claude.com/docs/en/docs/about-claude/pricing",
+   "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/us-east-1/index.json",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "qwen3-vl-235b",
+  "name": "Qwen3-VL-235B-A22B (Bedrock)",
+  "vendor": "Alibaba Qwen",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Amazon Bedrock (serverless)",
+    "SageMaker JumpStart (8B)"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Apache-2.0 open weights"
+  },
+  "cost_per_1k_pages_usd": 3.39,
+  "cost_per_1k_pages_batch_usd": 1.68,
+  "token_prices_per_m": {
+   "input": 0.53,
+   "output": 2.66,
+   "batch_input": 0.26,
+   "batch_output": 1.33
+  },
+  "tokens_per_page": {
+   "input": 2380,
+   "output": 800
+  },
+  "cost_basis": "List $0.53/M in, $2.66/M out (batch $0.26/$1.33). Per page: 2,080 image tokens/page (estimate: 32px effective patch after 2x2 merge) + 300 prompt tokens in; 800 output tokens (800 base, no reasoning tokens). => standard $3.39/1k pages, batch $1.68/1k. US Letter rendered at 150 DPI (1275x1650).",
+  "outputs": [
+   "markdown/HTML (prompted)",
+   "JSON with schema (structured outputs)",
+   "approximate bounding boxes only if prompted (Gemini/Claude/Qwen support coordinates; not OCR-grade)",
+   "no native confidences (logprobs limited)"
+  ],
+  "notes": "Open weights (Apache-2.0) served on Bedrock; batch = Bedrock batch rate.",
+  "sources": [
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-east-1/index.json",
+   "https://aws.amazon.com/about-aws/whats-new/2026/01/new-models-on-sagemaker-jumpstart"
+  ],
+  "aliases": [],
+  "checked": "2026-10-22",
+  "verified": true
+ },
+ {
+  "id": "mistral-large-4",
+  "name": "Mistral Large 4 (multimodal)",
+  "vendor": "Mistral AI",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Azure AI Foundry lists Mistral Large 3 ($0.50/$1.50); Bedrock lists Mistral Large 3 ($0.50/$1.50); Large 4 on hyperscalers not verified"
+   ],
+   "saas": true,
+   "self_host": true,
+   "licence": "Open weights (Mistral describes Large 4 as open-weight; licence terms not checked)"
+  },
+  "cost_per_1k_pages_usd": null,
+  "token_prices_per_m": {
+   "input": 1.36,
+   "output": 4.18,
+   "batch_input": 0.68,
+   "batch_output": 2.09
+  },
+  "cost_basis": "$1.36/M in, $4.18/M out (Mistral docs model card); batch 50% off. Image tokens per page not documented -> no per-page estimate. For OCR, Mistral steers to Mistral OCR ($4/1k).",
+  "outputs": [
+   "markdown/JSON (prompted)"
+  ],
+  "notes": "1.05T-param MoE with 1.6B vision encoder.",
+  "sources": [
+   "https://docs.mistral.ai/models/mistral-large-4",
+   "https://prices.azure.com/api/retail/prices (serviceName 'Foundry Models' / 'Foundry Tools', eastus)",
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-east-1/index.json"
+  ],
+  "verified": false,
+  "aliases": [],
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ },
+ {
+  "id": "amazon-nova-2-lite",
+  "name": "Amazon Nova 2 Lite",
+  "vendor": "Amazon Web Services",
+  "category": "frontier VLM",
+  "deployment": {
+   "cloud": [
+    "Amazon Bedrock (first-party)"
+   ],
+   "saas": false,
+   "self_host": false,
+   "licence": "Proprietary"
+  },
+  "cost_per_1k_pages_usd": null,
+  "token_prices_per_m": {
+   "input": 0.3,
+   "output": 2.5
+  },
+  "cost_basis": "Global cross-region $0.30/M in, $2.50/M out (us-east-1 Bedrock price list). Image tokens/page not verified -> no per-page estimate (at ~1,500 image tokens it would be ~$2.5/1k).",
+  "outputs": [
+   "markdown/JSON (prompted)"
+  ],
+  "notes": "AWS-native alternative to Gemini Flash-class models; Nova 2 Pro $1.25/$10.",
+  "sources": [
+   "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-east-1/index.json"
+  ],
+  "verified": false,
+  "aliases": [],
+  "checked": "2026-10-22",
+  "cost_per_1k_pages_batch_usd": null
+ }
+]
