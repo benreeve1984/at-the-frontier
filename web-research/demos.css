@@ -417,3 +417,9 @@ table.verdict td { font-size: 14.5px; }
 #timeline .era li { font-size: 14.5px; padding: 7px 0; }
 #og-dr .hyp { font-size: 19px; }
 #og-dr table.verdict td { font-size: 14px; padding: 7px 10px; }
+table.wk td { font-size: 14.5px; padding: 7px 9px; line-height: 1.35; }
+table.wk td:first-child { width: 170px; }
+table.wk td:nth-child(3) { width: 150px; }
+table.wk td:last-child { width: 300px; }
+.trend { font-family: var(--f-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .04em; padding: 2px 6px; border: 1px solid; display: inline-block; line-height: 1.4; }
+.trend.ok { color: var(--green); } .trend.mid { color: var(--orange); } .trend.no { color: var(--red); } .trend.un { color: var(--muted); }
