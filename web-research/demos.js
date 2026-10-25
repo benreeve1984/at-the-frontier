@@ -651,3 +651,72 @@ safe('decision guide', function () {
   window.__guidePick = pick; // used by the automated combination checks
   run();
 });
+
+/* ---------- how citations are produced: four methods on one sentence ---------- */
+safe('citation methods', function () {
+  const s = document.getElementById('cite-mech'); if (!s) return;
+  const S = 'Spain won Euro 2024, beating England 2-1 in the final in Berlin.';
+  const k = t => `<span class="str">"${t}"</span>`;
+  const M = [
+    { label: 'Numbered markers', answer: `${S}<sup>[web:1]</sup>`,
+      code: `<span class="c">// Perplexity Agent API (abridged)</span>\n{ ${k('type')}: ${k('output_text')},\n  ${k('text')}: "Spain won Euro 2024 … in Berlin. [web:1]",\n  ${k('annotations')}: [] }\n\n{ ${k('type')}: ${k('search_results')},\n  ${k('results')}: [{ ${k('id')}: <span class="num">1</span>,\n    ${k('url')}: "https://www.uefa.com/euro2024/…",\n    ${k('snippet')}: "Spain are European champions…" }] }`,
+      who: 'Perplexity, Tavily, You.com, and most open-source research agents.',
+      ok: 'Nothing beyond the text. The marker is written by the model like any other word.',
+      bad: 'A marker for a result that does not exist, or a real result attached to the wrong sentence. Perplexity\'s own prompt asks the model not to "invent source numbers".' },
+    { label: 'Quoted pointers', answer: `<mark>${S}</mark>`,
+      code: `<span class="c">// Anthropic Messages API, web search tool (abridged)</span>\n{ ${k('type')}: ${k('text')},\n  ${k('text')}: "${S}",\n  ${k('citations')}: [{\n    ${k('type')}: ${k('web_search_result_location')},\n    ${k('url')}: "https://www.uefa.com/euro2024/…",\n    ${k('title')}: "Spain beat England to win EURO 2024",\n    ${k('encrypted_index')}: "Eo8BCioIAhgBIiQy…",\n    ${k('cited_text')}: "Spain are European champions for a record\n      fourth time after … a 2-1 victory over England in Berlin…" }] }`,
+      who: 'Anthropic: documents, web search, web fetch and your own search results.',
+      ok: 'The model points at a location; the API copies the quote from the source. For documents, the pointer is guaranteed to be valid, so the quote always exists.',
+      bad: 'The quote may not support the sentence. Cannot be combined with a JSON schema (the API returns an error).' },
+    { label: 'Span and link', answer: `<mark>${S}</mark>`,
+      code: `<span class="c">// OpenAI Responses API, web search (abridged)</span>\n{ ${k('type')}: ${k('output_text')},\n  ${k('text')}: "Short answer: Spain won Euro 2024 …",\n  ${k('annotations')}: [{ ${k('type')}: ${k('url_citation')},\n    ${k('start_index')}: <span class="num">14</span>, ${k('end_index')}: <span class="num">78</span>,\n    ${k('url')}: "https://www.uefa.com/euro2024/…",\n    ${k('title')}: "Spain beat England to win EURO 2024" }] }\n\n<span class="c">// Gemini on Vertex AI: groundingSupports</span>\n{ ${k('segment')}: { ${k('startIndex')}: <span class="num">0</span>, ${k('endIndex')}: <span class="num">64</span> },\n  ${k('groundingChunkIndices')}: [<span class="num">0</span>], ${k('confidenceScores')}: [<span class="num">0.87</span>] }`,
+      who: 'OpenAI, Gemini, Parallel\'s chat endpoint and Bing grounding.',
+      ok: 'Each citation covers a precise span of the answer. Gemini on Vertex points by index into the chunks it retrieved.',
+      bad: 'No quote, so checking means fetching the page. OpenAI and Google do not document how the link is chosen or whether it must come from the pages retrieved.' },
+    { label: 'Evidence per field', answer: '<span class="mono" style="font-size:16px">{ "winner": "Spain", "score": "2-1", "venue": "Berlin" }</span>',
+      code: `<span class="c">// Parallel Task API: output.basis (abridged)</span>\n[{ ${k('field')}: ${k('venue')},\n   ${k('citations')}: [{ ${k('url')}: "https://www.uefa.com/euro2024/…",\n     ${k('excerpts')}: ["… a 2-1 victory over England in Berlin"] }],\n   ${k('reasoning')}: "The final was played at the Olympiastadion…",\n   ${k('confidence')}: ${k('high')} }]\n\n<span class="c">// Exa returns the same idea as output.grounding:</span>\n<span class="c">// field, citations, confidence</span>`,
+      who: 'Parallel (basis) and Exa (grounding), for structured research outputs.',
+      ok: 'Evidence sits beside your data, outside your schema, so your fields can be null when nothing is found. Confidence shows where to review.',
+      bad: 'Confidence rates the evidence, not the source. Parallel\'s own example shows a "high confidence" field whose first source is a Reddit thread.' },
+  ];
+  const tabs = document.getElementById('cm-tabs'), $ = id => document.getElementById(id);
+  const show = i => {
+    const m = M[i];
+    $('cm-answer').innerHTML = m.answer; $('cm-code').innerHTML = m.code;
+    $('cm-who').textContent = m.who; $('cm-ok').textContent = m.ok; $('cm-bad').textContent = m.bad;
+    set(String(i));
+  };
+  const set = radios(tabs, M.map((m, i) => [String(i), `${i + 1}. ${m.label}`]), '0', v => show(+v));
+  [1, 2, 3].forEach(n => s.insertAdjacentHTML('beforeend', `<i data-step="${n}"></i>`));
+  on('cite-mech', (sl, st) => show(Math.min(st, 3)));
+  show(0);
+});
+
+/* ---------- keeping citations across agents: plain text vs a source ledger ---------- */
+safe('citation hops', function () {
+  const s = document.getElementById('cite-hops'); if (!s) return;
+  const HOPS = ['Fetch', 'Summarise', 'Subagent report', 'Final report'];
+  const W = {
+    text: { label: 'Sources carried as text', hops: [
+      ['UEFA page fetched\n"… 2-1 victory over England\n in Berlin…"', 'A page arrives with its full text.'],
+      ['Summary, ~25% of the page\n<span class="lost">"2-1 victory … in Berlin"</span>\nSource: uefa.com', 'The exact passage is gone before anyone needs it.'],
+      ['"Spain won 2-1 [3]."\nSources: [3] uefa.com', 'The subagent numbers its own sources.'],
+      ['"Spain won 2-1 [7]."\n[7] <span class="lost">uefa.com</span> → wrong URL', 'The writer renumbers sources from several subagents; one shifts or drops.'],
+    ] },
+    ledger: { label: 'Sources carried in a ledger', hops: [
+      ['src_017  uefa.com  25 Oct\n<span class="keep">quote: "… 2-1 victory over\n England in Berlin…"</span>', 'Each page gets a stable ID, the URL, the date and the passage used.'],
+      ['Finding: Spain won 2-1\n<span class="keep">evidence: src_017 + quote</span>', 'Agents pass IDs and quotes, never just prose.'],
+      ['"Spain won 2-1"\n<span class="keep">→ src_017</span>', 'No renumbering: the ID is the same everywhere.'],
+      ['Citation added at the end\n<span class="keep">✓ page re-fetched, quote found</span>', 'A final check confirms the quote is still on the page.'],
+    ] },
+  };
+  const lanes = document.getElementById('ch-lanes');
+  let cur = 'text', step = 0;
+  function draw() {
+    lanes.innerHTML = W[cur].hops.map(([t, p], i) => `<div class="ch-hop ${i <= step ? 'on' : ''}"><span class="label">${i + 1} · ${HOPS[i]}</span><div class="tok">${t}</div><p>${p}</p></div>`).join('');
+  }
+  radios(document.getElementById('ch-tabs'), Object.entries(W).map(([k, v]) => [k, v.label]), cur, v => { cur = v; draw(); });
+  [1, 2, 3].forEach(n => s.insertAdjacentHTML('beforeend', `<i data-step="${n}"></i>`));
+  on('cite-hops', (sl, st) => { step = st; draw(); });
+  draw();
+});

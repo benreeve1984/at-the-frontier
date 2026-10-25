@@ -593,6 +593,116 @@ September, driven by heat pump installations…
   <aside class="notes"><p>Read the direction column first. Two weaknesses are improving quickly, on the labs' own measurements. Citations and completeness have independent measurements and show no clear improvement. Source judgement and calibration have no recent measurement at all, which is itself a finding.</p><p>Sources: DeepTRACE (arXiv 2509.04499); Perplexity WANDR (July 2026); Anthropic's Opus 5.5 post (October 2026); WideSearch (arXiv 2508.07999) and 2026 vendor results; LiveBrowseComp (arXiv 2605.28721); OpenAI deep research launch post; Anthropic multi-agent research post; Cloudflare (September 2026); BrowseComp paper; Anthropic and Gray Swan prompt-injection results. Research packs A, C and D.</p></aside>
 </section>
 
+
+<section class="slide" id="cite-mech" data-section="[03] How research tools work">
+  <span class="kicker">Citations · How they are made</span>
+  <h2>How research tools produce citations</h2>
+  <div class="cm-tabs" id="cm-tabs" role="radiogroup" aria-label="Citation method"></div>
+  <div class="cm">
+    <div>
+      <span class="label">The answer</span>
+      <div class="cm-answer" id="cm-answer"></div>
+      <span class="label" style="display:block; margin-top:14px">What the API returns</span>
+      <div class="code cm-code" id="cm-code"></div>
+    </div>
+    <div class="cm-side">
+      <div class="cm-row"><span class="label">Used by</span><div id="cm-who"></div></div>
+      <div class="cm-row"><span class="label" style="color:var(--green)">What is guaranteed</span><div id="cm-ok"></div></div>
+      <div class="cm-row"><span class="label" style="color:var(--red)">What can go wrong</span><div id="cm-bad"></div></div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:14px; font-size:16px">A citation shows that the model pointed at a source. It does not show that the source says what the sentence says.</div>
+  <aside class="notes" id="cm-notes"><p>Step through the four methods. They are listed from least to most constrained in how the pointer is made, and most products mix them. Field names are exactly as documented; values are abridged.</p><p>Only Anthropic documents that its pointers are always valid: the model emits a reference and the API copies the quoted text from the source, so a quote can never be invented. OpenAI and Google do not document whether their cited URLs must come from the pages actually retrieved. Perplexity relies on its prompt: "do not invent source numbers".</p><p>Research pack E, from each provider's API documentation, checked 25 October 2026.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] How research tools work">
+  <span class="kicker">Citations · By provider</span>
+  <h2>Citation formats by provider</h2>
+  <table class="t prov" style="margin-top:16px">
+    <tr><th>Provider and API</th><th>What comes back</th><th>Quote included?</th><th>Limited to retrieved sources?</th><th>Confidence</th></tr>
+    <tr><td>Anthropic (documents, web search)</td><td>A <span class="mono">citations</span> list on each claim, with the location in the source</td><td>Yes, extracted from the source</td><td><span class="vd ok">Yes</span> guaranteed for documents</td><td>None</td></tr>
+    <tr><td>OpenAI (web search, deep research)</td><td><span class="mono">url_citation</span>: character span in the answer, URL and title</td><td>No</td><td><span class="vd un">Not documented</span></td><td>None</td></tr>
+    <tr><td>Google Gemini (Interactions API)</td><td><span class="mono">url_citation</span>, the same shape as OpenAI</td><td>No</td><td><span class="vd un">Not documented</span></td><td>None</td></tr>
+    <tr><td>Google Gemini (Vertex AI)</td><td><span class="mono">groundingSupports</span>: answer segment linked by index to retrieved chunks</td><td>No</td><td><span class="vd ok">Yes</span> by index</td><td>0–1 per chunk, where returned</td></tr>
+    <tr><td>Perplexity (Agent API)</td><td><span class="mono">[n]</span> markers in the text and a separate list of search results</td><td>Snippet only</td><td><span class="vd no">No</span> prompt only</td><td>None</td></tr>
+    <tr><td>Parallel (Task API)</td><td><span class="mono">basis</span> for each field: sources, excerpts, reasoning</td><td>Yes, excerpts</td><td><span class="vd un">Not documented</span></td><td>High, medium or low</td></tr>
+    <tr><td>Exa (Deep Search, Agent)</td><td><span class="mono">grounding</span> for each field: sources and confidence</td><td>No</td><td><span class="vd un">Not documented</span></td><td>High, medium or low</td></tr>
+    <tr><td>Tavily, You.com research</td><td>Markers written into the text and a list of sources</td><td>You.com: snippets</td><td><span class="vd no">No</span></td><td>None</td></tr>
+    <tr><td>Microsoft Bing grounding</td><td>Annotations, plus the Bing query URL, which must be displayed</td><td>No</td><td><span class="vd un">Not documented</span></td><td>None</td></tr>
+  </table>
+  <div class="cols c2" style="margin-top:14px; gap:30px">
+    <div class="callout" style="font-size:15.5px">Where no quote is returned, checking a citation means fetching the page. OpenAI also lists every page consulted, so a cited URL that is not on that list is a warning sign.</div>
+    <div class="callout" style="font-size:15.5px">Precision and volume trade off. On DeepResearch Bench, Claude with search had the highest citation accuracy (94%). OpenAI and Gemini deep research scored 78–81% but made far more citations per task (41 and 111).</div>
+  </div>
+  <p class="src" style="margin-top:8px">Provider API documentation, checked 25 Oct 2026 (research pack E). OpenAI, Anthropic, Google and Microsoft all require citations to be shown when answers reach end users.</p>
+</section>
+
+<section class="slide" data-section="[03] How research tools work">
+  <span class="kicker">Citations · Structured outputs</span>
+  <h2>Citations in structured outputs</h2>
+  <div class="cols c55" style="margin-top:14px; gap:36px">
+    <div>
+      <span class="label" style="color:var(--red)">A required citation field</span>
+<div class="code" style="margin-top:6px; height:136px">{
+  <span class="str">"revenue_2025"</span>: { <span class="str">"type"</span>: <span class="str">"number"</span> },
+  <span class="str">"source_url"</span>:   { <span class="str">"type"</span>: <span class="str">"string"</span> },
+  <span class="str">"required"</span>: [<span class="str">"revenue_2025"</span>, <span class="str">"source_url"</span>]
+}  <span class="c">// no legal way to say "not found"</span></div>
+      <span class="label" style="color:var(--green); display:block; margin-top:14px">A field that can report its own status</span>
+<div class="code" style="margin-top:6px; height:240px">{
+  <span class="str">"revenue_2025"</span>: {
+    <span class="str">"value"</span>:  <span class="num">number</span> or <span class="num">null</span>,
+    <span class="str">"status"</span>: <span class="str">"found"</span> | <span class="str">"not_found"</span> | <span class="str">"cannot_verify"</span>,
+    <span class="str">"evidence"</span>: [{
+      <span class="str">"source_id"</span>: <span class="c">one of the IDs actually retrieved</span>,
+      <span class="str">"quote"</span>: <span class="c">exact text from that page</span>
+    }]  <span class="c">// no minimum number of items</span>
+  }
+}</div>
+    </div>
+    <div>
+      <div class="stat"><div class="big-num">40 / 40</div><span class="label">GPT-5.5 invented an answer every time a required field had no answer in the input, yet reported the data as missing 98% of the time in free text (PhantomFill, June 2026)</span></div>
+      <p style="font-size:15.5px; margin-top:6px">Required fields pushed invention to 100% in 10 of 13 models. An "insufficient evidence" option helped only the largest models. OpenAI's own documentation warns that schemas "can result in hallucinations".</p>
+      <h3 style="font-size:19px; margin:14px 0 6px">How providers handle it</h3>
+      <ul class="plain small">
+        <li><b>Anthropic</b> refuses citations combined with a JSON schema (error 400).</li>
+        <li><b>Parallel and Exa</b> return citations and confidence beside your schema, and advise nullable fields.</li>
+        <li><b>Gemini Deep Research</b> does not support structured outputs.</li>
+        <li><b>OpenAI</b> allows both; developers report citations disappearing when a schema is used.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:12px; font-size:16px">Keep citations out of the answer schema where the provider supplies them separately. Where they must be in it, allow "not found", limit source IDs to those retrieved, and check each quote against the page afterwards.</div>
+  <aside class="notes"><p>This confirms a common suspicion with measurements. A schema that demands a source gives the model no honest way out, so it writes one. PhantomFill found the invention concentrates in required enums and arrays with a minimum length, exactly where a disclaimer cannot fit.</p><p>Restricting source_id to an enum of retrieved IDs means the grammar itself cannot produce an unseen source. A valid ID is still not proof of support, which is why the quote check matters.</p><p>Sources: PhantomFill (arXiv 2607.20492); OpenAI structured outputs guide; Anthropic citations documentation; Parallel and Exa documentation; Gemini deep research documentation. Research pack E.</p></aside>
+</section>
+
+<section class="slide" id="cite-hops" data-section="[03] How research tools work">
+  <span class="kicker">Citations · Multiple agents and rounds</span>
+  <h2>Keeping citations across agents and rounds</h2>
+  <div class="ch-tabs" id="ch-tabs" role="radiogroup" aria-label="How sources are carried"></div>
+  <div class="ch-lanes" id="ch-lanes"></div>
+  <div class="cols c55" style="margin-top:16px; gap:36px">
+    <div>
+      <span class="label">What is measured</span>
+      <ul class="plain small">
+        <li>No published study measures how many citations are lost at each agent handover.</li>
+        <li>3–13% of URLs in deep research reports appear never to have existed; checking every URL cut broken links to under 1% (April 2026).</li>
+        <li>In WANDR, 58–87% of quoted excerpts did not support the whole claim.</li>
+      </ul>
+    </div>
+    <div>
+      <span class="label">Patterns that work</span>
+      <ul class="plain small">
+        <li><b>A ledger of sources with stable IDs.</b> Every page fetched gets an ID, the URL, the date and the exact passage used. Agents pass IDs, never renumber.</li>
+        <li><b>Quotes, not summaries.</b> A summary removes the text a later check needs.</li>
+        <li><b>Cite at the end, against the originals.</b> Anthropic's citation agent may only add citation tags; its output is rejected if the report text changes.</li>
+        <li><b>A final check.</b> Re-fetch each cited page and confirm the quote is on it.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><p>Step through both approaches. Most open-source research agents carry sources as plain text: a summariser cuts each page to about a quarter of its length, subagents write reports with their own numbering, and the writer renumbers again. Each step can drop or shift a citation. LangChain's open_deep_research prompt pleads: "It's really important not to lose any sources."</p><p>Anthropic's research system attaches citations only at the end, with a separate agent that reads the original documents. Anthropic's search_result blocks accept your own stable IDs and return them on each claim, which is a provider-native version of the ledger.</p><p>Sources: Anthropic engineering post and cookbook citation-agent prompt; LangChain open_deep_research prompts; arXiv 2604.03173 (URL fabrication); Perplexity WANDR. Research pack E.</p></aside>
+</section>
+
 <section class="slide" data-section="[03] How research tools work">
   <span class="kicker">Recent developments</span>
   <h2>Verification features in recent tools</h2>
@@ -709,6 +819,59 @@ September, driven by heat pump installations…
   <div class="callout" data-step="6" style="margin-top:20px">The tools around the model matter as much as the model. One agent scored 74% on BrowseComp in its maker's test and 38% in a rival's; one model scored 74.5% or 30.9% on GAIA depending on the harness.</div>
   <aside class="notes"><p>Always ask what a benchmark scores, and who ran it with which tools. Sources: research pack C.</p></aside>
 </section>
+
+<section class="slide" data-section="[05] Measurement">
+  <span class="kicker">05 · Checking research automatically</span>
+  <h2>SAFE: checking facts by searching</h2>
+  <figure style="margin-top:10px"><img class="shot" src="../assets/web-research/vendor/cite-safe-pipeline.png" alt="SAFE splits a response into facts, makes each self-contained, checks relevance, then rates each with Google Search" style="width:100%; max-height:330px; object-fit:contain"><figcaption>Search-Augmented Factuality Evaluator. Image: Wei et al., Google DeepMind, "Long-form factuality in large language models" (arXiv 2403.18802), 2024.</figcaption></figure>
+  <div class="cols c2" style="margin-top:16px; gap:40px">
+    <div class="cols c3" style="gap:14px">
+      <div class="stat"><div class="big-num">72%</div><span class="label">agreement with crowd workers on 16,011 facts</span></div>
+      <div class="stat"><div class="big-num">76%</div><span class="label">of 100 disagreements where SAFE was right (humans 19%)</span></div>
+      <div class="stat"><div class="big-num">$0.19</div><span class="label">per response, against $4 for crowd annotation</span></div>
+    </div>
+    <div>
+      <span class="label" style="color:var(--red)">Limits</span>
+      <ul class="plain small">
+        <li>Treats Google results as the truth, which is weak for law, medicine and topics where the web is wrong.</li>
+        <li>The human baseline was crowd workers checking one Wikipedia page, not expert fact-checkers.</li>
+        <li>It scores the facts present. It cannot see what is missing or judge the argument.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><p>SAFE uses a model to split a long answer into individual facts, rewrite each so it stands alone ("It opened" becomes "The Eiffel Tower opened"), drop facts irrelevant to the question, then search Google several times per fact and decide whether it is supported. It also introduced F1@K, which rewards answers for containing enough supported facts as well as for avoiding unsupported ones.</p><p>Its own figures include a case where it rated a subjective claim ("contributions have been significant") as supported because search results said so. Search can confirm what is popular, not what is true.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] Measurement">
+  <span class="kicker">05 · Checking research automatically</span>
+  <h2>Successors to SAFE and checks available today</h2>
+  <div class="cols c64" style="margin-top:16px; gap:36px">
+    <table class="t">
+      <tr><th>Method</th><th>What it adds</th></tr>
+      <tr><td>FActScore (2023)</td><td>The original: split into atomic facts, check each against Wikipedia</td></tr>
+      <tr><td>SAFE (2024)</td><td>The open web instead of Wikipedia; credit for completeness as well as accuracy</td></tr>
+      <tr><td>VeriScore (2024)</td><td>Checks only claims that can be verified, rather than opinions and advice</td></tr>
+      <tr><td>Core (2024)</td><td>Removes repetitive or obvious claims that inflate scores</td></tr>
+      <tr><td>VeriFastScore (2025)</td><td>One small model extracts and checks in a single pass, 6.6 times faster</td></tr>
+      <tr><td>FACTS Grounding (2024–25)</td><td>Is a long answer fully supported by a supplied document? Three judge models to reduce bias</td></tr>
+      <tr><td>DeepResearch Bench FACT (2025)</td><td>Fetches each cited page and judges whether it supports the statement</td></tr>
+      <tr><td>WANDR (2026)</td><td>Re-fetches every cited page, confirms the quoted excerpt is on it, and gives no partial credit</td></tr>
+    </table>
+    <div>
+      <span class="label">Built into the clouds</span>
+      <ul class="plain small">
+        <li><b>Google Vertex AI</b> check grounding: a support score for each claim in an answer.</li>
+        <li><b>Azure</b> groundedness detection: flags, and can rewrite, unsupported text.</li>
+        <li><b>AWS Bedrock</b> contextual grounding check, in Guardrails.</li>
+      </ul>
+      <p style="font-size:15px; margin-top:8px">All three check against sources you supply. No vendor sells a SAFE-style check against the open web.</p>
+      <div class="callout warn" style="margin-top:12px; font-size:15.5px">None of these can judge omissions, source quality or the reasoning that joins correct facts. Automated checks reduce the review effort; they do not replace the reviewer.</div>
+    </div>
+  </div>
+  <p class="src" style="margin-top:10px">Papers: arXiv 2305.14251, 2403.18802, 2406.19276, 2407.03572, 2505.16973, 2501.03200, 2506.11763; Perplexity WANDR; vendor documentation. Research pack E.</p>
+  <aside class="notes"><p>For client work, a practical check combines the cheapest steps: confirm each cited URL loads, confirm the quoted text is on the page, then run a model check of whether the quote supports the sentence. A sample of reports should still be read by a person, because none of these tools sees what is missing.</p></aside>
+</section>
+
 
 <section class="slide" data-section="[05] Measurement">
   <span class="kicker">05 · The main benchmarks</span>
@@ -923,7 +1086,7 @@ September, driven by heat pump installations…
     <div class="rise" style="--i:0"><span class="label">Step 1</span><h3>Collect real questions</h3><p>30–50 questions from recent work, including the hardest 10%, some list tasks and some that depend on recent events.</p></div>
     <div class="rise" style="--i:1"><span class="label">Step 2</span><h3>Write answer keys</h3><p>For facts, the answer and its source. For lists, the complete list. For reports, a checklist of points an expert would include.</p></div>
     <div class="rise" style="--i:2"><span class="label">Step 3</span><h3>Test three options</h3><p>A cheap baseline (search API and a small model), the default pick, and a premium option. Same questions and settings for all.</p></div>
-    <div class="rise" style="--i:3"><span class="label">Step 4</span><h3>Measure</h3><p>Correct answers, items missed, a sample of citations checked against their sources, cost per answer, time, and how often two runs disagree.</p></div>
+    <div class="rise" style="--i:3"><span class="label">Step 4</span><h3>Measure</h3><p>Correct answers, items missed, citations checked against their sources (re-fetch the page and confirm the quote), cost per answer, time, and how often two runs disagree.</p></div>
     <div class="rise" style="--i:4"><span class="label">Step 5</span><h3>Check where data goes</h3><p>Where queries are processed, what is logged and for how long, and whether results may be stored. Confirm with the client.</p></div>
     <div class="rise" style="--i:5"><span class="label">Step 6</span><h3>Date and repeat</h3><p>The web changes, so record when each answer was found. Re-run every quarter: prices and models change every few months.</p></div>
   </div>
@@ -944,6 +1107,7 @@ September, driven by heat pump installations…
         <li><a href="https://arxiv.org/abs/2512.08296" target="_blank">Towards a science of scaling agent systems</a></li>
         <li><a href="https://arxiv.org/abs/2507.02592" target="_blank">WebSailor</a> · <a href="https://arxiv.org/abs/2510.24701" target="_blank">Tongyi DeepResearch</a></li>
         <li><a href="https://www.anthropic.com/engineering/eval-awareness-browsecomp" target="_blank">Anthropic: eval awareness on BrowseComp</a></li>
+        <li><a href="https://arxiv.org/abs/2403.18802" target="_blank">SAFE: long-form factuality</a> · <a href="https://arxiv.org/abs/2607.20492" target="_blank">PhantomFill</a></li>
       </ul>
     </div>
     <div>
@@ -968,6 +1132,7 @@ September, driven by heat pump installations…
         <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/B-players-pricing.md" target="_blank">Research B: players and prices</a></li>
         <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/C-benchmarks.md" target="_blank">Research C: benchmarks</a></li>
         <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/D-deep-research.md" target="_blank">Research D: deep research and RL</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/E-citations.md" target="_blank">Research E: citations and checking</a></li>
       </ul>
     </div>
   </div>
