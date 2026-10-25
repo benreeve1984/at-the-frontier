@@ -70,7 +70,7 @@
     <div class="rise" style="--i:1"><span class="label">02</span><h3>How the web works</h3><p>Search engines, what a web page is made of, and how sites control bots.</p></div>
     <div class="rise" style="--i:2"><span class="label">03</span><h3>How research tools work</h3><p>Search APIs, grounded answers, deep research agents and browser agents.</p></div>
     <div class="rise" style="--i:3"><span class="label">04</span><h3>Who the players are</h3><p>The main options, what they cost, and where they can run.</p></div>
-    <div class="rise" style="--i:4"><span class="label">05</span><h3>How they are measured</h3><p>The main benchmarks, whether models now beat people, and where the frontier is.</p></div>
+    <div class="rise" style="--i:4"><span class="label">05</span><h3>How they are measured</h3><p>The main benchmarks, model and human performance, and where the frontier is.</p></div>
     <div class="rise" style="--i:5"><span class="label">06</span><h3>What to recommend</h3><p>A decision guide, default picks, and how to test on a client's own questions.</p></div>
   </div>
 </section>
@@ -110,8 +110,8 @@
 
 <!-- ================= 01 HISTORY ================= -->
 <section class="slide" id="timeline" data-section="[01] How we got here">
-  <span class="kicker">01 · How we got here</span>
-  <h2>Web search and research, 1994–2026</h2>
+  <span class="kicker">01 · How we got here · 1994–2026</span>
+  <h2>Development of web search and research</h2>
   <div class="eras">
     <div class="era" data-step="1" style="--c:var(--ink-3)">
       <div class="era-h"><span class="label">1994–2005</span><b>Keywords and links</b></div>
@@ -165,8 +165,8 @@
 </section>
 
 <section class="slide" id="indexes" data-section="[02] How the web works">
-  <span class="kicker">02 · Who owns the data</span>
-  <h2>Who owns a web index</h2>
+  <span class="kicker">02 · Search indexes</span>
+  <h2>Owners of web search indexes</h2>
   <div class="cols c64" style="margin-top:16px; gap:36px">
     <div class="scroller" style="height:640px">
     <table class="t">
@@ -184,7 +184,7 @@
     </table>
     </div>
     <div>
-      <h3 style="margin-bottom:12px">Everyone else resells or scrapes</h3>
+      <h3 style="margin-bottom:12px">Other providers resell or scrape</h3>
       <ul class="plain small">
         <li><b>Scrapers</b> such as SerpApi, Bright Data and DataForSEO collect Google's and Bing's results pages through proxy networks.</li>
         <li><b>Many AI search APIs</b> mix their own crawling with other indexes. Most do not say which.</li>
@@ -200,7 +200,7 @@
 
 <section class="slide" id="anatomy" data-section="[02] How the web works">
   <span class="kicker">02 · What a web page is made of</span>
-  <h2>One page, five representations</h2>
+  <h2>Representations of a web page</h2>
   <div class="anat">
     <div class="browser" id="anat-browser">
       <div class="bar"><i></i><i></i><i></i><span class="url">northwind-energy.example/news/q3-2026-results</span></div>
@@ -231,7 +231,7 @@
 
 <section class="slide" id="fetch" data-section="[02] How the web works">
   <span class="kicker">02 · What a web page is made of</span>
-  <h2>Why some pages need a browser</h2>
+  <h2>Pages that require a browser</h2>
   <div class="fetch">
     <div><span class="label">What a simple fetch receives</span>
 <div class="code" style="margin-top:8px"><span class="c">$ curl https://app.example.com/pricing</span>
@@ -257,7 +257,7 @@
 
 <section class="slide" id="bots" data-section="[02] How the web works">
   <span class="kicker">02 · Bot controls</span>
-  <h2>How a site decides whether to serve a bot</h2>
+  <h2>How sites detect and control bots</h2>
   <div class="bots-who" id="bots-who" role="radiogroup" aria-label="Visitor"><span class="label">Visitor</span></div>
   <div class="bots-pol" id="bots-pol" role="radiogroup" aria-label="Site policy for AI crawlers"><span class="label">Site's setting for AI crawlers</span></div>
   <div class="layers" id="bots-layers"></div>
@@ -268,7 +268,7 @@
 
 <section class="slide" id="crawl-economics" data-section="[02] How the web works">
   <span class="kicker">02 · Bot controls</span>
-  <h2>Why sites now block AI crawlers</h2>
+  <h2>Site responses to AI crawlers</h2>
   <div class="cols c55" style="margin-top:14px; gap:44px">
     <div>
       <span class="label">Pages crawled for each visit sent back to the site, July 2025</span>
@@ -313,7 +313,7 @@
 
 <section class="slide" id="api-returns" data-section="[03] How research tools work">
   <span class="kicker">Family 1 · Search APIs</span>
-  <h2>What a search API returns</h2>
+  <h2>Search API response formats</h2>
   <div class="shapes">
     <div><span class="label">Links and snippets</span><div class="code">{
   <span class="str">"title"</span>: "Northwind Energy reports Q3 results",
@@ -414,7 +414,7 @@ September, driven by heat pump installations…
 
 <section class="slide" id="parallel" data-section="[03] How research tools work">
   <span class="kicker">Family 3 · Deep research agents</span>
-  <h2>One agent in sequence, or many in parallel</h2>
+  <h2>Sequential and parallel research agents</h2>
   <div class="par-tabs" id="par-tabs" role="radiogroup" aria-label="Task type"><span class="label">Task</span></div>
   <p class="par-task" id="par-task"></p>
   <div class="par-rows" id="par-rows"></div>
@@ -424,8 +424,8 @@ September, driven by heat pump installations…
 
 
 <section class="slide" id="og-dr" data-section="[03] How research tools work">
-  <span class="kicker">Family 3 · Testing an explanation</span>
-  <h2>Why OpenAI's deep research led in early 2025</h2>
+  <span class="kicker">Family 3 · Deep research agents</span>
+  <h2>Reasons for OpenAI's early lead in deep research</h2>
   <div class="cols c55" style="margin-top:10px; gap:40px">
     <div>
       <div class="hyp">"OpenAI's was a single thread that could change course. Google's and others' split the work into parallel searches, which suited lists of independent facts but not a task with a set method."</div>
@@ -449,11 +449,11 @@ September, driven by heat pump installations…
 
 <section class="slide" id="two-parallels" data-section="[03] How research tools work">
   <span class="kicker">Family 3 · Deep research agents</span>
-  <h2>Two kinds of parallel work</h2>
+  <h2>Two forms of parallel work</h2>
   <div class="cols c2" style="margin-top:16px; gap:40px">
     <div class="card par-card">
-      <span class="label">Split one task into pieces</span>
-      <h3>Separate agents take separate parts</h3>
+      <span class="label">Form 1</span>
+      <h3>Splitting one task across agents</h3>
       <div class="pc-img"><img class="shot" src="../assets/web-research/vendor/dr-cognition-parallel-subagents-conflict.png" alt="Diagram titled Almost Surely Unreliable: a task split between two subagents and recombined"></div>
       <p class="src">Image: Cognition, "Don't Build Multi-Agents", June 2025.</p>
       <ul class="plain small">
@@ -462,8 +462,8 @@ September, driven by heat pump installations…
       </ul>
     </div>
     <div class="card par-card">
-      <span class="label">Run the whole task several times</span>
-      <h3>Independent full attempts, then pick the best</h3>
+      <span class="label">Form 2</span>
+      <h3>Repeating the whole task in parallel</h3>
       <div class="pc-img"><img class="shot" src="../assets/web-research/vendor/dr-browsecomp-parallel-sampling-voting.png" alt="BrowseComp accuracy of deep research rising from 52% with one attempt to 78% with 64"></div>
       <p class="src">OpenAI deep research on BrowseComp, 1 to 64 attempts. Image: Wei et al., OpenAI, arXiv 2504.12516.</p>
       <ul class="plain small">
@@ -478,7 +478,7 @@ September, driven by heat pump installations…
 
 <section class="slide" data-section="[03] How research tools work">
   <span class="kicker">Family 3 · Deep research agents</span>
-  <h2>Which design suits which task</h2>
+  <h2>Agent design by type of task</h2>
   <table class="t" style="margin-top:22px">
     <tr><th>Task shape</th><th>Example</th><th>Better design</th><th>Evidence</th></tr>
     <tr><td>Each step depends on the last</td><td>Find the anomaly, explain it, then test the explanation</td><td>One agent, step by step</td><td>Every multi-agent setup lost 39–70% on a sequential planning task (Google Research, Dec 2025)</td></tr>
@@ -494,7 +494,7 @@ September, driven by heat pump installations…
 
 <section class="slide" data-section="[03] How research tools work">
   <span class="kicker">Family 3 · Deep research agents</span>
-  <h2>How the main research agents are built</h2>
+  <h2>Design of the main research agents</h2>
   <table class="t compare" style="margin-top:20px">
     <tr><th></th><th>OpenAI deep research</th><th>Gemini Deep Research</th><th>Claude Research</th><th>Open models (Kimi, Tongyi)</th></tr>
     <tr><td>Launched</td><td>Feb 2025</td><td>Dec 2024</td><td>Apr 2025</td><td>Jun–Sep 2025</td></tr>
@@ -510,8 +510,8 @@ September, driven by heat pump installations…
 </section>
 
 <section class="slide" id="training" data-section="[03] How research tools work">
-  <span class="kicker">Family 3 · How they are trained</span>
-  <h2>How labs train models to search</h2>
+  <span class="kicker">Family 3 · Training</span>
+  <h2>How search models are trained</h2>
   <div class="cols c55" style="margin-top:18px; gap:44px">
     <div class="pipe-steps walk">
       <div class="on cur" data-n="01"><b>Start from an obscure fact</b><span>Pick a little-known entity, for example from Wikidata.</span></div>
@@ -533,7 +533,7 @@ September, driven by heat pump installations…
 
 <section class="slide" data-section="[03] How research tools work">
   <span class="kicker">Family 4 · Browser agents</span>
-  <h2>How browser agents see a page</h2>
+  <h2>How browser agents read a page</h2>
   <figure><img class="shot" src="../assets/web-research/vendor/webarena-observation-screenshot-dom-axtree.png" alt="The same web page as a screenshot, HTML DOM and accessibility tree" style="width:100%; max-height:240px; object-fit:contain"><figcaption>One page as a screenshot, the HTML DOM and the accessibility tree. Image: Zhou et al., WebArena (arXiv 2307.13854).</figcaption></figure>
   <div class="cols c55" style="margin-top:18px; gap:40px">
     <table class="t">
@@ -593,7 +593,7 @@ September, driven by heat pump installations…
 
 <section class="slide" data-section="[03] How research tools work">
   <span class="kicker">Recent developments</span>
-  <h2>Features that make research checkable</h2>
+  <h2>Verification features in recent tools</h2>
   <div class="cols c2" style="margin-top:24px; gap:48px">
     <ul class="plain">
       <li data-step="1"><b>The supporting passage for each claim.</b> Claude's search tool returns the cited text with each citation; Parallel's Task API returns a source, reasoning and confidence for each field.</li>
@@ -677,13 +677,13 @@ September, driven by heat pump installations…
 
 <section class="slide" data-section="[04] Players">
   <span class="kicker">04 · By client cloud</span>
-  <h2>Web search that stays inside a client's cloud</h2>
+  <h2>Options by cloud provider</h2>
   <div class="cols c3" style="margin-top:26px; gap:22px">
-    <div class="card cloudcol rise" style="--i:0"><span class="label">Amazon Web Services</span><h3>Possible</h3>
+    <div class="card cloudcol rise" style="--i:0"><span class="label">Amazon Web Services</span><h3>AWS clients</h3>
       <ul class="plain small"><li><b>AgentCore Web Search</b>, $7 per 1,000, Amazon's own index, usable with any model. AWS says queries stay in AWS.</li><li><b>Nova Web Grounding</b>, $30 per 1,000, Nova models only, US regions.</li><li><b>AgentCore Browser</b> for browser agents, inside AWS.</li><li>Claude on Bedrock has no Anthropic web search tool: pair it with AgentCore Web Search.</li></ul></div>
-    <div class="card cloudcol rise" style="--i:1"><span class="label">Google Cloud</span><h3>Possible, with Gemini</h3>
+    <div class="card cloudcol rise" style="--i:1"><span class="label">Google Cloud</span><h3>Google Cloud clients</h3>
       <ul class="plain small"><li><b>Web Grounding for Enterprise</b> on Vertex: no customer data logged, VPC Service Controls supported, $14 per 1,000. Gemini models only.</li><li>Standard Google Search grounding runs on Google's infrastructure but processes globally and keeps logs for up to 3 days.</li><li>Grounding with Parallel or Exa through Vertex sends queries to those companies.</li></ul></div>
-    <div class="card cloudcol rise" style="--i:2"><span class="label">Microsoft Azure</span><h3>Not possible today</h3>
+    <div class="card cloudcol rise" style="--i:2"><span class="label">Microsoft Azure</span><h3>Azure clients</h3>
       <ul class="plain small"><li>Every Microsoft web search route, including the Azure OpenAI web search tool and Foundry's deep research tool, goes through <b>Grounding with Bing</b>, which sends data outside the Azure compliance boundary.</li><li>Browsers can stay in Azure (Playwright Workspaces, Foundry Browser Automation), but fetching pages still means contacting the open web.</li></ul></div>
   </div>
   <div class="callout" style="margin-top:22px">Any setup can run open-source agents and crawlers in the client's own account. The search API it calls still decides where the queries go. Whether a query is confidential is a question for the client: a list of searches can reveal a deal before it is announced.</div>
@@ -733,8 +733,8 @@ September, driven by heat pump installations…
 </section>
 
 <section class="slide" id="bc-built" data-section="[05] Measurement">
-  <span class="kicker">05 · Are models now better than people?</span>
-  <h2>How BrowseComp works</h2>
+  <span class="kicker">05 · Models and human performance</span>
+  <h2>The BrowseComp benchmark</h2>
   <div class="cols c55" style="margin-top:20px; gap:44px">
     <div>
       <ul class="plain">
@@ -757,7 +757,7 @@ September, driven by heat pump installations…
 </section>
 
 <section class="slide" id="bc-progress" data-section="[05] Measurement">
-  <span class="kicker">05 · Are models now better than people?</span>
+  <span class="kicker">05 · Models and human performance</span>
   <h2>BrowseComp scores, April 2025 to October 2026</h2>
   <div class="cols c64" style="margin-top:6px; gap:34px">
     <div id="bc-chart"></div>
@@ -771,18 +771,18 @@ September, driven by heat pump installations…
 </section>
 
 <section class="slide" id="superhuman" data-section="[05] Measurement">
-  <span class="kicker">05 · Are models now better than people?</span>
-  <h2>Has training on hard search made models superhuman?</h2>
+  <span class="kicker">05 · Models and human performance</span>
+  <h2>Model and human performance in web research</h2>
   <div class="cols c2" style="margin-top:16px; gap:40px">
     <div>
-      <span class="label" style="color:var(--green)">Yes, at finding one hard fact</span>
+      <span class="label" style="color:var(--green)">Where models outperform people</span>
       <ul class="plain small">
         <li>90–94% on BrowseComp against 29% for human trainers given two hours each.</li>
         <li>Questions that look like BrowseComp are now generated automatically and used for reinforcement learning, so the skill is trained directly.</li>
         <li>Humanity's Last Exam with tools rose from 27% (Feb 2025) to 68% (Oct 2026).</li>
         <li><b>Caveat:</b> with no tools at all, models answer 24–45% of BrowseComp from memory, so part of the score is recall.</li>
       </ul>
-      <span class="label" style="color:var(--red); display:block; margin-top:16px">No, at research as a job</span>
+      <span class="label" style="color:var(--red); display:block; margin-top:16px">Where models fall short</span>
       <ul class="plain small">
         <li><b>Completeness.</b> WideSearch: the best agent filled 5% of tables completely; one person managed 20%.</li>
         <li><b>Citations.</b> 40–80% of claims supported by the source cited (DeepTRACE).</li>
@@ -832,9 +832,9 @@ September, driven by heat pump installations…
   <span class="kicker">05 · How we built the charts</span>
   <h2>Method for the frontier charts</h2>
   <div class="cols c3" style="margin-top:30px; gap:22px">
-    <div class="card fam rise" style="--i:0"><span class="label">Question 1</span><h3>Which search API?</h3><p>The same agent and model, with only the search provider changed.</p><div class="eg">Artificial Analysis Search Index<br>Cross-check: two Openbenchmarks boards</div><span class="tag blue"><i></i>Independent</span></div>
-    <div class="card fam rise" style="--i:1"><span class="label">Question 2</span><h3>Which model, given search?</h3><p>Many models with the same search tool and the same questions.</p><div class="eg">Parallel Search Capability Leaderboard<br>Cross-check: FutureSearch DRB</div><span class="tag"><i></i>Vendor-run, model-neutral</span></div>
-    <div class="card fam rise" style="--i:2"><span class="label">Question 3</span><h3>What do the last few points cost?</h3><p>BrowseComp score against cost per task, at each effort setting and number of agents.</p><div class="eg">OpenAI's model pages<br>Anthropic's Opus 5 system card</div><span class="tag"><i></i>Each lab's own figures</span></div>
+    <div class="card fam rise" style="--i:0"><span class="label">Question 1</span><h3>Choice of search API</h3><p>The same agent and model, with only the search provider changed.</p><div class="eg">Artificial Analysis Search Index<br>Cross-check: two Openbenchmarks boards</div><span class="tag blue"><i></i>Independent</span></div>
+    <div class="card fam rise" style="--i:1"><span class="label">Question 2</span><h3>Choice of model</h3><p>Many models with the same search tool and the same questions.</p><div class="eg">Parallel Search Capability Leaderboard<br>Cross-check: FutureSearch DRB</div><span class="tag"><i></i>Vendor-run, model-neutral</span></div>
+    <div class="card fam rise" style="--i:2"><span class="label">Question 3</span><h3>Cost of the highest scores</h3><p>BrowseComp score against cost per task, at each effort setting and number of agents.</p><div class="eg">OpenAI's model pages<br>Anthropic's Opus 5 system card</div><span class="tag"><i></i>Each lab's own figures</span></div>
   </div>
   <ul class="plain small" style="margin-top:26px; columns:2; column-gap:44px">
     <li><b>One board per view.</b> Unlike last week, we do not blend benchmarks. The boards measure different things and define cost differently. Switch views to cross-check.</li>
@@ -862,7 +862,7 @@ September, driven by heat pump installations…
 
 <section class="slide" id="pf-browsecomp" data-section="[05] The frontier">
   <span class="kicker">05 · Where the frontier is</span>
-  <h2>Frontier: the cost of the last points on BrowseComp</h2>
+  <h2>Frontier: BrowseComp cost per task</h2>
   <div class="pf-tabs"></div>
   <div class="pf-chart" id="pf-browsecomp-chart"></div>
   <aside class="notes"><p>Each lab's own figures, in separate views because OpenAI estimates cost at list price and Anthropic reports billed cost. Within OpenAI's figures, going from 84% to 93% costs about 15 times more per task. Within Anthropic's, going from 84% to 94% costs about 24 times more, mostly by running teams of agents. Purple points use several agents in parallel.</p></aside>
