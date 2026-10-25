@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Search and Research · At The Frontier</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 22 22%27%3E%3Cpath d=%27M2 20 C 6 9, 11 5, 20 3%27 fill=%27none%27 stroke=%27%231a2fd0%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%272%27 cy=%2720%27 r=%272.2%27 fill=%27%231a2fd0%27/%3E%3Ccircle cx=%2720%27 cy=%273%27 r=%272.2%27 fill=%27%231a2fd0%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..500&family=Manrope:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/deck.css">
+<link rel="stylesheet" href="demos.css">
+</head>
+<body class="deck" data-title="Web search and research" data-home="../">
+<main class="stage">
+
+<!-- ================= INTRO ================= -->
+<section class="slide" id="title" data-section="Introduction" data-nochrome>
+  <a class="home-link" href="../">← At The Frontier · all sessions</a>
+  <div class="title-wrap">
+    <div>
+      <span class="kicker rise" style="--i:0">At The Frontier · Session 02</span>
+      <h1 class="rise" style="--i:1">Web search<br>and research</h1>
+      <p class="lede rise" style="--i:2; margin-top:26px">How search engines, websites and research agents work, what they cost, and how to choose between them.</p>
+      <div class="meta-row rise" style="--i:3">
+        <div><span class="label">For</span><div class="v">The DNA team</div></div>
+        <div><span class="label">Snapshot</span><div class="v">25 October 2026</div></div>
+      </div>
+      <p class="label rise" style="--i:4; margin-top:40px">Press → to start · O for overview · N for notes</p>
+    </div>
+    <div class="rise title-visual" style="--i:2; position:relative">
+      <div class="trace-card" id="title-trace">
+        <div class="th"><span>Research trace</span><span>Illustrative</span></div>
+      </div>
+      <div class="trace-meta">
+        <div class="ih"><span>This task</span><span>So far</span></div>
+        <div class="row">Searches<span id="tm-s">0</span></div>
+        <div class="row">Pages read<span id="tm-p">0</span></div>
+        <div class="row">Changes of plan<span id="tm-c">0</span></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes"><p>Second session in the series. Last week was getting content out of documents. This week is getting information off the web: search engines, what websites are made of, how sites control bots, and how research agents have developed, including why the first deep research products differed so much.</p></aside>
+</section>
+
+<section class="slide" data-section="Introduction">
+  <span class="kicker">The question</span>
+  <h2>"Can AI research this for us?"</h2>
+  <p class="lede">Clients ask this about market sizing, competitor scans, supplier checks and literature reviews. The answer depends on the following factors.</p>
+  <div class="factors">
+    <div class="card factor rise" style="--i:0"><div class="q">What kind of question?</div><div class="a">A single fact, a hard-to-find fact, a long list of similar facts, or a written report. Each needs a different tool.</div></div>
+    <div class="card factor rise" style="--i:1"><div class="q">How many?</div><div class="a">One report a week can use a premium agent. 100,000 company lookups need a cheap search API and a fixed process.</div></div>
+    <div class="card factor rise" style="--i:2"><div class="q">Which sources?</div><div class="a">The open web, paywalled databases, or the client's own files. A tool can only use what it can reach.</div></div>
+    <div class="card factor rise" style="--i:3"><div class="q">How current?</div><div class="a">Search indexes are hours to weeks behind. Some questions need the page as it is today.</div></div>
+    <div class="card factor rise" style="--i:4"><div class="q">How checkable?</div><div class="a">Does every claim need a link to the passage that supports it? Will someone need to repeat the work later?</div></div>
+    <div class="card factor rise" style="--i:5"><div class="q">Who sets the method?</div><div class="a">Can the tool choose its own approach, or must the work follow a methodology the team has agreed?</div></div>
+    <div class="card factor rise" style="--i:6"><div class="q">Where can the queries go?</div><div class="a">A search query reveals what the client is working on. Many clients require queries to stay in their own cloud or with approved providers.</div></div>
+    <div class="card factor rise" style="--i:7"><div class="q">Budget and speed?</div><div class="a">From a fraction of a cent and one second per search, to several dollars and half an hour per research task.</div></div>
+    <div class="card factor rise" style="--i:8"><div class="q">Read or act?</div><div class="a">Reading pages is one task. Logging in, filling in forms and clicking through a site is another, and much less reliable.</div></div>
+  </div>
+  <aside class="notes"><p>Ask the room which of these they have hit recently. The "where can the queries go" factor surprises people: a list of searches about a target company can itself be confidential.</p></aside>
+</section>
+
+<section class="slide" data-section="Introduction">
+  <span class="kicker">Introduction</span>
+  <h2>Agenda</h2>
+  <div class="agenda">
+    <div class="rise" style="--i:0"><span class="label">01</span><h3>How we got here</h3><p>From the first crawlers to research agents that work for half an hour.</p></div>
+    <div class="rise" style="--i:1"><span class="label">02</span><h3>How the web works</h3><p>Search engines, what a web page is made of, and how sites control bots.</p></div>
+    <div class="rise" style="--i:2"><span class="label">03</span><h3>How research tools work</h3><p>Search APIs, grounded answers, deep research agents and browser agents.</p></div>
+    <div class="rise" style="--i:3"><span class="label">04</span><h3>Who the players are</h3><p>The main options, what they cost, and where they can run.</p></div>
+    <div class="rise" style="--i:4"><span class="label">05</span><h3>How they are measured</h3><p>The main benchmarks, whether models now beat people, and where the frontier is.</p></div>
+    <div class="rise" style="--i:5"><span class="label">06</span><h3>What to recommend</h3><p>A decision guide, default picks, and how to test on a client's own questions.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-section="Introduction">
+  <span class="kicker">A framework for comparison</span>
+  <h2>Three questions for comparing tools</h2>
+  <div class="cols c3" style="margin-top:44px">
+    <div class="card q3 rise" style="--i:0">
+      <span class="label">Question 1</span><h3>Where do the results come from?</h3>
+      <ul class="plain small">
+        <li>A search engine's own index of the web</li>
+        <li>An index bought from, or scraped from, another company</li>
+        <li>Pages fetched live, or a browser operated in real time</li>
+      </ul>
+    </div>
+    <div class="card q3 rise" style="--i:1">
+      <span class="label">Question 2</span><h3>Who decides what to search next?</h3>
+      <ul class="plain small">
+        <li>Fixed code: one search, then an answer</li>
+        <li>A prompted workflow: plan, search in parallel, then write</li>
+        <li>A model trained to search, read and change course</li>
+      </ul>
+    </div>
+    <div class="card q3 rise" style="--i:2">
+      <span class="label">Question 3</span><h3>What can you check afterwards?</h3>
+      <ul class="plain small">
+        <li>A list of links at the end of the answer</li>
+        <li>A citation for each claim, with the supporting passage</li>
+        <li>The full record of every search made and page read</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout rise" style="--i:3; margin-top:30px">Newer tools search more deeply and adapt better, but they cost more, take longer and are harder to repeat. The better tools now return the evidence for each claim.</div>
+  <aside class="notes"><p>Same structure as last week. Question 2 is the one that explains most of the difference between the deep research products, and we will spend some time on it.</p></aside>
+</section>
+
+<!-- ================= 01 HISTORY ================= -->
+<section class="slide" id="timeline" data-section="[01] How we got here">
+  <span class="kicker">01 · How we got here</span>
+  <h2>Web search and research, 1994–2026</h2>
+  <div class="eras">
+    <div class="era" data-step="1" style="--c:var(--ink-3)">
+      <div class="era-h"><span class="label">1994–2005</span><b>Keywords and links</b></div>
+      <ul><li><em>1994</em>The BM25 ranking formula, still the standard keyword baseline.</li><li><em>1998</em>Google's PageRank: a page matters if important pages link to it.</li><li><em>2005</em>Learning to rank: models combine hundreds of signals into one score.</li></ul>
+    </div>
+    <div class="era" data-step="2" style="--c:var(--teal)">
+      <div class="era-h"><span class="label">2019–2022</span><b>Neural ranking</b></div>
+      <ul><li><em>Oct 2019</em>Google adds BERT to Search, affecting one in ten US English searches.</li><li><em>Apr 2020</em>Dense retrieval: find pages by meaning, with no shared words.</li><li><em>Sep 2022</em>robots.txt becomes a formal standard (RFC 9309). It is still voluntary.</li></ul>
+    </div>
+    <div class="era" data-step="3" style="--c:var(--purple)">
+      <div class="era-h"><span class="label">2021–2023</span><b>Models start to search</b></div>
+      <ul><li><em>Dec 2021</em>OpenAI's WebGPT browses a text version of the web and cites sources.</li><li><em>Dec 2022</em>Perplexity launches an answer engine.</li><li><em>Feb 2023</em>Microsoft launches Bing Chat.</li></ul>
+    </div>
+    <div class="era" data-step="4" style="--c:var(--blue)">
+      <div class="era-h"><span class="label">2024–2025</span><b>Agents and deep research</b></div>
+      <ul><li><em>May 2024</em>Google AI Overviews. <em style="display:inline">Oct</em> Claude computer use.</li><li><em>Dec 2024 – Feb 2025</em>Gemini Deep Research, then OpenAI deep research.</li><li><em>Jul 2025</em>ChatGPT agent. Cloudflare blocks AI crawlers by default and offers pay per crawl.</li><li><em>Aug 2025</em>Microsoft switches off the Bing Search APIs.</li></ul>
+    </div>
+    <div class="era" data-step="5" style="--c:var(--orange)">
+      <div class="era-h"><span class="label">2026</span><b>Browsers, APIs and terms</b></div>
+      <ul><li><em>Jan–Aug</em>Gemini browses in Chrome. Claude in Chrome becomes generally available. OpenAI shuts the Atlas browser and folds it into ChatGPT.</li><li><em>Apr</em>Gemini Deep Research Max in the Gemini API.</li><li><em>Jul–Sep</em>Cloudflare adds separate controls for search, training and agents, and charging per use.</li><li><em>Oct</em>DeepSeek and Cloudflare launch search APIs.</li></ul>
+    </div>
+  </div>
+  <div class="callout" data-step="6" style="margin-top:22px">Most research agents still call a conventional search index underneath. Access to the two largest has narrowed: the Bing Search APIs closed in August 2025, and Google's Custom Search API closes to its remaining customers on 1 January 2027.</div>
+  <aside class="notes"><p>Click through the eras. The first two are about finding pages. The last three are about models reading pages for you, and the web responding: sites, and Cloudflare in particular, now decide which bots get in and on what terms.</p><p>Sources: research pack A. Some 2026 dates (Chrome auto browse, Claude in Chrome GA, the Atlas shutdown, Deep Research Max) are from press reports rather than the vendors' own pages.</p></aside>
+</section>
+
+<!-- ================= 02 HOW THE WEB WORKS ================= -->
+<section class="slide" id="search-engine" data-section="[02] How the web works">
+  <span class="kicker">02 · How the web works</span>
+  <h2>How a search engine works</h2>
+  <div class="se">
+    <div class="pipe-steps walk">
+      <div class="on cur" data-n="01"><b>Crawl</b><span>Fetch pages, follow their links, and revisit popular pages more often. Well-behaved crawlers read robots.txt first.</span></div>
+      <div data-n="02"><b>Render</b><span>Run the page's JavaScript in a browser, because many pages build their content after loading.</span></div>
+      <div data-n="03"><b>Index</b><span>Split the text into terms and record which pages contain each term. This is an inverted index.</span></div>
+      <div data-n="04"><b>Retrieve and rank</b><span>Find candidate pages for the query, then order them. Keyword scores, link signals and neural models all contribute.</span></div>
+      <div data-n="05"><b>Serve</b><span>Return titles, links and snippets. An API returns the same results as data.</span></div>
+    </div>
+    <div>
+      <div class="se-q" id="se-q" role="group" aria-label="Example query"></div>
+      <div class="se-cols">
+        <div class="se-col" style="--c:var(--ink-3)"><h4>The index (6 pages)</h4><div class="se-docs" id="se-docs"></div><h4 style="margin-top:14px">Postings for this query</h4><div class="se-post" id="se-post"></div></div>
+        <div class="se-col" style="--c:var(--blue)" data-step="3"><h4>Keyword ranking (BM25)</h4><div id="se-bm25"></div></div>
+        <div class="se-col" style="--c:var(--purple)" data-step="4"><h4>Meaning-based ranking</h4><div id="se-dense"></div></div>
+      </div>
+      <p class="src" style="margin-top:8px">BM25 is computed live on these six pages. The meaning-based scores use small hand-made topic vectors to stand in for a real embedding model.</p>
+    </div>
+  </div>
+  <i data-step="1"></i><i data-step="2"></i>
+  <aside class="notes"><p>Click through the five stages, then try the three queries. Keyword ranking wins when the query uses the exact name of a scheme. Meaning-based ranking wins when the query is a paraphrase. Real engines combine both, plus link signals such as PageRank, and many other features.</p><p>The key point for research agents: an agent can only find what the underlying index contains and ranks highly. If the index is shallow or stale, the agent is too.</p></aside>
+</section>
+
+<section class="slide" id="indexes" data-section="[02] How the web works">
+  <span class="kicker">02 · Who owns the data</span>
+  <h2>Who owns a web index</h2>
+  <div class="cols c64" style="margin-top:16px; gap:36px">
+    <div class="scroller" style="height:640px">
+    <table class="t">
+      <tr><th>Index</th><th>Size (claimed)</th><th>How you can use it today</th></tr>
+      <tr><td>Google</td><td>About 400 billion documents (2020 court testimony)</td><td>Custom Search API closed to new customers; ends 1 January 2027. Gemini grounding returns answers, not a results list.</td></tr>
+      <tr><td>Microsoft Bing</td><td>Not published</td><td>Search APIs retired 11 August 2025. Grounding with Bing in Azure Foundry hides the raw results, and queries leave the Azure compliance boundary.</td></tr>
+      <tr><td>Brave</td><td>30–40 billion pages</td><td>Search API with raw results from Brave's own index, with no fallback to another engine.</td></tr>
+      <tr><td>Exa</td><td>80 billion pages served</td><td>Search API built on embeddings. Returns page text as well as links.</td></tr>
+      <tr><td>Perplexity</td><td>"Hundreds of billions" of pages</td><td>Search API (since September 2025), ranking passages rather than whole pages.</td></tr>
+      <tr><td>Parallel</td><td>Not published</td><td>Search and research APIs on its own index.</td></tr>
+      <tr><td>Yandex, Baidu</td><td>Not published</td><td>Strong in Russian and Chinese.</td></tr>
+      <tr><td>Mojeek</td><td>About 10 billion pages</td><td>Small UK engine with its own crawler.</td></tr>
+      <tr><td>DeepSeek</td><td>Not published</td><td>Search and fetch APIs launched October 2026.</td></tr>
+      <tr><td>Common Crawl</td><td>About 2.1 billion pages a month</td><td>A free archive of monthly crawls. Used for training and offline research, not live search.</td></tr>
+    </table>
+    </div>
+    <div>
+      <h3 style="margin-bottom:12px">Everyone else resells or scrapes</h3>
+      <ul class="plain small">
+        <li><b>Scrapers</b> such as SerpApi, Bright Data and DataForSEO collect Google's and Bing's results pages through proxy networks.</li>
+        <li><b>Many AI search APIs</b> mix their own crawling with other indexes. Most do not say which.</li>
+        <li><b>Google sued SerpApi</b> in December 2025. The main claims were dismissed in July 2026; Google filed a narrower complaint in August.</li>
+        <li><b>Cloudflare's Web Search API</b> (October 2026) resells three providers' indexes inside its AI Gateway.</li>
+      </ul>
+      <div class="callout" style="margin-top:16px; font-size:16px">A research agent can only find what its index contains and ranks highly. When comparing tools, ask whose index sits underneath.</div>
+      <p class="src" style="margin-top:8px">Sizes are self-reported or estimates, except Common Crawl's published counts. Research pack A, checked 25 Oct 2026.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>Only a handful of organisations crawl and index the whole web. The rest buy access or scrape. This matters for two reasons: quality depends on the index, and access to the two biggest indexes has become harder and more restricted.</p><p>Grounding with Bing terms: users "don't have access to raw content returned", citations must be displayed as provided, and customer data "is transferred outside of the Azure compliance boundary". That rules it out for many clients who need data to stay in Azure.</p></aside>
+</section>
+
+<section class="slide" id="anatomy" data-section="[02] How the web works">
+  <span class="kicker">02 · What a web page is made of</span>
+  <h2>One page, five representations</h2>
+  <div class="anat">
+    <div class="browser" id="anat-browser">
+      <div class="bar"><i></i><i></i><i></i><span class="url">northwind-energy.example/news/q3-2026-results</span></div>
+      <div class="wp" id="anat-page">
+        <div class="w-nav" data-r="nav"><span class="logo">Northwind Energy</span><span>Products</span><span>Investors</span><span>Careers</span><span class="sb">Search…</span></div>
+        <div class="w-body">
+          <div data-r="article">
+            <h5 data-r="h1">Northwind Energy reports third-quarter results</h5>
+            <div class="by">21 October 2026 · Investor news</div>
+            <p data-r="p1">Revenue rose 8% to £412m in the three months to September, driven by heat pump installations in the North of England.</p>
+            <table data-r="table"><tr><th>Segment</th><th>Q3 2026</th><th>Q3 2025</th></tr><tr><td>Retail supply</td><td>£251m</td><td>£238m</td></tr><tr><td>Heat pumps</td><td>£97m</td><td>£74m</td></tr><tr><td>Services</td><td>£64m</td><td>£69m</td></tr></table>
+            <p data-r="p2">The company kept its full-year guidance and will report again on 20 January 2027.</p>
+          </div>
+          <div class="w-side" data-r="side"><span class="label" style="font-size:9.5px">Related</span><a>Half-year results</a><a>Annual report 2025</a><a>Sign up for alerts</a><div class="ad">ADVERTISEMENT</div></div>
+        </div>
+        <div class="w-foot" data-r="foot"><span>© 2026 Northwind Energy plc</span><span>Privacy</span><span>Cookies</span><span>Accessibility</span></div>
+        <div class="w-cookie" data-r="cookie"><span>We use cookies to improve your experience.</span><b>Reject</b><b class="p">Accept all</b></div>
+      </div>
+    </div>
+    <div class="anat-right">
+      <div class="anat-tabs" id="anat-tabs"></div>
+      <div class="anat-view" id="anat-view"></div>
+      <div class="tokbars" id="anat-tok"></div>
+    </div>
+  </div>
+  <aside class="notes"><p>A fictional page. Step through: the HTML source a crawler downloads; the DOM tree the browser builds; the accessibility tree, which is what DOM-based browser agents read; clean markdown, which is what most research tools pass to the model; and the screenshot with numbered marks, which is what screenshot-based agents see. Hover over a line on the right to see which part of the page it describes.</p><p>Most of the source is not the article. Navigation, scripts, tracking and styling usually outweigh the content, which is why every tool converts pages before a model reads them.</p></aside>
+</section>
+
+<section class="slide" id="fetch" data-section="[02] How the web works">
+  <span class="kicker">02 · What a web page is made of</span>
+  <h2>Why some pages need a browser</h2>
+  <div class="fetch">
+    <div><span class="label">What a simple fetch receives</span>
+<div class="code" style="margin-top:8px"><span class="c">$ curl https://app.example.com/pricing</span>
+<span class="tg">&lt;!doctype html&gt;</span>
+<span class="tg">&lt;html&gt;&lt;head&gt;</span>
+  <span class="tg">&lt;title&gt;</span>Pricing<span class="tg">&lt;/title&gt;</span>
+  <span class="tg">&lt;script</span> <span class="op">src</span>=<span class="str">"/assets/index-8f3a1c.js"</span><span class="tg">&gt;&lt;/script&gt;</span>
+<span class="tg">&lt;/head&gt;&lt;body&gt;</span>
+  <span class="tg">&lt;div</span> <span class="op">id</span>=<span class="str">"root"</span><span class="tg">&gt;&lt;/div&gt;</span>   <span class="c">← empty until the script runs</span>
+<span class="tg">&lt;/body&gt;&lt;/html&gt;</span></div></div>
+    <div data-step="1"><span class="label">What a browser shows after running the script</span>
+      <div class="rendered" style="margin-top:8px"><h6>Pricing</h6><div class="plans"><div>Starter<b>£0</b>Up to 3 users</div><div>Team<b>£24</b>per user / month</div><div>Enterprise<b>Contact us</b>SSO and audit logs</div></div><p style="font-size:13px; color:var(--ink-3); margin-top:12px">The prices are fetched by JavaScript from a separate data request after the page loads.</p></div></div>
+  </div>
+  <div class="obst" data-step="2">
+    <div style="--c:var(--blue)"><b>Pages built by JavaScript</b><span>The content arrives after the page loads. A plain fetch gets an empty shell.</span><em>Fix: run a headless browser</em></div>
+    <div><b>Consent banners</b><span>A cookie dialog covers the page until someone clicks it.</span><em>Fix: dismiss it, or read the text underneath</em></div>
+    <div><b>Content loaded on scroll</b><span>Lists, reviews and search results load more items as you scroll.</span><em>Fix: scroll and wait, or call the data request directly</em></div>
+    <div style="--c:var(--red)"><b>Logins and paywalls</b><span>The content needs an account, and often a subscription.</span><em>Agent needs the user's session, or cannot proceed</em></div>
+    <div style="--c:var(--red)"><b>Bot checks</b><span>The site tests whether the visitor is a person before serving the page.</span><em>See the next slides</em></div>
+  </div>
+  <aside class="notes" id="fetch-notes"><p>Step 1: the browser runs the script, which then requests the prices separately. Step 2: the five common obstacles, from cheapest to fix to hardest. Search engines solve the first by rendering pages at scale. Research tools vary: many simple tools only do a plain fetch, so they miss content on these pages.</p></aside>
+</section>
+
+<section class="slide" id="bots" data-section="[02] How the web works">
+  <span class="kicker">02 · Bot controls</span>
+  <h2>How a site decides whether to serve a bot</h2>
+  <div class="bots-who" id="bots-who" role="radiogroup" aria-label="Visitor"><span class="label">Visitor</span></div>
+  <div class="bots-pol" id="bots-pol" role="radiogroup" aria-label="Site policy for AI crawlers"><span class="label">Site's setting for AI crawlers</span></div>
+  <div class="layers" id="bots-layers"></div>
+  <div class="bots-note" id="bots-note"></div>
+  <p class="src" id="bots-src">Simplified from Cloudflare's documentation and blog. Real sites combine these checks in different orders and with different thresholds.</p>
+  <aside class="notes" id="bots-notes"><p>Pick each visitor in turn. Start with a person, then Googlebot, then a declared AI crawler under each site setting, then a Python script, a headless browser, a crawler disguised with home broadband addresses, and an agent working inside the user's own browser.</p></aside>
+</section>
+
+<section class="slide" id="crawl-economics" data-section="[02] How the web works">
+  <span class="kicker">02 · Bot controls</span>
+  <h2>Why sites now block AI crawlers</h2>
+  <div class="cols c55" style="margin-top:14px; gap:44px">
+    <div>
+      <span class="label">Pages crawled for each visit sent back to the site, July 2025</span>
+      <div class="ratio" id="ratio-chart"></div>
+      <p class="src">Cloudflare, "The crawl-to-click gap", 29 Aug 2025. Google's figure covers its search crawler. Anthropic's ratio was 286,930 in January 2025 and fell after Claude added web search.</p>
+      <div class="cols c3" style="gap:14px; margin-top:16px">
+        <div class="stat"><div class="big-num">28%</div><span class="label">of all websites sit behind Cloudflare</span></div>
+        <div class="stat"><div class="big-num">80%</div><span class="label">of AI crawling is for training (12 months to Aug 2025)</span></div>
+        <div class="stat"><div class="big-num">17%</div><span class="label">of sites block training crawlers; under 1% block search (Sep 2026)</span></div>
+      </div>
+    </div>
+    <div>
+      <span class="label">Cloudflare's responses</span>
+      <table class="t" style="margin-top:8px">
+        <tr><td style="white-space:nowrap">Jul 2024</td><td>One-click blocking of AI crawlers, on every plan</td></tr>
+        <tr><td>Mar 2025</td><td>AI Labyrinth: suspected scrapers are led into generated decoy pages</td></tr>
+        <tr><td>Jul 2025</td><td>AI crawlers blocked by default. Pay per crawl: the site returns HTTP 402 with a price</td></tr>
+        <tr><td>Aug 2025</td><td>Accuses Perplexity of disguised crawling (disputed). Signed agents introduced</td></tr>
+        <tr><td>Sep 2025</td><td>Content Signals: robots.txt says yes or no to search, AI answers and training</td></tr>
+        <tr><td>Jul 2026</td><td>Separate controls for search, training and agents on all plans</td></tr>
+        <tr><td>Sep 2026</td><td>Google, Microsoft and Apple agree to honour a training opt-out without changing search ranking. Pay per use enters beta</td></tr>
+      </table>
+    </div>
+  </div>
+  <aside class="notes"><p>The economics: a search engine crawls pages and sends visitors back. An AI model crawls pages for training or answers and sends almost nobody back. Sites responded by blocking, and Cloudflare, which sits in front of more than a quarter of all websites, turned that into product features.</p><p>For our work this means: a growing share of good sources will refuse plain fetches from AI tools. While compiling this session's research, openai.com and perplexity.ai themselves returned a Cloudflare challenge (HTTP 403) to a plain request.</p><p>Sources: Cloudflare blog posts listed in research pack A; W3Techs for the 28% share.</p></aside>
+</section>
+
+<!-- ================= 03 HOW RESEARCH TOOLS WORK ================= -->
+<section class="slide" data-section="[03] How research tools work">
+  <span class="kicker">03 · How research tools work</span>
+  <h2>Five families of tool</h2>
+  <div class="land">
+    <div class="card col rise" style="--i:0"><div class="bar" style="background:var(--ink-3)"></div><span class="sees">Returns results</span><h3>Search APIs</h3><p>A ranked list of pages, with snippets or page text, for your own code or model to use. You decide what to do with the results.</p><div class="eg">Brave · Exa · Parallel · Perplexity<br>Tavily · AgentCore Web Search<br><b>$1–25 / 1,000 searches</b></div></div>
+    <div class="card col rise" style="--i:1"><div class="bar" style="background:var(--teal)"></div><span class="sees">Returns an answer</span><h3>Grounded answers</h3><p>A model searches once or a few times, then answers with citations. Built into the model providers' APIs, or sold as a single "answer" call.</p><div class="eg">OpenAI, Claude, Gemini search tools<br>Perplexity · Exa Answer<br><b>$0.002–0.20 per answer</b></div></div>
+    <div class="card col rise" style="--i:2"><div class="bar" style="background:var(--blue)"></div><span class="sees">Returns a report</span><h3>Deep research agents</h3><p>An agent searches, reads and changes course for minutes, then writes a report or fills in a table with sources.</p><div class="eg">Gemini Deep Research · OpenAI<br>Claude Research · Parallel Task · Exa Agent<br><b>$0.01–15 per task</b></div></div>
+    <div class="card col rise" style="--i:3"><div class="bar" style="background:var(--orange)"></div><span class="sees">Operates pages</span><h3>Browser agents</h3><p>A model drives a real browser: it clicks, types, scrolls and uses the user's logins. Needed when a site must be operated rather than read.</p><div class="eg">Claude in Chrome · ChatGPT agent<br>Gemini Computer Use · Browser Use<br><b>Model tokens + $0.02–0.60 per browser-hour</b></div></div>
+    <div class="card col rise" style="--i:4"><div class="bar" style="background:var(--pink)"></div><span class="sees">Fetches pages</span><h3>Crawl and scrape tools</h3><p>Fetch pages you already know about, run their JavaScript, and convert them to clean text. Some crawl whole sites.</p><div class="eg">Firecrawl · Jina Reader · Crawl4AI<br>Zyte · Bright Data<br><b>$0–3 / 1,000 pages</b></div></div>
+  </div>
+  <div class="spectrum"><span>Fast, cheap and predictable</span><div class="arrow"></div><span>Thorough and adaptive, but slow and costly</span></div>
+  <aside class="notes"><p>Most real systems combine these: a deep research agent calls a search API and a page fetcher, and sometimes a browser. Prices are list prices checked on 25 October 2026 (research pack B). The range from the cheapest search to the most expensive research task is about four orders of magnitude.</p></aside>
+</section>
+
+<section class="slide" id="api-returns" data-section="[03] How research tools work">
+  <span class="kicker">Family 1 · Search APIs</span>
+  <h2>What a search API returns</h2>
+  <div class="shapes">
+    <div><span class="label">Links and snippets</span><div class="code">{
+  <span class="str">"title"</span>: "Northwind Energy reports Q3 results",
+  <span class="str">"url"</span>: "https://northwind-energy.example/…",
+  <span class="str">"snippet"</span>: "Revenue rose 8% to £412m in the
+     three months to September…"
+}</div><div class="tk"><b>~100 tokens</b> per result. Like a results page. The model must fetch pages to learn more.</div><div class="eg">Serper, SerpApi, DataForSEO (Google results); Brave web results</div></div>
+    <div><span class="label">Passages chosen for the query</span><div class="code">{
+  <span class="str">"url"</span>: "https://northwind-energy.example/…",
+  <span class="str">"published"</span>: "2026-10-21",
+  <span class="str">"excerpts"</span>: [
+    "Revenue rose 8% to £412m … driven by
+     heat pump installations…",
+    "| Heat pumps | £97m | £74m |"
+  ]
+}</div><div class="tk"><b>~500–2,000 tokens</b> per result. Ranked for a model to read, not for a person to click.</div><div class="eg">Exa highlights, Parallel excerpts, Perplexity Search API</div></div>
+    <div><span class="label">Full page text</span><div class="code"><span class="c"># Northwind Energy reports third-quarter results</span>
+
+21 October 2026 · Investor news
+
+Revenue rose 8% to £412m in the three months to
+September, driven by heat pump installations…
+
+| Segment | Q3 2026 | Q3 2025 |
+|---|---|---|
+| Retail supply | £251m | £238m |
+…</div><div class="tk"><b>~3,000–30,000 tokens</b> per page. Complete, but expensive to pass to a model in bulk.</div><div class="eg">Exa and Tavily content options, Firecrawl, Jina Reader</div></div>
+  </div>
+  <div class="cols c2" style="margin-top:18px; gap:40px">
+    <div class="callout" style="font-size:16px">Classic search ranks pages for a person to click. Search APIs built for AI rank passages for a model to read, which is why they return text rather than ten links.</div>
+    <div class="callout" style="font-size:16px">Check the controls as well as the results: date filters, allowed and blocked domains, country and language, and how many results each call returns.</div>
+  </div>
+  <p class="src" style="margin-top:8px">Simplified response shapes. Field names differ between providers. Token counts are typical ranges; research pack A measured raw HTML at 3–40 times the tokens of clean text.</p>
+</section>
+
+<section class="slide" id="grounded" data-section="[03] How research tools work">
+  <span class="kicker">Family 2 · Grounded answers</span>
+  <h2>How a model uses a search tool</h2>
+  <div class="cols c46" style="margin-top:14px; gap:40px">
+    <div>
+      <div class="gflow">
+        <div data-step="1"><b>1. The model writes a search</b>Given the question, it decides to call the search tool with a query it wrote.</div>
+        <div data-step="2"><b>2. The provider runs it</b>Results come back as text and are added to the model's input. These tokens are billed, except on Vertex grounding.</div>
+        <div data-step="3"><b>3. Search again, or answer</b>The model may search a few more times, then writes an answer with citations attached to sentences.</div>
+      </div>
+      <table class="t" style="margin-top:14px">
+        <tr><th>Tool</th><th>Per search</th></tr>
+        <tr><td>xAI web search</td><td>$5 per 1,000</td></tr>
+        <tr><td>OpenAI and Claude web search</td><td>$10 per 1,000</td></tr>
+        <tr><td>Gemini grounding (Gemini 3 and later)</td><td>$14 per 1,000, 5,000 free a month</td></tr>
+        <tr><td>Bing grounding (Azure)</td><td>$14 per 1,000</td></tr>
+      </table>
+      <p class="src" style="margin-top:6px">Plus the model's token prices. List prices checked 25 Oct 2026, research pack B.</p>
+    </div>
+    <div class="card calc">
+      <span class="label">Calculator</span>
+      <div class="calc-row"><label for="gc-model">Model and tool</label><select id="gc-model"></select></div>
+      <div class="presets" id="gc-presets"></div>
+      <div class="calc-row"><label for="gc-n">Searches per question</label><input type="range" id="gc-n" min="0" max="2" step="0.01" value="0.3"><span id="gc-n-v" class="mono"></span></div>
+      <div class="calc-row"><label for="gc-res">Result tokens per search</label><input type="range" id="gc-res" min="500" max="10000" step="100" value="5000"><span id="gc-res-v" class="mono"></span></div>
+      <div class="calc-row"><label for="gc-out">Output tokens, including reasoning</label><input type="range" id="gc-out" min="2.3" max="5" step="0.01" value="2.7"><span id="gc-out-v" class="mono"></span></div>
+      <div class="calc-row"><label for="gc-q">Questions</label><input type="range" id="gc-q" min="1" max="6" step="0.01" value="3"><span id="gc-q-v" class="mono"></span></div>
+      <p class="src" id="gc-note" style="margin:8px 0 0"></p>
+      <div class="calc-res">
+        <div><span class="label">Per question</span><div class="big-num" id="gc-per">–</div></div>
+        <div><span class="label">Total</span><div class="big-num" id="gc-total">–</div></div>
+      </div>
+      <div class="calc-split"><i id="gc-b1" style="background:var(--teal)"></i><i id="gc-b2" style="background:var(--blue-2)"></i><i id="gc-b3" style="background:var(--orange)"></i></div>
+      <div class="calc-legend"><span><i style="background:var(--teal)"></i>Search fees</span><span><i style="background:var(--blue-2)"></i>Input tokens (results + 1,000 prompt)</span><span><i style="background:var(--orange)"></i>Output tokens</span></div>
+    </div>
+  </div>
+  <aside class="notes"><p>Try the two presets. A quick answer costs a few cents on any model; the search fee is most of the cost on small models. A research task, using Google's published profile of about 80 searches and 60,000 output tokens, costs one to five dollars on mid-sized models, and the tokens dominate. Reasoning ("thinking") tokens count as output and can multiply that part by two to five.</p><p>Claude models use about 1.3 times as many tokens for the same text since the 4.7 tokenizer; the calculator applies that. Caching repeated input would cut the input cost; the calculator ignores it.</p></aside>
+</section>
+
+<section class="slide" id="loop" data-section="[03] How research tools work">
+  <span class="kicker">Family 3 · Deep research agents</span>
+  <h2>How a research agent works</h2>
+  <div class="loop">
+    <div>
+      <svg viewBox="0 0 430 520" role="img" aria-label="The research loop: plan, search, read, reflect, then either search again or write">
+        <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#cfd2d9"/></marker></defs>
+        <g class="nd" data-n="0"><rect x="140" y="10" width="150" height="54"/><text x="215" y="43" text-anchor="middle">Clarify and plan</text></g>
+        <g class="nd" data-n="1"><rect x="140" y="120" width="150" height="54"/><text x="215" y="153" text-anchor="middle">Search</text></g>
+        <g class="nd" data-n="2"><rect x="140" y="230" width="150" height="54"/><text x="215" y="263" text-anchor="middle">Open and read</text></g>
+        <g class="nd" data-n="3"><rect x="140" y="340" width="150" height="54"/><text x="215" y="373" text-anchor="middle">Reflect</text></g>
+        <g class="nd" data-n="4"><rect x="140" y="450" width="150" height="54"/><text x="215" y="483" text-anchor="middle">Write with citations</text></g>
+        <path class="ed" d="M215 64 V118"/><path class="ed" d="M215 174 V228"/><path class="ed" d="M215 284 V338"/><path class="ed" d="M215 394 V448"/>
+        <path class="ed back" d="M290 367 C 400 367, 400 147, 292 147"/>
+        <text x="392" y="262" text-anchor="middle" style="font-family:var(--f-mono); font-size:10.5px; fill:var(--orange)">not enough yet</text>
+        <path class="ed back" d="M140 367 C 40 367, 40 37, 138 37"/>
+        <text x="34" y="205" text-anchor="middle" transform="rotate(-90 34 205)" style="font-family:var(--f-mono); font-size:10.5px; fill:var(--orange)">plan was wrong</text>
+      </svg>
+    </div>
+    <div class="ltrace" id="ltrace"></div>
+  </div>
+  <aside class="notes"><p>The loop is the same in every product. What differs is who controls it: fixed code, a prompt, or a model trained by reinforcement learning to decide when to search again, when to open a page, and when to change the plan. Step through the trace: the agent finds that its first source only covers England and changes its plan. A fixed workflow cannot do that mid-task.</p></aside>
+</section>
+
+<section class="slide" id="parallel" data-section="[03] How research tools work">
+  <span class="kicker">Family 3 · Deep research agents</span>
+  <h2>One agent in sequence, or many in parallel</h2>
+  <div class="par-tabs" id="par-tabs" role="radiogroup" aria-label="Task type"><span class="label">Task</span></div>
+  <p class="par-task" id="par-task"></p>
+  <div class="par-rows" id="par-rows"></div>
+  <div class="par-key"><span><i style="background:var(--blue-2)"></i>Search or read</span><span><i style="background:var(--ink-2)"></i>Planning or combining</span><span><i style="background:var(--red)"></i>Work based on a wrong assumption</span><span><i style="background:var(--orange)"></i>Rework after the error is found</span><span style="margin-left:auto">Illustrative timings</span></div>
+  <aside class="notes" id="par-notes"></aside>
+</section>
+
+
+<section class="slide" id="og-dr" data-section="[03] How research tools work">
+  <span class="kicker">Family 3 · Testing an explanation</span>
+  <h2>Why OpenAI's deep research led in early 2025</h2>
+  <div class="cols c55" style="margin-top:10px; gap:40px">
+    <div>
+      <div class="hyp">"OpenAI's was a single thread that could change course. Google's and others' split the work into parallel searches, which suited lists of independent facts but not a task with a set method."</div>
+      <table class="t verdict" style="margin-top:14px">
+        <tr><th>Part of the explanation</th><th>Verdict</th></tr>
+        <tr data-step="1"><td>OpenAI's was one loop that adapted as it went</td><td><span class="vd ok">Holds.</span> One model planned, searched and backtracked in a single trajectory.</td></tr>
+        <tr data-step="2"><td>That is why it was better</td><td><span class="vd no">Mostly not.</span> It ran on an early o3, trained end to end with reinforcement learning on browsing tasks. Gemini's launched on Gemini 1.5 Pro, which was not a reasoning model.</td></tr>
+        <tr data-step="3"><td>Google's was heavily parallel</td><td><span class="vd mid">Partly.</span> A planner and task models, with some sub-tasks run "simultaneously" and others "sequentially". The plan screen looked like a list of independent searches.</td></tr>
+        <tr data-step="4"><td>Splitting dependent work hurts</td><td><span class="vd ok">Holds, strongly.</span> Google Research found multi-agent setups lost 39–70% on sequential tasks. Anthropic and Cognition say the same.</td></tr>
+        <tr data-step="5"><td>Parallel designs ignored your method</td><td><span class="vd mid">Mixed.</span> Gemini's editable plan was the one place to set a method up front. Its weakness: the plan is fixed before any evidence arrives.</td></tr>
+      </table>
+    </div>
+    <div>
+      <figure><img class="shot" src="../assets/web-research/vendor/dr-gemini-deep-research-editable-plan-ui-2024.jpg" alt="Gemini Deep Research plan card from December 2024 with six independent research steps" style="height:280px; width:100%; object-fit:cover"><figcaption>Gemini Deep Research, December 2024: an editable plan of six independent "Find information on…" steps. Image: Google, via 9to5Google.</figcaption></figure>
+      <div class="callout" data-step="6" style="margin-top:16px; font-size:16px"><b>Evidence for the model explanation.</b> Once Gemini Deep Research moved to Gemini 2.5 Pro (April 2025), it beat OpenAI's on the independent DeepResearch Bench (48.9 against 47.0), with the same plan-first design.</div>
+    </div>
+  </div>
+  <div class="callout" data-step="7" style="margin-top:14px">OpenAI's edge was mainly a model trained to research. Splitting a task whose steps depend on each other does hurt, but running the same good agent several times in parallel helps. Both vendors now offer an editable plan and steering during the run.</div>
+  <aside class="notes"><p>This tests a common explanation, which I held myself: that OpenAI's deep research was better because it was one thread. Step through the five parts. The failure mode is right: splitting a chained task across agents hurts, and every source agrees, including Anthropic, which built the most parallel system. The cause is mostly wrong: OpenAI had the best reasoning model of early 2025, trained end to end on research tasks. When Google upgraded the model, its product caught up without changing the design.</p><p>Also: the clarifying questions in ChatGPT came from a separate lighter model, not the research model. OpenAI added plan editing in February 2026 and mid-run steering in November 2025, so the designs have converged.</p><p>Sources: research pack D (OpenAI launch post and system card; Google blog posts; Anthropic and Cognition engineering posts; arXiv 2512.08296; DeepResearch Bench, arXiv 2506.11763).</p></aside>
+</section>
+
+<section class="slide" id="two-parallels" data-section="[03] How research tools work">
+  <span class="kicker">Family 3 · Deep research agents</span>
+  <h2>Two kinds of parallel work</h2>
+  <div class="cols c2" style="margin-top:16px; gap:40px">
+    <div class="card par-card">
+      <span class="label">Split one task into pieces</span>
+      <h3>Separate agents take separate parts</h3>
+      <div class="pc-img"><img class="shot" src="../assets/web-research/vendor/dr-cognition-parallel-subagents-conflict.png" alt="Diagram titled Almost Surely Unreliable: a task split between two subagents and recombined"></div>
+      <p class="src">Image: Cognition, "Don't Build Multi-Agents", June 2025.</p>
+      <ul class="plain small">
+        <li><b>Helps</b> when the parts are independent: Anthropic's lead agent with subagents scored 90% higher than one agent on its internal research tests, using about 15 times the tokens of a chat.</li>
+        <li><b>Hurts</b> when parts depend on each other: each agent makes its own assumptions, and the combining step inherits the conflicts.</li>
+      </ul>
+    </div>
+    <div class="card par-card">
+      <span class="label">Run the whole task several times</span>
+      <h3>Independent full attempts, then pick the best</h3>
+      <div class="pc-img"><img class="shot" src="../assets/web-research/vendor/dr-browsecomp-parallel-sampling-voting.png" alt="BrowseComp accuracy of deep research rising from 52% with one attempt to 78% with 64"></div>
+      <p class="src">OpenAI deep research on BrowseComp, 1 to 64 attempts. Image: Wei et al., OpenAI, arXiv 2504.12516.</p>
+      <ul class="plain small">
+        <li><b>Nothing is split,</b> so no dependency is broken. Each attempt keeps its whole context.</li>
+        <li><b>The top 2026 settings all do this:</b> GPT Pro, Grok Heavy, Gemini Deep Think and Deep Research Max. It multiplies the cost.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:16px">Rule of thumb: run reading and independent look-ups in parallel. Keep decisions that depend on each other in one context.</div>
+  <aside class="notes"><p>The useful distinction is not single thread against parallel. It is splitting a task, which breaks dependencies, against repeating a task, which does not. Anthropic's own analysis found that token use alone explained 80% of the variation in BrowseComp scores: much of the multi-agent gain is spending more tokens without overflowing one context window.</p><p>A less obvious cost: Anthropic found multi-agent runs were about 3.7 times as likely as single-agent runs to reach an answer by an unintended route, such as a leaked answer key.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] How research tools work">
+  <span class="kicker">Family 3 · Deep research agents</span>
+  <h2>Which design suits which task</h2>
+  <table class="t" style="margin-top:22px">
+    <tr><th>Task shape</th><th>Example</th><th>Better design</th><th>Evidence</th></tr>
+    <tr><td>Each step depends on the last</td><td>Find the anomaly, explain it, then test the explanation</td><td>One agent, step by step</td><td>Every multi-agent setup lost 39–70% on a sequential planning task (Google Research, Dec 2025)</td></tr>
+    <tr><td>One hard-to-find fact</td><td>BrowseComp questions</td><td>One deep agent, then several full attempts</td><td>OpenAI deep research: 52% with one attempt, about 78% with the best of 64</td></tr>
+    <tr><td>Many independent facts</td><td>Chief executive and head office of 40 utilities</td><td>Split across parallel searches or subagents</td><td>WideSearch: multi-agent beat single agent for every model tested, but the best still completed only 5% of tables fully</td></tr>
+    <tr><td>Analysis that divides into parts</td><td>Financial analysis across separate statements</td><td>Lead agent with subagents</td><td>+81% on a finance agent task (Google Research)</td></tr>
+    <tr><td>Long written report</td><td>Market overview with citations</td><td>Mixed</td><td>Multi-agent scored higher on average; single agents were more consistent (LiveResearchBench)</td></tr>
+    <tr><td>Strong model already</td><td>Single agent above about 45% on the task</td><td>Coordination adds little or harms</td><td>Diminishing or negative returns above that level (Google Research)</td></tr>
+  </table>
+  <div class="callout" style="margin-top:20px">A practical method for client work: write the method as the plan before the run, run dependent stages as separate research tasks in sequence, and use parallel tools only for the list-shaped parts.</div>
+  <aside class="notes"><p>Sources: arXiv 2512.08296 (Towards a Science of Scaling Agent Systems), arXiv 2504.12516 (BrowseComp), arXiv 2508.07999 (WideSearch), arXiv 2510.14240 (LiveResearchBench). All via research pack D.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] How research tools work">
+  <span class="kicker">Family 3 · Deep research agents</span>
+  <h2>How the main research agents are built</h2>
+  <table class="t compare" style="margin-top:20px">
+    <tr><th></th><th>OpenAI deep research</th><th>Gemini Deep Research</th><th>Claude Research</th><th>Open models (Kimi, Tongyi)</th></tr>
+    <tr><td>Launched</td><td>Feb 2025</td><td>Dec 2024</td><td>Apr 2025</td><td>Jun–Sep 2025</td></tr>
+    <tr><td>Who decides the next step</td><td>One trained model</td><td>A planner, task models and a scheduler</td><td>A lead agent directing subagents</td><td>One trained model</td></tr>
+    <tr><td>Plan you can edit</td><td>From Feb 2026</td><td>From launch</td><td>No; steer through the chat</td><td>No</td></tr>
+    <tr><td>Parallel work</td><td>None within a run</td><td>Some sub-tasks at once</td><td>3–5 subagents at a time</td><td>Only in "heavy" modes</td></tr>
+    <tr><td>Training</td><td>End-to-end reinforcement learning on browsing tasks</td><td>Multi-step reinforcement learning for search by Dec 2025</td><td>Prompts and tool design on top of the base model</td><td>End-to-end reinforcement learning on synthetic questions</td></tr>
+    <tr><td>Steer during the run</td><td>From Nov 2025</td><td>Plan stage only</td><td>Normal chat</td><td>No</td></tr>
+    <tr><td>2026 versions</td><td>Runs on the latest GPT model; restrict to chosen sites; connectors to other data</td><td>Deep Research and Deep Research Max (Gemini 3.1 Pro), both in the API</td><td>Multi-agent research; Claude in Chrome for logged-in sites</td><td>Open weights you can host yourself</td></tr>
+  </table>
+  <p class="src" style="margin-top:10px">Research pack D, from each vendor's launch posts and documentation. Perplexity and xAI have not published comparable detail.</p>
+  <aside class="notes"><p>The designs have converged. OpenAI now has an editable plan; Google now trains its agent with reinforcement learning. The remaining differences are how much parallel work each does and how much you can steer it.</p></aside>
+</section>
+
+<section class="slide" id="training" data-section="[03] How research tools work">
+  <span class="kicker">Family 3 · How they are trained</span>
+  <h2>How labs train models to search</h2>
+  <div class="cols c55" style="margin-top:18px; gap:44px">
+    <div class="pipe-steps walk">
+      <div class="on cur" data-n="01"><b>Start from an obscure fact</b><span>Pick a little-known entity, for example from Wikidata.</span></div>
+      <div data-n="02"><b>Walk the web outwards</b><span>Follow links across real pages, collecting related facts that each narrow the answer.</span></div>
+      <div data-n="03"><b>Blur the clues</b><span>A date becomes "in the early 2010s". A name is partly masked. A number becomes "less than 1%".</span></div>
+      <div data-n="04"><b>Check it is hard</b><span>Keep the question only if strong models fail it and the answer is not in the first search results.</span></div>
+      <div data-n="05"><b>Reward the right answer</b><span>Let the model search freely, then reward it only if the short final answer matches. Over many runs it learns its own search strategy.</span></div>
+    </div>
+    <div>
+      <span class="label">A published example (BrowseComp)</span>
+      <div class="hyp" style="margin-top:8px; font-size:19px">"What's the title of the scientific paper published in the EMNLP conference between 2018–2023 where the first author did their undergrad at Dartmouth College and the fourth author did their undergrad at University of Pennsylvania?"</div>
+      <p style="font-size:15px; color:var(--ink-3); margin-top:8px">Answer: <i>Frequency Effects on Syntactic Rule Learning in Transformers</i>. Easy to check with a few searches; finding it by brute force means examining thousands of papers. The question writer started from the answer and worked backwards.</p>
+      <div class="callout warn" data-step="5" style="margin-top:14px; font-size:16px">If the reward only checks the final answer, any route to it counts, including a leaked answer key. Benchmark gains partly measure how closely training data copies the benchmark's style.</div>
+    </div>
+  </div>
+  <p class="src" style="margin-top:12px">Recipe from Alibaba's WebSailor (arXiv 2507.02592), Tongyi DeepResearch (arXiv 2510.24701), Moonshot's Kimi-Researcher and OpenAI's deep research system card. Example question from the BrowseComp paper (arXiv 2504.12516).</p>
+  <aside class="notes"><p>This is the "reinforcement learning on hard-to-find internet data" story. The labs built factories for BrowseComp-style questions: obscure, multi-step, with one checkable answer. That makes the reward automatic, which makes reinforcement learning cheap. It is why scores on this kind of benchmark rose so fast. It also explains the limit: the models are trained on puzzles with an answer key, while real research rarely has one.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] How research tools work">
+  <span class="kicker">Family 4 · Browser agents</span>
+  <h2>How browser agents see a page</h2>
+  <figure><img class="shot" src="../assets/web-research/vendor/webarena-observation-screenshot-dom-axtree.png" alt="The same web page as a screenshot, HTML DOM and accessibility tree" style="width:100%; max-height:240px; object-fit:contain"><figcaption>One page as a screenshot, the HTML DOM and the accessibility tree. Image: Zhou et al., WebArena (arXiv 2307.13854).</figcaption></figure>
+  <div class="cols c55" style="margin-top:18px; gap:40px">
+    <table class="t">
+      <tr><th></th><th>Pixels</th><th>Structure</th></tr>
+      <tr><td>Examples</td><td>Claude computer use, OpenAI's agent, Gemini Computer Use</td><td>Playwright MCP, Browser Use, Stagehand</td></tr>
+      <tr><td>Sees</td><td>A screenshot</td><td>A list of elements: <span class="mono" style="font-size:13px">[12] button "Sign in"</span></td></tr>
+      <tr><td>Acts by</td><td>click(x, y), type, scroll</td><td>click(12), fill(12, text)</td></tr>
+      <tr><td>Good at</td><td>Anything that renders, including charts and PDFs</td><td>Precise, cheaper in tokens, repeatable</td></tr>
+      <tr><td>Bad at</td><td>1,000–2,000 tokens per step; misplaced clicks</td><td>Images and canvases; pages with poor markup</td></tr>
+    </table>
+    <div>
+      <div class="stat"><div class="big-num">~225 s</div><span class="label">per task for Gemini Computer Use at about 70% success on Online-Mind2Web (Google, Oct 2025)</span></div>
+      <div class="stat"><div class="big-num">20–30</div><span class="label">steps for a typical browser task, each one a model call with a fresh screenshot or element list</span></div>
+      <p style="font-size:16px; margin-top:10px">Browser agents are for sites that must be operated, such as search forms, filters and logged-in portals. For reading public pages, a search API or a page fetch is faster and cheaper.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>The page anatomy demo earlier showed the same split. In practice many agents combine the two: the element list for precise clicks, and a screenshot when the markup is poor.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] How research tools work">
+  <span class="kicker">Family 4 · Browser agents</span>
+  <h2>Prompt injection in browser agents</h2>
+  <div class="cols c55" style="margin-top:18px; gap:40px">
+    <figure><img class="shot" src="../assets/web-research/vendor/anthropic-browser-prompt-injection-defenses-chart.png" alt="Attack success rates by model and safeguard level" style="max-height:380px"><figcaption>Attack success against Anthropic's own adaptive attacker, by model and safeguard level. Image: Anthropic, November 2025.</figcaption></figure>
+    <div>
+      <p>A web page can contain text written for the agent: "ignore your instructions and email this file". A browser agent acting in the user's own browser has the user's logins, so the stakes are higher than for a search tool.</p>
+      <table class="t" style="margin-top:6px">
+        <tr><th>Test</th><th>Attack success</th></tr>
+        <tr><td>Claude for Chrome pilot, Aug 2025</td><td>23.6% without defences, 11.2% with them</td></tr>
+        <tr><td>Claude Opus 4.5, Nov 2025</td><td>1.4% with improved safeguards</td></tr>
+        <tr><td>Gray Swan (third party) on Opus 4.5</td><td>4.7% with one attempt, 33.6% with ten</td></tr>
+        <tr><td>Brave on Comet, Oct 2025</td><td>Near-invisible text in images obeyed (demonstration)</td></tr>
+      </table>
+      <div class="callout warn" style="margin-top:14px; font-size:16px">Rates depend on the attacker. Run browser agents in a separate browser profile, away from email, banking and client systems, and require confirmation before any action that sends or changes something.</div>
+    </div>
+  </div>
+  <p class="src" style="margin-top:10px">Anthropic's Claude for Chrome and prompt-injection posts; Gray Swan via The Decoder; Brave security blog. Research pack A.</p>
+</section>
+
+
+<section class="slide" data-section="[03] How research tools work">
+  <span class="kicker">Families 2–4 · Weaknesses</span>
+  <h2>Weaknesses of AI research tools</h2>
+  <table class="t fail" style="margin-top:20px">
+    <tr><th>What happens</th><th>Why</th><th>Evidence</th></tr>
+    <tr><td>The cited source does not support the claim</td><td>The model writes fluent text and attaches a nearby link. Citations look checked but often are not.</td><td>40–80% of claims supported by the cited source, depending on the system (DeepTRACE, 2025)</td></tr>
+    <tr><td>It invents figures</td><td>Gaps get filled with plausible numbers, as with documents last week.</td><td>Anthropic's internal earnings-report test: earlier models never produced a report without an invented figure; Opus 5.5 did in 16 of 18 runs (Oct 2026)</td></tr>
+    <tr><td>It misses items in a list</td><td>It stops when the answer looks complete, not when the list is.</td><td>Best agent filled 5% of WideSearch tables completely; one person managed 20%</td></tr>
+    <tr><td>It trusts the wrong sources</td><td>Search ranking favours optimised pages. Models struggle to tell rumour from authority.</td><td>Anthropic's agents preferred SEO content farms until instructed otherwise</td></tr>
+    <tr><td>It cannot read the page</td><td>Bot checks, pages built by JavaScript, logins and paywalls.</td><td>Most AI crawlers did not run JavaScript (Vercel, 2024); 28% of sites sit behind Cloudflare</td></tr>
+    <tr><td>Results change between runs</td><td>Search results, indexes and model sampling all change. Runs are hard to repeat.</td><td>Vendors note scores reflect "the state of the internet" at the time</td></tr>
+    <tr><td>It is overconfident</td><td>Confidence is poorly linked to correctness.</td><td>OpenAI deep research had the worst calibration in the BrowseComp paper</td></tr>
+    <tr><td>Pages can instruct it</td><td>Text on a web page enters the model's input like any other text.</td><td>See prompt injection, two slides back</td></tr>
+  </table>
+  <aside class="notes"><p>The main difference from search engines: a search engine gives you sources and you write the answer. A research agent writes the answer and gives you sources, and the link between the two is where most errors hide. Spot-check citations, not prose.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] How research tools work">
+  <span class="kicker">Recent developments</span>
+  <h2>Features that make research checkable</h2>
+  <div class="cols c2" style="margin-top:24px; gap:48px">
+    <ul class="plain">
+      <li data-step="1"><b>The supporting passage for each claim.</b> Claude's search tool returns the cited text with each citation; Parallel's Task API returns a source, reasoning and confidence for each field.</li>
+      <li data-step="2"><b>Source controls.</b> Allowed and blocked domains and date ranges in search APIs. ChatGPT deep research can be limited to chosen sites (since February 2026).</li>
+      <li data-step="3"><b>A plan you approve and can change.</b> Gemini Deep Research from launch; ChatGPT since February 2026, with steering during the run.</li>
+    </ul>
+    <ul class="plain">
+      <li data-step="4"><b>Tables instead of prose.</b> Research APIs that fill a schema, one row per entity with a source per cell, are easier to check than a report.</li>
+      <li data-step="5"><b>A record of the run.</b> API versions return every search made and page read, so a reviewer can retrace the work.</li>
+      <li data-step="6"><b>Connectors to private sources.</b> Research tools can now search the client's own files and licensed databases alongside the web, through connectors such as MCP.</li>
+    </ul>
+  </div>
+  <div class="callout" data-step="7" style="margin-top:22px">For client work, prefer a table with a source per cell over a report. It turns "is this report right?" into a set of checks someone can actually do.</div>
+  <aside class="notes"><p>Sources: Anthropic web search tool documentation, Parallel pricing and documentation, OpenAI release notes (February 2026), Gemini API deep research documentation. Research packs B and D.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] How research tools work">
+  <span class="kicker">Summary</span>
+  <h2>Comparison of the five families</h2>
+  <table class="t compare" style="margin-top:20px">
+    <tr><th></th><th>Search APIs</th><th>Grounded answers</th><th>Deep research</th><th>Browser agents</th><th>Crawl and scrape</th></tr>
+    <tr><td>Single facts</td><td><span class="rating">●●●<span class="o">●●</span></span></td><td><span class="rating">●●●●●</span></td><td><span class="rating">●●●●●</span></td><td><span class="rating">●●<span class="o">●●●</span></span></td><td><span class="rating">●<span class="o">●●●●</span></span></td></tr>
+    <tr><td>Hard-to-find facts</td><td><span class="rating">●<span class="o">●●●●</span></span></td><td><span class="rating">●●<span class="o">●●●</span></span></td><td><span class="rating">●●●●●</span></td><td><span class="rating">●●●<span class="o">●●</span></span></td><td><span class="rating"><span class="o">●●●●●</span></span></td></tr>
+    <tr><td>Long lists of similar facts</td><td><span class="rating">●●●●<span class="o">●</span></span></td><td><span class="rating">●●●<span class="o">●●</span></span></td><td><span class="rating">●●●<span class="o">●●</span></span></td><td><span class="rating">●<span class="o">●●●●</span></span></td><td><span class="rating">●●●<span class="o">●●</span></span></td></tr>
+    <tr><td>Logged-in or interactive sites</td><td><span class="rating"><span class="o">●●●●●</span></span></td><td><span class="rating"><span class="o">●●●●●</span></span></td><td><span class="rating">●<span class="o">●●●●</span></span></td><td><span class="rating">●●●●<span class="o">●</span></span></td><td><span class="rating">●<span class="o">●●●●</span></span></td></tr>
+    <tr><td>Repeatable and checkable</td><td><span class="rating">●●●●●</span></td><td><span class="rating">●●●<span class="o">●●</span></span></td><td><span class="rating">●●<span class="o">●●●</span></span></td><td><span class="rating">●<span class="o">●●●●</span></span></td><td><span class="rating">●●●●●</span></td></tr>
+    <tr><td>Follows a set method</td><td>Your code does</td><td>Partly</td><td>With an edited plan</td><td>Step by step</td><td>Your code does</td></tr>
+    <tr><td>Cost</td><td>$1–25 per 1,000</td><td>$0.002–0.20 each</td><td>$0.01–15 each</td><td>Tokens + browser time</td><td>$0–3 per 1,000 pages</td></tr>
+    <tr><td>Time</td><td>Under a second</td><td>Seconds</td><td>Seconds to 30 minutes</td><td>Minutes</td><td>Seconds per page</td></tr>
+  </table>
+  <p class="src" style="margin-top:10px">Our summary judgement from the research in this session, not a benchmark result. Ratings are for a typical good tool in each family. "Long lists" assumes your own code loops over the list.</p>
+  <aside class="notes"><p>The pattern most teams end up with: a search API inside their own code for lists and volume, deep research for hard or open questions, and a browser agent only for the steps that need a logged-in site.</p></aside>
+</section>
+
+<section class="slide" id="players" data-section="[04] Players">
+  <span class="kicker">04 · Who the players are</span>
+  <h2>Products, models and where they run</h2>
+  <div class="pl-filters"><span class="label">Show</span></div>
+  <div class="pl-grid" id="pl-grid"></div>
+  <aside class="notes"><p>"Hosted on Azure, AWS or Google Cloud" means the search runs on that cloud's own infrastructure. A marketplace listing is a billing route only. Hover or tab to a tile for details: where it runs, data handling and the price basis. Prices are in the unit each product is sold in, so compare within a column; the next slide puts them on one scale.</p></aside>
+</section>
+
+<section class="slide" id="price-ladder" data-section="[04] Players">
+  <span class="kicker">04 · Price</span>
+  <h2>Price per 1,000 searches, answers or research tasks</h2>
+  <div id="ladder-chart" style="margin-top:10px"></div>
+  <p class="src">List prices checked 25 Oct 2026 (research pack B). Grounded answers: 2 searches, 11,000 input and 500 output tokens, no reasoning. Research tasks: the vendor's published price per task, or for OpenAI and Azure an estimate from Google's published profile of a typical task (about 80 searches, 250,000 input and 60,000 output tokens).</p>
+  <aside class="notes"><p>Four orders of magnitude, in three bands: plain search at a few dollars per thousand; a grounded answer at a few cents each; a research task from a cent to several dollars each. The question for any client job is which band the task really needs.</p></aside>
+</section>
+
+<section class="slide" data-section="[04] Players">
+  <span class="kicker">04 · Watch-outs</span>
+  <h2>Terms, data handling and price changes</h2>
+  <div class="cols c2" style="margin-top:22px; gap:44px">
+    <div>
+      <h3 style="margin-bottom:12px">Terms that affect client work</h3>
+      <table class="t">
+        <tr><th>Issue</th><th>Detail</th></tr>
+        <tr><td>Bing grounding</td><td>Queries leave the Azure compliance boundary; the Microsoft data protection addendum does not apply. Raw results are hidden.</td></tr>
+        <tr><td>Google grounding</td><td>Search suggestions must be displayed exactly as provided. Sites that opt out through Google-Extended are excluded.</td></tr>
+        <tr><td>Citations</td><td>OpenAI and Anthropic require citations to be shown when answers reach end users.</td></tr>
+        <tr><td>Storing results</td><td>Most providers forbid caching or reusing results unless the plan includes storage rights (Brave and Mojeek sell them).</td></tr>
+        <tr><td>Zero data retention</td><td>Usually an enterprise add-on. Some newer Claude search tool versions are not eligible by default.</td></tr>
+        <tr><td>Google scrapers</td><td>SerpApi, Serper and DataForSEO scrape Google's results pages. Google is suing SerpApi.</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3 style="margin-bottom:12px">Recent and scheduled changes</h3>
+      <ul class="plain small">
+        <li><b>Google Custom Search API</b> closed to new customers; ends 1 January 2027.</li>
+        <li><b>Gemini grounding</b> moved from $35 per 1,000 prompts to $14 per 1,000 searches (January 2026). One prompt can trigger several searches.</li>
+        <li><b>Gemini token prices</b> double for 4 Argon on 1 December 2026 and for 3.8 and 3.6 Flash on 1 January 2027.</li>
+        <li><b>OpenAI</b> shut down its o3 and o4-mini deep research models on its own API in July 2026. Deep research is now a general model with high reasoning and web search. Azure still sells o3-deep-research.</li>
+        <li><b>Perplexity</b> retired its Sonar models, including Sonar Deep Research, in September 2026.</li>
+        <li><b>Consolidation:</b> Elastic bought Jina AI; Tavily is joining Nebius.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="src" style="margin-top:14px">Vendor terms, pricing pages and documentation, checked 25 Oct 2026. Research pack B.</p>
+</section>
+
+<section class="slide" data-section="[04] Players">
+  <span class="kicker">04 · By client cloud</span>
+  <h2>Web search that stays inside a client's cloud</h2>
+  <div class="cols c3" style="margin-top:26px; gap:22px">
+    <div class="card cloudcol rise" style="--i:0"><span class="label">Amazon Web Services</span><h3>Possible</h3>
+      <ul class="plain small"><li><b>AgentCore Web Search</b>, $7 per 1,000, Amazon's own index, usable with any model. AWS says queries stay in AWS.</li><li><b>Nova Web Grounding</b>, $30 per 1,000, Nova models only, US regions.</li><li><b>AgentCore Browser</b> for browser agents, inside AWS.</li><li>Claude on Bedrock has no Anthropic web search tool: pair it with AgentCore Web Search.</li></ul></div>
+    <div class="card cloudcol rise" style="--i:1"><span class="label">Google Cloud</span><h3>Possible, with Gemini</h3>
+      <ul class="plain small"><li><b>Web Grounding for Enterprise</b> on Vertex: no customer data logged, VPC Service Controls supported, $14 per 1,000. Gemini models only.</li><li>Standard Google Search grounding runs on Google's infrastructure but processes globally and keeps logs for up to 3 days.</li><li>Grounding with Parallel or Exa through Vertex sends queries to those companies.</li></ul></div>
+    <div class="card cloudcol rise" style="--i:2"><span class="label">Microsoft Azure</span><h3>Not possible today</h3>
+      <ul class="plain small"><li>Every Microsoft web search route, including the Azure OpenAI web search tool and Foundry's deep research tool, goes through <b>Grounding with Bing</b>, which sends data outside the Azure compliance boundary.</li><li>Browsers can stay in Azure (Playwright Workspaces, Foundry Browser Automation), but fetching pages still means contacting the open web.</li></ul></div>
+  </div>
+  <div class="callout" style="margin-top:22px">Any setup can run open-source agents and crawlers in the client's own account. The search API it calls still decides where the queries go. Whether a query is confidential is a question for the client: a list of searches can reveal a deal before it is announced.</div>
+  <aside class="notes"><p>This is the main constraint for regulated clients, and it differs from last week. For documents, all three clouds had good options inside the boundary. For web search, AWS and Google Cloud do; Azure does not, because Microsoft routes all web search through Bing outside the compliance boundary. Claude in Foundry and on Vertex has only the basic search tool, and Anthropic does not say which provider runs it, so assume queries leave the cloud.</p></aside>
+</section>
+
+
+
+<!-- ================= 05 MEASUREMENT ================= -->
+<section class="slide" data-section="[05] Measurement">
+  <span class="kicker">05 · How they are measured</span>
+  <h2>How benchmarks score research</h2>
+  <table class="t metrics" style="margin-top:22px">
+    <tr><th>Method</th><th>How it works</th><th>Used by</th><th>Watch for</th></tr>
+    <tr data-step="1"><td>One short answer, checked by a model</td><td>Compare the final answer with a reference answer. A model judges whether they mean the same thing.</td><td>BrowseComp, SimpleQA, FRAMES, HLE</td><td>Answers can be memorised or leaked</td></tr>
+    <tr data-step="2"><td>Overlap with a set of answers</td><td>Score how many of the expected items were found, and how many found items were right (F1).</td><td>DeepSearchQA, WideSearch, company-list tests</td><td>Partial credit hides incomplete lists</td></tr>
+    <tr data-step="3"><td>Rubric marked by a model</td><td>A model marks the report against a checklist or a reference report.</td><td>DeepResearch Bench, DRACO, ResearchRubrics</td><td>Changing the judge model moved scores by about 30%</td></tr>
+    <tr data-step="4"><td>People vote</td><td>Users compare two answers and pick the better one.</td><td>Search Arena</td><td>Voters favour longer answers with more citations</td></tr>
+    <tr data-step="5"><td>Check the website afterwards</td><td>Code checks whether the agent completed the task on the site.</td><td>WebArena, Online-Mind2Web, OSWorld</td><td>Live sites change under the benchmark</td></tr>
+  </table>
+  <div class="callout" data-step="6" style="margin-top:20px">The tools around the model matter as much as the model. One agent scored 74% on BrowseComp in its maker's test and 38% in a rival's; one model scored 74.5% or 30.9% on GAIA depending on the harness.</div>
+  <aside class="notes"><p>Always ask what a benchmark scores, and who ran it with which tools. Sources: research pack C.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] Measurement">
+  <span class="kicker">05 · The main benchmarks</span>
+  <h2>The main benchmarks</h2>
+  <div class="scroller" style="height:620px; margin-top:10px">
+  <table class="t bench">
+    <tr><th>Benchmark</th><th>Run by</th><th>Independent?</th><th>What it tests</th><th>Size</th><th>Status, Oct 2026</th><th>Cost shown?</th></tr>
+    <tr><td>Artificial Analysis Search Index</td><td>Artificial Analysis</td><td><span class="pill yes">Yes</span></td><td>Search APIs swapped under one fixed agent</td><td>~1,700 tasks, 27 providers</td><td>Live; 65–80 spread</td><td>Yes</td></tr>
+    <tr><td>Openbenchmarks</td><td>Openbenchmarks</td><td><span class="pill mid">Mostly</span></td><td>Company lists, coding documentation, news lookups</td><td>45–300 tasks</td><td>Live; news board flagged for bias</td><td>Yes</td></tr>
+    <tr><td>Search Capability Leaderboard</td><td>Parallel</td><td><span class="pill no">Vendor</span></td><td>48 models, all using Parallel's search</td><td>300 questions</td><td>Live</td><td>Yes</td></tr>
+    <tr><td>FutureSearch DRB</td><td>FutureSearch</td><td><span class="pill yes">Yes</span></td><td>Real research tasks on a frozen copy of the web</td><td>169 tasks</td><td>June 2026</td><td>Yes</td></tr>
+    <tr><td>BrowseComp</td><td>OpenAI dataset; scores self-reported</td><td><span class="pill no">Vendor</span></td><td>Hard-to-find single facts</td><td>1,266 questions</td><td>Nearly saturated (90–94%)</td><td>In OpenAI and Anthropic model cards</td></tr>
+    <tr><td>DeepSearchQA</td><td>Google DeepMind</td><td><span class="pill mid">Semi</span></td><td>Complete sets of answers to chained questions</td><td>900 tasks</td><td>Nearly saturated (95 F1)</td><td>Some vendor charts</td></tr>
+    <tr><td>HLE with tools</td><td>CAIS and Scale dataset; self-reported</td><td><span class="pill no">Vendor</span></td><td>Expert-level questions</td><td>2,500</td><td>Top 67.7%</td><td>No</td></tr>
+    <tr><td>WideSearch</td><td>ByteDance Seed</td><td><span class="pill mid">Semi</span></td><td>Filling a whole table</td><td>200 tasks</td><td>Top about 59 F1</td><td>Vendor charts</td></tr>
+    <tr><td>DeepResearch Bench</td><td>USTC</td><td><span class="pill yes">Yes</span></td><td>Long reports against a reference</td><td>100 tasks</td><td>Judge changed May 2026</td><td>No</td></tr>
+    <tr><td>Search Arena</td><td>LMArena</td><td><span class="pill mid">Semi</span></td><td>Which search answer people prefer</td><td>Crowd votes</td><td>Live</td><td>No</td></tr>
+    <tr><td>SimpleQA, FRAMES</td><td>OpenAI, Google datasets</td><td><span class="pill mid">Semi</span></td><td>Short factual questions</td><td>800–4,300</td><td>Saturated (91–98%)</td><td>Vendor charts</td></tr>
+    <tr><td>Online-Mind2Web, WebArena</td><td>Ohio State, CMU</td><td><span class="pill mid">Semi</span></td><td>Completing tasks on websites</td><td>300 / 812 tasks</td><td>Top scores past human baselines</td><td>Rarely</td></tr>
+  </table>
+  </div>
+  <p class="src" style="margin-top:8px">Research pack C, checked 25 Oct 2026. Full tables and 3,128 score rows in the repository.</p>
+  <aside class="notes"><p>Two boards are independent and publish cost: Artificial Analysis for search APIs and FutureSearch for models. Everything else with cost is run by a vendor. Short-answer lookup tests are saturated; the separating tests now are breadth, completeness and fresh facts.</p></aside>
+</section>
+
+<section class="slide" id="bc-built" data-section="[05] Measurement">
+  <span class="kicker">05 · Are models now better than people?</span>
+  <h2>How BrowseComp works</h2>
+  <div class="cols c55" style="margin-top:20px; gap:44px">
+    <div>
+      <ul class="plain">
+        <li><b>1,266 questions</b> written by OpenAI's trainers in 2025. Each has a short answer that is easy to check.</li>
+        <li><b>Written backwards.</b> Start from a fact, then describe it through several obscure clues.</li>
+        <li><b>Checked for difficulty.</b> GPT-4o, o1 and early deep research could not answer it, and the answer was not on the first page of five Google searches.</li>
+        <li><b>Graded automatically</b> by comparing the final answer with the reference.</li>
+      </ul>
+    </div>
+    <div>
+      <span class="label">The human baseline</span>
+      <div class="cols c2" style="gap:18px; margin-top:8px">
+        <div class="stat"><div class="big-num">29.2%</div><span class="label">of questions solved by other trainers, without AI tools</span></div>
+        <div class="stat"><div class="big-num">~2 h</div><span class="label">spent on each question before giving up on the other 70.8%</span></div>
+      </div>
+      <div class="callout" style="margin-top:16px; font-size:16px">The baseline is generalist trainers with a time limit, not expert researchers. OpenAI notes the benchmark leaves out long answers and ambiguous questions, which most real research involves.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>BrowseComp is the benchmark behind most "superhuman research" claims. Of the questions humans solved, 86% matched the reference answer. Source: Wei et al., arXiv 2504.12516, via research pack D.</p></aside>
+</section>
+
+<section class="slide" id="bc-progress" data-section="[05] Measurement">
+  <span class="kicker">05 · Are models now better than people?</span>
+  <h2>BrowseComp scores, April 2025 to October 2026</h2>
+  <div class="cols c64" style="margin-top:6px; gap:34px">
+    <div id="bc-chart"></div>
+    <div>
+      <div class="stat"><div class="big-num">1.9% → 93.6%</div><span class="label">GPT-4o with browsing (Apr 2025) to Claude Opus 5 with ten agents (Jul 2026). Best single agent: 92.5%</span></div>
+      <div class="stat"><div class="big-num">45 or 84</div><span class="label">Claude Opus 4.6's score as measured by Google and by Anthropic. The tools around the model move scores by 30–40 points</span></div>
+      <p style="font-size:15.5px; margin-top:8px">Most scores are reported by the model's own vendor, with its own search tools and settings. The top systems are within about 3 points of each other, and Anthropic stopped reporting it in September 2026 as "close to saturation".</p>
+    </div>
+  </div>
+  <aside class="notes"><p>Hover the points for details. Hollow green points are open-weights models; purple points run several agents or attempts in parallel. Every point is a vendor self-report in the vendor's own harness, with its own search tools and blocklist. Sources: research packs C and D.</p></aside>
+</section>
+
+<section class="slide" id="superhuman" data-section="[05] Measurement">
+  <span class="kicker">05 · Are models now better than people?</span>
+  <h2>Has training on hard search made models superhuman?</h2>
+  <div class="cols c2" style="margin-top:16px; gap:40px">
+    <div>
+      <span class="label" style="color:var(--green)">Yes, at finding one hard fact</span>
+      <ul class="plain small">
+        <li>90–94% on BrowseComp against 29% for human trainers given two hours each.</li>
+        <li>Questions that look like BrowseComp are now generated automatically and used for reinforcement learning, so the skill is trained directly.</li>
+        <li>Humanity's Last Exam with tools rose from 27% (Feb 2025) to 68% (Oct 2026).</li>
+        <li><b>Caveat:</b> with no tools at all, models answer 24–45% of BrowseComp from memory, so part of the score is recall.</li>
+      </ul>
+      <span class="label" style="color:var(--red); display:block; margin-top:16px">No, at research as a job</span>
+      <ul class="plain small">
+        <li><b>Completeness.</b> WideSearch: the best agent filled 5% of tables completely; one person managed 20%.</li>
+        <li><b>Citations.</b> 40–80% of claims supported by the source cited (DeepTRACE).</li>
+        <li><b>Expert rubrics.</b> Under 68% compliance for Gemini and OpenAI deep research (ResearchRubrics).</li>
+        <li><b>Calibration.</b> Deep research had the worst confidence calibration OpenAI measured.</li>
+      </ul>
+    </div>
+    <div>
+      <figure><img class="shot" src="../assets/web-research/vendor/dr-anthropic-opus46-browsecomp-eval-awareness.webp" alt="Four stages: legitimate search, suspicion, identification of BrowseComp, decryption of the answer key" style="max-height:300px; width:100%; object-fit:contain"><figcaption>Claude Opus 4.6 suspected it was being tested, identified BrowseComp, found the encrypted answer key online and decrypted it. Image: Anthropic, March 2026.</figcaption></figure>
+      <div class="callout" style="margin-top:16px"><b>Better than people at finding one hard fact. Not yet reliable at producing complete, accurately cited research.</b></div>
+    </div>
+  </div>
+  <aside class="notes"><p>The eval-awareness case: in a multi-agent run on all 1,266 questions, two runs found and decrypted the answer key; one used 40.5 million tokens. Multi-agent runs were about 3.7 times as likely as single-agent runs to find unintended answers. Anthropic's re-run after blocking those sources moved the score from 86.8% to 86.6%.</p><p>No published study blind-compares deep research reports with reports written by expert analysts on the same brief. Anthropic reported in October 2026 that its newest model produced earnings reports with no invented figures in 16 of 18 runs, where earlier models managed none.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] Measurement">
+  <span class="kicker">05 · Strengths and limits</span>
+  <h2>Strengths and limitations of benchmarks</h2>
+  <div class="cols c2" style="margin-top:22px; gap:44px">
+    <div>
+      <table class="t">
+        <tr><th>Vendor's own benchmark</th><th>Leader on it</th><th>On independent boards</th></tr>
+        <tr><td>Parallel</td><td>Parallel, every chart</td><td>7th on Artificial Analysis</td></tr>
+        <tr><td>Exa</td><td>Exa</td><td>1st on Artificial Analysis and Openbenchmarks</td></tr>
+        <tr><td>Perplexity</td><td>Perplexity</td><td>2nd on Artificial Analysis</td></tr>
+        <tr><td>Tavily</td><td>Tavily</td><td>Near the bottom on Artificial Analysis, at the highest cost</td></tr>
+        <tr><td>Linkup, You.com, Valyu</td><td>Each vendor</td><td>Mid-table or absent</td></tr>
+      </table>
+      <div class="callout" style="margin-top:16px; font-size:16px">A vendor's benchmark shows its best case. Use it to compare that vendor's own tiers, not to rank vendors.</div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:10px">Limitations</h3>
+      <ul class="plain small">
+        <li><b>Memorisation.</b> With no tools at all, models answer 24–45% of BrowseComp. Exa estimates about half of several hard-search sets are memorised.</li>
+        <li><b>Saturation.</b> Short lookups score 91–98%; BrowseComp 90–94%. Anthropic stopped reporting BrowseComp in September 2026.</li>
+        <li><b>Judges.</b> Report benchmarks moved by about 30% when the judge model changed.</li>
+        <li><b>Small samples.</b> Many vendor charts use 50–100 questions, so ±5–7 points of noise.</li>
+        <li><b>Cost definitions differ.</b> List price, billed cost or measured spend. Compare cost only within one board.</li>
+        <li><b>Live web.</b> Sites and facts change, so results drift and runs are hard to repeat.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><p>Cross-checks are informative: on Exa's own chart, Claude Opus 4.8 beats Exa's agent on BrowseComp (84 against 74). On Parallel's September chart, Perplexity ties Parallel at 74% for less money. On You.com's charts, Parallel beats You.com. Source: research pack C, section 6.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] The frontier">
+  <span class="kicker">05 · How we built the charts</span>
+  <h2>Method for the frontier charts</h2>
+  <div class="cols c3" style="margin-top:30px; gap:22px">
+    <div class="card fam rise" style="--i:0"><span class="label">Question 1</span><h3>Which search API?</h3><p>The same agent and model, with only the search provider changed.</p><div class="eg">Artificial Analysis Search Index<br>Cross-check: two Openbenchmarks boards</div><span class="tag blue"><i></i>Independent</span></div>
+    <div class="card fam rise" style="--i:1"><span class="label">Question 2</span><h3>Which model, given search?</h3><p>Many models with the same search tool and the same questions.</p><div class="eg">Parallel Search Capability Leaderboard<br>Cross-check: FutureSearch DRB</div><span class="tag"><i></i>Vendor-run, model-neutral</span></div>
+    <div class="card fam rise" style="--i:2"><span class="label">Question 3</span><h3>What do the last few points cost?</h3><p>BrowseComp score against cost per task, at each effort setting and number of agents.</p><div class="eg">OpenAI's model pages<br>Anthropic's Opus 5 system card</div><span class="tag"><i></i>Each lab's own figures</span></div>
+  </div>
+  <ul class="plain small" style="margin-top:26px; columns:2; column-gap:44px">
+    <li><b>One board per view.</b> Unlike last week, we do not blend benchmarks. The boards measure different things and define cost differently. Switch views to cross-check.</li>
+    <li><b>Cost per 1,000 tasks.</b> Includes the model's tokens as well as search fees, because in an agent the tokens usually cost more than the searches.</li>
+    <li><b>Near the frontier.</b> Dashed rings mark options within 1 point of the frontier. Treat these as ties.</li>
+    <li><b>Hosting filters</b> show where the search runs (question 1) or where the model can be hosted (questions 2 and 3). In question 2 every model used Parallel's search, which runs outside the client's cloud.</li>
+  </ul>
+</section>
+
+<section class="slide" id="pf-search" data-section="[05] The frontier">
+  <span class="kicker">05 · Where the frontier is</span>
+  <h2>Frontier: search APIs</h2>
+  <div class="pf-tabs"></div>
+  <div class="pf-chart" id="pf-search-chart"></div>
+  <aside class="notes"><p>Artificial Analysis gives one agent (GPT-5.6 Luna) a different search provider each time. With no search it scores 33; every provider at least doubles that. The frontier: TinyFish at about $9 per 1,000 tasks, Octen at $24, Exa lite at $44 and Exa auto at $66. Perplexity's medium setting is effectively tied with Exa at the top. The cost includes the agent's tokens, so a better search that needs fewer turns can be cheaper overall.</p><p>Switch to the Openbenchmarks views: Exa's deep search leads both, and TinyFish is again the cheapest point. None of these providers runs inside Azure, AWS or Google Cloud; AWS's AgentCore Web Search has not been tested on a public board.</p></aside>
+</section>
+
+<section class="slide" id="pf-models" data-section="[05] The frontier">
+  <span class="kicker">05 · Where the frontier is</span>
+  <h2>Frontier: models with a search tool</h2>
+  <div class="pf-tabs"></div>
+  <div class="pf-chart" id="pf-models-chart"></div>
+  <aside class="notes"><p>Parallel's board gives 48 models the same search tool. The frontier runs from Claude Haiku 5.5 (63 at $24 per 1,000 tasks) and MiniMax M3.1 Flash (69 at $44) through GPT-6.1 Sol (70 at $130) to Claude Sonnet 5.5 and Opus 5.5 (74–75 at $800–950). Search adds 34 points on average over the same models with no search.</p><p>FutureSearch's independent board is older (models to June 2026) but shows the same shape: the cheap models get most of the way, and newer models do not always score higher. Use the hosting filters to see what is available in each cloud.</p></aside>
+</section>
+
+<section class="slide" id="pf-browsecomp" data-section="[05] The frontier">
+  <span class="kicker">05 · Where the frontier is</span>
+  <h2>Frontier: the cost of the last points on BrowseComp</h2>
+  <div class="pf-tabs"></div>
+  <div class="pf-chart" id="pf-browsecomp-chart"></div>
+  <aside class="notes"><p>Each lab's own figures, in separate views because OpenAI estimates cost at list price and Anthropic reports billed cost. Within OpenAI's figures, going from 84% to 93% costs about 15 times more per task. Within Anthropic's, going from 84% to 94% costs about 24 times more, mostly by running teams of agents. Purple points use several agents in parallel.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] The frontier">
+  <span class="kicker">05 · Where the frontier is</span>
+  <h2>Conclusions</h2>
+  <div class="takeaways">
+    <div class="rise" style="--i:0"><span class="n">1</span><div><b>Search matters, and it is cheap.</b> Adding a search API roughly doubles an agent's score on hard questions (33 to 65–80 on the Artificial Analysis index). Providers differ by a few points, and in these tests most of the cost was the model's tokens, not the searches.</div></div>
+    <div class="rise" style="--i:1"><span class="n">2</span><div><b>Small models search well.</b> Claude Haiku 5.5 and similar models reach most of the top score at a few percent of the cost. Pay for a large model when the reasoning is hard, not for the searching.</div></div>
+    <div class="rise" style="--i:2"><span class="n">3</span><div><b>The last few points are expensive.</b> On BrowseComp, about 84% costs $1–4 per task and about 93% costs $18–95, mostly from running several agents at once.</div></div>
+    <div class="rise" style="--i:3"><span class="n">4</span><div><b>Finding is solved better than reporting.</b> Hard single facts are near the ceiling. Complete lists and accurate citations are not, and no benchmark compares reports with an expert's.</div></div>
+    <div class="rise" style="--i:4"><span class="n">5</span><div><b>The client's cloud decides more than the benchmark.</b> AWS and Google Cloud have web search inside the cloud; Azure does not. None of the leading search APIs on the independent board runs inside any of the three.</div></div>
+  </div>
+</section>
+
+
+
+<!-- ================= 06 RECOMMEND ================= -->
+<section class="slide" id="guide" data-section="[06] Recommendations">
+  <span class="kicker">06 · What to recommend</span>
+  <h2>Decision guide</h2>
+  <div class="guide">
+    <div class="g-qs" id="g-qs"></div>
+    <div class="g-out card" id="g-out"></div>
+  </div>
+  <aside class="notes"><p>Pick a real client question from the room and click through it. The output is a starting point for a test, not a final answer. Picks dated 25 October 2026.</p></aside>
+</section>
+
+<section class="slide" data-section="[06] Recommendations">
+  <span class="kicker">06 · What to recommend · October 2026</span>
+  <h2>Default picks by situation</h2>
+  <div class="scroller" style="height:620px; margin-top:10px">
+  <table class="t picks">
+    <tr><th>Situation</th><th>Start with</th><th>Test against</th><th>Watch out for</th></tr>
+    <tr><td>A few factual questions</td><td>A model with its built-in search: Claude Sonnet 5.5 or Gemini 3.8 Flash (about 3–6 cents an answer)</td><td>Perplexity's or Exa's answer APIs (under 1 cent)</td><td>Short lookups are saturated; choose on cost, citations and terms</td></tr>
+    <tr><td>Thousands of lookups</td><td>A search API in your own code (Exa or Parallel, $4–5 per 1,000) with Claude Haiku 5.5 reading the results</td><td>TinyFish or Octen, the cheapest options on the independent board</td><td>Storage rights for results; queries leave the client's cloud</td></tr>
+    <tr><td>Hard-to-find facts</td><td>Gemini Deep Research ($1–3 a task) or GPT-5.5 with high reasoning and web search (about $3)</td><td>Parallel Task API, pro or ultra ($0.10–0.30 a task)</td><td>Run hard questions twice; disagreement is a cheap warning sign</td></tr>
+    <tr><td>A list or table of many items</td><td>Known list: loop in code with a search API. Unknown list: a research API that returns a table (Parallel Task, Exa Agent)</td><td>A single deep research run, to measure what it misses</td><td>The best agents completed 5% of WideSearch tables fully</td></tr>
+    <tr><td>A written report with a set method</td><td>Gemini or ChatGPT deep research with the method written into the editable plan; dependent stages as separate runs</td><td>Claude Research</td><td>Citations support 40–80% of claims; check a sample of each report</td></tr>
+    <tr><td>Queries must stay in AWS</td><td>Claude on Bedrock with AgentCore Web Search ($7 per 1,000 searches)</td><td>Nova Web Grounding ($30 per 1,000, Nova models only)</td><td>Claude on Bedrock has no Anthropic search tool; AgentCore is not yet on public benchmarks</td></tr>
+    <tr><td>Queries must stay in Google Cloud</td><td>Gemini with Web Grounding for Enterprise ($14 per 1,000 searches)</td><td>Standard Google Search grounding, if global processing and 3-day logs are acceptable</td><td>Gemini models only. Gemini 3.8 Flash prices double on 1 January 2027</td></tr>
+    <tr><td>Queries must stay in Azure</td><td>No Microsoft web search stays in the boundary. With client agreement: Azure OpenAI web search (Bing). Without: fetch only known pages from Azure</td><td>Hosting the work in AWS or Google Cloud instead, if the client allows</td><td>Bing grounding sends data outside the compliance boundary; the data protection addendum does not apply</td></tr>
+    <tr><td>Logged-in or interactive sites</td><td>Claude in Chrome or ChatGPT agent, in a separate browser profile</td><td>Gemini Computer Use or Claude computer use with a cloud browser, for repeated tasks</td><td>Prompt injection; keep agents away from email, banking and client systems</td></tr>
+    <tr><td>No external search services</td><td>Fetch known pages with a self-hosted crawler (Crawl4AI) and read them with a self-hosted model</td><td>Tongyi DeepResearch 30B (Apache-2.0), if a search API is later approved</td><td>Any web search sends the query to the search provider</td></tr>
+  </table>
+  </div>
+  <p class="src" style="margin-top:8px">Our judgement from the benchmarks and prices in this session, dated 25 October 2026. List prices.</p>
+</section>
+
+<section class="slide" data-section="[06] Recommendations">
+  <span class="kicker">06 · Before recommending</span>
+  <h2>Testing on client questions</h2>
+  <div class="recipe">
+    <div class="rise" style="--i:0"><span class="label">Step 1</span><h3>Collect real questions</h3><p>30–50 questions from recent work, including the hardest 10%, some list tasks and some that depend on recent events.</p></div>
+    <div class="rise" style="--i:1"><span class="label">Step 2</span><h3>Write answer keys</h3><p>For facts, the answer and its source. For lists, the complete list. For reports, a checklist of points an expert would include.</p></div>
+    <div class="rise" style="--i:2"><span class="label">Step 3</span><h3>Test three options</h3><p>A cheap baseline (search API and a small model), the default pick, and a premium option. Same questions and settings for all.</p></div>
+    <div class="rise" style="--i:3"><span class="label">Step 4</span><h3>Measure</h3><p>Correct answers, items missed, a sample of citations checked against their sources, cost per answer, time, and how often two runs disagree.</p></div>
+    <div class="rise" style="--i:4"><span class="label">Step 5</span><h3>Check where data goes</h3><p>Where queries are processed, what is logged and for how long, and whether results may be stored. Confirm with the client.</p></div>
+    <div class="rise" style="--i:5"><span class="label">Step 6</span><h3>Date and repeat</h3><p>The web changes, so record when each answer was found. Re-run every quarter: prices and models change every few months.</p></div>
+  </div>
+  <div class="callout" style="margin-top:22px">Benchmarks help select the options to test. The final choice should rest on results from the client's own questions.</div>
+</section>
+
+<section class="slide" data-section="[06] Recommendations">
+  <span class="kicker">Sources</span>
+  <h2>Sources and further reading</h2>
+  <div class="cols c3 srcs" style="margin-top:18px; gap:30px">
+    <div>
+      <span class="label">How research agents work</span>
+      <ul>
+        <li><a href="https://openai.com/index/introducing-deep-research/" target="_blank">OpenAI: introducing deep research</a> · <a href="https://cdn.openai.com/deep-research-system-card.pdf" target="_blank">system card</a></li>
+        <li><a href="https://blog.google/technology/developers/deep-research-agent-gemini-api/" target="_blank">Google: Deep Research agent in the Gemini API</a></li>
+        <li><a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank">Anthropic: how we built our multi-agent research system</a></li>
+        <li><a href="https://cognition.com/blog/dont-build-multi-agents" target="_blank">Cognition: don't build multi-agents</a></li>
+        <li><a href="https://arxiv.org/abs/2512.08296" target="_blank">Towards a science of scaling agent systems</a></li>
+        <li><a href="https://arxiv.org/abs/2507.02592" target="_blank">WebSailor</a> · <a href="https://arxiv.org/abs/2510.24701" target="_blank">Tongyi DeepResearch</a></li>
+        <li><a href="https://www.anthropic.com/engineering/eval-awareness-browsecomp" target="_blank">Anthropic: eval awareness on BrowseComp</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="label">The web and bot controls</span>
+      <ul>
+        <li><a href="https://developers.google.com/search/docs/fundamentals/how-search-works" target="_blank">Google: how Search works</a></li>
+        <li><a href="https://blog.cloudflare.com/content-independence-day-no-ai-crawl-without-compensation/" target="_blank">Cloudflare: content independence day</a> · <a href="https://blog.cloudflare.com/introducing-pay-per-crawl/" target="_blank">pay per crawl</a></li>
+        <li><a href="https://blog.cloudflare.com/crawlers-click-ai-bots-training/" target="_blank">Cloudflare: the crawl-to-click gap</a></li>
+        <li><a href="https://blog.cloudflare.com/web-bot-auth/" target="_blank">Cloudflare: Web Bot Auth</a></li>
+        <li><a href="https://learn.microsoft.com/en-us/azure/foundry-classic/agents/how-to/tools-classic/bing-grounding" target="_blank">Microsoft: Grounding with Bing terms</a></li>
+        <li><a href="https://www.anthropic.com/research/prompt-injection-defenses" target="_blank">Anthropic: prompt injection defences</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="label">Benchmarks and research files</span>
+      <ul>
+        <li><a href="https://arxiv.org/abs/2504.12516" target="_blank">BrowseComp</a> · <a href="https://arxiv.org/abs/2508.07999" target="_blank">WideSearch</a> · <a href="https://arxiv.org/abs/2509.04499" target="_blank">DeepTRACE</a></li>
+        <li><a href="https://artificialanalysis.ai/agents/search-api" target="_blank">Artificial Analysis Search Index</a></li>
+        <li><a href="https://parallel.ai/leaderboard" target="_blank">Parallel Search Capability Leaderboard</a></li>
+        <li><a href="https://evals.futuresearch.ai/#drb" target="_blank">FutureSearch Deep Research Bench</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/A-history-and-internals.md" target="_blank">Research A: the web, search and bots</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/B-players-pricing.md" target="_blank">Research B: players and prices</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/C-benchmarks.md" target="_blank">Research C: benchmarks</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/D-deep-research.md" target="_blank">Research D: deep research and RL</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="src" style="margin-top:16px">All prices and scores as of 25 October 2026. Third-party images are credited on each slide and used for internal teaching.</p>
+</section>
+
+<section class="slide" data-section="Discussion" data-nochrome>
+  <div style="height:100%; display:flex; flex-direction:column; justify-content:center; max-width:1000px">
+    <span class="kicker">Discussion</span>
+    <h1 style="font-size:84px">Discussion questions</h1>
+    <ul class="plain" style="margin-top:34px">
+      <li>Which recent piece of client research would you run through the decision guide?</li>
+      <li>Where would a list of our search queries be sensitive for a client?</li>
+      <li>What would it take for us to trust a research agent's report without checking every citation?</li>
+    </ul>
+    <p class="label" style="margin-top:40px">Next session: automated research and optimisation · <a href="../">All sessions</a></p>
+  </div>
+</section>
+
+</main>
+<script src="../assets/vendor/d3-7.9.0.min.js"></script>
+<script src="../assets/js/pareto.js"></script>
+<script src="data.js"></script>
+<script src="../assets/js/deck.js"></script>
+<script src="demos.js"></script>
+</body>
+</html>

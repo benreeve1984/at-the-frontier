@@ -1,5 +1,5 @@
 // Interactive Pareto chart (needs d3 v7).
-// ParetoChart(el, {points, families, filters, xLabel, yLabel, yDomain, state, onState, tolerance})
+// ParetoChart(el, {points, families, filters, xLabel, yLabel, yDomain, state, onState, tolerance, unit, declutter})
 // point: {id, name, family, deploy: {hosted, billing, private, weights, saas, note}, cost, score, n, raw: [{bench, score}], costBasis}
 // filters: [{id, label, test(point)}]. state ({filter, multiOnly}) is shared by the caller so it survives view switches.
 window.ParetoChart = function (el, opts) {
@@ -11,6 +11,7 @@ window.ParetoChart = function (el, opts) {
   const W = opts.width || 1180, H = opts.height || 560;
   const m = { l: 64, r: W < 1000 ? 130 : 200, t: 20, b: 52 };
   const fam = opts.families, tol = opts.tolerance ?? 1;
+  const unit = opts.unit || 'pages'; // cost is per 1,000 of these
   const state = opts.state || { filter: 'all', multiOnly: false };
   const filterOf = id => opts.filters.find(f => f.id === id) || opts.filters[0];
 
@@ -19,7 +20,7 @@ window.ParetoChart = function (el, opts) {
       <div class="pc-filters" role="group" aria-label="Show options that can run">${opts.filters.map(f => `<button type="button" data-f="${f.id}" aria-pressed="false">${f.label}</button>`).join('')}
         ${opts.multiToggle ? '<label class="pc-multi"><input type="checkbox"> Both benchmarks only</label>' : ''}</div>
     </div>
-    <div class="pc-plot"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${opts.yLabel} against cost per 1,000 pages"></svg><div class="pc-tip" role="status"></div>
+    <div class="pc-plot"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${opts.yLabel} against cost per 1,000 ${unit}"></svg><div class="pc-tip" role="status"></div>
       <button type="button" class="pc-reset">Reset zoom</button></div>
     <div class="pc-legend">${Object.entries(fam).filter(([k]) => opts.points.some(p => p.family === k)).map(([k, v]) => `<span><i style="background:${v.color}"></i>${v.label}</span>`).join('')}
       ${opts.noHollow ? '' : '<span><i class="hollow"></i>One benchmark only</span>'}<span><i class="near"></i>Within ${tol} point of the frontier</span>
@@ -84,7 +85,7 @@ window.ParetoChart = function (el, opts) {
       .classed('front', p => fid.has(p.id))
       .classed('near', p => near.has(p.id))
       .attr('tabindex', p => visible(p) ? 0 : -1)
-      .attr('aria-label', p => `${p.name}: score ${p.score.toFixed(1)}, $${p.cost} per 1,000 pages${fid.has(p.id) ? ', on the frontier' : near.has(p.id) ? ', near the frontier' : ''}`)
+      .attr('aria-label', p => `${p.name}: score ${p.score.toFixed(1)}, $${p.cost} per 1,000 ${unit}${fid.has(p.id) ? ', on the frontier' : near.has(p.id) ? ', near the frontier' : ''}`)
       .attr('transform', p => `translate(${x(p.cost)},${y(p.score)})`);
     all.select('circle.core')
       .attr('fill', p => (p.n || 1) > 1 || opts.noHollow ? fam[p.family].color : '#fff')
@@ -100,7 +101,19 @@ window.ParetoChart = function (el, opts) {
       labelDy.set(p.id, crowded ? 20 : -9);
       prev = { id: p.id, x: px, y: py };
     });
-    const lab = labG.selectAll('text').data(vis.filter(p => fid.has(p.id)), p => p.id);
+    let labelled = vis.filter(p => fid.has(p.id));
+    if (opts.declutter) { // skip labels that would overlap one already placed; the point keeps its tooltip
+      const boxes = [];
+      const clear = (x1, y1, w) => !boxes.some(b => x1 < b[0] + b[2] && b[0] < x1 + w && Math.abs(y1 - b[1]) < 15);
+      labelled = labelled.sort((a, b) => b.score - a.score).filter(p => {
+        const x1 = x(p.cost) + 11, w = p.name.length * 6.6;
+        const dy = [-9, 20, -24, 34].find(d => clear(x1, y(p.score) + d, w));
+        if (dy === undefined) return false;
+        labelDy.set(p.id, dy); boxes.push([x1, y(p.score) + dy, w]);
+        return true;
+      });
+    }
+    const lab = labG.selectAll('text').data(labelled, p => p.id);
     lab.exit().remove();
     lab.enter().append('text').attr('class', 'pc-lab').merge(lab)
       .attr('x', p => x(p.cost) + 11).attr('y', p => y(p.score) + (labelDy.get(p.id) ?? -9))
@@ -123,7 +136,7 @@ window.ParetoChart = function (el, opts) {
     tip.dataset.id = p.id;
     tip.innerHTML = `<b>${p.name}</b><span class="pc-fam" style="color:${fam[p.family].color}">${fam[p.family].label}</span>
       <div class="pc-kv"><span>${opts.yLabel}</span><span>${p.score.toFixed(1)}${opts.noHollow ? '' : ` <em>(${p.n} benchmark${p.n > 1 ? 's' : ''})</em>`}</span></div>
-      <div class="pc-kv"><span>Cost / 1k pages</span><span>${fmt(p.cost)}</span></div>
+      <div class="pc-kv"><span>Cost / 1k ${unit}</span><span>${fmt(p.cost)}</span></div>
       ${near.has(p.id) ? `<div class="pc-basis">Within ${tol} point of the frontier: treat as a tie with the frontier option at this cost.</div>` : ''}
       ${p.raw && p.raw.length ? `<div class="pc-raw">${p.raw.map(r => `<div><span>${r.bench}</span><span>${r.score}</span></div>`).join('')}</div>` : ''}
       ${p.costBasis ? `<div class="pc-basis">${p.costBasis}</div>` : ''}

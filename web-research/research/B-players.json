@@ -1,0 +1,3891 @@
+[
+ {
+  "id": "google-custom-search-json",
+  "name": "Custom Search JSON API (Programmable Search)",
+  "vendor": "Google",
+  "category": "search-api",
+  "status": "closed to new customers; sunset 2027-01-01",
+  "own_index": true,
+  "index_source": "Google Search index (Programmable Search Engine configuration)",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 5.0,
+   "tiers": [
+    "100 queries/day free",
+    "$5 per 1k, max 10k queries/day"
+   ],
+   "notes": "Closed to new customers. Existing customers must move off by 2027-01-01."
+  },
+  "cost_per_1k_queries_usd": 5.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$5 per 1k queries after 100/day free.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Google Cloud billing account (API Console)",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Google service, but not a Vertex AI service with Google Cloud data-residency terms. Being discontinued 2027-01-01.",
+   "licence": null
+  },
+  "data_handling": "Standard Google API logging; no ZDR offer documented.",
+  "outputs": [
+   "ranked results (title, link, snippet)"
+  ],
+  "notes": "Dead end for new builds. Google points new users to Vertex AI Search (up to 50 domains) or a 'full web search solution' by contact.",
+  "sources": [
+   "https://developers.google.com/custom-search/v1/overview"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "google-vertex-ai-search",
+  "name": "Vertex AI Search / Agent Search (website search)",
+  "vendor": "Google Cloud",
+  "category": "search-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Google index restricted to your configured sites (up to ~50 domains for public-web use) or your own data",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 1.5,
+   "tiers": [
+    "Search Standard $1.50/1k",
+    "Search Enterprise (incl. core generative answers, website search) $4.00/1k",
+    "Advanced Generative Answers +$4.00/1k",
+    "10k queries/month free trial"
+   ],
+   "notes": "Website search needs Enterprise edition; not a whole-web search API."
+  },
+  "cost_per_1k_queries_usd": 4.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Website search requires Enterprise edition: $4.00 per 1k queries (Standard $1.50 is for unstructured/structured data, not website search).",
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Google Cloud",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party Google Cloud service (now under the Gemini Enterprise Agent Platform brand). Good when the 'web' you need is a known list of sites.",
+   "licence": null
+  },
+  "data_handling": "Google Cloud data terms; VPC-SC/CMEK per Agent Search docs (not re-checked today).",
+  "outputs": [
+   "ranked results",
+   "snippets",
+   "generative answer with citations (Enterprise)"
+  ],
+  "notes": "Google's named replacement for Custom Search JSON for site-restricted search.",
+  "sources": [
+   "https://cloud.google.com/generative-ai-app-builder/pricing",
+   "https://developers.google.com/custom-search/v1/overview"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "brave-search-api",
+  "name": "Brave Search API (Search plan, incl. LLM Context endpoint)",
+  "vendor": "Brave",
+  "category": "search-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Own crawler plus opt-in Web Discovery Project signals; Brave says it never uses Google or Bing results",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 5.0,
+   "tiers": [
+    "$5 free credit/month",
+    "Search $5/1k (50 qps)",
+    "Enterprise: custom, storage rights, full-funnel ZDR"
+   ],
+   "notes": "Prepaid credits, no subscription. Storing results or training on them needs a plan with storage rights."
+  },
+  "cost_per_1k_queries_usd": 5.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$5 per 1k requests; LLM Context content included in the request price.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Brave (prepaid credits)",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Runs on Brave-operated infrastructure. No hyperscaler-hosted option found.",
+   "licence": null
+  },
+  "data_handling": "Brave markets 'architectural ZDR': queries stay on Brave-operated infrastructure, not shared or trained on; full-funnel ZDR on Enterprise.",
+  "outputs": [
+   "ranked results",
+   "extra snippets",
+   "LLM Context (extracted page content)",
+   "news/images/video/places"
+  ],
+  "notes": "One of four or five truly independent Western indexes. Mistral's web_search connector returns 'source: brave' results.",
+  "sources": [
+   "https://brave.com/search/api/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "exa-search",
+  "name": "Exa Search (Lite / Auto) + Contents",
+  "vendor": "Exa",
+  "category": "search-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Own neural web index (Exa claims 500B+ URLs tracked) plus people, company and papers indexes",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 4.0,
+   "tiers": [
+    "Lite $4/1k (up to 10 results)",
+    "Auto $7/1k",
+    "+$1/1k per result above 10",
+    "Contents $1/1k pages per content type",
+    "AI page summaries $1/1k pages",
+    "Monitors $15/1k",
+    "$10/month free credits + $10 bonus"
+   ],
+   "notes": "Enterprise adds ZDR, custom MSA/DPA, HIPAA, up to 1,000 results per search."
+  },
+  "cost_per_1k_queries_usd": 4.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Lite: $4 per 1k requests with up to 10 results and page text/highlights. Auto $7.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Exa (card/bank); Restricted-preview grounding provider on Vertex AI (see vertex-third-party-grounding)",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Exa-operated service.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise only.",
+  "outputs": [
+   "ranked URLs",
+   "page text",
+   "highlights",
+   "summaries"
+  ],
+  "notes": "Raised $250M Series C at $2.2B (May 2026, secondary sources). Lite tier added in 2026; the 2025 entry price was $5/1k for 1-25 results.",
+  "sources": [
+   "https://exa.ai/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "tavily-search",
+  "name": "Tavily Search (+Extract, Map, Crawl)",
+  "vendor": "Tavily (Nebius)",
+  "category": "search-api",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "Aggregates and re-ranks results from third-party engines plus its own crawl/cache; sources not disclosed",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 8.0,
+   "tiers": [
+    "Free 1,000 credits/month",
+    "PAYG $0.008/credit",
+    "Project $30/mo 4,000 credits ($0.0075)",
+    "Growth $500/mo 100k credits ($0.005)",
+    "basic search 1 credit, advanced 2 credits",
+    "Extract 1 credit per 5 URLs (basic), 2 per 5 (advanced)"
+   ],
+   "notes": "Credit-based. Tavily EU option exists."
+  },
+  "cost_per_1k_queries_usd": 8.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Basic search = 1 credit at PAYG $0.008 = $8 per 1k; advanced = $16 per 1k. Project plan: $7.50 per 1k basic.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Tavily; Databricks MCP marketplace",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Being acquired by Nebius (announced Feb 2026, secondary sources).",
+   "licence": null
+  },
+  "data_handling": "Enterprise tier advertises enterprise-grade security and privacy; ZDR terms not on the public pricing page.",
+  "outputs": [
+   "ranked results",
+   "content snippets",
+   "optional LLM answer (include_answer)",
+   "raw page content"
+  ],
+  "notes": "Popular default in agent frameworks.",
+  "sources": [
+   "https://docs.tavily.com/documentation/api-credits",
+   "https://www.tavily.com/pricing",
+   "https://www.tavily.com/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "parallel-search",
+  "name": "Parallel Search API (+Extract)",
+  "vendor": "Parallel Web Systems",
+  "category": "search-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Own web index built for AI agents",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 5.0,
+   "tiers": [
+    "Turbo $1/1k (~200ms)",
+    "Fast $1/1k (~700ms)",
+    "Basic $5/1k",
+    "Advanced $5/1k",
+    "+$1 per 1k additional results above 10",
+    "Extract $1/1k URLs",
+    "5,000 free requests/month; up to $80 signup credit"
+   ],
+   "notes": "Prices per 1k requests with 10 results."
+  },
+  "cost_per_1k_queries_usd": 5.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Basic/Advanced $5 per 1k (10 results); Turbo/Fast $1 per 1k.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Parallel; Google Cloud Marketplace (Vertex grounding provider)",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Parallel-operated. Using it as a Vertex grounding provider still sends queries to Parallel.",
+   "licence": null
+  },
+  "data_handling": "Enterprise: ZDR and DPAs. SOC 2.",
+  "outputs": [
+   "ranked URLs",
+   "token-dense compressed excerpts"
+  ],
+  "notes": "Search Fast tier launched 2026.",
+  "sources": [
+   "https://parallel.ai/pricing",
+   "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/grounding/grounding-with-parallel"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "perplexity-search-api",
+  "name": "Perplexity Search API",
+  "vendor": "Perplexity",
+  "category": "search-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Perplexity's own web index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 5.0,
+   "tiers": [
+    "Search API $5/1k",
+    "Fast Search $1/1k"
+   ],
+   "notes": "Billed per successful POST; up to 5 queries in one request count as one unit; no token charges."
+  },
+  "cost_per_1k_queries_usd": 5.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$5 per 1k requests (one query per request). With 5 queries batched, $1 per 1k queries.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Perplexity; AWS Marketplace listing (billing route)",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Perplexity-operated.",
+   "licence": null
+  },
+  "data_handling": "Enterprise privacy terms; not re-checked today.",
+  "outputs": [
+   "ranked results",
+   "snippets/page extracts"
+  ],
+  "notes": "Batching 5 queries per request makes the effective price $1 per 1k queries.",
+  "sources": [
+   "https://docs.perplexity.ai/getting-started/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "youcom-search",
+  "name": "You.com Web Search API (+Contents)",
+  "vendor": "You.com",
+  "category": "search-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "You.com's own real-time index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 5.0,
+   "tiers": [
+    "Web Search $5/1k",
+    "Contents $1/1k pages",
+    "$10 free credit"
+   ],
+   "notes": "No minimums or seats."
+  },
+  "cost_per_1k_queries_usd": 5.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$5 per 1k calls.",
+  "deployment": {
+   "hosted": [],
+   "billing": "You.com",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "You.com-operated.",
+   "licence": null
+  },
+  "data_handling": "ZDR, SOC 2 and DPA on Enterprise.",
+  "outputs": [
+   "ranked web and news results",
+   "snippets",
+   "page markdown (Contents)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://you.com/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "linkup-search",
+  "name": "Linkup Search (+Fetch)",
+  "vendor": "Linkup",
+  "category": "search-api",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "Own index plus licensed publisher content; offers personalised indexes",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 5.0,
+   "tiers": [
+    "flash/fast/standard searchResults $5/1k",
+    "sourcedAnswer/structured $6/1k",
+    "deep searchResults $50/1k",
+    "deep sourcedAnswer $55/1k",
+    "Fetch $1-$11/1k by mode/JS rendering/schema",
+    "$20/month free credit (work email)"
+   ],
+   "notes": "Moved to USD pricing May 2026; Flash depth added Sep 2026."
+  },
+  "cost_per_1k_queries_usd": 5.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "standard depth, searchResults: $0.005 per call.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Linkup prepaid; x402 (USDC) per request",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "Enterprise offers a 'private environment'.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise. SOC 2 Type II on all plans.",
+  "outputs": [
+   "ranked sources and snippets",
+   "sourced answer",
+   "structured JSON"
+  ],
+  "notes": "Strong in France/EU; publisher-licensing angle.",
+  "sources": [
+   "https://docs.linkup.so/pages/documentation/platform/pricing.md",
+   "https://www.linkup.so/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "valyu-search",
+  "name": "Valyu Search (+Contents)",
+  "vendor": "Valyu",
+  "category": "search-api",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "Web search plus licensed/proprietary datasets (SEC filings, PubMed, arXiv, patents, market data)",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 6.25,
+   "tiers": [
+    "PAYG 1,600 credits per $10 ($0.00625/credit)",
+    "web result 0.1 credit",
+    "SEC filing result 1.92 credits",
+    "Contents 0.2 credits/URL",
+    "Ridiculously Cheap $29/mo 5,000 credits",
+    "Comfortably Pro $99/mo 18,000",
+    "Serious Business $499/mo 100,000"
+   ],
+   "notes": "Priced per result returned, by source; max_price caps a request."
+  },
+  "cost_per_1k_queries_usd": 6.25,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "10 web results x 0.1 credit = 1 credit; 1,000 queries = 1,000 credits = $6.25 at PAYG ($5.80 on the $29 plan).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Valyu",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Valyu-operated.",
+   "licence": null
+  },
+  "data_handling": "ZDR on request (Enterprise). SOC 2 Type II.",
+  "outputs": [
+   "ranked results",
+   "full-text excerpts",
+   "dataset records"
+  ],
+  "notes": "Its pitch is licensed specialist data, not the open web.",
+  "sources": [
+   "https://docs.valyu.ai/pricing.md",
+   "https://www.valyu.ai/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "jina-search",
+  "name": "Jina Search (s.jina.ai)",
+  "vendor": "Jina AI (Elastic)",
+  "category": "search-api",
+  "status": "available",
+  "own_index": false,
+  "index_source": "Not disclosed; wraps a third-party search engine and reads the top pages",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": 0.05,
+   "tiers": [
+    "10M free tokens per key (non-commercial)",
+    "~$0.05 per 1M tokens prepaid (1B for $50)",
+    "minimum 10,000 tokens charged per search request"
+   ],
+   "notes": "UNVERIFIED: jina.ai/pricing does not render without JavaScript and a tracker reported it 404ing in Aug 2026. Figures from third-party trackers."
+  },
+  "cost_per_1k_queries_usd": 0.5,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "10,000-token floor x $0.05 per 1M = $0.0005 per search = $0.50 per 1k (unverified).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Jina token credits",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Jina AI was acquired by Elastic (completed Oct 2025); API continues as a standalone product.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "top results with page content as markdown"
+  ],
+  "notes": "",
+  "sources": [
+   "https://parallel.ai/articles/jina-ai-reader-vs-parallel",
+   "https://markaicode.com/pricing/jina-ai-pricing/"
+  ],
+  "checked": "2026-10-25",
+  "verified": false
+ },
+ {
+  "id": "serpapi",
+  "name": "SerpApi",
+  "vendor": "SerpApi",
+  "category": "search-api",
+  "status": "available",
+  "own_index": false,
+  "index_source": "Scrapes Google (and Bing, Baidu, etc.) result pages",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 25.0,
+   "tiers": [
+    "Free 250/month",
+    "Starter $25/mo 1,000",
+    "Developer $75/mo 5,000",
+    "Production $150/mo 15,000",
+    "Big Data $275/mo 30,000"
+   ],
+   "notes": "Includes 'U.S. Legal Shield' (up to $2M coverage for scraping search engines)."
+  },
+  "cost_per_1k_queries_usd": 25.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "First paid tier: $25 for 1,000 searches = $25 per 1k ($10 per 1k on Production, $9.17 on Big Data).",
+  "deployment": {
+   "hosted": [],
+   "billing": "SerpApi subscription",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "SerpApi-operated scraper.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "parsed SERP JSON (organic, ads, knowledge graph, etc.)"
+  ],
+  "notes": "Legal grey zone: depends on scraping Google; the legal shield exists because of that.",
+  "sources": [
+   "https://serpapi.com/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "serper",
+  "name": "Serper (Google SERP API)",
+  "vendor": "Serper",
+  "category": "search-api",
+  "status": "available",
+  "own_index": false,
+  "index_source": "Scrapes Google result pages",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 1.0,
+   "tiers": [
+    "2,500 free queries",
+    "$50 for 50k credits ($1.00/1k)",
+    "$375 for 500k ($0.75/1k)",
+    "$1,250 for 2.5M ($0.50/1k)",
+    "$3,750 for 12.5M ($0.30/1k)"
+   ],
+   "notes": "Top-up credits valid 6 months."
+  },
+  "cost_per_1k_queries_usd": 1.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$50 for 50,000 queries = $1.00 per 1k at the first tier.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Serper prepaid credits",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Serper-operated scraper.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "parsed Google SERP JSON"
+  ],
+  "notes": "Cheapest Google-results route; same terms risk as any SERP scraper.",
+  "sources": [
+   "https://serper.dev/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "dataforseo-serp",
+  "name": "DataForSEO SERP API (Google Organic)",
+  "vendor": "DataForSEO",
+  "category": "search-api",
+  "status": "available",
+  "own_index": false,
+  "index_source": "Scrapes Google, Bing, YouTube etc.",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 0.6,
+   "tiers": [
+    "Standard queue $0.60/1k (~5 min)",
+    "Priority queue $1.20/1k (~1 min)",
+    "Live $2.00/1k (~6 s)",
+    "$50 minimum top-up"
+   ],
+   "notes": "Per SERP of 10 organic results."
+  },
+  "cost_per_1k_queries_usd": 2.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Live mode $0.002 per SERP = $2.00 per 1k (queued $0.60).",
+  "deployment": {
+   "hosted": [],
+   "billing": "DataForSEO prepaid",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "DataForSEO-operated scraper.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "parsed SERP JSON",
+   "Google AI Mode results"
+  ],
+  "notes": "Live mode is the relevant one for agents.",
+  "sources": [
+   "https://dataforseo.com/pricing/serp/google-organic-serp-api"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "kagi-search-api",
+  "name": "Kagi Search API (+Extract)",
+  "vendor": "Kagi",
+  "category": "search-api",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "Own small-web index (Teclis) blended with third-party engines",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 12.0,
+   "tiers": [
+    "Search $12/1k",
+    "Extract $4/1k pages",
+    "Enterprise volume discounts"
+   ],
+   "notes": "Invoiced every 30 days or at $100 usage."
+  },
+  "cost_per_1k_queries_usd": 12.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$12 per 1k requests.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Kagi",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Kagi-operated.",
+   "licence": null
+  },
+  "data_handling": "Kagi privacy policy; no logging of searches claimed for consumer product (API terms not re-checked).",
+  "outputs": [
+   "ranked results",
+   "snippets",
+   "full page content (extra snippets)"
+  ],
+  "notes": "Premium price. Third-party trackers quote different figures; the vendor page says $12.",
+  "sources": [
+   "https://kagi.com/api/pricing",
+   "https://help.kagi.com/kagi/api/search.html"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "mojeek-api",
+  "name": "Mojeek Web Search API",
+  "vendor": "Mojeek",
+  "category": "search-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Own independent crawler and index (UK)",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 2.66,
+   "tiers": [
+    "Startup GBP 2 per 1k (5 qps, 100k/day)",
+    "Business GBP 3 per 1k (10 qps, 400k/day)",
+    "Enterprise custom"
+   ],
+   "notes": "Priced in GBP. Storage rights and AI usage included in plans."
+  },
+  "cost_per_1k_queries_usd": 2.66,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "GBP 2 per 1k converted at an assumed USD 1.33/GBP = ~$2.66.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Mojeek",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Mojeek-operated, UK.",
+   "licence": null
+  },
+  "data_handling": "Mojeek's no-tracking policy (not re-checked).",
+  "outputs": [
+   "ranked results",
+   "snippets"
+  ],
+  "notes": "Truly independent index; smaller and less fresh than Google/Bing/Brave.",
+  "sources": [
+   "https://www.mojeek.com/services/search/web-search-api/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "firecrawl-search",
+  "name": "Firecrawl Search (and Alexandria indexes)",
+  "vendor": "Firecrawl",
+  "category": "search-api",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "Web search via third-party engines plus Firecrawl's own Research, Developer and Government indexes ('Alexandria')",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 6.4,
+   "tiers": [
+    "Search 2 credits per 10 results",
+    "Free 1,000 credits/month",
+    "Hobby $16/mo (annual) 5,000 credits",
+    "Standard $83/mo 100k credits",
+    "Growth $333/mo 500k",
+    "Scale $599/mo 1M",
+    "Research Index paper endpoints free"
+   ],
+   "notes": "Prices shown are annual billing."
+  },
+  "cost_per_1k_queries_usd": 6.4,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Hobby: $16 / 5,000 credits = $0.0032/credit x 2 credits = $6.40 per 1k searches. Standard plan: $1.66.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Firecrawl; AWS Marketplace and Google Cloud Marketplace (billing routes)",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Marketplace listings are billing routes; processing stays on Firecrawl.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise.",
+  "outputs": [
+   "ranked results",
+   "optional scraped markdown per result"
+  ],
+  "notes": "Raised $75M Series B and launched Alexandria on 2026-09-22.",
+  "sources": [
+   "https://www.firecrawl.dev/pricing",
+   "https://www.pr.com/press-release/979737"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "keenable-search",
+  "name": "Keenable Search API",
+  "vendor": "Keenable",
+  "category": "search-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Own index (claims 100B+ documents)",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 4.0,
+   "tiers": [
+    "100k free requests",
+    "PAYG $4/1k (cloud only)",
+    "AI labs: $1/1k at 100+ rps, cloud or on-premises"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": 4.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$4 per 1k requests PAYG.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Keenable",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "On-premises option for the high-volume tier.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "ranked results"
+  ],
+  "notes": "2026 entrant: out of stealth Aug 2026 with $26M seed (Accel, Conviction).",
+  "sources": [
+   "https://keenable.ai/pricing",
+   "https://techcrunch.com/2026/08/25/accel-backed-keenable-is-indexing-the-web-for-ai-agents/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "aws-agentcore-web-search",
+  "name": "Web Search on Amazon Bedrock AgentCore",
+  "vendor": "AWS",
+  "category": "search-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Amazon's own web index plus Amazon Knowledge Graph",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 7.0,
+   "tiers": [
+    "$7 per 1,000 queries",
+    "no minimums"
+   ],
+   "notes": "Exposed as an MCP tool through AgentCore Gateway. Launched June 2026."
+  },
+  "cost_per_1k_queries_usd": 7.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$7 per 1k queries.",
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "AWS",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party AWS service. AWS says queries and results stay within AWS (no third-party search API).",
+   "licence": null
+  },
+  "data_handling": "Data stays in AWS per AWS launch material; standard AWS service terms.",
+  "outputs": [
+   "ranked results with content",
+   "knowledge-graph facts"
+  ],
+  "notes": "The cleanest 'search inside AWS' option for agents on any model hosted in Bedrock.",
+  "sources": [
+   "https://aws.amazon.com/bedrock/agentcore/pricing/",
+   "https://aws.amazon.com/about-aws/whats-new/2026/06/amazon-bedrock-agentcore-web-search/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "openai-web-search",
+  "name": "OpenAI web search tool (Responses API)",
+  "vendor": "OpenAI",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "Not fully disclosed; OpenAI runs its own crawler (OAI-SearchBot) and uses partners",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 10.0,
+   "tiers": [
+    "web_search: $10/1k calls, all models; search content tokens billed at model input rate",
+    "gpt-4o-mini / gpt-4.1-mini: content billed as a fixed 8,000 input tokens per call",
+    "web_search_preview, non-reasoning models: $25/1k calls, content free",
+    "image web search $10/1k",
+    "gpt-6-luna: $0.1/0.5 per 1M + $10/1k calls -> ~$0.0214 per answer",
+    "gpt-6.1-sol: $2.0/10.0 per 1M + $10/1k calls -> ~$0.047 per answer",
+    "gpt-5.5: $5.0/30.0 per 1M + $10/1k calls -> ~$0.09 per answer",
+    "gpt-6-astra: $10.0/50.0 per 1M + $10/1k calls -> ~$0.155 per answer"
+   ],
+   "notes": "Domain allow/block lists up to 100 domains. search_context_size low/medium/high."
+  },
+  "cost_per_1k_queries_usd": 10.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.047,
+  "cost_basis": "Answer = 2 calls x $0.01 + 11,000 input tokens (10k search content + 1k prompt) + 500 output, no reasoning tokens. gpt-6.1-sol: 0.02 + 11,000x2/1M + 500x10/1M = $0.047. Other models in tiers. Reasoning tokens can add 2-5x on output.",
+  "deployment": {
+   "hosted": [],
+   "billing": "OpenAI API",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "OpenAI-hosted only. In Azure the equivalent tool routes to Grounding with Bing (see azure-openai-web-search). Not available with GPT on Bedrock as far as found.",
+   "licence": null
+  },
+  "data_handling": "OpenAI API retention terms; ZDR eligibility for web search not confirmed today.",
+  "outputs": [
+   "answer with url_citation annotations",
+   "search action log"
+  ],
+  "notes": "Display rule: inline citations must be clearly visible and clickable. gpt-4o search-preview models were shut down 2026-07-23.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/guides/tools-web-search",
+   "https://developers.openai.com/api/docs/deprecations"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "azure-openai-web-search",
+  "name": "Web search in Azure OpenAI / Foundry Agent Service",
+  "vendor": "Microsoft",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Bing (via Grounding with Bing Search / Bing Custom Search)",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 14.0,
+   "tiers": [
+    "Bing requests $14 per 1k (tool_usage.web_search.num_requests)",
+    "plus model tokens at Azure OpenAI rates"
+   ],
+   "notes": "Same Responses API web_search tool shape as OpenAI; web_search_preview supported but not recommended."
+  },
+  "cost_per_1k_queries_usd": 14.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.055,
+  "cost_basis": "2 Bing requests x $0.014 + 11,000 input + 500 output at GPT-6.1 Sol-equivalent $2/$10 = $0.055 (Azure token prices not re-checked per model).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Azure subscription (Grounding with Bing resource)",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "The model runs in Azure, but the search does not: Microsoft says data flows outside your compliance and geo boundary, and the Microsoft DPA does not apply to data sent to Bing.",
+   "licence": null
+  },
+  "data_handling": "Queries (and resource key) leave the Azure compliance boundary to the Bing service, governed by Bing terms and the Microsoft Privacy Statement, not the Azure DPA.",
+  "outputs": [
+   "answer with citations",
+   "Bing query URL"
+  ],
+  "notes": "Azure admins can disable web search at tenant level.",
+  "sources": [
+   "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/web-search",
+   "https://www.microsoft.com/en-us/bing/apis/grounding-pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "bing-grounding",
+  "name": "Grounding with Bing Search / Bing Custom Search (Foundry Agent Service)",
+  "vendor": "Microsoft",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Bing web index (Custom Search: your configured domains)",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 14.0,
+   "tiers": [
+    "Grounding with Bing Search $14/1k transactions",
+    "Grounding with Bing Custom Search $14/1k transactions",
+    "150 TPS, 1M transactions/day"
+   ],
+   "notes": "Counted per tool call per run. Also usable as 'Web Knowledge Source' in Azure AI Search / Foundry IQ."
+  },
+  "cost_per_1k_queries_usd": 14.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$14 per 1k transactions, plus model tokens.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Azure subscription",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Bing Search APIs (v7) were retired in Aug 2025; this is the remaining Microsoft route. It is Microsoft-operated but explicitly outside the Azure compliance boundary.",
+   "licence": null
+  },
+  "data_handling": "Customer data transferred outside the Azure compliance boundary; not subject to the same data processing terms, location of processing or certifications as Agent Service.",
+  "outputs": [
+   "summarised grounded results",
+   "citations",
+   "Bing query link"
+  ],
+  "notes": "Use-and-display requirements: you must show the website URLs and the Bing search query URL in the exact form provided. Launched in 2025 at $35/1k (from memory; current page says $14).",
+  "sources": [
+   "https://www.microsoft.com/en-us/bing/apis/grounding-pricing",
+   "https://learn.microsoft.com/en-us/azure/ai-foundry/agents/how-to/tools/bing-grounding"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "anthropic-web-search",
+  "name": "Claude web search tool",
+  "vendor": "Anthropic",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": null,
+  "index_source": "Not disclosed by Anthropic (press in 2025 reported Brave; unverified)",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 10.0,
+   "tiers": [
+    "$10 per 1,000 searches + result tokens as input",
+    "errors not billed",
+    "dynamic filtering (web_search_20260209+) runs code execution free of charge",
+    "claude-haiku-5.5: $0.1/0.5 per 1M + $10/1k searches -> ~$0.0218 per answer",
+    "claude-sonnet-5.5: $2.0/10.0 per 1M + $10/1k searches -> ~$0.0551 per answer",
+    "claude-opus-5.5: $4.0/20.0 per 1M + $10/1k searches -> ~$0.0902 per answer",
+    "claude-fable-5.1: $10.0/50.0 per 1M + $10/1k searches -> ~$0.1955 per answer"
+   ],
+   "notes": "Batch API: same per-search price; web search throttled in batches."
+  },
+  "cost_per_1k_queries_usd": 10.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.0551,
+  "cost_basis": "2 searches x $0.01 + 11,000 input x1.3 (Claude 4.7+ tokenizer) = 14,300 + 650 output. Sonnet 5.5: 0.02 + 14,300x2/1M + 650x10/1M = $0.055.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Claude API; AWS Marketplace (Claude Platform on AWS); Google Cloud Marketplace (Anthropic-managed); Azure Marketplace (Foundry)",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Not on Amazon Bedrock. On Vertex AI (Google-managed) only the basic tool. On Foundry 'hosted on Azure' only the basic tool. Claude Platform on AWS and Anthropic-managed Google Cloud are Anthropic-operated; the search provider is not named, so assume queries leave the cloud.",
+   "licence": null
+  },
+  "data_handling": "Basic version (web_search_20250305) is ZDR-eligible; dynamic-filtering versions are not ZDR-eligible unless allowed_callers=['direct'].",
+  "outputs": [
+   "answer with citations (cited_text up to 150 chars)",
+   "encrypted result content"
+  ],
+  "notes": "Citations must be shown when outputs are displayed to end users. Price unchanged since launch (May 2025).",
+  "sources": [
+   "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+   "https://platform.claude.com/docs/en/about-claude/pricing",
+   "https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "anthropic-web-fetch",
+  "name": "Claude web fetch tool",
+  "vendor": "Anthropic",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": false,
+  "index_source": "Fetches a given URL live (with cache); no index",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": null,
+   "tiers": [
+    "no tool fee",
+    "fetched content billed as input tokens (~2,500 tokens per 10 kB page)",
+    "max_content_tokens cap"
+   ],
+   "notes": "Cannot render JavaScript; use the browser use toolset for that."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Token cost only: a 10 kB page is ~2,500 tokens, e.g. $0.005 on Sonnet 5.5.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Same routes as Claude web search",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Same platform coverage as web search; not on Bedrock.",
+   "licence": null
+  },
+  "data_handling": "Basic version ZDR-eligible. Can only fetch URLs already present in the conversation (exfiltration guard).",
+  "outputs": [
+   "page text or PDF as document block",
+   "optional citations"
+  ],
+  "notes": "",
+  "sources": [
+   "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "gemini-api-grounding-google-search",
+  "name": "Grounding with Google Search (Gemini Developer API)",
+  "vendor": "Google",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Google Search index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 14.0,
+   "tiers": [
+    "Gemini 3.x and 4 Argon: 5,000 search queries/month free (shared), then $14 per 1k search queries",
+    "Gemini 2.5 Pro/Flash/Flash-Lite: 1,500 grounded prompts/day free, then $35 per 1k grounded prompts",
+    "gemini-3.8-flash: 2 queries x $0.014 + 1k in/500 out -> ~$0.0306 per answer",
+    "gemini-4-argon: 2 queries x $0.014 + 1k in/500 out -> ~$0.035 per answer",
+    "gemini-3.1-flash-lite: 2 queries x $0.014 + 1k in/500 out -> ~$0.029 per answer"
+   ],
+   "notes": "Gemini 3+ bills per search query the model issues (several per prompt possible); 2.5 bills per prompt."
+  },
+  "cost_per_1k_queries_usd": 14.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.0306,
+  "cost_basis": "Assumes grounding-returned tokens are not billed (stated on Vertex; not stated on the Gemini API page). Gemini 3.8 Flash: 2 x $0.014 + 1,000x0.75/1M + 500x3.75/1M = $0.031.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Google AI Studio / Gemini API billing",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Gemini Developer API is a Google service but not Vertex AI; enterprise cloud clients should use the Vertex records.",
+   "licence": null
+  },
+  "data_handling": "Gemini API terms; paid tier not used for training. Search Suggestions display required.",
+  "outputs": [
+   "grounded answer",
+   "groundingMetadata (sources, supports)",
+   "Search Suggestions chip (must display)"
+  ],
+  "notes": "Price traps: Gemini 4 Argon tokens double on 2026-12-01 and Gemini 3.8/3.6 Flash on 2027-01-01 (grounding fee unchanged).",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "vertex-grounding-google-search",
+  "name": "Grounding with Google Search (Vertex AI / Gemini Enterprise Agent Platform)",
+  "vendor": "Google Cloud",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Google Search index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 14.0,
+   "tiers": [
+    "Gemini 3/4: 5,000 grounding queries/month free, then $14 per 1k queries; grounding input tokens not charged",
+    "Gemini 2.5: $35 per 1k grounded prompts (Flash family 1,500/day free; 2.5 Pro 10,000/day free)",
+    "billed only when sources are returned",
+    "gemini-3.8-flash: 2 queries x $0.014 + 1k in/500 out -> ~$0.0306 per answer",
+    "gemini-4-argon: 2 queries x $0.014 + 1k in/500 out -> ~$0.035 per answer",
+    "gemini-3.1-flash-lite: 2 queries x $0.014 + 1k in/500 out -> ~$0.029 per answer"
+   ],
+   "notes": "Per-query billing for Gemini 3+ started 2026-01-05."
+  },
+  "cost_per_1k_queries_usd": 14.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.0306,
+  "cost_basis": "Gemini 3.8 Flash: 2 queries x $0.014 + 1,000 prompt tokens x $0.75/1M + 500 out x $3.75/1M = $0.031; grounding tokens free on Vertex.",
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Google Cloud",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Runs on Google infrastructure, but processing location is global (no documented regional processing) and VPC-SC support is not documented. Google keeps reliability logs for up to 3 days.",
+   "licence": null
+  },
+  "data_handling": "Reliability logs up to 3 days; not a ZDR service. Use Web Grounding for Enterprise for no-logging/VPC-SC.",
+  "outputs": [
+   "grounded answer",
+   "groundingMetadata",
+   "Search Suggestions (must display unchanged in production)"
+  ],
+  "notes": "Display rules: show Search Suggestions exactly as provided, visible with the answer, tap goes straight to Google results. The pricing page says customers may choose not to display Search Suggestions at standard pricing under 1M grounding prompts/day; confirm with Google before relying on it. Pages that opt out via Google-Extended are excluded.",
+  "sources": [
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+   "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/grounding/grounding-with-google-search"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "vertex-web-grounding-enterprise",
+  "name": "Web Grounding for Enterprise (Vertex AI)",
+  "vendor": "Google Cloud",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Curated subset of the Google index (fast-changing content refreshed ~6 h, full index ~24 h)",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 14.0,
+   "tiers": [
+    "Gemini 3/4: shares the 5,000/month free pool, then $14 per 1k grounding queries",
+    "Gemini 2.5: $45 per 1k grounding prompts"
+   ],
+   "notes": "Gemini 3 Pro capped at 5,000 queries/day."
+  },
+  "cost_per_1k_queries_usd": 14.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.0306,
+  "cost_basis": "Same arithmetic as Google Search grounding: ~$0.031 per answer on Gemini 3.8 Flash.",
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Google Cloud",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Built for regulated industries: no customer data logged or persisted, VPC Service Controls supported. Data residency not documented.",
+   "licence": null
+  },
+  "data_handling": "Does not log customer data; nothing persisted (so CMEK/Access Transparency not applicable). VPC-SC supported.",
+  "outputs": [
+   "grounded answer",
+   "groundingMetadata",
+   "Search Suggestions"
+  ],
+  "notes": "For Gemini 3+, the enterprise variant costs the same as consumer Google Search grounding, which removes the old 2.5-era premium ($45 vs $35).",
+  "sources": [
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+   "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/grounding/web-grounding-enterprise"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "vertex-third-party-grounding",
+  "name": "Vertex AI grounding with Parallel / Exa",
+  "vendor": "Google Cloud + Parallel / Exa",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Parallel's or Exa's index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": null,
+   "tiers": [
+    "Parallel: subscribe via Google Cloud Marketplace or bring your own Parallel key; Gemini tokens billed separately",
+    "Exa: restricted preview, allowlist via account team"
+   ],
+   "notes": "Google's own grounding fee for these paths not stated on the page read."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Parallel Search price ($1-5 per 1k) + Gemini tokens.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Google Cloud Marketplace (Parallel) or Parallel direct",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Billing can sit on the Google Cloud bill, but Google states rewritten queries are sent to Parallel for processing: the search leaves Google Cloud.",
+   "licence": null
+  },
+  "data_handling": "Queries go to the third party under its terms.",
+  "outputs": [
+   "grounded answer with citations"
+  ],
+  "notes": "Supports Gemini 4 Argon, 3.x and 2.5 models.",
+  "sources": [
+   "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/grounding/grounding-with-parallel",
+   "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/grounding/grounding-with-exa"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "gemini-url-context",
+  "name": "URL context tool (Gemini)",
+  "vendor": "Google",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": false,
+  "index_source": "Fetches the URLs you supply (Google cache or live)",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": null,
+   "tiers": [
+    "no tool fee",
+    "retrieved content billed as input tokens at the model rate"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Token cost only.",
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Gemini API or Vertex AI",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Available on both Gemini API and Vertex AI.",
+   "licence": null
+  },
+  "data_handling": "As for the host API.",
+  "outputs": [
+   "answer grounded on fetched pages",
+   "url_context_metadata"
+  ],
+  "notes": "Equivalent of Claude web fetch.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "xai-web-search",
+  "name": "xAI (SpaceXSI) Agent Tools: web_search / x_search",
+  "vendor": "xAI",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": null,
+  "index_source": "Not disclosed for web; X posts from X's own data",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 5.0,
+   "tiers": [
+    "web_search $5/1k calls",
+    "x_search $5/1k posts, $10/1k profiles",
+    "code_execution $5/1k",
+    "collections_search $2.50/1k",
+    "plus tokens (grok-4.7 $2/$6 per 1M)"
+   ],
+   "notes": "The older Live Search API ($25/1k sources) was replaced by agent tools (from memory; not re-checked)."
+  },
+  "cost_per_1k_queries_usd": 5.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.035,
+  "cost_basis": "grok-4.7: 2 x $0.005 + 11,000 x $2/1M + 500 x $6/1M = $0.035.",
+  "deployment": {
+   "hosted": [],
+   "billing": "xAI API",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "xAI-operated. Grok models on Azure Foundry exist but tool availability there not checked.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "answer with citations",
+   "X post results"
+  ],
+  "notes": "Only provider with first-party X/Twitter search.",
+  "sources": [
+   "https://docs.x.ai/developers/pricing.md"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "mistral-web-search",
+  "name": "Mistral web_search / web_search_premium connector (Agents & Conversations API)",
+  "vendor": "Mistral AI",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": false,
+  "index_source": "Brave Search (results tagged source: brave); premium adds verified news providers (AFP/AP)",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": null,
+   "tiers": [
+    "tool calls priced per call (amount not shown on the pages fetched today)"
+   ],
+   "notes": "UNVERIFIED: 2025 pricing listed connectors at about $30 per 1k calls (from memory)."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Not published on pages fetched; no estimate.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Mistral La Plateforme / Studio",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Mistral models are on Azure Foundry, Vertex and Bedrock, but the web_search connector is a Mistral API feature.",
+   "licence": null
+  },
+  "data_handling": "EU-hosted Mistral API; not checked today.",
+  "outputs": [
+   "answer with references"
+  ],
+  "notes": "Not available in Chat Completions; only Conversations/Agents API.",
+  "sources": [
+   "https://docs.mistral.ai/studio/agents/agent-tools/websearch.md",
+   "https://mistral.ai/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": false
+ },
+ {
+  "id": "amazon-nova-web-grounding",
+  "name": "Amazon Nova Web Grounding (Bedrock built-in tool)",
+  "vendor": "AWS",
+  "category": "model-search-tool",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Amazon's internal web search index and knowledge graphs",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 30.0,
+   "tiers": [
+    "$30 per 1k requests (Nova 2 Lite, Nova Premier, Nova 2 Pro/Omni preview) plus tokens"
+   ],
+   "notes": "Price read from the AWS pricing JSON behind the Bedrock pricing page ($0.03/request); third-party guide agrees."
+  },
+  "cost_per_1k_queries_usd": 30.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.033,
+  "cost_basis": "1 request $0.03 + ~$0.003 Nova 2 Lite tokens (token prices not re-checked) = ~$0.033 per answer.",
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "AWS",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "AWS: 'Your data never leaves AWS infrastructure'. US regions only, via cross-region inference profiles. Nova models only.",
+   "licence": null
+  },
+  "data_handling": "Queries stay within AWS services; runtime prompt-injection filtering.",
+  "outputs": [
+   "grounded answer with citations"
+  ],
+  "notes": "Compare AgentCore Web Search ($7/1k) which works with any model.",
+  "sources": [
+   "https://aws.amazon.com/bedrock/pricing/",
+   "https://docs.aws.amazon.com/nova/latest/userguide/grounding.md"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "brave-answers",
+  "name": "Brave Answers API",
+  "vendor": "Brave",
+  "category": "answer-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Brave index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 4.0,
+   "tiers": [
+    "$4 per 1k requests + $5 per 1M input/output tokens",
+    "$5 free credit/month",
+    "2 qps"
+   ],
+   "notes": "OpenAI SDK compatible; streaming."
+  },
+  "cost_per_1k_queries_usd": 4.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.019,
+  "cost_basis": "$0.004 + ~3,000 tokens x $5/1M = $0.019 per answer (token count assumed; Brave's own all-in figure is $0.018).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Brave prepaid",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Brave-operated.",
+   "licence": null
+  },
+  "data_handling": "As Brave Search API.",
+  "outputs": [
+   "answer with citations"
+  ],
+  "notes": "Brave publishes FreshQA: 85.3% at $18 per 1,000 questions all-in (vendor benchmark).",
+  "sources": [
+   "https://brave.com/search/api/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "exa-answer",
+  "name": "Exa Answer and Deep Search",
+  "vendor": "Exa",
+  "category": "answer-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Exa index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 5.0,
+   "tiers": [
+    "Answer $5/1k",
+    "Deep Search $12/1k (multi-step, structured outputs)"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": 5.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.005,
+  "cost_basis": "$5 per 1k answers; Deep Search $12.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Exa",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Exa-operated.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise.",
+  "outputs": [
+   "answer with citations",
+   "structured output"
+  ],
+  "notes": "",
+  "sources": [
+   "https://exa.ai/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "perplexity-agent-api",
+  "name": "Perplexity Agent API (effort levels fast/low/medium)",
+  "vendor": "Perplexity",
+  "category": "answer-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Perplexity index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": null,
+   "tiers": [
+    "tokens at each model's rate (OpenAI, Anthropic, Google, xAI, Moonshot, NVIDIA, Sonar)",
+    "web_search tool $2.50/1k ($1/1k fast)",
+    "fetch_url $0.50/1k",
+    "people/finance search $5/1k",
+    "sandbox $0.03/session",
+    "published cost per request: fast $0.0014-0.0018, low $0.006-0.012, medium $0.016-0.031"
+   ],
+   "notes": "Replaces Sonar Chat Completions (support ended 2026-09-27)."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.0016,
+  "cost_basis": "Perplexity-published cost per request at 'fast': $0.0014 (BrowseComp) to $0.0018 (DSQA).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Perplexity; AWS Marketplace listing",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Perplexity-operated; routes to third-party model providers.",
+   "licence": null
+  },
+  "data_handling": "Not checked today.",
+  "outputs": [
+   "answer with inline citations",
+   "search_results items"
+  ],
+  "notes": "Perplexity's own benchmark: 'low' effort beats the retired Sonar Deep Research at 1-2% of its cost.",
+  "sources": [
+   "https://docs.perplexity.ai/getting-started/pricing",
+   "https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/benchmarks.md"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "perplexity-sonar",
+  "name": "Perplexity Sonar / Sonar Pro / Sonar Reasoning Pro (retired)",
+  "vendor": "Perplexity",
+  "category": "answer-api",
+  "status": "retired 2026-09-27",
+  "own_index": true,
+  "index_source": "Perplexity index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": null,
+   "tiers": [
+    "measured cost per request before retirement: Sonar $0.006-0.007, Sonar Pro $0.016-0.021, Sonar Reasoning Pro $0.016-0.026"
+   ],
+   "notes": "2025 list prices were token fees plus $5-14 per 1k requests by search context size (from memory)."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.007,
+  "cost_basis": "Perplexity's published per-request cost for Sonar on BrowseComp.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Perplexity",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Retired; synchronous Sonar calls are being reformulated as Agent API requests.",
+   "licence": null
+  },
+  "data_handling": "n/a",
+  "outputs": [
+   "answer with citations"
+  ],
+  "notes": "Sonar Chat Completions support ended 2026-09-27. Async Sonar requests no longer supported.",
+  "sources": [
+   "https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar",
+   "https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/benchmarks.md"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "parallel-responses-api",
+  "name": "Parallel Responses API",
+  "vendor": "Parallel Web Systems",
+  "category": "answer-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Parallel index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 10.0,
+   "tiers": [
+    "Low $10/1k (~5-10 s)",
+    "Medium $50/1k (~15-20 s)",
+    "High $250/1k (~30-60 s)"
+   ],
+   "notes": "OpenAI-compatible."
+  },
+  "cost_per_1k_queries_usd": 10.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.01,
+  "cost_basis": "Low: $10 per 1k = $0.01 per answer.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Parallel",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Parallel-operated.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise.",
+  "outputs": [
+   "cited answer"
+  ],
+  "notes": "",
+  "sources": [
+   "https://parallel.ai/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "youcom-answer",
+  "name": "You.com Answer API",
+  "vendor": "You.com",
+  "category": "answer-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "You.com index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 5.0,
+   "tiers": [
+    "$5 per 1k calls (p50 ~2.7 s)"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": 5.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.005,
+  "cost_basis": "$5 per 1k.",
+  "deployment": {
+   "hosted": [],
+   "billing": "You.com",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "You.com-operated.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise.",
+  "outputs": [
+   "cited answer with sources"
+  ],
+  "notes": "",
+  "sources": [
+   "https://you.com/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "linkup-sourced-answer",
+  "name": "Linkup Search (sourcedAnswer / structured)",
+  "vendor": "Linkup",
+  "category": "answer-api",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "Linkup index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 6.0,
+   "tiers": [
+    "standard $6/1k",
+    "deep $55/1k"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": 6.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": 0.006,
+  "cost_basis": "$0.006 per standard sourced answer.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Linkup",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "As linkup-search.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise.",
+  "outputs": [
+   "sourced answer",
+   "structured JSON"
+  ],
+  "notes": "",
+  "sources": [
+   "https://docs.linkup.so/pages/documentation/platform/pricing.md"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "openai-deep-research-api",
+  "name": "OpenAI deep research via API (o3/o4-mini-deep-research retired; GPT-5.5 high + web search)",
+  "vendor": "OpenAI",
+  "category": "deep-research-api",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "OpenAI web search tool",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": null,
+   "tiers": [
+    "o3-deep-research $10/$40 per 1M (shut down 2026-07-23)",
+    "o4-mini-deep-research $2/$8 (shut down 2026-07-23)",
+    "now: gpt-5.5 with reasoning high/xhigh + web_search ($5/$30 per 1M + $10/1k calls), background mode",
+    "OpenAI's deprecation table names gpt-5.6-sol as substitute"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 3.29,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Estimate using Google's published Deep Research profile (80 searches, 250k input of which 50% cached, 60k output incl. reasoning) on gpt-5.5: 80 x $0.01 + 125k x $5/1M + 125k x $0.50/1M + 60k x $30/1M = 0.80 + 0.625 + 0.0625 + 1.80 = ~$3.29.",
+  "deployment": {
+   "hosted": [],
+   "billing": "OpenAI API",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "o3-deep-research remains on Azure (see azure-foundry-deep-research).",
+   "licence": null
+  },
+  "data_handling": "OpenAI API terms.",
+  "outputs": [
+   "long report with citations"
+  ],
+  "notes": "The dedicated deep-research model SKUs are gone on OpenAI's own API; deep research is now a configuration of a frontier model.",
+  "sources": [
+   "https://developers.openai.com/api/docs/deprecations",
+   "https://developers.openai.com/api/docs/guides/tools-web-search",
+   "https://developers.openai.com/api/docs/models/o3-deep-research"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "azure-foundry-deep-research",
+  "name": "Deep Research tool in Foundry Agent Service (o3-deep-research)",
+  "vendor": "Microsoft",
+  "category": "deep-research-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Bing via Grounding with Bing Search",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": 10.0,
+   "tiers": [
+    "o3-deep-research global $10 in / $2.50 cached / $40 out per 1M",
+    "Data Zone $11 / $2.75 / $44",
+    "plus Grounding with Bing $14/1k",
+    "plus base GPT model for clarifying questions"
+   ],
+   "notes": "Search context tokens charged at the model's input price."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 5.08,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Same profile: 80 Bing calls x $0.014 = 1.12 + 125k x $10/1M + 125k x $2.50/1M + 60k x $40/1M = 1.12 + 1.25 + 0.31 + 2.40 = ~$5.08.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Model inference in Azure, but every search goes to Bing outside the Azure compliance boundary.",
+   "licence": null
+  },
+  "data_handling": "As Grounding with Bing: queries leave the compliance boundary.",
+  "outputs": [
+   "report with citations"
+  ],
+  "notes": "Still listed on Azure after OpenAI retired the model on its own API (July 2026); expect a retirement notice.",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices",
+   "https://azure.microsoft.com/en-us/pricing/details/azure-openai/",
+   "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/web-search"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "gemini-deep-research-agent",
+  "name": "Gemini Deep Research agent (Interactions API)",
+  "vendor": "Google",
+  "category": "deep-research-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Google Search",
+  "price": {
+   "unit": "per task",
+   "usd": 2.0,
+   "tiers": [
+    "deep-research-preview-04-2026: ~$1-3 per task (Google estimate)",
+    "deep-research-max-preview-04-2026: ~$3-7 per task",
+    "billed as tokens + per-tool fees (search $14/1k after free pool)"
+   ],
+   "notes": "Preview. No custom function tools; remote MCP allowed; no structured output."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 2.0,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Midpoint of Google's published $1-3 estimate (Max $3-7).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Gemini API / AI Studio",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Documented for the Gemini Developer API; Vertex availability not confirmed today.",
+   "licence": null
+  },
+  "data_handling": "Gemini API terms.",
+  "outputs": [
+   "report with citations",
+   "optional visualisations",
+   "research plan (collaborative planning)"
+  ],
+  "notes": "Google publishes a typical-task profile: ~80 searches, ~250k input (50-70% cached), ~60k output; Max up to ~160 searches, ~900k input, ~80k output.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/deep-research",
+   "https://ai.google.dev/gemini-api/docs/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "perplexity-agent-api-deep",
+  "name": "Perplexity Agent API high / xhigh effort (replaces Sonar Deep Research)",
+  "vendor": "Perplexity",
+  "category": "deep-research-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Perplexity index",
+  "price": {
+   "unit": "per task",
+   "usd": 0.13,
+   "tiers": [
+    "high: $0.12-0.14 per request (published)",
+    "xhigh: $0.22-0.78 per request (published)",
+    "retired sonar-deep-research: $0.57-0.61 per request"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 0.13,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Perplexity-published average cost per request at 'high' ($0.121-0.136).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Perplexity; AWS Marketplace listing",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Perplexity-operated.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "long cited answer/report",
+   "tables"
+  ],
+  "notes": "",
+  "sources": [
+   "https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/benchmarks.md"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "parallel-task-api",
+  "name": "Parallel Task API (processors lite to ultra8x)",
+  "vendor": "Parallel Web Systems",
+  "category": "deep-research-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Parallel index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 5.0,
+   "tiers": [
+    "lite: $5/1k tasks ($0.005 per task)",
+    "base: $10/1k tasks ($0.010 per task)",
+    "core: $25/1k tasks ($0.025 per task)",
+    "core2x: $50/1k tasks ($0.050 per task)",
+    "pro: $100/1k tasks ($0.100 per task)",
+    "ultra: $300/1k tasks ($0.300 per task)",
+    "ultra2x: $600/1k tasks ($0.600 per task)",
+    "ultra4x: $1200/1k tasks ($1.200 per task)",
+    "ultra8x: $2400/1k tasks ($2.400 per task)",
+    "FindAll: base $0.25 + $0.03/match, core $2 + $0.15/match",
+    "Monitor: lite $3/1k, base $10/1k"
+   ],
+   "notes": "Latency from 5 s (lite) to 8-30 min (ultra4x/8x). Outputs carry citations, reasoning and confidence (core and up)."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 0.3,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Ultra (deep research) = $300 per 1k = $0.30 per task; pro $0.10; core $0.025.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Parallel",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Parallel-operated.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise.",
+  "outputs": [
+   "structured JSON with per-field citations",
+   "markdown report",
+   "confidence"
+  ],
+  "notes": "The clearest published per-task ladder in the market.",
+  "sources": [
+   "https://parallel.ai/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "exa-agent",
+  "name": "Exa Agent (replaces Exa Research API)",
+  "vendor": "Exa",
+  "category": "deep-research-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Exa indexes + Exa Connect data providers",
+  "price": {
+   "unit": "per task",
+   "usd": 0.1,
+   "tiers": [
+    "minimal $0.012",
+    "low $0.025",
+    "medium $0.10",
+    "high $0.50",
+    "xhigh $1.00",
+    "ultra usage-based",
+    "usage components: $0.10/Agent Compute Unit, $0.005/search, email enrichment $0.02, phone $0.07"
+   ],
+   "notes": "Async runs, structured outputs with citations."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 0.5,
+  "cost_per_answer_usd": null,
+  "cost_basis": "'high' effort = $0.50 per run.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Exa",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Exa-operated.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise.",
+  "outputs": [
+   "structured output with citations"
+  ],
+  "notes": "Exa's 2025 Research API ($5/1k searches + $5/1k pages + reasoning tokens) is superseded by Agent pricing.",
+  "sources": [
+   "https://exa.ai/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "youcom-research",
+  "name": "You.com Research API",
+  "vendor": "You.com",
+  "category": "deep-research-api",
+  "status": "available",
+  "own_index": true,
+  "index_source": "You.com index",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 12.0,
+   "tiers": [
+    "Lite $12/1k (<2 s)",
+    "Standard $50/1k (10-30 s)",
+    "Deep $100/1k (<2 min)",
+    "Exhaustive $450/1k (<5 min)",
+    "Frontier $1,200/1k (~5 min+, background)",
+    "Finance Research: Deep $110/1k, Exhaustive $500/1k"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 0.45,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Exhaustive = $450 per 1k = $0.45 per task (Deep $0.10).",
+  "deployment": {
+   "hosted": [],
+   "billing": "You.com",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "You.com-operated.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise.",
+  "outputs": [
+   "cited research answer",
+   "report"
+  ],
+  "notes": "",
+  "sources": [
+   "https://you.com/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "tavily-research",
+  "name": "Tavily Research",
+  "vendor": "Tavily (Nebius)",
+  "category": "deep-research-api",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "Tavily search",
+  "price": {
+   "unit": "per task",
+   "usd": null,
+   "tiers": [
+    "model=mini: 4-110 credits per request ($0.032-0.88 at $0.008)",
+    "model=pro: 15-250 credits ($0.12-2.00)"
+   ],
+   "notes": "Dynamic pricing within min/max bounds."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 1.06,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Midpoint of pro bounds (15-250 credits = 132 credits x $0.008) = ~$1.06; mini midpoint ~$0.46.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Tavily",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Tavily-operated.",
+   "licence": null
+  },
+  "data_handling": "As Tavily Search.",
+  "outputs": [
+   "research report with citations"
+  ],
+  "notes": "",
+  "sources": [
+   "https://docs.tavily.com/documentation/api-credits"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "valyu-deepresearch",
+  "name": "Valyu DeepResearch",
+  "vendor": "Valyu",
+  "category": "deep-research-api",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "Valyu web + licensed datasets",
+  "price": {
+   "unit": "per task",
+   "usd": 0.625,
+   "tiers": [
+    "instant 8 credits ($0.05)",
+    "fast 25 ($0.16)",
+    "standard 100 ($0.63)",
+    "heavy 500 ($3.13)",
+    "max 2,500 ($15.63)"
+   ],
+   "notes": "Credits at PAYG $0.00625; fixed price per mode includes searches and page reads."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 0.625,
+  "cost_per_answer_usd": null,
+  "cost_basis": "standard mode 100 credits x $0.00625 = $0.625.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Valyu",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Valyu-operated.",
+   "licence": null
+  },
+  "data_handling": "ZDR on request.",
+  "outputs": [
+   "cited report",
+   "files (CSV etc.)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://docs.valyu.ai/pricing.md"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "linkup-research",
+  "name": "Linkup Research",
+  "vendor": "Linkup",
+  "category": "deep-research-api",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "Linkup index",
+  "price": {
+   "unit": "per task",
+   "usd": 0.5,
+   "tiers": [
+    "S $0.25",
+    "M $0.50",
+    "L $1.50",
+    "XL $2.50"
+   ],
+   "notes": "Async, 1-10 min."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 0.5,
+  "cost_per_answer_usd": null,
+  "cost_basis": "M depth = $0.50.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Linkup",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "As linkup-search.",
+   "licence": null
+  },
+  "data_handling": "ZDR on Enterprise.",
+  "outputs": [
+   "research report with sources"
+  ],
+  "notes": "",
+  "sources": [
+   "https://docs.linkup.so/pages/documentation/platform/pricing.md"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "chatgpt-deep-research",
+  "name": "ChatGPT (deep research, agent mode)",
+  "vendor": "OpenAI",
+  "category": "deep-research-app",
+  "status": "available",
+  "own_index": "partial",
+  "index_source": "OpenAI search",
+  "price": {
+   "unit": "per seat-month",
+   "usd": 20.0,
+   "tiers": [
+    "Free/Go: 'limited' deep research",
+    "Plus $20: 'expanded'",
+    "Pro $100 / $200 / $500 tiers: 'maximum'",
+    "Business $25 monthly ($20 annual), credits-based; one deep research task = 50 credits (secondary)"
+   ],
+   "notes": "UNVERIFIED: chatgpt.com/pricing needs JavaScript; figures from third-party guides dated Oct 2026. OpenAI no longer publishes fixed task counts."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Seat price only.",
+  "deployment": {
+   "hosted": [],
+   "billing": "OpenAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "OpenAI-hosted.",
+   "licence": null
+  },
+  "data_handling": "Business/Enterprise: no training on data by default.",
+  "outputs": [
+   "report with citations"
+  ],
+  "notes": "",
+  "sources": [
+   "https://www.ai-toolbox.co/chatgpt-models/chatgpt-pricing",
+   "https://www.toolcolumn.com/learn/chatgpt-deep-research-limits-by-plan"
+  ],
+  "checked": "2026-10-25",
+  "verified": false
+ },
+ {
+  "id": "claude-research",
+  "name": "Claude apps (Research)",
+  "vendor": "Anthropic",
+  "category": "deep-research-app",
+  "status": "available",
+  "own_index": null,
+  "index_source": "Claude web search",
+  "price": {
+   "unit": "per seat-month",
+   "usd": 20.0,
+   "tiers": [
+    "Free: no Research",
+    "Pro $20 ($17 annual)",
+    "Max from $100 (5x) / $200 (20x), incl. $100-200 API credits",
+    "Team standard $25 ($20 annual), premium $125 ($100 annual)",
+    "Enterprise $20/seat/month (20-seat min) + usage at API rates"
+   ],
+   "notes": "Research included on Pro and above; usage limits, no published task count."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Seat price only.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Anthropic",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Anthropic-hosted.",
+   "licence": null
+  },
+  "data_handling": "No training on Team/Enterprise content by default.",
+  "outputs": [
+   "research report with citations"
+  ],
+  "notes": "Enterprise moved to seat + metered usage.",
+  "sources": [
+   "https://claude.com/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "gemini-app-deep-research",
+  "name": "Gemini app (Deep Research) / Gemini Enterprise",
+  "vendor": "Google",
+  "category": "deep-research-app",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Google Search",
+  "price": {
+   "unit": "per seat-month",
+   "usd": 19.99,
+   "tiers": [
+    "No plan: Deep Research may be unavailable at peak",
+    "Google AI Plus, Pro, Ultra: usage-based limits; Deep Research consumes more",
+    "UK prices verified: AI Plus GBP 7.99, AI Pro GBP 18.99",
+    "US AI Pro $19.99, Ultra $249.99 (secondary)",
+    "Gemini Enterprise Business from $21/seat/month"
+   ],
+   "notes": "Google moved to compute-weighted usage limits, not fixed report counts."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Seat price only.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Google One / Workspace",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Google-hosted.",
+   "licence": null
+  },
+  "data_handling": "Workspace/Enterprise data terms.",
+  "outputs": [
+   "report",
+   "audio overview"
+  ],
+  "notes": "",
+  "sources": [
+   "https://support.google.com/gemini/answer/16275805",
+   "https://one.google.com/about/plans",
+   "https://gemini.google/subscriptions/"
+  ],
+  "checked": "2026-10-25",
+  "verified": false
+ },
+ {
+  "id": "perplexity-app",
+  "name": "Perplexity (Research mode)",
+  "vendor": "Perplexity",
+  "category": "deep-research-app",
+  "status": "available",
+  "own_index": true,
+  "index_source": "Perplexity index",
+  "price": {
+   "unit": "per seat-month",
+   "usd": 20.0,
+   "tiers": [
+    "Pro $20 (Research cap cut in early 2026, figures conflict)",
+    "Max $200",
+    "Enterprise Pro $40/seat (50 Research/month)",
+    "Enterprise Max $325/seat (500 Research/month)"
+   ],
+   "notes": "UNVERIFIED: perplexity.ai pricing needs JavaScript; figures from third-party guides."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Seat price only.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Perplexity",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Perplexity-hosted.",
+   "licence": null
+  },
+  "data_handling": "Enterprise: no training on data.",
+  "outputs": [
+   "report with citations"
+  ],
+  "notes": "",
+  "sources": [
+   "https://www.finout.io/blog/perplexity-pricing-in-2026"
+  ],
+  "checked": "2026-10-25",
+  "verified": false
+ },
+ {
+  "id": "grok-app",
+  "name": "Grok (SuperGrok) DeepSearch",
+  "vendor": "xAI",
+  "category": "deep-research-app",
+  "status": "available",
+  "own_index": null,
+  "index_source": "xAI search + X",
+  "price": {
+   "unit": "per seat-month",
+   "usd": 30.0,
+   "tiers": [
+    "SuperGrok $30",
+    "SuperGrok Plus $100 (secondary)",
+    "extra credits from $5"
+   ],
+   "notes": "UNVERIFIED (single secondary source)."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Seat price only.",
+  "deployment": {
+   "hosted": [],
+   "billing": "xAI / X",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "xAI-hosted.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "report"
+  ],
+  "notes": "",
+  "sources": [
+   "https://www.datastudios.org/post/grok-supergrok-paid-features-grok-4-5-access-higher-weekly-limits-multi-agent-reasoning-media-g"
+  ],
+  "checked": "2026-10-25",
+  "verified": false
+ },
+ {
+  "id": "manus",
+  "name": "Manus (Wide Research)",
+  "vendor": "Manus",
+  "category": "deep-research-app",
+  "status": "available",
+  "own_index": false,
+  "index_source": "Third-party search + own browser agents",
+  "price": {
+   "unit": "per seat-month",
+   "usd": 20.0,
+   "tiers": [
+    "Free 300 daily credits (max 1,500/month)",
+    "Pro from $20 (4,000 credits)",
+    "$40 (8,000 credits)",
+    "top tier $20,000/month (5M credits)"
+   ],
+   "notes": "UNVERIFIED: secondary sources. Credits per task vary widely."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Seat price only.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Manus",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Reported acquired by Meta (Dec 2025); not confirmed in today's search.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "report",
+   "slides",
+   "web apps"
+  ],
+  "notes": "",
+  "sources": [
+   "https://www.nocode.mba/articles/manus-ai-pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": false
+ },
+ {
+  "id": "genspark",
+  "name": "Genspark (Super Agent, deep research)",
+  "vendor": "Genspark",
+  "category": "deep-research-app",
+  "status": "available",
+  "own_index": false,
+  "index_source": "Third-party search",
+  "price": {
+   "unit": "per seat-month",
+   "usd": 24.99,
+   "tiers": [
+    "Free 100 credits/day",
+    "Plus $24.99 (10,000 credits/month)",
+    "Pro $249.99 (125,000 credits)",
+    "Team ~$30-35/seat"
+   ],
+   "notes": "UNVERIFIED: secondary sources."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Seat price only.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Genspark",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Genspark-hosted.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "report",
+   "slides",
+   "sheets"
+  ],
+  "notes": "",
+  "sources": [
+   "https://www.lindy.ai/blog/genspark-pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": false
+ },
+ {
+  "id": "openai-computer-use",
+  "name": "OpenAI computer use (computer tool on GPT-6.1 Sol / GPT-6 Astra)",
+  "vendor": "OpenAI",
+  "category": "browser-agent",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": 2.0,
+   "tiers": [
+    "gpt-6.1-sol $2/$10 per 1M",
+    "gpt-6-astra $10/$50",
+    "screenshots billed as image input",
+    "computer-use-preview shut down on OpenAI API 2026-07-23",
+    "Azure still lists computer-use-preview: $3 in / $12 out per 1M (global), $3.30/$13.20 regional/data zone"
+   ],
+   "notes": "You run the browser/VM; OpenAI returns actions."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Token cost; a step is roughly one screenshot (~1-3k tokens) plus history.",
+  "deployment": {
+   "hosted": [],
+   "billing": "OpenAI API; Azure OpenAI for computer-use-preview",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "computer-use-preview deployed in Azure runs in Azure; the browser it drives is yours.",
+   "licence": null
+  },
+  "data_handling": "Screenshots sent to the model.",
+  "outputs": [
+   "UI actions (click, type, scroll)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://developers.openai.com/api/docs/guides/tools-computer-use",
+   "https://developers.openai.com/api/docs/deprecations",
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "claude-computer-use",
+  "name": "Claude computer use and browser use toolsets",
+  "vendor": "Anthropic",
+  "category": "browser-agent",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": 2.0,
+   "tiers": [
+    "computer_toolset_20260801 adds ~4,500 input tokens per request",
+    "browser_toolset_20260801 adds ~6,600",
+    "screenshots billed as image input",
+    "Sonnet 5.5 $2/$10, Opus 5.5 $4/$20, Haiku 5.5 $0.10/$0.50"
+   ],
+   "notes": "Client tools: your application drives the browser or VM."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Token cost only.",
+  "deployment": {
+   "hosted": [
+    "AWS",
+    "GCP",
+    "Azure"
+   ],
+   "billing": "Claude API; Bedrock; Vertex; Foundry",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Model can be called inside each cloud (Bedrock/Vertex; Foundry hosted-on-Azure option), and the browser runs where you put it. Claude Platform on AWS excludes the computer and browser use toolsets. Toolset support per cloud not re-checked for the 20260801 versions.",
+   "licence": null
+  },
+  "data_handling": "Screenshots go to the model host.",
+  "outputs": [
+   "UI actions",
+   "accessibility-tree reads (browser toolset)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://platform.claude.com/docs/en/about-claude/pricing",
+   "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "gemini-computer-use",
+  "name": "Gemini Computer Use",
+  "vendor": "Google",
+  "category": "browser-agent",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": 0.75,
+   "tiers": [
+    "no tool fee; billed at model token rates (e.g. Gemini 3.8 Flash $0.75/$3.75)"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Token cost only.",
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Gemini API or Vertex AI",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Vertex AI lists the Computer Use tool at token rates.",
+   "licence": null
+  },
+  "data_handling": "As host API.",
+  "outputs": [
+   "UI actions"
+  ],
+  "notes": "Original gemini-2.5-computer-use-preview was a separate model; now a tool on Gemini 3.x.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "browser-use",
+  "name": "Browser Use (cloud and open source)",
+  "vendor": "Browser Use",
+  "category": "browser-agent",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.02,
+   "tiers": [
+    "cloud browsers $0.02/hour (billed per minute, 1-min minimum)",
+    "residential proxy $5/GB (own proxy $0.20/GB)",
+    "web agents: model price + 20%",
+    "$1 free credit; no subscription"
+   ],
+   "notes": "Vendor benchmark lists hard-task costs from ~$0.06 (GPT-5.6 Luna) to ~$8.87 (GPT-6 Astra)."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": 0.155,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Vendor BU_Bench_v2: GPT-6 Luna (high) $0.155 per hard browser task, excluding browser time and proxies.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Browser Use credits",
+   "private": true,
+   "weights": true,
+   "saas": true,
+   "note": "Open-source library (MIT) runs anywhere, including inside your own cloud account; on-prem browsers offered.",
+   "licence": "MIT"
+  },
+  "data_handling": "Cloud: SOC 2 Type II, HIPAA. Self-host keeps everything in your environment (model calls aside).",
+  "outputs": [
+   "task result",
+   "extracted data",
+   "session recording"
+  ],
+  "notes": "",
+  "sources": [
+   "https://browser-use.com/pricing",
+   "https://github.com/browser-use/browser-use"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "stagehand",
+  "name": "Stagehand (Browserbase's open-source agent framework)",
+  "vendor": "Browserbase",
+  "category": "browser-agent",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": null,
+   "tiers": [
+    "framework free (MIT)",
+    "pay for browser infra (Browserbase or local) and model tokens"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Free licence; infra + tokens.",
+  "deployment": {
+   "hosted": [],
+   "billing": "n/a",
+   "private": false,
+   "weights": true,
+   "saas": false,
+   "note": "Runs anywhere; defaults to Browserbase cloud browsers.",
+   "licence": "MIT"
+  },
+  "data_handling": "Your environment.",
+  "outputs": [
+   "actions",
+   "extracted structured data"
+  ],
+  "notes": "",
+  "sources": [
+   "https://github.com/browserbase/stagehand"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "azure-foundry-browser-automation",
+  "name": "Browser Automation Tool (Foundry Agent Service)",
+  "vendor": "Microsoft",
+  "category": "browser-agent",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.6,
+   "tiers": [
+    "Playwright Workspaces Linux $0.01/min ($0.60/hr)",
+    "Windows $0.02/min ($1.20/hr)",
+    "plus model tokens"
+   ],
+   "notes": "GA. MCP tool backed by Playwright Workspaces; private website browsing in preview."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Test-minute meter: $0.01 x 60 = $0.60 per browser-hour (East US).",
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Browser runs in Azure Playwright Workspaces; model in Foundry.",
+   "licence": null
+  },
+  "data_handling": "Azure terms.",
+  "outputs": [
+   "actions",
+   "live view",
+   "human takeover"
+  ],
+  "notes": "",
+  "sources": [
+   "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/browser-automation",
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "browserbase",
+  "name": "Browserbase",
+  "vendor": "Browserbase",
+  "category": "browser-infra",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.12,
+   "tiers": [
+    "Free: 1 browser hour",
+    "Developer $20/mo: 100 hrs then $0.12/hr, 25 concurrent",
+    "Startup $99/mo: 500 hrs then $0.10/hr, 100 concurrent",
+    "proxies $12/GB (Dev), $10/GB (Startup)",
+    "Search $5/1k default (resells Parallel at $1-5, Exa $7)",
+    "Fetch $1/1k (Dev), $0.50/1k (Startup)"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$0.12 per browser-hour overage on Developer.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Browserbase",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Browserbase-operated.",
+   "licence": null
+  },
+  "data_handling": "SOC 2 (not re-checked).",
+  "outputs": [
+   "CDP sessions",
+   "recordings",
+   "agent runs"
+  ],
+  "notes": "Bundles third-party search (Parallel, Exa) as resale.",
+  "sources": [
+   "https://www.browserbase.com/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "steel",
+  "name": "Steel",
+  "vendor": "Steel",
+  "category": "browser-infra",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.1,
+   "tiers": [
+    "Launch $0 + usage: $0.10/hr, proxy $10/GB, CAPTCHA $3/1k",
+    "Scale $250/mo: $0.08/hr, $6/GB, $1/1k",
+    "/scrape $5/1k"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$0.10 per browser-hour (Launch).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Steel",
+   "private": false,
+   "weights": true,
+   "saas": true,
+   "note": "steel-browser is open source (Apache-2.0) and can be self-hosted.",
+   "licence": "Apache-2.0 (steel-browser)"
+  },
+  "data_handling": "HIPAA BAA on Scale.",
+  "outputs": [
+   "CDP sessions"
+  ],
+  "notes": "",
+  "sources": [
+   "https://steel.dev/pricing",
+   "https://github.com/steel-dev/steel-browser"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "hyperbrowser",
+  "name": "Hyperbrowser",
+  "vendor": "Hyperbrowser",
+  "category": "browser-infra",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.1,
+   "tiers": [
+    "browser $0.10/hr",
+    "proxy $10/GB",
+    "Fetch $1/1k pages",
+    "Search $5/1k",
+    "HyperAgent/Browser Use steps $0.02",
+    "Startup $30/mo, Scale $100/mo (usage included)"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$0.10 per browser-hour.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Hyperbrowser credits (1,000 credits = $1)",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Hyperbrowser-operated.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "CDP sessions",
+   "fetch/scrape",
+   "agent steps"
+  ],
+  "notes": "",
+  "sources": [
+   "https://www.hyperbrowser.ai/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "kernel",
+  "name": "Kernel",
+  "vendor": "Kernel",
+  "category": "browser-infra",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.06,
+   "tiers": [
+    "$0.0000166667 per GB-second, no charge for idle time or proxies",
+    "Free $5/mo credit",
+    "Hobbyist $30/mo",
+    "Start-up $200/mo"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$0.0000166667 x 3,600 s = $0.06 per GB-hour; assumes a 1 GB browser (2 GB = $0.12/hr).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Kernel",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Kernel-operated; enterprise tier with SOC 2 and HIPAA.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "CDP sessions",
+   "replays"
+  ],
+  "notes": "",
+  "sources": [
+   "https://www.kernel.sh/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "anchor-browser",
+  "name": "Anchor Browser",
+  "vendor": "Anchor",
+  "category": "browser-infra",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.09,
+   "tiers": [
+    "$0.01 per session start",
+    "$0.09 per browser-hour",
+    "proxy $8/GB",
+    "AI steps $0.01",
+    "agent plans: Starter $50/mo, Team $500, Growth $2,000"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$0.09 per browser-hour + $0.01 per session.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Anchor",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Anchor-operated.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "CDP sessions",
+   "agent tasks"
+  ],
+  "notes": "",
+  "sources": [
+   "https://anchorbrowser.io/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "aws-agentcore-browser",
+  "name": "Amazon Bedrock AgentCore Browser",
+  "vendor": "AWS",
+  "category": "browser-infra",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.108,
+   "tiers": [
+    "$0.0895 per vCPU-hour",
+    "$0.00945 per GB-hour",
+    "billed on active consumption; I/O wait free",
+    "128 MB minimum memory; S3 for browser profiles; EC2 data transfer"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Illustrative: 1 vCPU + 2 GB fully active for an hour = 0.0895 + 2 x 0.00945 = $0.108; real bills lower because idle I/O time is free.",
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "AWS",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party AWS, in your Region; pair with AgentCore Web Search to keep search in AWS too.",
+   "licence": null
+  },
+  "data_handling": "Runs in AWS.",
+  "outputs": [
+   "managed Chromium sessions",
+   "live view",
+   "recordings"
+  ],
+  "notes": "",
+  "sources": [
+   "https://aws.amazon.com/bedrock/agentcore/pricing/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "azure-playwright-workspaces",
+  "name": "Azure Playwright Workspaces (Azure App Testing)",
+  "vendor": "Microsoft",
+  "category": "browser-infra",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.6,
+   "tiers": [
+    "Linux $0.01 per test-minute ($0.60/hr)",
+    "Windows $0.02 per minute ($1.20/hr)",
+    "100 free minutes trial",
+    "Australia East Linux $0.0145/min"
+   ],
+   "notes": "Billed per second."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$0.01 x 60 = $0.60 per hour (East US, Linux).",
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party Azure; backs the Foundry Browser Automation Tool.",
+   "licence": null
+  },
+  "data_handling": "Azure terms.",
+  "outputs": [
+   "remote Playwright browsers"
+  ],
+  "notes": "Priced for testing; expensive per hour versus agent-browser startups.",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices",
+   "https://azure.microsoft.com/en-us/pricing/details/app-testing/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "google-agent-platform-sandbox",
+  "name": "Gemini Enterprise Agent Platform sandbox / Agent Runtime compute",
+  "vendor": "Google Cloud",
+  "category": "browser-infra",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": null,
+   "tiers": [
+    "Agent Platform compute $0.085 per vCPU-hour, memory $0.009 per GiB-hour (from 2026-06-17)"
+   ],
+   "notes": "UNVERIFIED: from a Google-hosted pricing PDF surfaced in search; no browser-specific SKU found."
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "No browser-hour figure; 1 vCPU + 2 GiB would be ~$0.103/hr if the sandbox applies.",
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Google Cloud",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Closest Google equivalent; otherwise run headless Chrome on Cloud Run/GKE yourself.",
+   "licence": null
+  },
+  "data_handling": "Runs in GCP.",
+  "outputs": [
+   "sandboxed execution"
+  ],
+  "notes": "",
+  "sources": [
+   "https://services.google.com/fh/files/emails/b_502770571_gemini_enterprise_agent_platform_pricing.pdf"
+  ],
+  "checked": "2026-10-25",
+  "verified": false
+ },
+ {
+  "id": "cloudflare-browser-run",
+  "name": "Cloudflare Browser Run (formerly Browser Rendering)",
+  "vendor": "Cloudflare",
+  "category": "browser-infra",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.09,
+   "tiers": [
+    "Workers Free: 10 min/day",
+    "Workers Paid: 10 hrs/month included, then $0.09/hr",
+    "Browser Sessions: 10 concurrent included, then $2.00 per browser (monthly average)"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "$0.09 per browser-hour beyond included hours.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Cloudflare Workers",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Cloudflare edge; not a hyperscaler.",
+   "licence": null
+  },
+  "data_handling": "Cloudflare terms.",
+  "outputs": [
+   "Puppeteer/Playwright/CDP sessions",
+   "Quick Actions (see cloudflare-crawl)"
+  ],
+  "notes": "",
+  "sources": [
+   "https://developers.cloudflare.com/browser-rendering/pricing/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "firecrawl-scrape",
+  "name": "Firecrawl Scrape / Crawl / Map",
+  "vendor": "Firecrawl",
+  "category": "crawl-scrape",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 3.2,
+   "tiers": [
+    "1 credit per page (scrape, crawl, map)",
+    "JSON/Question/Highlight formats +4 credits",
+    "Interact 2 credits/browser-minute",
+    "Hobby $16/mo 5k credits",
+    "Standard $83/mo 100k",
+    "Growth $333/mo 500k",
+    "Scale $599/mo 1M"
+   ],
+   "notes": "Annual billing prices."
+  },
+  "cost_per_1k_queries_usd": 3.2,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Hobby: $16/5,000 = $3.20 per 1k pages; Standard $0.83 per 1k.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Firecrawl; AWS Marketplace; Google Cloud Marketplace",
+   "private": false,
+   "weights": true,
+   "saas": true,
+   "note": "Open-source core (AGPL-3.0) can be self-hosted in your cloud; hosted API is Firecrawl-operated.",
+   "licence": "AGPL-3.0"
+  },
+  "data_handling": "ZDR on Enterprise.",
+  "outputs": [
+   "markdown",
+   "HTML",
+   "JSON extraction",
+   "screenshots"
+  ],
+  "notes": "",
+  "sources": [
+   "https://www.firecrawl.dev/pricing",
+   "https://github.com/firecrawl/firecrawl"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "jina-reader",
+  "name": "Jina Reader (r.jina.ai)",
+  "vendor": "Jina AI (Elastic)",
+  "category": "crawl-scrape",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": 0.05,
+   "tiers": [
+    "billed on output tokens",
+    "~$0.05 per 1M tokens prepaid",
+    "10M free tokens (non-commercial)",
+    "OCR mode costs 40x tokens"
+   ],
+   "notes": "UNVERIFIED pricing (see jina-search)."
+  },
+  "cost_per_1k_queries_usd": 0.13,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "~2,500 tokens per page x $0.05/1M = $0.000125 per page = ~$0.13 per 1k pages (unverified).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Jina token credits",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Elastic-owned.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "markdown",
+   "text",
+   "screenshots"
+  ],
+  "notes": "",
+  "sources": [
+   "https://r.jina.ai/https://jina.ai/pricing",
+   "https://markaicode.com/pricing/jina-ai-pricing/"
+  ],
+  "checked": "2026-10-25",
+  "verified": false
+ },
+ {
+  "id": "crawl4ai",
+  "name": "Crawl4AI",
+  "vendor": "unclecode (OSS)",
+  "category": "crawl-scrape",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 0.0,
+   "tiers": [
+    "free; pay for compute and proxies"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": 0.0,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Licence free; compute small.",
+  "deployment": {
+   "hosted": [],
+   "billing": null,
+   "private": false,
+   "weights": true,
+   "saas": false,
+   "note": "Self-run library; runs inside any cloud account.",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Stays in your environment.",
+  "outputs": [
+   "markdown",
+   "structured extraction"
+  ],
+  "notes": "86k GitHub stars.",
+  "sources": [
+   "https://github.com/unclecode/crawl4ai"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "scrapingbee",
+  "name": "ScrapingBee",
+  "vendor": "ScrapingBee",
+  "category": "crawl-scrape",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 1.27,
+   "tiers": [
+    "Hobby $19/mo 75k credits",
+    "Freelance $49/mo 250k",
+    "Startup $99/mo 1M",
+    "Business $249/mo 3M",
+    "no JS 1 credit; JS rendering (default) 5; premium proxy 10/25; stealth 75"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": 1.27,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Hobby: $19/75,000 = $0.000253 per credit x 5 (JS) = $1.27 per 1k pages ($0.25 without JS).",
+  "deployment": {
+   "hosted": [],
+   "billing": "ScrapingBee",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Vendor-operated.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "HTML",
+   "markdown",
+   "screenshots",
+   "JSON extraction"
+  ],
+  "notes": "",
+  "sources": [
+   "https://www.scrapingbee.com/pricing/",
+   "https://www.scrapingbee.com/documentation/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "zyte-api",
+  "name": "Zyte API",
+  "vendor": "Zyte",
+  "category": "crawl-scrape",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 0.13,
+   "tiers": [
+    "PAYG HTTP $0.13-1.27 per 1k by site difficulty",
+    "PAYG browser-rendered $1.01-16.08 per 1k",
+    "$100/mo commitment: HTTP $0.10-0.95, browser $0.75-12.00",
+    "$5 free credit"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": 1.01,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Browser-rendered, simplest tier, PAYG: $1.01 per 1k.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Zyte",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Vendor-operated; Scrapy Cloud for hosted spiders.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "HTML",
+   "browser HTML",
+   "AI extraction"
+  ],
+  "notes": "",
+  "sources": [
+   "https://www.zyte.com/pricing/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "bright-data",
+  "name": "Bright Data (Unlocker, SERP, Crawl, Browser API)",
+  "vendor": "Bright Data",
+  "category": "crawl-scrape",
+  "status": "available",
+  "own_index": false,
+  "index_source": "SERP API scrapes Google/Bing",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": 1.5,
+   "tiers": [
+    "Unlocker PAYG $1.50/1k (Scale $499/mo, $1.30/1k)",
+    "SERP API from $1/1k",
+    "Crawl API from $1/1k",
+    "Browser API from $5/GB",
+    "Residential proxy from $2.50/GB (promo)"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": 1.5,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Unlocker PAYG $1.50 per 1k successful requests.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Bright Data; AWS Marketplace (not re-checked)",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Vendor-operated.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "HTML",
+   "parsed SERP",
+   "datasets"
+  ],
+  "notes": "",
+  "sources": [
+   "https://brightdata.com/pricing/web-unlocker",
+   "https://brightdata.com/pricing/serp"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "apify",
+  "name": "Apify (Actors, e.g. Website Content Crawler)",
+  "vendor": "Apify",
+  "category": "crawl-scrape",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": null,
+   "tiers": [
+    "Free $5/mo usage",
+    "Starter $19/mo; $0.20 per compute unit",
+    "Scale $199/mo; $0.16/CU",
+    "Business $999/mo; $0.13/CU",
+    "Store Actors priced per event/result by their authors"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Depends on Actor and compute units; no single figure.",
+  "deployment": {
+   "hosted": [],
+   "billing": "Apify",
+   "private": false,
+   "weights": true,
+   "saas": true,
+   "note": "Crawlee (open source) can be self-hosted.",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "datasets",
+   "markdown",
+   "JSON"
+  ],
+  "notes": "Marketplace of scrapers; cost depends on Actor.",
+  "sources": [
+   "https://apify.com/pricing"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "spider",
+  "name": "Spider",
+  "vendor": "Spider",
+  "category": "crawl-scrape",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per 1k requests",
+   "usd": null,
+   "tiers": [
+    "PAYG $1 per GB bandwidth + $0.0001 per CPU-minute; failures free",
+    "Unlimited from $40/mo (by concurrency)"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": 0.1,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "~100 kB per page: 1,000 pages = 0.1 GB = $0.10 + CPU ~$0.01 = ~$0.11 per 1k (assumption).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Spider",
+   "private": false,
+   "weights": true,
+   "saas": true,
+   "note": "Core crawler open source (not re-checked).",
+   "licence": null
+  },
+  "data_handling": "Not checked.",
+  "outputs": [
+   "markdown",
+   "HTML",
+   "screenshots"
+  ],
+  "notes": "",
+  "sources": [
+   "https://spider.cloud/"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "cloudflare-crawl",
+  "name": "Cloudflare Browser Run Quick Actions (/markdown, /crawl beta)",
+  "vendor": "Cloudflare",
+  "category": "crawl-scrape",
+  "status": "available",
+  "own_index": null,
+  "index_source": "n/a",
+  "price": {
+   "unit": "per browser-hour",
+   "usd": 0.09,
+   "tiers": [
+    "Quick Actions billed for browser hours only",
+    "$0.09/hr after 10 included hours (Workers Paid)"
+   ],
+   "notes": "/crawl follows links across a site (beta); respects robots.txt."
+  },
+  "cost_per_1k_queries_usd": 0.05,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "~2 s browser time per page: 1,000 pages = 0.56 hr x $0.09 = ~$0.05 per 1k (assumption).",
+  "deployment": {
+   "hosted": [],
+   "billing": "Cloudflare Workers",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Cloudflare edge.",
+   "licence": null
+  },
+  "data_handling": "Cloudflare terms.",
+  "outputs": [
+   "markdown",
+   "HTML",
+   "JSON (AI)",
+   "links",
+   "PDF"
+  ],
+  "notes": "",
+  "sources": [
+   "https://developers.cloudflare.com/browser-rendering/pricing/",
+   "https://developers.cloudflare.com/browser-run/quick-actions/crawl-endpoint/index.md"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "tongyi-deepresearch-30b",
+  "name": "Tongyi DeepResearch 30B-A3B",
+  "vendor": "Alibaba Tongyi Lab",
+  "category": "open-model",
+  "status": "available",
+  "own_index": null,
+  "index_source": "BYO search tool",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": null,
+   "tiers": [
+    "self-host (30B MoE, 3B active: one 80 GB GPU)"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "GPU time only.",
+  "deployment": {
+   "hosted": [],
+   "billing": null,
+   "private": false,
+   "weights": true,
+   "saas": false,
+   "note": "No managed listing found on Bedrock, Vertex or Foundry; deploy weights yourself (SageMaker, Vertex custom, AKS).",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Self-hosted; queries go to whichever search API you wire in.",
+  "outputs": [
+   "agentic search traces",
+   "reports"
+  ],
+  "notes": "Sept 2025 release; still the reference open deep-research agent.",
+  "sources": [
+   "https://huggingface.co/Alibaba-NLP/Tongyi-DeepResearch-30B-A3B",
+   "https://github.com/Alibaba-NLP/DeepResearch"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "kimi-k3",
+  "name": "Kimi K3",
+  "vendor": "Moonshot AI",
+  "category": "open-model",
+  "status": "available",
+  "own_index": null,
+  "index_source": "BYO search tool (strong agentic search/tool use)",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": 3.0,
+   "tiers": [
+    "Perplexity-hosted $3/$15 per 1M",
+    "Foundry via Fireworks $3.30/$16.50 (reported)",
+    "Bedrock: see Bedrock pricing"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Token prices vary by host.",
+  "deployment": {
+   "hosted": [
+    "AWS",
+    "Azure"
+   ],
+   "billing": "Bedrock; Foundry (Fireworks-operated)",
+   "private": false,
+   "weights": true,
+   "saas": false,
+   "note": "Bedrock GA 2026-09-18 (all Regions via cross-Region inference; global profile recommended). On Foundry it is offered through Fireworks AI (Data Zone deployments): a third-party operator, check where it runs. Not found on Vertex.",
+   "licence": "Kimi K3 licence (MIT-style; separate agreement needed if you run a Model-as-a-Service business over $20M revenue; 'Kimi K3' attribution above 100M MAU or $20M monthly revenue; internal use exempt)"
+  },
+  "data_handling": "Self-host or cloud terms.",
+  "outputs": [
+   "tool calls",
+   "answers"
+  ],
+  "notes": "",
+  "sources": [
+   "https://huggingface.co/moonshotai/Kimi-K3",
+   "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-on-amazon-bedrock/",
+   "https://www.neowin.net/news/kimi-k3-model-is-now-deployable-on-microsoft-foundry-through-fireworks-ai/",
+   "https://docs.perplexity.ai/docs/agent-api/models.md"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "kimi-k2-thinking",
+  "name": "Kimi K2 Thinking / K2.5",
+  "vendor": "Moonshot AI",
+  "category": "open-model",
+  "status": "available",
+  "own_index": null,
+  "index_source": "BYO search tool",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": null,
+   "tiers": [
+    "self-host or third-party hosts"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "GPU time only.",
+  "deployment": {
+   "hosted": [],
+   "billing": null,
+   "private": false,
+   "weights": true,
+   "saas": false,
+   "note": "Hyperscaler listings for K2.x not re-checked today (K3 supersedes).",
+   "licence": "Modified MIT ('other' on Hugging Face)"
+  },
+  "data_handling": "Self-hosted.",
+  "outputs": [
+   "agentic search traces"
+  ],
+  "notes": "K2 Thinking (Nov 2025) popularised long tool-call chains (200-300 steps).",
+  "sources": [
+   "https://huggingface.co/moonshotai/Kimi-K2-Thinking",
+   "https://huggingface.co/moonshotai/Kimi-K2.5"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "mirothinker",
+  "name": "MiroThinker 1.7 (and v1.5)",
+  "vendor": "MiroMind AI",
+  "category": "open-model",
+  "status": "available",
+  "own_index": null,
+  "index_source": "BYO search tool",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": null,
+   "tiers": [
+    "self-host; 1.7 is built on Qwen3-235B-A22B-Thinking; 1.7-mini and 30B variants"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "GPU time only.",
+  "deployment": {
+   "hosted": [],
+   "billing": null,
+   "private": false,
+   "weights": true,
+   "saas": false,
+   "note": "No managed listing found.",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Self-hosted.",
+  "outputs": [
+   "research agent traces"
+  ],
+  "notes": "2026 releases (v1.5 Jan, 1.7 Mar).",
+  "sources": [
+   "https://huggingface.co/miromind-ai/MiroThinker-1.7",
+   "https://github.com/MiroMindAI/MiroThinker"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "websailor",
+  "name": "WebSailor (3B, 7B, 32B)",
+  "vendor": "Alibaba Tongyi Lab",
+  "category": "open-model",
+  "status": "available",
+  "own_index": null,
+  "index_source": "BYO search tool",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": null,
+   "tiers": [
+    "self-host"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "GPU time only.",
+  "deployment": {
+   "hosted": [],
+   "billing": null,
+   "private": false,
+   "weights": true,
+   "saas": false,
+   "note": "No managed listing.",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Self-hosted.",
+  "outputs": [
+   "web agent traces"
+  ],
+  "notes": "2025; part of the Tongyi web-agent family.",
+  "sources": [
+   "https://huggingface.co/Alibaba-NLP/WebSailor-32B"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "jan-nano",
+  "name": "Jan-nano (4B)",
+  "vendor": "Menlo Research (Jan)",
+  "category": "open-model",
+  "status": "available",
+  "own_index": null,
+  "index_source": "BYO search via MCP",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": null,
+   "tiers": [
+    "runs on a laptop GPU"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "Local compute.",
+  "deployment": {
+   "hosted": [],
+   "billing": null,
+   "private": false,
+   "weights": true,
+   "saas": false,
+   "note": "Local/edge model.",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Local.",
+  "outputs": [
+   "tool calls"
+  ],
+  "notes": "Small local research model (June 2025).",
+  "sources": [
+   "https://huggingface.co/Menlo/Jan-nano"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ },
+ {
+  "id": "dr-tulu-8b",
+  "name": "DR Tulu 8B",
+  "vendor": "Ai2",
+  "category": "open-model",
+  "status": "available",
+  "own_index": null,
+  "index_source": "BYO search tool",
+  "price": {
+   "unit": "per 1M tokens",
+   "usd": null,
+   "tiers": [
+    "self-host"
+   ],
+   "notes": ""
+  },
+  "cost_per_1k_queries_usd": null,
+  "cost_per_task_usd": null,
+  "cost_per_answer_usd": null,
+  "cost_basis": "GPU time only.",
+  "deployment": {
+   "hosted": [],
+   "billing": null,
+   "private": false,
+   "weights": true,
+   "saas": false,
+   "note": "Fully open (data, code, weights).",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Self-hosted.",
+  "outputs": [
+   "long-form cited research answers"
+  ],
+  "notes": "Nov 2025; open deep-research recipe from Ai2.",
+  "sources": [
+   "https://huggingface.co/rl-research/DR-Tulu-8B"
+  ],
+  "checked": "2026-10-25",
+  "verified": true
+ }
+]
