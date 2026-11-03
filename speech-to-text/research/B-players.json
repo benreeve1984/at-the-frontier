@@ -1,0 +1,4390 @@
+[
+ {
+  "id": "aws-transcribe-batch",
+  "name": "Amazon Transcribe (batch)",
+  "vendor": "AWS",
+  "model": "Amazon Transcribe standard (StartTranscriptionJob)",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.36,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.0001 per second = $0.006/min, US East and EU (London, Frankfurt, Ireland) same; billed per second, 15 s minimum per request",
+   "tiers": [
+    "Standard batch $0.006/min flat (no volume tiers shown)",
+    "PII redaction add-on $0.0024/min T1 (= $0.144/hr), falling to $0.00078/min at >5M min",
+    "Custom language model $0.0001/s T1",
+    "Toxicity detection add-on $0.0036/min T1",
+    "Free tier 60 min/month for 12 months (AWS standard; not re-read)"
+   ],
+   "notes": "The AWS pricing page now shows a flat $0.006/min batch and $0.01/min streaming. In 2025 the list price was tiered from $0.024/min (from memory). No AWS announcement of the change was found."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Speaker partitioning (up to 30 speakers) and channel identification are included at no extra charge (AWS docs; not re-read today)."
+  },
+  "languages": {
+   "batch": 113,
+   "streaming": 99,
+   "notes": "113 locales batch, 99 streaming (45 of them marked streaming* = limited regions). Automatic language ID and multi-language ID in batch."
+  },
+  "latency_claim": null,
+  "features": [
+   "word timestamps",
+   "custom vocabulary",
+   "custom language models",
+   "PII redaction",
+   "toxicity detection",
+   "automatic language ID",
+   "subtitles"
+  ],
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "AWS",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party AWS service; PrivateLink supported for batch APIs; customer-managed KMS keys for custom resources added 2026-09.",
+   "licence": null
+  },
+  "data_handling": "AWS data terms; HIPAA eligible (BAA); EU regions available (London, Frankfurt, Ireland, Paris, Stockholm). AWS may use content to improve the service unless you opt out via an AI services opt-out policy (AWS Organizations).",
+  "notes": "Now the cheapest hyperscaler batch list price ($0.36/hr), level with OpenAI whisper-1 and Azure Fast Transcription.",
+  "sources": [
+   "https://aws.amazon.com/transcribe/pricing/",
+   "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/transcribe/USD/current/transcribe.json",
+   "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "aws-transcribe-streaming",
+  "name": "Amazon Transcribe (streaming)",
+  "vendor": "AWS",
+  "model": "Amazon Transcribe streaming (StartStreamTranscription)",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.6,
+   "unit_note": "$0.0001667 per second = $0.01/min; same in US East and EU regions",
+   "tiers": [
+    "Streaming $0.01/min flat",
+    "Streaming PII redaction +$0.0024/min T1",
+    "Streaming custom language model $0.0001/s T1"
+   ],
+   "notes": "Same per-second rate across US East (N. Virginia) and EU (London/Frankfurt/Ireland) in the AWS price map."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Speaker partitioning available in streaming for supported languages (AWS docs; not re-read)."
+  },
+  "languages": {
+   "batch": 113,
+   "streaming": 99,
+   "notes": "Streaming supports 99 locales per the language table; some only in certain regions. Streaming automatic language ID supported."
+  },
+  "latency_claim": null,
+  "features": [
+   "partial results stabilisation",
+   "custom vocabulary",
+   "custom language models",
+   "PII redaction",
+   "automatic language ID",
+   "WebSocket / HTTP2 / Amazon Connect integration"
+  ],
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "AWS",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party AWS. Also inside Amazon Connect contact lens.",
+   "licence": null
+  },
+  "data_handling": "As batch: HIPAA eligible, EU regions, AI services opt-out policy needed to stop service-improvement use.",
+  "notes": "$0.60/hr streaming makes it the cheapest hyperscaler real-time STT at list price.",
+  "sources": [
+   "https://aws.amazon.com/transcribe/pricing/",
+   "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/transcribe/USD/current/transcribe.json",
+   "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "aws-transcribe-call-analytics",
+  "name": "Amazon Transcribe Call Analytics",
+  "vendor": "AWS",
+  "model": "Transcribe Call Analytics (post-call and real-time)",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 1.8,
+   "streaming_usd_per_hour": 1.8,
+   "unit_note": "$0.0005 per second T1 (first 250k min/month) = $0.03/min",
+   "tiers": [
+    "T1 first 250k min: $0.03/min ($1.80/hr)",
+    "T2 next 750k: $0.0186/min ($1.116/hr)",
+    "T3 next 4M: $0.0138/min ($0.828/hr)",
+    "T4 over 5M: $0.0114/min ($0.684/hr)",
+    "Generative call summarisation +$0.0024/min T1"
+   ],
+   "notes": "Includes transcription plus sentiment, talk-time, interruptions, issue detection, categories."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Two-channel agent/customer separation is the design assumption."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "Fewer languages than standard Transcribe (column 'Call Analytics*' in AWS table); count not extracted."
+  },
+  "latency_claim": null,
+  "features": [
+   "sentiment",
+   "issue detection",
+   "categories",
+   "PII redaction",
+   "generative call summarisation"
+  ],
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "AWS",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party AWS; integrates with Amazon Connect.",
+   "licence": null
+  },
+  "data_handling": "As Transcribe.",
+  "notes": "Contact-centre bundle; compare with Transcribe streaming ($0.60/hr) plus your own LLM.",
+  "sources": [
+   "https://aws.amazon.com/transcribe/pricing/",
+   "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/transcribe/USD/current/transcribe.json"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "aws-transcribe-medical",
+  "name": "Amazon Transcribe Medical",
+  "vendor": "AWS",
+  "model": "Transcribe Medical (batch and streaming)",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 4.5,
+   "streaming_usd_per_hour": 4.5,
+   "unit_note": "$0.00125 per second = $0.075/min, batch and streaming",
+   "tiers": [
+    "$0.075/min flat",
+    "AWS HealthScribe (clinical notes) $0.10/min = $6.00/hr"
+   ],
+   "notes": "US English only historically (not re-read)."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 1,
+   "streaming": 1,
+   "notes": "US English (from memory; not re-read)."
+  },
+  "latency_claim": null,
+  "features": [
+   "medical vocabulary",
+   "PHI identification"
+  ],
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "AWS",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party AWS.",
+   "licence": null
+  },
+  "data_handling": "HIPAA eligible.",
+  "notes": "12x the price of standard Transcribe. Deepgram, AssemblyAI, Speechmatics and ElevenLabs sell medical models at $0.15–0.26/hr.",
+  "sources": [
+   "https://aws.amazon.com/transcribe/pricing/",
+   "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/transcribe/USD/current/transcribe.json"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "aws-bedrock-data-automation-audio",
+  "name": "Bedrock Data Automation (audio)",
+  "vendor": "AWS",
+  "model": "Bedrock Data Automation standard output (audio)",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.36,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.006 per audio minute standard output (Bedrock pricing example: 15,000 min = $90)",
+   "tiers": [
+    "Standard output $0.006/min",
+    "Custom output (blueprints) priced separately"
+   ],
+   "notes": "Transcript plus summary/chapters in one call."
+  },
+  "diarisation": {
+   "batch": null,
+   "streaming": null,
+   "extra_usd_per_hour": null,
+   "notes": "Not checked."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "Not checked."
+  },
+  "latency_claim": null,
+  "features": [
+   "transcript",
+   "summaries",
+   "structured extraction"
+  ],
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "AWS",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party Bedrock feature.",
+   "licence": null
+  },
+  "data_handling": "Bedrock data terms.",
+  "notes": "Useful when you want transcript + structured output in one AWS-native call.",
+  "sources": [
+   "https://aws.amazon.com/bedrock/pricing/"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "azure-speech-realtime",
+  "name": "Azure AI Speech real-time STT",
+  "vendor": "Microsoft",
+  "model": "Azure Speech (standard real-time; base model 'Azure Transcribe')",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 1.0,
+   "unit_note": "$1.00 per audio hour, billed per second (Azure Retail Prices API, S1 Speech To Text)",
+   "tiers": [
+    "Standard $1.00/hr",
+    "Custom model $1.20/hr + hosting $0.05375/model/hr",
+    "Commitment: 2k hr/month $1,600 (overage $0.80), 10k $6,500 ($0.65), 50k $25,000 ($0.50), 100k $40,000 ($0.40)",
+    "Enhanced add-ons (continuous language ID, diarisation) $0.30/hr per feature (real-time)"
+   ],
+   "notes": "5 free audio hours/month on F0."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.3,
+   "notes": "Real-time diarisation costs +$0.30/hr; included free in batch."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "Microsoft quotes 100+ locales for STT (not counted today). Continuous language ID is a paid add-on in real-time."
+  },
+  "latency_claim": null,
+  "features": [
+   "phrase lists",
+   "custom speech",
+   "continuous language ID",
+   "diarisation",
+   "pronunciation assessment",
+   "speech translation ($2.50/hr)"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": true,
+   "weights": false,
+   "saas": false,
+   "note": "First-party Azure. Connected and disconnected containers allow on-prem/VPC (commitment tiers, approval needed).",
+   "licence": null
+  },
+  "data_handling": "Azure data terms; EU and UK regions; HIPAA BAA; audio not stored for real-time by default; customer-managed keys.",
+  "notes": "The most expensive hyperscaler streaming list price; commitment tiers bring it to $0.40–0.80/hr.",
+  "sources": [
+   "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "azure-speech-batch",
+  "name": "Azure AI Speech batch transcription",
+  "vendor": "Microsoft",
+  "model": "Azure Speech batch (REST v3.2+)",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.18,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.18 per audio hour (S1 Speech to Text Batch)",
+   "tiers": [
+    "Standard batch $0.18/hr",
+    "Custom batch $0.225/hr"
+   ],
+   "notes": "Asynchronous; turnaround not guaranteed."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Diarisation and continuous language ID included with batch."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "100+ locales (Microsoft marketing; not counted)."
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "word timestamps",
+   "custom speech"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": true,
+   "weights": false,
+   "saas": false,
+   "note": "First-party Azure; also containers.",
+   "licence": null
+  },
+  "data_handling": "Azure data terms; EU/UK regions; HIPAA BAA.",
+  "notes": "Cheapest hyperscaler batch list price ($0.18/hr), tied with Google dynamic batch.",
+  "sources": [
+   "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "azure-fast-transcription",
+  "name": "Azure AI Speech fast transcription",
+  "vendor": "Microsoft",
+  "model": "Fast transcription API (models: Azure Transcribe, Azure LLM Speech, MAI-Transcribe-2)",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.36,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.36 per audio hour (Fast Transcription meter); synchronous, faster than real time",
+   "tiers": [
+    "Fast transcription $0.36/hr",
+    "Custom fast transcription $0.45/hr",
+    "'Fast Transcription Promo' meter $0.10/hr effective 2026-09-01 (pricing page footnote: promo to 2026-12-31)",
+    "Disconnected container: 2k hr/month $8,208/yr; 10k $41,040/yr; 100k $410,400/yr"
+   ],
+   "notes": "LLM Speech shares the same price and SKU as fast transcription (pricing page footnote 9)."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Diarisation on mono audio only; max 35 speakers."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "15 locales for the multilingual (no locale) mode; full list via API."
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "phrase lists",
+   "word timestamps",
+   "profanity filter",
+   "multichannel"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": true,
+   "weights": false,
+   "saas": false,
+   "note": "First-party; disconnected container option for fast transcription added 2026.",
+   "licence": null
+  },
+  "data_handling": "Azure data terms; files under 5 hours / 500 MB.",
+  "notes": "The default route for synchronous file transcription on Azure.",
+  "sources": [
+   "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
+   "https://prices.azure.com/api/retail/prices",
+   "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "azure-llm-speech",
+  "name": "Azure LLM Speech",
+  "vendor": "Microsoft",
+  "model": "Azure LLM Speech 07 2026 (fast transcription enhancedMode)",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.36,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Same SKU and price as fast transcription ($0.36/hr)",
+   "tiers": [
+    "$0.36/hr (shared fast transcription SKU)",
+    "LLM speech translation priced separately"
+   ],
+   "notes": "Multimodal model; adds translation."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Not supported for the translate task."
+  },
+  "languages": {
+   "batch": 50,
+   "streaming": null,
+   "notes": "50 languages, auto language detection when locale omitted."
+  },
+  "latency_claim": null,
+  "features": [
+   "translation",
+   "phrase lists",
+   "diarisation",
+   "word timestamps"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party Azure Speech.",
+   "licence": null
+  },
+  "data_handling": "Azure data terms.",
+  "notes": "Microsoft's LLM-based transcription and translation inside Azure Speech.",
+  "sources": [
+   "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/llm-speech",
+   "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "azure-mai-transcribe-2",
+  "name": "MAI-Transcribe-2 (Azure Speech / Foundry)",
+  "vendor": "Microsoft AI",
+  "model": "MAI-Transcribe-2",
+  "category": "hyperscaler-api",
+  "status": "preview (check status before production, per Microsoft docs)",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.54,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Azure Retail Prices API meter 'MAI-Transcribe-2' $0.54 per hour (effective 2026-10-01; two meters: Azure Speech and Azure Direct Models)",
+   "tiers": [
+    "List meter $0.54/hr",
+    "Pricing page footnote: limited-time promotional offer to 2026-12-31 (amount not shown; a $0.10/hr 'Fast Transcription Promo' meter exists, mapping unconfirmed)"
+   ],
+   "notes": "Third-party reports say MAI-Transcribe-2 (batch) launched at $0.10/hr through 2026 and the streaming variant at $0.54/hr; Microsoft's own page shows placeholders only."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Diarisation supported via fast transcription; stereo channels not supported."
+  },
+  "languages": {
+   "batch": 60,
+   "streaming": null,
+   "notes": "60 languages (Foundry catalog)."
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "phrase lists",
+   "word timestamps"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Microsoft first-party model ('Direct from Azure'); used via fast transcription enhancedMode or Foundry.",
+   "licence": null
+  },
+  "data_handling": "Azure data terms.",
+  "notes": "Microsoft's own frontier ASR line: MAI-Transcribe-1 (Apr 2026, 25 languages, $0.36/hr), 1.5 (Jun 2026, 43 languages), 2 (Aug–Sep 2026, 60 languages).",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices",
+   "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/",
+   "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create",
+   "https://ai.azure.com/catalog/models/MAI-Transcribe-2"
+  ],
+  "checked": "2026-11-03",
+  "verified": false
+ },
+ {
+  "id": "azure-mai-transcribe-2-streaming",
+  "name": "MAI-Transcribe-2-Streaming",
+  "vendor": "Microsoft AI",
+  "model": "MAI-Transcribe-2-Streaming",
+  "category": "hyperscaler-api",
+  "status": "preview",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.54,
+   "unit_note": "Assumed $0.54/hr (MAI-Transcribe-2 meter); mapping of meter to streaming not confirmed",
+   "tiers": [
+    "$0.54/hr (unconfirmed mapping)"
+   ],
+   "notes": "Catalog version 2026-08-06."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Not mentioned in the catalog entry."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 60,
+   "notes": "60 languages with continuous automatic language detection (catalog + press)."
+  },
+  "latency_claim": "Press: first partial results after ~100 ms of audio (unverified).",
+  "features": [
+   "partial and final hypotheses",
+   "automatic language detection"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Foundry 'Direct from Azure'.",
+   "licence": null
+  },
+  "data_handling": "Azure data terms.",
+  "notes": "Microsoft's answer to gpt-live-transcribe inside Azure.",
+  "sources": [
+   "https://ai.azure.com/catalog/models/MAI-Transcribe-2-Streaming",
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-11-03",
+  "verified": false
+ },
+ {
+  "id": "azure-mai-transcribe-1x",
+  "name": "MAI-Transcribe-1 / 1.5",
+  "vendor": "Microsoft AI",
+  "model": "MAI-Transcribe-1, MAI-Transcribe-1.5",
+  "category": "hyperscaler-api",
+  "status": "GA (superseded by MAI-Transcribe-2)",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.36,
+   "streaming_usd_per_hour": null,
+   "unit_note": "MAI-Transcribe-1 model card: $0.36 per audio hour. 1.5 price not confirmed.",
+   "tiers": [
+    "MAI-Transcribe-1 $0.36/hr"
+   ],
+   "notes": "1.5 transcribes 1 hour of audio in ~15 s (model card)."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Not in v1; planned."
+  },
+  "languages": {
+   "batch": 43,
+   "streaming": null,
+   "notes": "v1: 25 languages; v1.5: 43 languages, auto language ID, 200-keyword biasing."
+  },
+  "latency_claim": null,
+  "features": [
+   "keyword biasing (1.5)",
+   "auto language ID"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "v1 served from East US/West US; v1.5 from Central US, Sweden Central, Southeast Asia (global routing).",
+   "licence": null
+  },
+  "data_handling": "Azure data terms. Note global routing to fixed regions: check residency.",
+  "notes": "MAI-Transcribe-1.5 reported 4.86% avg WER on FLEURS (43 languages) vs 5.53% for Scribe v2 (vendor claim).",
+  "sources": [
+   "https://microsoft.ai/pdf/MAI-Transcribe-1-Model-Card.pdf",
+   "https://microsoft.ai/pdf/MAI-Transcribe-1.5-Model-Card.PDF"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "azure-openai-gpt-transcribe",
+  "name": "gpt-transcribe in Azure OpenAI / Foundry",
+  "vendor": "Microsoft (OpenAI model)",
+  "model": "gpt-transcribe",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.27,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Global $0.27/hr; Data Zone $0.297/hr (Azure Retail Prices API, effective 2026-08-01)",
+   "tiers": [
+    "Global $0.27/hr",
+    "Data Zone (EU/US) $0.297/hr (+10%)"
+   ],
+   "notes": "Same list price as OpenAI direct."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "No diarisation at launch."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "Multilingual with language hints (OpenAI); count not published."
+  },
+  "latency_claim": null,
+  "features": [
+   "context prompt",
+   "keyword hints",
+   "language hints"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "OpenAI model run by Microsoft in Azure.",
+   "licence": null
+  },
+  "data_handling": "Azure OpenAI data terms; Data Zone keeps processing in EU or US; abuse-monitoring retention can be waived on approval.",
+  "notes": "Lets an Azure-only client use OpenAI's newest transcription model inside its tenancy.",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "azure-openai-gpt-live-transcribe",
+  "name": "gpt-live-transcribe / gpt-realtime-whisper in Azure",
+  "vendor": "Microsoft (OpenAI model)",
+  "model": "gpt-live-transcribe; gpt-realtime-whisper",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 1.02,
+   "unit_note": "gpt-live-transcribe Global $1.02/hr, Data Zone $1.122/hr; gpt-realtime-whisper Global $1.02/hr",
+   "tiers": [
+    "Global $1.02/hr",
+    "Data Zone $1.122/hr",
+    "gpt-realtime-translate $2.04/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "tunable latency",
+   "keyword hints"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "OpenAI models hosted by Microsoft.",
+   "licence": null
+  },
+  "data_handling": "Azure OpenAI terms; Data Zone option.",
+  "notes": "",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "azure-openai-whisper",
+  "name": "Whisper batch in Azure OpenAI / gpt-4o-transcribe family",
+  "vendor": "Microsoft (OpenAI model)",
+  "model": "whisper (batch); gpt-4o-transcribe; gpt-4o-mini-transcribe",
+  "category": "hyperscaler-api",
+  "status": "GA (OpenAI retiring these on its own API 2027-02-26; Azure dates not checked)",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.36,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Whisper batch Global $0.36/hr, regional $0.396/hr; gpt-4o-transcribe audio in $6/M tokens (Global), $6.6/M Data Zone",
+   "tiers": [
+    "Whisper batch $0.36/hr",
+    "gpt-4o-transcribe ≈ $0.36/hr (token based)",
+    "gpt-4o-mini-transcribe ≈ $0.18/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 57,
+   "streaming": null,
+   "notes": "Whisper's evaluated languages (from memory)."
+  },
+  "latency_claim": null,
+  "features": [
+   "word timestamps (whisper)"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "Azure OpenAI terms.",
+  "notes": "Legacy; plan migration to gpt-transcribe.",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "azure-speech-containers",
+  "name": "Azure AI Speech containers (connected / disconnected)",
+  "vendor": "Microsoft",
+  "model": "Speech to text container; fast transcription disconnected container",
+  "category": "hyperscaler-api",
+  "status": "GA (disconnected needs approval)",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.76,
+   "streaming_usd_per_hour": 0.76,
+   "unit_note": "Connected container commitment 2k hr/month: $1,520 (overage $0.76/hr); 100k: $38,000 ($0.38/hr)",
+   "tiers": [
+    "Connected 2k hr $0.76/hr overage",
+    "Connected 50k hr $0.48/hr",
+    "Connected 100k hr $0.38/hr",
+    "Disconnected fast transcription 2k hr/month: $8,208/yr (~$0.34/hr)"
+   ],
+   "notes": "Containers bill as commitment tiers; no separate batch price."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": null,
+   "notes": "Diarisation/language ID add-on tiers available."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "runs in customer Kubernetes / on-prem"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": true,
+   "weights": false,
+   "saas": false,
+   "note": "Customer-run container; connected mode reports usage to Azure.",
+   "licence": null
+  },
+  "data_handling": "Audio stays in customer environment.",
+  "notes": "The hyperscaler option for air-gapped STT.",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices",
+   "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "gcp-stt-chirp-3",
+  "name": "Google Cloud Speech-to-Text V2: Chirp 3",
+  "vendor": "Google Cloud",
+  "model": "chirp_3",
+  "category": "hyperscaler-api",
+  "status": "GA (Oct 2025); preview in some regions",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.96,
+   "streaming_usd_per_hour": 0.96,
+   "unit_note": "$0.016/min = $0.96/hr for first 500k min/month (standard models incl. chirp), per-second rounding",
+   "tiers": [
+    "0–500k min $0.016/min ($0.96/hr)",
+    "500k–1M $0.010 ($0.60/hr)",
+    "1–2M $0.008 ($0.48/hr)",
+    "over 2M $0.004 ($0.24/hr)",
+    "Dynamic batch $0.003/min ($0.18/hr)",
+    "1-yr / 3-yr Gemini Enterprise savings plans 10% / 20% off"
+   ],
+   "notes": "Each audio channel billed separately."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Diarisation only in BatchRecognize/Recognize for a subset of languages; not in streaming."
+  },
+  "languages": {
+   "batch": 109,
+   "streaming": 109,
+   "notes": "109 locales listed (29 GA, rest preview) for StreamingRecognize, Recognize and BatchRecognize; automatic language detection."
+  },
+  "latency_claim": null,
+  "features": [
+   "speech adaptation (biasing)",
+   "built-in denoiser",
+   "automatic language detection",
+   "word timestamps (batch)",
+   "diarisation (batch)"
+  ],
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Google Cloud",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "First-party GCP; us and eu multi-regions GA.",
+   "licence": null
+  },
+  "data_handling": "Google Cloud terms; EU multi-region; CMEK; HIPAA BAA covers Speech-to-Text (Google; not re-read). V1 API charges more without data logging ($0.024/min).",
+  "notes": "Price is the same for all V2 standard models (chirp_2, chirp_3, telephony).",
+  "sources": [
+   "https://cloud.google.com/speech-to-text/pricing",
+   "https://cloud.google.com/speech-to-text/v2/docs/chirp_3-model",
+   "https://cloud.google.com/speech-to-text/docs/release-notes"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "gcp-stt-chirp-2",
+  "name": "Google Cloud Speech-to-Text V2: Chirp 2",
+  "vendor": "Google Cloud",
+  "model": "chirp_2",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.96,
+   "streaming_usd_per_hour": 0.96,
+   "unit_note": "As Chirp 3 (standard V2 pricing)",
+   "tiers": [
+    "Same tiers as chirp_3"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "USM-based; translation supported."
+  },
+  "latency_claim": null,
+  "features": [
+   "word timestamps",
+   "model adaptation",
+   "speech translation"
+  ],
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Google Cloud",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "Google Cloud terms.",
+  "notes": "Superseded by Chirp 3.",
+  "sources": [
+   "https://cloud.google.com/speech-to-text/pricing",
+   "https://cloud.google.com/speech-to-text/docs/release-notes"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "gcp-stt-medical",
+  "name": "Google Cloud STT medical models",
+  "vendor": "Google Cloud",
+  "model": "medical_conversation, medical_dictation",
+  "category": "hyperscaler-api",
+  "status": "GA",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 4.68,
+   "streaming_usd_per_hour": 4.68,
+   "unit_note": "$0.078/min after 60 free minutes",
+   "tiers": [
+    "$0.078/min",
+    "savings plans 10–20% off"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": null,
+   "streaming": null,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 1,
+   "streaming": 1,
+   "notes": "en-US (from memory)."
+  },
+  "latency_claim": null,
+  "features": [
+   "medical vocabulary"
+  ],
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Google Cloud",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "Google Cloud terms; HIPAA BAA.",
+  "notes": "",
+  "sources": [
+   "https://cloud.google.com/speech-to-text/pricing"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "vertex-gemini-3-5-transcribe",
+  "name": "Gemini 3.5 Transcribe on Vertex (Gemini Enterprise Agent Platform)",
+  "vendor": "Google Cloud",
+  "model": "gemini-3.5-transcribe",
+  "category": "hyperscaler-api",
+  "status": "GA on Gemini API (Aug 2026); Vertex listing live",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.306,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$2.00/M audio tokens in, $12.00/M text tokens out; Google's blended estimate $0.0051/audio-min (25 audio tokens/s, 175 text tokens/min)",
+   "tiers": [
+    "$0.306/hr blended (Vertex)",
+    "Gemini API page rounds to ~$0.005/min ($0.30/hr)"
+   ],
+   "notes": "Files up to 60 minutes (30 minutes with diarisation or timestamps)."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Up to 8 speakers; 3+ speakers experimental; incompatible with custom vocabulary."
+  },
+  "languages": {
+   "batch": 85,
+   "streaming": 85,
+   "notes": "85+ languages, auto-detection, mid-session code-mixing."
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "word timestamps",
+   "custom vocabulary (up to 1,000 terms)",
+   "smart formatting",
+   "auto language ID"
+  ],
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Google Cloud",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Google first-party model on Vertex.",
+   "licence": null
+  },
+  "data_handling": "Vertex data terms (no training on customer data; residency per region; ZDR possible by config).",
+  "notes": "Google's new purpose-built transcription model; cheaper than Chirp 3 list price ($0.96/hr).",
+  "sources": [
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+   "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "vertex-gemini-3-5-transcribe-live",
+  "name": "Gemini 3.5 Transcribe Live on Vertex",
+  "vendor": "Google Cloud",
+  "model": "gemini-3.5-transcribe-live",
+  "category": "hyperscaler-api",
+  "status": "GA on Gemini API (Aug 2026); Vertex listed",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.5355,
+   "unit_note": "$3.50/M audio in, $21.00/M text out; blended $0.008925/audio-min; only final committed tokens billed",
+   "tiers": [
+    "$0.5355/hr blended"
+   ],
+   "notes": "Sessions up to 10 minutes."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Not supported in live."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 85,
+   "notes": "85+ languages with code-mixing."
+  },
+  "latency_claim": "Sub-second latency (Google).",
+  "features": [
+   "custom vocabulary",
+   "smart formatting",
+   "auto language ID"
+  ],
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Google Cloud",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "Vertex data terms.",
+  "notes": "",
+  "sources": [
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+   "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "openai-gpt-transcribe",
+  "name": "OpenAI GPT-Transcribe",
+  "vendor": "OpenAI",
+  "model": "gpt-transcribe",
+  "category": "lab-api",
+  "status": "GA (launched 2026-07-28)",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.27,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.0045 per audio minute",
+   "tiers": [
+    "$0.27/hr",
+    "Batch API supported"
+   ],
+   "notes": "Also usable for committed turns in Realtime sessions (transcribes after each turn, not continuous)."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "No diarisation, word timestamps or SRT/VTT at launch (press); OpenAI guide says use deprecated diarize model until 2027-02-26."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "Multilingual with language hints; returns detected languages. OpenAI reports Common Voice 22-language WER 19.27% vs 40.37% for whisper-1."
+  },
+  "latency_claim": null,
+  "features": [
+   "context prompt",
+   "keyword hints",
+   "multiple language hints",
+   "code-switching"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "OpenAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Also in Azure OpenAI (Global $0.27, Data Zone $0.297).",
+   "licence": null
+  },
+  "data_handling": "OpenAI API: not used for training; 30-day abuse retention unless ZDR approved; EU data residency available for eligible customers (OpenAI; not re-read).",
+  "notes": "OpenAI's recommended file model; 25% cheaper than gpt-4o-transcribe.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/models/gpt-transcribe",
+   "https://developers.openai.com/api/docs/guides/speech-to-text"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "openai-gpt-live-transcribe",
+  "name": "OpenAI GPT-Live-Transcribe",
+  "vendor": "OpenAI",
+  "model": "gpt-live-transcribe",
+  "category": "lab-api",
+  "status": "GA (2026-07-28)",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 1.02,
+   "unit_note": "$0.017 per audio minute (Realtime API transcription session)",
+   "tiers": [
+    "$1.02/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "No speaker labels or timestamps."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "Language hints; does not return detected language."
+  },
+  "latency_claim": "Tunable delay: minimal / low / medium / high / xhigh (ms not published).",
+  "features": [
+   "tunable latency",
+   "context prompt",
+   "keyword hints"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "OpenAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Also in Azure OpenAI.",
+   "licence": null
+  },
+  "data_handling": "As OpenAI API.",
+  "notes": "Does not support server VAD/semantic VAD; pair with your own turn detection.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/models/gpt-live-transcribe",
+   "https://developers.openai.com/api/docs/guides/realtime-transcription"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "openai-gpt-realtime-whisper",
+  "name": "OpenAI GPT-Realtime-Whisper",
+  "vendor": "OpenAI",
+  "model": "gpt-realtime-whisper",
+  "category": "lab-api",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 1.02,
+   "unit_note": "$0.017 per audio minute",
+   "tiers": [
+    "$1.02/hr"
+   ],
+   "notes": "Priced by duration."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": "Tunable latency vs accuracy.",
+  "features": [
+   "streaming deltas"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "OpenAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Also in Azure OpenAI.",
+   "licence": null
+  },
+  "data_handling": "As OpenAI API.",
+  "notes": "OpenAI says gpt-live-transcribe beats it on two multilingual tests.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/models/gpt-realtime-whisper"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "openai-gpt-4o-transcribe",
+  "name": "OpenAI gpt-4o-transcribe",
+  "vendor": "OpenAI",
+  "model": "gpt-4o-transcribe",
+  "category": "lab-api",
+  "status": "deprecated; shutdown 2027-02-26",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.36,
+   "streaming_usd_per_hour": 0.36,
+   "unit_note": "$2.50/M text in, $10/M out; OpenAI estimate $0.006/min",
+   "tiers": [
+    "$0.36/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "prompting"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "OpenAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As OpenAI API.",
+  "notes": "Migrate to gpt-transcribe / gpt-live-transcribe.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/deprecations"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "openai-gpt-4o-mini-transcribe",
+  "name": "OpenAI gpt-4o-mini-transcribe",
+  "vendor": "OpenAI",
+  "model": "gpt-4o-mini-transcribe (2025-12-15)",
+  "category": "lab-api",
+  "status": "deprecated; shutdown 2027-02-26",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.18,
+   "streaming_usd_per_hour": 0.18,
+   "unit_note": "$1.25/M in, $5/M out; OpenAI estimate $0.003/min",
+   "tiers": [
+    "$0.18/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "OpenAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As OpenAI API.",
+  "notes": "Cheapest OpenAI option until shutdown.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/deprecations"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "openai-gpt-4o-transcribe-diarize",
+  "name": "OpenAI gpt-4o-transcribe-diarize",
+  "vendor": "OpenAI",
+  "model": "gpt-4o-transcribe-diarize",
+  "category": "lab-api",
+  "status": "deprecated; shutdown 2027-02-26",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Not on current pricing page; was priced as gpt-4o-transcribe ($0.006/min) at launch (from memory)",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Speaker labels; up to four known-speaker reference clips."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "known speaker references"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "OpenAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As OpenAI API.",
+  "notes": "OpenAI's only diarising model, and it is being retired with no diarising replacement announced.",
+  "sources": [
+   "https://developers.openai.com/api/docs/guides/speech-to-text",
+   "https://developers.openai.com/api/docs/deprecations"
+  ],
+  "checked": "2026-11-03",
+  "verified": false
+ },
+ {
+  "id": "openai-whisper-1",
+  "name": "OpenAI whisper-1 (API)",
+  "vendor": "OpenAI",
+  "model": "whisper-1",
+  "category": "lab-api",
+  "status": "deprecated; shutdown 2027-02-26",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.36,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.006 per minute",
+   "tiers": [
+    "$0.36/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 57,
+   "streaming": null,
+   "notes": "From memory."
+  },
+  "latency_claim": null,
+  "features": [
+   "word timestamps",
+   "SRT/VTT",
+   "translation to English"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "OpenAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As OpenAI API.",
+  "notes": "/v1/audio/translations also shuts down 2027-02-26.",
+  "sources": [
+   "https://developers.openai.com/api/docs/models/whisper-1",
+   "https://developers.openai.com/api/docs/deprecations"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "gemini-api-3-5-transcribe",
+  "name": "Gemini 3.5 Transcribe (Gemini API)",
+  "vendor": "Google",
+  "model": "gemini-3.5-transcribe",
+  "category": "lab-api",
+  "status": "GA (Aug 2026)",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.3,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$2.00/M audio in ($0.003/min), $12.00/M text out ($0.002/min): ~$0.005/min",
+   "tiers": [
+    "~$0.30/hr",
+    "Free tier (data used to improve products)"
+   ],
+   "notes": "No Batch API or Flex for this model."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Up to 8 speakers."
+  },
+  "languages": {
+   "batch": 85,
+   "streaming": 85,
+   "notes": "85+ languages, code-mixing."
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "word timestamps",
+   "custom vocabulary",
+   "smart transcription"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Google AI Studio / Gemini API",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Same model on Vertex is the cloud-hosted option.",
+   "licence": null
+  },
+  "data_handling": "Paid tier: not used to improve products. Free tier: used.",
+  "notes": "",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "gemini-api-3-5-transcribe-live",
+  "name": "Gemini 3.5 Transcribe Live (Gemini API)",
+  "vendor": "Google",
+  "model": "gemini-3.5-transcribe-live",
+  "category": "lab-api",
+  "status": "GA (Aug 2026)",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.54,
+   "unit_note": "$3.50/M audio in ($0.005/min), $21/M text out ($0.004/min): ~$0.009/min",
+   "tiers": [
+    "~$0.54/hr"
+   ],
+   "notes": "10-minute sessions."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 85,
+   "notes": ""
+  },
+  "latency_claim": "Low-latency WebSocket streaming (no ms figure on pricing page).",
+  "features": [
+   "custom vocabulary",
+   "smart formatting"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Gemini API",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As Gemini API.",
+  "notes": "",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "gemini-3-8-flash-audio",
+  "name": "Gemini 3.8 Flash (general model used for transcription)",
+  "vendor": "Google",
+  "model": "gemini-3.8-flash",
+  "category": "lab-api",
+  "status": "GA (2026-09-02)",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.1069,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.75/M input tokens (page does not list a separate audio rate; assumed same), $3.75/M output; 25 audio tokens/s = 90k tokens/hr, 175 output tokens/min",
+   "tiers": [
+    "~$0.1069/hr to 2026-12-31",
+    "~$0.2137/hr from 2027-01-01 (prices double)",
+    "Batch/Flex 50% off"
+   ],
+   "notes": "Thinking tokens billed as output and can multiply output cost."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Prompt-based, not a dedicated diarisation feature."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "Broad multilingual; no count for ASR."
+  },
+  "latency_claim": null,
+  "features": [
+   "prompted formatting",
+   "summarise in the same call"
+  ],
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Gemini API / Vertex",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Also on Vertex.",
+   "licence": null
+  },
+  "data_handling": "As Gemini API / Vertex.",
+  "notes": "Good for transcribe-and-analyse in one call; no WER guarantees.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing"
+  ],
+  "checked": "2026-11-03",
+  "verified": false
+ },
+ {
+  "id": "gemini-3-5-flash-lite-audio",
+  "name": "Gemini 3.5 Flash-Lite (general model used for transcription)",
+  "vendor": "Google",
+  "model": "gemini-3.5-flash-lite",
+  "category": "lab-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.0532,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.30/M input (text/image/video/audio), $2.50/M output; same token assumptions",
+   "tiers": [
+    "~$0.0532/hr"
+   ],
+   "notes": "From 2026-12-01 gemini-2.5-flash requests are routed here."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Prompt-based."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [],
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Gemini API / Vertex",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As Gemini API.",
+  "notes": "Cheapest Google route; MAI's model card used 'Gemini flash-lite' as a FLEURS comparator (5.63% WER).",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "gemini-4-argon-audio",
+  "name": "Gemini 4 Argon (flagship, for hard audio)",
+  "vendor": "Google",
+  "model": "gemini-4-argon",
+  "category": "lab-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.285,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$2/M in, $10/M out to 2026-11-30; $4/$20 from 2026-12-01; audio rate assumed same as text",
+   "tiers": [
+    "~$0.285/hr now",
+    "~$0.57/hr from 2026-12-01"
+   ],
+   "notes": "Thinking tokens billed; not on free tier."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Prompt-based."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [],
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Gemini API / Vertex",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As Gemini API.",
+  "notes": "Only worth it for difficult audio plus reasoning; dedicated transcribe models are cheaper.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing"
+  ],
+  "checked": "2026-11-03",
+  "verified": false
+ },
+ {
+  "id": "mistral-voxtral-mini-transcribe-3",
+  "name": "Voxtral Mini Transcribe 3",
+  "vendor": "Mistral AI",
+  "model": "voxtral-mini-transcribe-3-0",
+  "category": "lab-api",
+  "status": "public preview (2026-10-20)",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.21,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.0035/min; cached input $0.00035/min",
+   "tiers": [
+    "$0.21/hr"
+   ],
+   "notes": "Older Voxtral Mini Transcribe 2 deprecated 2026-10-31, retired 2027-04-30."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Diarisation included."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "Mistral claims 3rd on FLEURS; language count not on model page."
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "timestamps"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Mistral",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Premier (closed) weights.",
+   "licence": null
+  },
+  "data_handling": "Mistral EU hosting by default; ZDR available on request (Mistral; not re-read).",
+  "notes": "Claims to beat Gemini 3.5 Transcribe on FLEURS (vendor claim).",
+  "sources": [
+   "https://mistral.ai/pricing/api",
+   "https://docs.mistral.ai/models/voxtral-mini-transcribe-3-0"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "mistral-voxtral-small-transcribe-3",
+  "name": "Voxtral Small Transcribe 3",
+  "vendor": "Mistral AI",
+  "model": "voxtral-small-transcribe-3-0",
+  "category": "lab-api",
+  "status": "public preview (2026-10-20)",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.24,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.004/min",
+   "tiers": [
+    "$0.24/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "timestamps",
+   "translation",
+   "speech Q&A",
+   "summarisation",
+   "function calling"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Mistral",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Premier.",
+   "licence": null
+  },
+  "data_handling": "As Mistral.",
+  "notes": "Mistral claims it beats MAI-Transcribe-2, GPT-Transcribe, Scribe v2 and Gemini 3.5 Transcribe (vendor claim).",
+  "sources": [
+   "https://mistral.ai/pricing/api",
+   "https://docs.mistral.ai/models/voxtral-small-transcribe-3-0"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "mistral-voxtral-mini-transcribe-realtime-3",
+  "name": "Voxtral Mini Transcribe Realtime 3",
+  "vendor": "Mistral AI",
+  "model": "voxtral-mini-transcribe-realtime-3-0",
+  "category": "lab-api",
+  "status": "public preview (2026-10-20)",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.48,
+   "unit_note": "$0.008/min",
+   "tiers": [
+    "$0.48/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Speaker diarisation in streaming session."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": "Configurable latency 80 ms to 2,400 ms (Mistral).",
+  "features": [
+   "end-of-turn detection",
+   "context biasing",
+   "diarisation"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Mistral",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Premier; previous realtime model (2602) has Apache-2.0 weights.",
+   "licence": null
+  },
+  "data_handling": "As Mistral.",
+  "notes": "",
+  "sources": [
+   "https://mistral.ai/pricing/api",
+   "https://docs.mistral.ai/models/voxtral-mini-transcribe-realtime-3-0"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "aws-bedrock-voxtral",
+  "name": "Voxtral Mini / Small 1.0 on Amazon Bedrock",
+  "vendor": "Mistral AI (on AWS)",
+  "model": "mistral.voxtral-mini-3b-2507; mistral.voxtral-small-24b-2507",
+  "category": "lab-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Bedrock: Voxtral Mini $0.04/$0.04, Voxtral Small $0.10/$0.30 per M tokens (in/out)",
+   "tiers": [
+    "Per-hour cost depends on how Bedrock counts audio tokens; not documented on the pricing page"
+   ],
+   "notes": "Audio goes in chat messages (Converse), not a transcription endpoint (third-party report)."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 8,
+   "streaming": null,
+   "notes": "Voxtral 2507: 8 languages (from memory)."
+  },
+  "latency_claim": null,
+  "features": [
+   "audio Q&A"
+  ],
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "AWS",
+   "private": false,
+   "weights": true,
+   "saas": false,
+   "note": "First-party Bedrock serverless model; Voxtral-Mini-4B-Realtime also in SageMaker JumpStart (Jul 2026) for deployment in your VPC.",
+   "licence": null
+  },
+  "data_handling": "Bedrock data terms (no training, stays in region).",
+  "notes": "The only Bedrock-hosted ASR-capable model besides Nova Sonic; older generation.",
+  "sources": [
+   "https://aws.amazon.com/bedrock/pricing/",
+   "https://aws.amazon.com/about-aws/whats-new/2026/07/voxtral-mini-realtime-on-sagemaker-jumpstart/"
+  ],
+  "checked": "2026-11-03",
+  "verified": false
+ },
+ {
+  "id": "xai-grok-stt",
+  "name": "Grok Speech to Text",
+  "vendor": "xAI (SpaceXSI)",
+  "model": "Grok STT (Grok Voice Transcribe 2.0 per press)",
+  "category": "lab-api",
+  "status": "GA (2026-04-17)",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.1,
+   "streaming_usd_per_hour": 0.2,
+   "unit_note": "$0.10/hr batch (REST), $0.20/hr streaming (WebSocket)",
+   "tiers": [
+    "Diarisation and timestamps included (xAI post / press)"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Word-level speaker IDs in pre-recorded and real-time."
+  },
+  "languages": {
+   "batch": 25,
+   "streaming": 25,
+   "notes": "25+ languages with switching."
+  },
+  "latency_claim": "'Lowest latency WebSocket API' (no ms figure).",
+  "features": [
+   "diarisation",
+   "multichannel",
+   "word timestamps",
+   "inverse text normalisation"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "xAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "xAI API terms; no EU residency found.",
+  "notes": "Cheapest proprietary streaming price found ($0.20/hr). xAI's own WER table (6.9% overall) is a vendor claim.",
+  "sources": [
+   "https://x.ai/news/grok-stt-and-tts-apis",
+   "https://docs.x.ai/docs/models"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "deepgram-nova-3",
+  "name": "Deepgram Nova-3",
+  "vendor": "Deepgram",
+  "model": "nova-3 (monolingual), nova-3 multi, nova-3-medical",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.258,
+   "streaming_usd_per_hour": 0.462,
+   "unit_note": "Pay as you go: pre-recorded $0.0043/min mono, $0.0052 multi; streaming $0.0077 mono, $0.0092 multi; per-second billing, no rounding",
+   "tiers": [
+    "Batch mono $0.258/hr (Growth $0.216)",
+    "Batch multi $0.312/hr (Growth $0.258)",
+    "Streaming mono $0.462/hr (Growth $0.39)",
+    "Streaming multi $0.552/hr (Growth $0.468)",
+    "Add-ons per hr: diarisation $0.12, redaction $0.12, keyterm $0.078, entity $0.102",
+    "Growth plan from $4,000/yr prepaid (up to 20% off)",
+    "Nova-2 streaming $0.35/hr (legacy)"
+   ],
+   "notes": "Multichannel billed per channel."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.12,
+   "notes": "+$0.0020/min PAYG ($0.12/hr), $0.0017 Growth."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "Monolingual 40+ languages ('60+ languages' on pricing page incl. Nova-2); multilingual code-switching in 10 languages (en, es, fr, de, hi, ru, pt, ja, it, nl)."
+  },
+  "latency_claim": "Nova-3 marketed as sub-300 ms streaming (third-party summary; not re-read).",
+  "features": [
+   "keyterm prompting",
+   "smart formatting (free)",
+   "redaction",
+   "diarisation",
+   "multilingual code-switching"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Deepgram; AWS Marketplace (SageMaker model packages)",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "Self-hosted containers (Enterprise) in customer VPC/on-prem; SageMaker deployment runs air-gapped in your AWS account.",
+   "licence": null
+  },
+  "data_handling": "SOC 2, HIPAA BAA (Enterprise), GDPR with EU endpoint api.eu.deepgram.com, PCI. Audio not used for training per Deepgram data page (not re-read).",
+  "notes": "Deepgram is acquiring Daily (Pipecat) - announced 2026-10-29.",
+  "sources": [
+   "https://deepgram.com/pricing",
+   "https://developers.deepgram.com/docs/models-languages-overview",
+   "https://deepgram.com/blog/daily-pipecat-deepgram"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "deepgram-flux",
+  "name": "Deepgram Flux STT (conversational)",
+  "vendor": "Deepgram",
+  "model": "flux-general-en; flux-general-multi",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.462,
+   "unit_note": "Flux English $0.0077/min, multilingual $0.0078/min (PAYG)",
+   "tiers": [
+    "English $0.462/hr (Growth $0.39)",
+    "Multilingual $0.468/hr (Growth $0.408)",
+    "Voice Agent API bundles from $0.05/min (BYO LLM+TTS) to $0.163/min"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Not listed for Flux."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 10,
+   "notes": "English; multilingual model covers en, es, fr, de, hi, ru, pt, ja, it, nl."
+  },
+  "latency_claim": "EagerEndOfTurn 150–250 ms before EndOfTurn; EndOfTurn within 1.5 s 95% of the time; claims 200–600 ms lower agent response latency than VAD pipelines.",
+  "features": [
+   "model-integrated turn detection",
+   "eager end-of-turn",
+   "keyterm prompting"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Deepgram",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "Self-hostable (Flux fixes in 2026-03 self-hosted release).",
+   "licence": null
+  },
+  "data_handling": "As Deepgram.",
+  "notes": "Built for cascaded voice agents.",
+  "sources": [
+   "https://deepgram.com/pricing",
+   "https://developers.deepgram.com/docs/models-languages-overview",
+   "https://deepgram.com/flux"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "assemblyai-universal-3-5-pro",
+  "name": "AssemblyAI Universal-3.5 Pro (pre-recorded)",
+  "vendor": "AssemblyAI",
+  "model": "universal-3-5-pro",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.21,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.21/hr pay as you go",
+   "tiers": [
+    "$0.21/hr",
+    "Keyterms +$0.05/hr",
+    "Prompting +$0.05/hr",
+    "Diarisation +$0.02/hr",
+    "Medical mode +$0.15/hr",
+    "Sync API (same accuracy, ~134 ms p50, up to 20 min clips) $0.30/hr",
+    "Dictation API $0.62/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.02,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 18,
+   "streaming": null,
+   "notes": "18 languages, native code-switching; fall back to Universal-2 for others."
+  },
+  "latency_claim": null,
+  "features": [
+   "keyterm prompting",
+   "natural-language prompting",
+   "diarisation",
+   "PII redaction (+$0.08/hr)",
+   "speaker identification by name (+$0.02/hr)"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "AssemblyAI",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "Self-hosted option listed in product menu ('Self Hosted', 'self-hosted streaming' docs).",
+   "licence": null
+  },
+  "data_handling": "SOC 2; HIPAA BAA; EU data residency endpoint (docs 'Cloud endpoints & data residency').",
+  "notes": "",
+  "sources": [
+   "https://www.assemblyai.com/pricing",
+   "https://www.assemblyai.com/docs/speech-to-text/pre-recorded-audio/supported-languages"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "assemblyai-universal-2",
+  "name": "AssemblyAI Universal-2",
+  "vendor": "AssemblyAI",
+  "model": "universal-2",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.15,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.15/hr",
+   "tiers": [
+    "$0.15/hr",
+    "Keyterms included",
+    "Diarisation +$0.02/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.02,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 99,
+   "streaming": null,
+   "notes": "99 languages."
+  },
+  "latency_claim": null,
+  "features": [
+   "keyterms",
+   "diarisation",
+   "language detection"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "AssemblyAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As AssemblyAI.",
+  "notes": "Slam-1 no longer appears on the pricing page.",
+  "sources": [
+   "https://www.assemblyai.com/pricing",
+   "https://www.assemblyai.com/docs/speech-to-text/pre-recorded-audio/supported-languages"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "assemblyai-universal-3-6-pro-realtime",
+  "name": "AssemblyAI Universal-3.6 Pro Realtime",
+  "vendor": "AssemblyAI",
+  "model": "universal-3-6-pro",
+  "category": "specialist-api",
+  "status": "GA (new)",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.45,
+   "unit_note": "$0.45/hr",
+   "tiers": [
+    "$0.45/hr",
+    "Keyterms included",
+    "Diarisation +$0.12/hr",
+    "Prompting +$0.05/hr",
+    "Voice Focus +$0.10/hr",
+    "PII redaction +$0.12/hr",
+    "Medical +$0.15/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": true,
+   "extra_usd_per_hour": 0.12,
+   "notes": "Self-correcting speaker labels."
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 32,
+   "notes": "32 languages."
+  },
+  "latency_claim": null,
+  "features": [
+   "context carry-over",
+   "turn detection",
+   "keyterm prompting",
+   "voice isolation"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "AssemblyAI",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As AssemblyAI.",
+  "notes": "",
+  "sources": [
+   "https://www.assemblyai.com/pricing",
+   "https://www.assemblyai.com/docs/universal-streaming"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "assemblyai-universal-streaming",
+  "name": "AssemblyAI Universal-Streaming (EN / multilingual)",
+  "vendor": "AssemblyAI",
+  "model": "universal-streaming; universal-streaming-multilingual",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.15,
+   "unit_note": "$0.15/hr",
+   "tiers": [
+    "$0.15/hr",
+    "Keyterms +$0.04/hr",
+    "Diarisation +$0.12/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": true,
+   "extra_usd_per_hour": 0.12,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 6,
+   "notes": "English only; multilingual variant en, es, de, fr, pt, it."
+  },
+  "latency_claim": null,
+  "features": [
+   "end-of-turn detection",
+   "keyterms"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "AssemblyAI",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As AssemblyAI.",
+  "notes": "Cheapest mainstream streaming price for English.",
+  "sources": [
+   "https://www.assemblyai.com/pricing"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "speechmatics-melia-1",
+  "name": "Speechmatics Melia 1 (multilingual)",
+  "vendor": "Speechmatics",
+  "model": "Melia 1",
+  "category": "specialist-api",
+  "status": "GA (new)",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.12,
+   "streaming_usd_per_hour": 0.2,
+   "unit_note": "Pre-recorded $0.12/hr; real-time $0.20/hr; billed per second from credits",
+   "tiers": [
+    "Batch $0.12/hr",
+    "Real-time $0.20/hr",
+    "Volume discount up to 25%",
+    "Opt-in model-training discount 33% off"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Included."
+  },
+  "languages": {
+   "batch": 56,
+   "streaming": 56,
+   "notes": "56 languages, no language choice needed, switches mid-sentence."
+  },
+  "latency_claim": "Speechmatics markets <1 s finals for real-time.",
+  "features": [
+   "code-switching",
+   "language labelling",
+   "diarisation",
+   "smart formatting"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Speechmatics",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "Enterprise: on-prem containers, virtual appliance, hybrid, on-device.",
+   "licence": null
+  },
+  "data_handling": "SOC 2 Type II, ISO 27001, GDPR, HIPAA; choice of EU/US/AUS processing; real-time not stored; batch auto-deleted after 7 days; no training unless opted in.",
+  "notes": "UK vendor with explicit EU/UK-friendly data handling.",
+  "sources": [
+   "https://www.speechmatics.com/pricing",
+   "https://www.speechmatics.com/product/real-time"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "speechmatics-enhanced",
+  "name": "Speechmatics Enhanced / Standard",
+  "vendor": "Speechmatics",
+  "model": "Enhanced; Standard",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.38,
+   "streaming_usd_per_hour": 0.4,
+   "unit_note": "Enhanced: batch $0.38/hr, real-time $0.40/hr. Standard $0.23/hr both.",
+   "tiers": [
+    "Enhanced batch $0.38/hr",
+    "Enhanced real-time $0.40/hr",
+    "Standard $0.23/hr",
+    "Translation add-on $0.49/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 55,
+   "streaming": 55,
+   "notes": "55+ languages; all available in real time."
+  },
+  "latency_claim": "<1 s final transcripts (vendor).",
+  "features": [
+   "custom dictionary",
+   "diarisation",
+   "translation",
+   "summaries/sentiment add-ons"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Speechmatics",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "On-prem and on-device on Enterprise.",
+   "licence": null
+  },
+  "data_handling": "As Speechmatics.",
+  "notes": "",
+  "sources": [
+   "https://www.speechmatics.com/pricing"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "speechmatics-linden-1",
+  "name": "Speechmatics Linden 1 (voice agents)",
+  "vendor": "Speechmatics",
+  "model": "Linden 1",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.15,
+   "unit_note": "$0.15/hr real-time only (shown reduced from $0.20)",
+   "tiers": [
+    "$0.15/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "turn detection",
+   "VAD",
+   "force end of utterance"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Speechmatics",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As Speechmatics.",
+  "notes": "",
+  "sources": [
+   "https://www.speechmatics.com/pricing"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "speechmatics-oak-1",
+  "name": "Speechmatics Oak 1 (medical)",
+  "vendor": "Speechmatics",
+  "model": "Oak 1",
+  "category": "specialist-api",
+  "status": "GA (new)",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.15,
+   "streaming_usd_per_hour": 0.23,
+   "unit_note": "Pre-recorded $0.15/hr, real-time $0.23/hr",
+   "tiers": [
+    "$0.15 / $0.23 per hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": "Multilingual medical."
+  },
+  "latency_claim": null,
+  "features": [
+   "medical vocabulary"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Speechmatics",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "HIPAA.",
+  "notes": "",
+  "sources": [
+   "https://www.speechmatics.com/pricing"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "rev-ai-reverb",
+  "name": "Rev AI Reverb",
+  "vendor": "Rev",
+  "model": "Reverb ASR; Reverb foreign language",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.2,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Reverb English $0.20/hr; foreign-language $0.30/hr; billed per second, 15 s minimum",
+   "tiers": [
+    "English $0.20/hr",
+    "57 other languages $0.30/hr",
+    "Whisper Large (hosted) $0.005/min = $0.30/hr",
+    "Human transcription $1.99/min",
+    "Forced alignment $0.003/min"
+   ],
+   "notes": "Streaming price not shown on the pricing page."
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": null,
+   "extra_usd_per_hour": 0.0,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 58,
+   "streaming": null,
+   "notes": "English + 57 foreign languages."
+  },
+  "latency_claim": null,
+  "features": [
+   "forced alignment",
+   "language ID ($0.003/min)",
+   "translation",
+   "human transcription"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Rev",
+   "private": true,
+   "weights": true,
+   "saas": true,
+   "note": "Reverb open weights (non-commercial licence, from memory); on-prem by contract.",
+   "licence": null
+  },
+  "data_handling": "HIPAA processing available on request; Rev says no training on API data (not re-read).",
+  "notes": "",
+  "sources": [
+   "https://www.rev.ai/pricing",
+   "https://docs.rev.ai/api/streaming/"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "gladia-solaria-3",
+  "name": "Gladia Solaria-3",
+  "vendor": "Gladia",
+  "model": "solaria-3",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.1795,
+   "streaming_usd_per_hour": null,
+   "unit_note": "EUR 0.16/hr (0–100 h/month) falling to EUR 0.12/hr at 10k+ h; converted at USD 1.1216/EUR",
+   "tiers": [
+    "EUR 0.16/hr = $0.179",
+    "EUR 0.12/hr at 10k+ h = $0.135",
+    "Top-up bonus up to +20%"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 5,
+   "streaming": null,
+   "notes": "EN, FR, DE, ES, IT (pricing page says 6); no code-switching."
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "custom vocabulary"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Gladia",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "'Custom hosting' on Enterprise.",
+   "licence": null
+  },
+  "data_handling": "GDPR, HIPAA, SOC 2; self-serve trains on data by default (opt-out free); Enterprise no-training and ZDR.",
+  "notes": "French vendor; best for European call audio.",
+  "sources": [
+   "https://www.gladia.io/pricing",
+   "https://docs.gladia.io/chapters/introduction/models"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "gladia-solaria-1",
+  "name": "Gladia Solaria-1",
+  "vendor": "Gladia",
+  "model": "solaria-1",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.3028,
+   "streaming_usd_per_hour": 0.7627,
+   "unit_note": "Async EUR 0.27/hr (falls to EUR 0.21); real-time EUR 0.68/hr",
+   "tiers": [
+    "Async $0.303/hr",
+    "Real-time $0.763/hr",
+    "Add-ons EUR 0.02–0.07/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Diarisation async only."
+  },
+  "languages": {
+   "batch": 100,
+   "streaming": 100,
+   "notes": "100+ languages, code-switching."
+  },
+  "latency_claim": null,
+  "features": [
+   "code-switching",
+   "translation",
+   "NER",
+   "PII redaction (async)"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Gladia",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As Gladia.",
+  "notes": "",
+  "sources": [
+   "https://www.gladia.io/pricing",
+   "https://docs.gladia.io/chapters/introduction/models"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "soniox-v5",
+  "name": "Soniox stt-async-v5 / stt-rt-v5",
+  "vendor": "Soniox",
+  "model": "stt-async-v5; stt-rt-v5",
+  "category": "specialist-api",
+  "status": "GA (Jun 2026)",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.1,
+   "streaming_usd_per_hour": 0.12,
+   "unit_note": "Token-based: async $1.50/M audio tokens, real-time $2.00/M; ~30k audio tokens/hr; text $3.50–4.00/M; Soniox's own blended figure $0.10/hr async, $0.12/hr real-time",
+   "tiers": [
+    "Async ~$0.10/hr",
+    "Real-time ~$0.12/hr",
+    "Translation included"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Included in the rate."
+  },
+  "languages": {
+   "batch": 60,
+   "streaming": 60,
+   "notes": "60+ languages, language ID, translation in the same call."
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "language ID",
+   "real-time translation",
+   "context/custom vocabulary"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Soniox",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Data residency options in docs.",
+   "licence": null
+  },
+  "data_handling": "Docs list data residency and security pages (not re-read).",
+  "notes": "Lowest-priced multilingual streaming with diarisation included.",
+  "sources": [
+   "https://soniox.com/pricing",
+   "https://soniox.com/docs/stt/models"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "elevenlabs-scribe-v2",
+  "name": "ElevenLabs Scribe v2 / v2 Medical",
+  "vendor": "ElevenLabs",
+  "model": "scribe_v2",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.22,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.22/hr API (USD, not credits)",
+   "tiers": [
+    "$0.22/hr",
+    "Keyterm prompting +$0.05/hr",
+    "Transcript editing +$0.07/hr",
+    "Scribe v2 Medical same price"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": 0.0,
+   "notes": "Up to 32 speakers."
+  },
+  "languages": {
+   "batch": 90,
+   "streaming": null,
+   "notes": "90+ languages."
+  },
+  "latency_claim": null,
+  "features": [
+   "keyterm prompting (1,000 terms)",
+   "entity detection (65 types)",
+   "audio tagging",
+   "no-verbatim mode"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "ElevenLabs",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "Private deployments listed in docs.",
+   "licence": null
+  },
+  "data_handling": "HIPAA-eligible with BAA and Zero Retention Mode; EU data residency offering.",
+  "notes": "",
+  "sources": [
+   "https://elevenlabs.io/pricing/api",
+   "https://elevenlabs.io/docs/overview/capabilities/speech-to-text"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "elevenlabs-scribe-v2-realtime",
+  "name": "ElevenLabs Scribe v2 Realtime",
+  "vendor": "ElevenLabs",
+  "model": "scribe_v2_realtime",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.39,
+   "unit_note": "$0.39/hr",
+   "tiers": [
+    "$0.39/hr",
+    "Keyterms up to 50"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 90,
+   "notes": "90+ languages."
+  },
+  "latency_claim": "~150 ms (ElevenLabs, footnoted).",
+  "features": [
+   "word timestamps",
+   "entity detection",
+   "keyterm prompting"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "ElevenLabs",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As ElevenLabs.",
+  "notes": "",
+  "sources": [
+   "https://elevenlabs.io/pricing/api",
+   "https://elevenlabs.io/docs/overview/capabilities/speech-to-text"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "cartesia-ink-2",
+  "name": "Cartesia Ink 2",
+  "vendor": "Cartesia",
+  "model": "ink-2",
+  "category": "specialist-api",
+  "status": "GA (2026-09-17)",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 0.39,
+   "unit_note": "3 credits per audio second; Cartesia states $0.39/hr on Scale plan ($299/mo, 8M credits)",
+   "tiers": [
+    "Scale plan ~$0.39/hr",
+    "Plans from $5/mo; higher effective rate on small plans"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 5,
+   "notes": "en, fr, hi, ja, es."
+  },
+  "latency_claim": null,
+  "features": [
+   "built-in turn detection (turn.start/eager_end/end)",
+   "keyterm prompting"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Cartesia",
+   "private": true,
+   "weights": false,
+   "saas": true,
+   "note": "On-prem / VPC by sales.",
+   "licence": null
+  },
+  "data_handling": "SOC 2 Type II.",
+  "notes": "",
+  "sources": [
+   "https://cartesia.ai/pricing",
+   "https://docs.cartesia.ai/build-with-cartesia/stt-models"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "groq-whisper-large-v3-turbo",
+  "name": "Whisper Large v3 Turbo on Groq",
+  "vendor": "Groq",
+  "model": "whisper-large-v3-turbo",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.04,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.04/hr; 10 s minimum billed per request",
+   "tiers": [
+    "$0.04/hr turbo",
+    "$0.111/hr whisper-large-v3"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 99,
+   "streaming": null,
+   "notes": "Whisper multilingual."
+  },
+  "latency_claim": "216x real-time speed factor (Groq).",
+  "features": [
+   "word timestamps",
+   "prompt"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Groq",
+   "private": false,
+   "weights": true,
+   "saas": true,
+   "note": "Open model hosted by Groq.",
+   "licence": null
+  },
+  "data_handling": "Groq terms.",
+  "notes": "Cheapest hosted Whisper.",
+  "sources": [
+   "https://console.groq.com/docs/speech-to-text",
+   "https://console.groq.com/docs/models"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "together-hosted-asr",
+  "name": "Together AI hosted ASR (Whisper, Parakeet, Nemotron)",
+  "vendor": "Together AI",
+  "model": "Whisper Large v3; Parakeet TDT 0.6B v3; Nemotron 3 ASR Streaming 0.6B; Nemotron 3.5 ASR",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.09,
+   "streaming_usd_per_hour": 0.21,
+   "unit_note": "Per audio minute: Whisper v3 $0.0015, Parakeet TDT v3 $0.0015, Nemotron 3 ASR Streaming $0.0015, Nemotron 3.5 ASR $0.0045, Whisper v3 streaming $0.0035",
+   "tiers": [
+    "$0.09/hr batch Whisper/Parakeet",
+    "$0.21/hr Whisper streaming",
+    "$0.27/hr Nemotron 3.5 ASR"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": null,
+   "streaming": null,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [],
+  "deployment": {
+   "hosted": [],
+   "billing": "Together",
+   "private": false,
+   "weights": true,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "Together terms.",
+  "notes": "",
+  "sources": [
+   "https://www.together.ai/pricing"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "fireworks-whisper",
+  "name": "Fireworks AI Whisper v3 (batch + streaming)",
+  "vendor": "Fireworks AI",
+  "model": "whisper-v3; whisper-v3-turbo",
+  "category": "specialist-api",
+  "status": "GA",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.09,
+   "streaming_usd_per_hour": null,
+   "unit_note": "$0.0015/min whisper-v3 per a third-party tracker (2026-07-20); not shown on Fireworks pages read today",
+   "tiers": [],
+   "notes": "Fireworks launched streaming transcription (claim ~300 ms) in 2025."
+  },
+  "diarisation": {
+   "batch": null,
+   "streaming": null,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 99,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": "~300 ms (2025 launch claim).",
+  "features": [],
+  "deployment": {
+   "hosted": [],
+   "billing": "Fireworks",
+   "private": false,
+   "weights": true,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "Fireworks terms.",
+  "notes": "Price unverified.",
+  "sources": [
+   "https://perkstack.co/blog/cheapest-fireworks-whisper-v3-api"
+  ],
+  "checked": "2026-11-03",
+  "verified": false
+ },
+ {
+  "id": "openai-gpt-realtime-2-1",
+  "name": "OpenAI gpt-realtime-2.1 / 2.1-mini",
+  "vendor": "OpenAI",
+  "model": "gpt-realtime-2.1; gpt-realtime-2.1-mini",
+  "category": "speech-to-speech",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Audio $32/M in, $64/M out (2.1); $10/$20 (2.1-mini); cached audio $0.40/$0.30",
+   "tiers": [
+    "Input transcription inside a session is billed at the chosen transcription model's rate (e.g. gpt-live-transcribe $0.017/min)"
+   ],
+   "notes": "Per-hour cost depends on audio tokens per second and talk ratio; OpenAI does not state tokens/s on pages read (unverified estimate ~600 audio tokens/min in: ~$1.15/hr input on 2.1)."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "tool calling",
+   "VAD",
+   "SIP/WebRTC"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "OpenAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Azure: same token prices Global; Data Zone +10%.",
+   "licence": null
+  },
+  "data_handling": "As OpenAI.",
+  "notes": "gpt-realtime and gpt-4o-realtime retire 2027-01-20.",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/deprecations",
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "openai-gpt-live-1",
+  "name": "OpenAI GPT-Live 1",
+  "vendor": "OpenAI",
+  "model": "gpt-live-1",
+  "category": "speech-to-speech",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 3.0,
+   "unit_note": "$0.05 per session minute, billed per second; backend model and tools extra",
+   "tiers": [
+    "$3.00/hr + backend LLM"
+   ],
+   "notes": "Azure 'Live 1' meter $3.00/hr Global, $3.30 Data Zone."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "full duplex",
+   "delegation to backend agent"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "OpenAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "As OpenAI.",
+  "notes": "",
+  "sources": [
+   "https://developers.openai.com/api/docs/pricing",
+   "https://developers.openai.com/api/docs/models/gpt-live-1",
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "gemini-3-8-live",
+  "name": "Gemini 3.8 Live (Live API native audio)",
+  "vendor": "Google",
+  "model": "gemini-3.8-live; gemini-3.8-live-extended-thinking",
+  "category": "speech-to-speech",
+  "status": "GA (2026-09-15)",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Audio in $3.00/M ($0.005/min), audio out $12.00/M ($0.018/min), text out $4.50/M",
+   "tiers": [
+    "Input-only listening ~$0.30/hr; one hour of 50/50 conversation ~$0.69/hr before context re-billing"
+   ],
+   "notes": "Live API bills all tokens in the session context window each turn, so long sessions cost more."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "input/output transcription",
+   "tool calling",
+   "Google Search grounding"
+  ],
+  "deployment": {
+   "hosted": [
+    "GCP"
+   ],
+   "billing": "Gemini API / Vertex",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "Vertex lists Gemini 3.8 Live API at same rates (non-global).",
+   "licence": null
+  },
+  "data_handling": "As Gemini API / Vertex.",
+  "notes": "gemini-2.5-flash-native-audio and 3.1-flash-live preview shut down 2026-11-17.",
+  "sources": [
+   "https://ai.google.dev/gemini-api/docs/pricing",
+   "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+   "https://ai.google.dev/gemini-api/docs/deprecations"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "amazon-nova-2-5-sonic",
+  "name": "Amazon Nova 2.5 Sonic",
+  "vendor": "AWS",
+  "model": "Nova 2.5 Sonic (same pricing as Nova 2 Sonic)",
+  "category": "speech-to-speech",
+  "status": "GA (2026-10-05)",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Nova 2 Sonic: speech $3.00/M in, $12.00/M out; text $0.33/M in, $2.75/M out (text rates apply to speech-to-text transcription use)",
+   "tiers": [],
+   "notes": "Tokens per second of speech not stated on pages read."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 7,
+   "notes": "Seven languages (voices)."
+  },
+  "latency_claim": "Lower latency than Nova 2 Sonic (AWS).",
+  "features": [
+   "tool calling",
+   "turn-taking control",
+   "256K context"
+  ],
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "AWS",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Bedrock: us-east-1, us-west-2, eu-north-1 (Stockholm), ap-northeast-1.",
+   "licence": null
+  },
+  "data_handling": "Bedrock data terms; EU region Stockholm.",
+  "notes": "AWS's in-tenancy speech-to-speech option; integrates with Amazon Connect.",
+  "sources": [
+   "https://aws.amazon.com/bedrock/pricing/",
+   "https://aws.amazon.com/about-aws/whats-new/2026/10/amazon-nova-2.5-sonic/"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "xai-grok-voice",
+  "name": "Grok Voice (speech-to-speech)",
+  "vendor": "xAI (SpaceXSI)",
+  "model": "Grok Voice realtime",
+  "category": "speech-to-speech",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 4.8,
+   "unit_note": "$0.08 per minute",
+   "tiers": [
+    "$4.80/hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [],
+  "deployment": {
+   "hosted": [],
+   "billing": "xAI",
+   "private": false,
+   "weights": false,
+   "saas": true,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "xAI terms.",
+  "notes": "",
+  "sources": [
+   "https://docs.x.ai/docs/models"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "azure-voice-live",
+  "name": "Azure Voice Live API",
+  "vendor": "Microsoft",
+  "model": "Voice Live (Pro / Standard / Lite / BYO tiers)",
+  "category": "speech-to-speech",
+  "status": "GA",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Per 1k tokens, e.g. Standard tier audio-standard input $0.015/1k, output $0.026/1k (Retail Prices API)",
+   "tiers": [
+    "Lite audio in $0.015/1k",
+    "Pro audio in $0.017/1k",
+    "Custom speech audio in $0.036–0.040/1k"
+   ],
+   "notes": "Bundles Azure STT + LLM + TTS (or native speech-to-speech) in one API; Microsoft says MAI-Transcribe uses Standard-Audio pricing."
+  },
+  "diarisation": {
+   "batch": null,
+   "streaming": null,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "managed cascade",
+   "noise suppression",
+   "avatar"
+  ],
+  "deployment": {
+   "hosted": [
+    "Azure"
+   ],
+   "billing": "Azure",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "",
+   "licence": null
+  },
+  "data_handling": "Azure terms.",
+  "notes": "",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices",
+   "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "nvidia-nemotron-3-5-asr-streaming",
+  "name": "NVIDIA Nemotron 3.5 ASR Streaming 0.6B",
+  "vendor": "NVIDIA",
+  "model": "nvidia/nemotron-3.5-asr-streaming-0.6b",
+  "category": "open-model",
+  "status": "released 2026-05/06",
+  "modes": [
+   "streaming",
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (OpenMDW-1.1). Hosted: Together lists Nemotron 3 ASR Streaming at $0.0015/min",
+   "tiers": [
+    "Self-host: 240 streams/H100 at 80 ms chunk, 2,400 at 1,120 ms (NVIDIA): ~$0.0017–0.017 per audio hour at $4/GPU-hr, before headroom"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 40,
+   "streaming": 40,
+   "notes": "40 language-locales; language-ID prompting, optional auto detection."
+  },
+  "latency_claim": "Chunk sizes 80/160/320/560/1,120 ms.",
+  "features": [
+   "cache-aware streaming",
+   "punctuation & capitalisation"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "NIM container also available.",
+   "licence": "OpenMDW-1.1"
+  },
+  "data_handling": "Runs wherever you host it.",
+  "notes": "The open streaming model to beat for voice agents.",
+  "sources": [
+   "https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b",
+   "https://github.com/NVIDIA-NeMo/Speech"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "nvidia-nemotron-3-5-transcribe",
+  "name": "NVIDIA Nemotron 3.5 Transcribe 30B-A4B",
+  "vendor": "NVIDIA",
+  "model": "nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B",
+  "category": "open-model",
+  "status": "released 2026-10-07",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (OpenMDW-1.1); BF16, FP8, NVFP4",
+   "tiers": [
+    "NIM: up to 2,238 audio-seconds per second on one RTX PRO 6000 (NVFP4 + speculative decoding) = ~8,000 audio hours per GPU-hour; open-source vLLM path ~2x slower"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Speaker-attributed transcription (cpWER 15.80 on multi-speaker benchmarks, vendor)."
+  },
+  "languages": {
+   "batch": 40,
+   "streaming": null,
+   "notes": "40 languages."
+  },
+  "latency_claim": "30-s clip returned in 0.13 s (NIM).",
+  "features": [
+   "speaker-attributed ASR",
+   "translation",
+   "word timestamps",
+   "context prompts",
+   "PII tagging"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "1x H100 80GB.",
+   "licence": "OpenMDW-1.1"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "Best open English WER on Open ASR Leaderboard per card (4.71).",
+  "sources": [
+   "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "nvidia-parakeet-tdt-0-6b-v3",
+  "name": "NVIDIA Parakeet TDT 0.6B v3",
+  "vendor": "NVIDIA",
+  "model": "nvidia/parakeet-tdt-0.6b-v3",
+  "category": "open-model",
+  "status": "released 2025-08",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (CC-BY-4.0); hosted on Together $0.0015/min",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 25,
+   "streaming": null,
+   "notes": "25 European languages, auto language detection."
+  },
+  "latency_claim": null,
+  "features": [
+   "word timestamps",
+   "punctuation"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "Also NVIDIA NIM.",
+   "licence": "CC-BY-4.0"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "Parakeet-unified-en-0.6b (Apr 2026) adds streaming at 160 ms minimum latency for English.",
+  "sources": [
+   "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3",
+   "https://github.com/NVIDIA-NeMo/Speech"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "nvidia-canary-1b-v2",
+  "name": "NVIDIA Canary 1B v2 / Canary-Qwen 2.5B",
+  "vendor": "NVIDIA",
+  "model": "nvidia/canary-1b-v2; nvidia/canary-qwen-2.5b",
+  "category": "open-model",
+  "status": "released 2025",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (CC-BY-4.0)",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 25,
+   "streaming": null,
+   "notes": "25 EU languages; translation en<->24."
+  },
+  "latency_claim": null,
+  "features": [
+   "translation"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "",
+   "licence": "CC-BY-4.0"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "",
+  "sources": [
+   "https://huggingface.co/nvidia/canary-1b-v2"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "openai-whisper-large-v3",
+  "name": "OpenAI Whisper large-v3 / large-v3-turbo (weights)",
+  "vendor": "OpenAI",
+  "model": "openai/whisper-large-v3; openai/whisper-large-v3-turbo",
+  "category": "open-model",
+  "status": "released 2023 / 2024",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (MIT). Hosted from $0.04/hr (Groq turbo)",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Needs pyannote or similar."
+  },
+  "languages": {
+   "batch": 99,
+   "streaming": null,
+   "notes": "~99 languages (from memory)."
+  },
+  "latency_claim": null,
+  "features": [
+   "translation to English",
+   "timestamps"
+  ],
+  "deployment": {
+   "hosted": [
+    "AWS",
+    "GCP",
+    "Azure"
+   ],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "Available in SageMaker JumpStart, Vertex Model Garden and Foundry catalog (from memory).",
+   "licence": "MIT"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "Still the most downloaded ASR weights on Hugging Face (5.6M for turbo).",
+  "sources": [
+   "https://huggingface.co/openai/whisper-large-v3-turbo"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "mistral-voxtral-mini-4b-realtime-2602",
+  "name": "Voxtral Mini 4B Realtime 2602 (weights)",
+  "vendor": "Mistral AI",
+  "model": "mistralai/Voxtral-Mini-4B-Realtime-2602",
+  "category": "open-model",
+  "status": "released 2026-02 (API version deprecated 2026-10-31)",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (Apache-2.0)",
+   "tiers": [],
+   "notes": "Arabic fine-tune released 2026-10-08."
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 13,
+   "notes": "13 languages per HF metadata."
+  },
+  "latency_claim": null,
+  "features": [
+   "streaming"
+  ],
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "SageMaker JumpStart (Jul 2026).",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "",
+  "sources": [
+   "https://huggingface.co/mistralai/Voxtral-Mini-4B-Realtime-2602",
+   "https://docs.mistral.ai/models/voxtral-mini-transcribe-realtime-26-02"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "mistral-voxtral-2507-weights",
+  "name": "Voxtral Small 24B / Mini 3B 2507 (weights)",
+  "vendor": "Mistral AI",
+  "model": "mistralai/Voxtral-Small-24B-2507; mistralai/Voxtral-Mini-3B-2507",
+  "category": "open-model",
+  "status": "released 2025-07",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (Apache-2.0)",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 8,
+   "streaming": null,
+   "notes": "From memory."
+  },
+  "latency_claim": null,
+  "features": [
+   "audio Q&A"
+  ],
+  "deployment": {
+   "hosted": [
+    "AWS"
+   ],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "Also Bedrock serverless.",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "",
+  "sources": [
+   "https://huggingface.co/mistralai/Voxtral-Small-24B-2507"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "qwen3-asr",
+  "name": "Qwen3-ASR 1.7B / 0.6B",
+  "vendor": "Alibaba Qwen",
+  "model": "Qwen/Qwen3-ASR-1.7B; Qwen/Qwen3-ASR-0.6B",
+  "category": "open-model",
+  "status": "released 2026-01-29",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (Apache-2.0)",
+   "tiers": [
+    "0.6B: ~2,000x real-time at concurrency 128 (Qwen) = ~2,000 audio hours per GPU-hour, ~$0.002/hr at $4/GPU-hr"
+   ],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": "Forced aligner 0.6B for timestamps."
+  },
+  "languages": {
+   "batch": 52,
+   "streaming": 52,
+   "notes": "30 languages + 22 Chinese dialects; language ID."
+  },
+  "latency_claim": null,
+  "features": [
+   "unified streaming/offline",
+   "forced alignment"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "vLLM serving.",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "",
+  "sources": [
+   "https://huggingface.co/Qwen/Qwen3-ASR-1.7B",
+   "https://github.com/QwenLM/Qwen3-ASR"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "ibm-granite-speech-5",
+  "name": "IBM Granite Speech 5.0 (2B, 470M TurboCTC)",
+  "vendor": "IBM",
+  "model": "ibm-granite/granite-speech-5.0-2b; granite-speech-5.0-470m-turboctc",
+  "category": "open-model",
+  "status": "released 2026-08 / 2026-10",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (Apache-2.0)",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 7,
+   "streaming": null,
+   "notes": "2B: en, fr, de, es, pt, ja (+translation); TurboCTC: en, fr, de, es, pt, it, ja."
+  },
+  "latency_claim": null,
+  "features": [
+   "keyword biasing (2,000)",
+   "translation",
+   "edge deployment (TurboCTC)"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "GGUF/ONNX builds.",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "Enterprise-friendly licence from a vendor clients know.",
+  "sources": [
+   "https://huggingface.co/ibm-granite/granite-speech-5.0-2b",
+   "https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "meta-omnilingual-asr",
+  "name": "Meta Omnilingual ASR",
+  "vendor": "Meta",
+  "model": "facebook/omniASR-LLM-7B (and CTC 300M–7B)",
+  "category": "open-model",
+  "status": "released 2025-11",
+  "modes": [
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (Apache-2.0)",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 1600,
+   "streaming": null,
+   "notes": "1,600+ languages, zero-shot variant for unseen languages."
+  },
+  "latency_claim": null,
+  "features": [
+   "long-tail languages"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "",
+   "licence": "Apache-2.0"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "The option for low-resource languages no API covers.",
+  "sources": [
+   "https://huggingface.co/facebook/omniASR-LLM-7B"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "kyutai-stt",
+  "name": "Kyutai STT (delayed streams)",
+  "vendor": "Kyutai",
+  "model": "kyutai/stt-1b-en_fr; kyutai/stt-2.6b-en",
+  "category": "open-model",
+  "status": "released 2025-06",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (CC-BY-4.0)",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 2,
+   "notes": "en+fr (1B) or en (2.6B)."
+  },
+  "latency_claim": "0.5 s delay (1B) / 2.5 s (2.6B), semantic VAD.",
+  "features": [
+   "semantic VAD",
+   "streaming"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "",
+   "licence": "CC-BY-4.0"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "No newer Kyutai STT found in 2026.",
+  "sources": [
+   "https://huggingface.co/kyutai/stt-1b-en_fr"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "microsoft-vibevoice-asr",
+  "name": "Microsoft VibeVoice-ASR (7B / Streaming)",
+  "vendor": "Microsoft Research",
+  "model": "microsoft/VibeVoice-ASR; microsoft/VibeVoice-ASR-Streaming-7B",
+  "category": "open-model",
+  "status": "released 2026-01 / 2026-09",
+  "modes": [
+   "batch",
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (MIT)",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": true,
+   "streaming": true,
+   "extra_usd_per_hour": null,
+   "notes": "Who/when/what output in one pass; streaming speaker attribution."
+  },
+  "languages": {
+   "batch": 50,
+   "streaming": 10,
+   "notes": "Batch 50+ languages, 60-min single pass; streaming 10 languages."
+  },
+  "latency_claim": null,
+  "features": [
+   "diarisation",
+   "hotwords",
+   "timestamps"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "",
+   "licence": "MIT"
+  },
+  "data_handling": "Self-hosted.",
+  "notes": "",
+  "sources": [
+   "https://huggingface.co/microsoft/VibeVoice-ASR",
+   "https://huggingface.co/microsoft/VibeVoice-ASR-Streaming-7B"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "moonshine-streaming",
+  "name": "Moonshine Streaming (tiny/small/medium)",
+  "vendor": "Useful Sensors / Moonshine AI",
+  "model": "moonshine-ai/moonshine-streaming-{tiny,small,medium}",
+  "category": "on-device",
+  "status": "released 2026-01; language variants 2026-08",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": null,
+   "unit_note": "Weights free (MIT for English models; check per-language licence)",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": 1,
+   "notes": "English; separate tiny/small models for es, zh, ar, vi, tl etc."
+  },
+  "latency_claim": "80 ms lookahead encoder; targets 0.1–1 TOPS, <1 GB memory.",
+  "features": [
+   "edge streaming"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": true,
+   "weights": true,
+   "saas": false,
+   "note": "",
+   "licence": "MIT"
+  },
+  "data_handling": "On device.",
+  "notes": "",
+  "sources": [
+   "https://huggingface.co/moonshine-ai/moonshine-streaming-medium"
+  ],
+  "checked": "2026-11-03",
+  "verified": true
+ },
+ {
+  "id": "apple-speechanalyzer",
+  "name": "Apple SpeechAnalyzer / SpeechTranscriber",
+  "vendor": "Apple",
+  "model": "SpeechAnalyzer (iOS/macOS 26+)",
+  "category": "on-device",
+  "status": "GA",
+  "modes": [
+   "streaming",
+   "batch"
+  ],
+  "price": {
+   "batch_usd_per_hour": 0.0,
+   "streaming_usd_per_hour": 0.0,
+   "unit_note": "Free on Apple devices",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": 10,
+   "streaming": 10,
+   "notes": "10 languages at launch (developer blog); later counts unconfirmed."
+  },
+  "latency_claim": null,
+  "features": [
+   "on-device",
+   "long-form"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "",
+   "private": false,
+   "weights": false,
+   "saas": false,
+   "note": "Runs on device; system-managed model assets.",
+   "licence": "Apple SDK terms"
+  },
+  "data_handling": "Audio never leaves the device.",
+  "notes": "",
+  "sources": [
+   "https://blog.addpipe.com/apple-speechanalyzer-api/"
+  ],
+  "checked": "2026-11-03",
+  "verified": false
+ },
+ {
+  "id": "azure-embedded-speech",
+  "name": "Azure embedded speech",
+  "vendor": "Microsoft",
+  "model": "Embedded Speech to Text",
+  "category": "on-device",
+  "status": "GA (limited access)",
+  "modes": [
+   "streaming"
+  ],
+  "price": {
+   "batch_usd_per_hour": null,
+   "streaming_usd_per_hour": 1.0,
+   "unit_note": "New retail meter 'Emb Speech to Text' $1.00/hr effective 2026-11-01 (meaning of meter not documented on pages read)",
+   "tiers": [],
+   "notes": ""
+  },
+  "diarisation": {
+   "batch": false,
+   "streaming": false,
+   "extra_usd_per_hour": null,
+   "notes": ""
+  },
+  "languages": {
+   "batch": null,
+   "streaming": null,
+   "notes": ""
+  },
+  "latency_claim": null,
+  "features": [
+   "offline on-device"
+  ],
+  "deployment": {
+   "hosted": [],
+   "billing": "Azure",
+   "private": true,
+   "weights": false,
+   "saas": false,
+   "note": "On-device SDK.",
+   "licence": null
+  },
+  "data_handling": "Audio stays on device.",
+  "notes": "Meter interpretation unverified.",
+  "sources": [
+   "https://prices.azure.com/api/retail/prices"
+  ],
+  "checked": "2026-11-03",
+  "verified": false
+ }
+]

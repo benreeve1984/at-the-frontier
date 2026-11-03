@@ -1,6 +1,7 @@
 // Interactive Pareto chart (needs d3 v7).
 // ParetoChart(el, {points, families, filters, xLabel, yLabel, yDomain, state, onState, tolerance, unit, declutter})
 // point: {id, name, family, deploy: {hosted, billing, private, weights, saas, note}, cost, score, n, raw: [{bench, score}], costBasis}
+// lowerIsBetter: for error rates; the y axis is flipped so better is still up. xName/xTick/xFmt: relabel the x axis (e.g. latency).
 // filters: [{id, label, test(point)}]. state ({filter, multiOnly}) is shared by the caller so it survives view switches.
 window.ParetoChart = function (el, opts) {
   el.classList.add('pareto');
@@ -13,6 +14,9 @@ window.ParetoChart = function (el, opts) {
   const fam = opts.families, tol = opts.tolerance ?? 1;
   const unit = opts.unit || 'pages'; // cost is per 1,000 of these
   const state = opts.state || { filter: 'all', multiOnly: false };
+  const lower = !!opts.lowerIsBetter;
+  const better = (a, b) => lower ? a < b : a > b;
+  const xName = opts.xName || `Cost / 1k ${unit}`;
   const filterOf = id => opts.filters.find(f => f.id === id) || opts.filters[0];
 
   el.innerHTML = `
@@ -31,7 +35,9 @@ window.ParetoChart = function (el, opts) {
   const pts = opts.points.filter(p => p.cost != null && p.score != null);
   const xExt = d3.extent(pts, p => p.cost);
   const x0 = d3.scaleLog().domain([xExt[0] / 2.5, xExt[1] * 2.5]).range([m.l, W - m.r]);
-  const yExt = opts.yDomain || [Math.floor(d3.min(pts, p => p.score) / 5) * 5 - 2, Math.min(100, Math.ceil(d3.max(pts, p => p.score) / 5) * 5 + 2)];
+  const yExt = opts.yDomain || (lower
+    ? [Math.ceil(d3.max(pts, p => p.score) / 5) * 5 + 1, Math.max(0, Math.floor(d3.min(pts, p => p.score)) - 1)]
+    : [Math.floor(d3.min(pts, p => p.score) / 5) * 5 - 2, Math.min(100, Math.ceil(d3.max(pts, p => p.score) / 5) * 5 + 2)]);
   const y0 = d3.scaleLinear().domain(yExt).range([H - m.b, m.t]);
   let x = x0, y = y0;
 
@@ -48,19 +54,19 @@ window.ParetoChart = function (el, opts) {
 
   const visible = p => (!state.multiOnly || (p.n || 1) > 1) && filterOf(state.filter).test(p);
   function frontier(list) {
-    const s = list.slice().sort((a, b) => a.cost - b.cost || b.score - a.score);
-    const f = []; let best = -Infinity;
-    s.forEach(p => { if (p.score > best) { f.push(p); best = p.score; } });
+    const s = list.slice().sort((a, b) => a.cost - b.cost || (lower ? a.score - b.score : b.score - a.score));
+    const f = []; let best = lower ? Infinity : -Infinity;
+    s.forEach(p => { if (better(p.score, best)) { f.push(p); best = p.score; } });
     return f;
   }
   // best frontier score available at or below a given cost
-  const bestAt = (f, cost) => f.reduce((b, q) => q.cost <= cost ? Math.max(b, q.score) : b, -Infinity);
+  const bestAt = (f, cost) => f.reduce((b, q) => q.cost <= cost ? (better(q.score, b) ? q.score : b) : b, lower ? Infinity : -Infinity);
 
   let near = new Set();
   function draw(animate) {
     const vis = pts.filter(visible), f = frontier(vis), fid = new Set(f.map(p => p.id));
-    near = new Set(vis.filter(p => !fid.has(p.id) && bestAt(f, p.cost) - p.score <= tol).map(p => p.id));
-    gx.call(d3.axisBottom(x).ticks(8, d => '$' + d3.format(d >= 1 ? ',.0f' : '.2~f')(d)).tickSize(-(H - m.t - m.b)));
+    near = new Set(vis.filter(p => !fid.has(p.id) && (lower ? p.score - bestAt(f, p.cost) : bestAt(f, p.cost) - p.score) <= tol).map(p => p.id));
+    gx.call(d3.axisBottom(x).ticks(8, opts.xTick || (d => '$' + d3.format(d >= 1 ? ',.0f' : '.2~f')(d))).tickSize(-(H - m.t - m.b)));
     gy.call(d3.axisLeft(y).ticks(6).tickSize(-(W - m.l - m.r)));
     // staircase frontier: hold score until a cheaper-to-better step
     const stepPts = [];
@@ -85,7 +91,7 @@ window.ParetoChart = function (el, opts) {
       .classed('front', p => fid.has(p.id))
       .classed('near', p => near.has(p.id))
       .attr('tabindex', p => visible(p) ? 0 : -1)
-      .attr('aria-label', p => `${p.name}: score ${p.score.toFixed(1)}, $${p.cost} per 1,000 ${unit}${fid.has(p.id) ? ', on the frontier' : near.has(p.id) ? ', near the frontier' : ''}`)
+      .attr('aria-label', p => `${p.name}: score ${p.score.toFixed(1)}, ${opts.xFmt ? opts.xFmt(p.cost) : '$' + p.cost + ' per 1,000 ' + unit}${fid.has(p.id) ? ', on the frontier' : near.has(p.id) ? ', near the frontier' : ''}`)
       .attr('transform', p => `translate(${x(p.cost)},${y(p.score)})`);
     all.select('circle.core')
       .attr('fill', p => (p.n || 1) > 1 || opts.noHollow ? fam[p.family].color : '#fff')
@@ -132,11 +138,11 @@ window.ParetoChart = function (el, opts) {
     return parts.join('<br>') + (dep.note ? `<br><em>${dep.note}</em>` : '');
   }
   function showTip(p) {
-    const fmt = v => '$' + (v >= 10 ? d3.format(',.0f')(v) : d3.format('.2~f')(v));
+    const fmt = opts.xFmt || (v => '$' + (v >= 10 ? d3.format(',.0f')(v) : d3.format('.2~f')(v)));
     tip.dataset.id = p.id;
     tip.innerHTML = `<b>${p.name}</b><span class="pc-fam" style="color:${fam[p.family].color}">${fam[p.family].label}</span>
       <div class="pc-kv"><span>${opts.yLabel}</span><span>${p.score.toFixed(1)}${opts.noHollow ? '' : ` <em>(${p.n} benchmark${p.n > 1 ? 's' : ''})</em>`}</span></div>
-      <div class="pc-kv"><span>Cost / 1k ${unit}</span><span>${fmt(p.cost)}</span></div>
+      <div class="pc-kv"><span>${xName}</span><span>${fmt(p.cost)}</span></div>
       ${near.has(p.id) ? `<div class="pc-basis">Within ${tol} point of the frontier: treat as a tie with the frontier option at this cost.</div>` : ''}
       ${p.raw && p.raw.length ? `<div class="pc-raw">${p.raw.map(r => `<div><span>${r.bench}</span><span>${r.score}</span></div>`).join('')}</div>` : ''}
       ${p.costBasis ? `<div class="pc-basis">${p.costBasis}</div>` : ''}
@@ -161,7 +167,7 @@ window.ParetoChart = function (el, opts) {
     mt.checked = !!state.multiOnly;
     mt.addEventListener('change', () => { state.multiOnly = mt.checked; draw(false); opts.onState && opts.onState(state); });
   }
-  const off = pts.filter(p => p.score < yExt[0]);
+  const off = pts.filter(p => lower ? p.score > yExt[0] : p.score < yExt[0]);
   if (off.length) el.insertAdjacentHTML('beforeend', `<div class="pc-off">Below the chart: ${off.map(p => `${p.name} (${p.score.toFixed(0)})`).join(', ')}</div>`);
   draw(false);
   return { replay: () => draw(true) };

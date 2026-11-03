@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speech to Text · At The Frontier</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 22 22%27%3E%3Cpath d=%27M2 20 C 6 9, 11 5, 20 3%27 fill=%27none%27 stroke=%27%231a2fd0%27 stroke-width=%272.5%27/%3E%3Ccircle cx=%272%27 cy=%2720%27 r=%272.2%27 fill=%27%231a2fd0%27/%3E%3Ccircle cx=%2720%27 cy=%273%27 r=%272.2%27 fill=%27%231a2fd0%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..500&family=Manrope:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/deck.css">
+<link rel="stylesheet" href="demos.css">
+</head>
+<body class="deck" data-title="Speech to text" data-home="../">
+<main class="stage">
+
+<!-- ================= INTRO ================= -->
+<section class="slide" id="title" data-section="Introduction" data-nochrome>
+  <a class="home-link" href="../">← At The Frontier · all sessions</a>
+  <div class="title-wrap">
+    <div>
+      <span class="kicker rise" style="--i:0">At The Frontier · Session 03</span>
+      <h1 class="rise" style="--i:1">Speech<br>to text</h1>
+      <p class="lede rise" style="--i:2; margin-top:26px">How speech recognition works, how fast and accurate it is, what it costs, and how to choose for live and recorded audio.</p>
+      <div class="meta-row rise" style="--i:3">
+        <div><span class="label">For</span><div class="v">The DNA team</div></div>
+        <div><span class="label">Snapshot</span><div class="v">3 November 2026</div></div>
+      </div>
+      <p class="label rise" style="--i:4; margin-top:40px">Press → to start · O for overview · N for notes</p>
+    </div>
+    <div class="rise title-visual" style="--i:2; position:relative">
+      <div class="live-card" id="title-live">
+        <div class="th"><span class="rec">Live transcript</span><span>Illustrative</span></div>
+      </div>
+      <div class="trace-meta">
+        <div class="ih"><span>This call</span><span>So far</span></div>
+        <div class="row">Speakers<span id="tl-spk">0</span></div>
+        <div class="row">Words revised<span id="tl-rev">0</span></div>
+        <div class="row">Median time to final<span id="tl-lat">–</span></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes"><p>Third session in the series. The first two were about reading documents and reading the web. This one is about listening: turning recorded and live speech into text, telling speakers apart, and covering many languages. Many client requests are now for live use, such as contact centres, captions and voice agents, so we spend a good part of the session on speed.</p><p>The animation shows what a live transcription service sends back: grey "partial" results that can change, then a "final" result with punctuation, numbers as digits and names fixed. Watch "clean" become "claim" and "leads" become "Leeds".</p></aside>
+</section>
+
+<section class="slide" data-section="Introduction">
+  <span class="kicker">The question</span>
+  <h2>"Can AI transcribe this for us?"</h2>
+  <p class="lede">Clients ask this about contact-centre calls, meetings, interviews, clinical visits and voice agents. The answer depends on the following factors.</p>
+  <div class="factors">
+    <div class="card factor rise" style="--i:0"><div class="q">Live or recorded?</div><div class="a">A recording can be processed afterwards, more cheaply and more accurately. Live audio needs a streaming service, which costs more and makes more errors.</div></div>
+    <div class="card factor rise" style="--i:1"><div class="q">How fast is fast enough?</div><div class="a">A voice agent must reply in about a second. Agent assist and captions can lag by a few seconds. Call analytics can wait until the next day.</div></div>
+    <div class="card factor rise" style="--i:2"><div class="q">Who is speaking?</div><div class="a">Telling speakers apart is simple when each has their own channel, and hard in one recording of a busy meeting.</div></div>
+    <div class="card factor rise" style="--i:3"><div class="q">Which languages?</div><div class="a">Products claim from 5 to over 1,600 languages. Quality varies widely by language, accent and dialect, and live modes cover fewer.</div></div>
+    <div class="card factor rise" style="--i:4"><div class="q">What does the audio sound like?</div><div class="a">Phone lines remove the upper half of the frequency range. Noise, distance and people talking over each other all add errors.</div></div>
+    <div class="card factor rise" style="--i:5"><div class="q">Which words matter?</div><div class="a">Names, product codes, drug names and numbers are where errors cost most, and where custom vocabulary helps.</div></div>
+    <div class="card factor rise" style="--i:6"><div class="q">Where can the audio go?</div><div class="a">Recordings contain personal data, and a voice can identify a person. Many clients require processing in their own cloud and region.</div></div>
+    <div class="card factor rise" style="--i:7"><div class="q">Volume and budget?</div><div class="a">From under a cent to about a dollar per audio hour. A large contact centre produces millions of hours a year.</div></div>
+    <div class="card factor rise" style="--i:8"><div class="q">What happens to the text?</div><div class="a">A person reads it, a search index stores it, a model summarises it, or an agent acts on it. Each needs different accuracy and formatting.</div></div>
+  </div>
+  <aside class="notes"><p>Ask the room which of these they have met on recent work. The first two decide most of the architecture. "Where can the audio go" is often the constraint that removes the most options.</p></aside>
+</section>
+
+<section class="slide" data-section="Introduction">
+  <span class="kicker">Introduction</span>
+  <h2>Agenda</h2>
+  <div class="agenda">
+    <div class="rise" style="--i:0"><span class="label">01</span><h3>How it works</h3><p>Seventy years of speech recognition, and how a model turns sound into words.</p></div>
+    <div class="rise" style="--i:1"><span class="label">02</span><h3>Live transcription</h3><p>Why speed matters, where the delay comes from, and when the caller has finished.</p></div>
+    <div class="rise" style="--i:2"><span class="label">03</span><h3>Speakers and languages</h3><p>Telling speakers apart, and how well the world's languages are covered.</p></div>
+    <div class="rise" style="--i:3"><span class="label">04</span><h3>Who the players are</h3><p>The main options, what they cost per audio hour, and where they can run.</p></div>
+    <div class="rise" style="--i:4"><span class="label">05</span><h3>How they are measured</h3><p>Error rates, benchmarks, human performance, and where the frontier is.</p></div>
+    <div class="rise" style="--i:5"><span class="label">06</span><h3>What to recommend</h3><p>A decision guide, default picks, and how to test on a client's own audio.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-section="Introduction">
+  <span class="kicker">A framework for comparison</span>
+  <h2>Three questions for comparing services</h2>
+  <div class="cols c3" style="margin-top:44px">
+    <div class="card q3 rise" style="--i:0">
+      <span class="label">Question 1</span><h3>When must the text arrive?</h3>
+      <ul class="plain small">
+        <li>After the recording ends: batch</li>
+        <li>Within a few seconds: live captions, agent assist</li>
+        <li>Within a fraction of a second, mid-conversation: voice agents</li>
+      </ul>
+    </div>
+    <div class="card q3 rise" style="--i:1">
+      <span class="label">Question 2</span><h3>What kind of model is listening?</h3>
+      <ul class="plain small">
+        <li>A fast model that writes as it hears (CTC or transducer)</li>
+        <li>A model that hears a whole window, then writes (Whisper)</li>
+        <li>A language model with ears, which you can instruct (speech LLM)</li>
+      </ul>
+    </div>
+    <div class="card q3 rise" style="--i:2">
+      <span class="label">Question 3</span><h3>What else must come back?</h3>
+      <ul class="plain small">
+        <li>Words only</li>
+        <li>Punctuation, numbers as digits, timestamps</li>
+        <li>Speaker labels, languages, redacted personal data</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout rise" style="--i:3; margin-top:30px">Accuracy on clean English audio is now close to that of careful human transcribers. Services differ most on speed, speaker labels, languages other than English, and where they can run.</div>
+  <aside class="notes"><p>Same structure as the previous sessions. Question 1 is the one most clients get wrong: many "real-time" requests turn out to need results within seconds, not within a few hundred milliseconds, and that changes the options and the price.</p></aside>
+</section>
+
+<!-- ================= 01 HOW IT WORKS ================= -->
+<section class="slide" id="timeline" data-section="[01] How it works">
+  <span class="kicker">01 · How we got here · 1952–2026</span>
+  <h2>Development of speech recognition</h2>
+  <div class="eras">
+    <div class="era" data-step="1" style="--c:var(--ink-3)">
+      <div class="era-h"><span class="label">1952–2011</span><b>Templates, then statistics</b></div>
+      <ul><li><em>1952</em>Bell Labs' Audrey recognises ten digits from one speaker.</li><li><em>1970s–80s</em>IBM and Dragon model speech with probabilities (hidden Markov models), the standard for 30 years.</li><li><em>1997</em>Dragon NaturallySpeaking: continuous dictation on a PC.</li><li><em>2011</em>Siri.</li></ul>
+    </div>
+    <div class="era" data-step="2" style="--c:var(--teal)">
+      <div class="era-h"><span class="label">2012–2019</span><b>Deep learning</b></div>
+      <ul><li><em>2012</em>Neural networks replace the statistical sound models at Google, Microsoft and IBM.</li><li><em>2012–15</em>The designs still used today: CTC, the transducer, and attention.</li><li><em>2016–17</em>Microsoft and IBM match professional transcribers on Switchboard phone calls (5.1%).</li></ul>
+    </div>
+    <div class="era" data-step="3" style="--c:var(--purple)">
+      <div class="era-h"><span class="label">2020–2023</span><b>Learning from vast amounts of audio</b></div>
+      <ul><li><em>2020</em>Conformer and wav2vec 2.0: better encoders, and learning from unlabelled audio.</li><li><em>Sep 2022</em>OpenAI's Whisper, trained on 680,000 hours from the web, released with open weights.</li><li><em>2023–24</em>Meta's MMS covers 1,107 languages. NVIDIA's open Parakeet and Canary models top the leaderboards.</li></ul>
+    </div>
+    <div class="era" data-step="4" style="--c:var(--blue)">
+      <div class="era-h"><span class="label">2024–2025</span><b>Speech meets language models</b></div>
+      <ul><li><em>2024</em>"Careless Whisper" and AP reporting on invented text in medical transcripts.</li><li><em>Mar 2025</em>OpenAI's gpt-4o-transcribe: a language model that transcribes.</li><li><em>Oct 2025</em>Deepgram Flux detects the end of a turn inside the model.</li><li><em>Nov 2025</em>Meta's Omnilingual ASR: 1,600+ languages.</li></ul>
+    </div>
+    <div class="era" data-step="5" style="--c:var(--orange)">
+      <div class="era-h"><span class="label">2026</span><b>Every platform builds its own</b></div>
+      <ul><li><em>Jul–Oct</em>OpenAI GPT-Transcribe, Gemini 3.5 Transcribe, Meta Muse, Microsoft MAI-Transcribe-2, Mistral Voxtral 3, NVIDIA Nemotron 3.5 Transcribe.</li><li><em>Sep</em>OpenAI GPT-Live: full-duplex voice.</li><li><em>Oct</em>Deepgram agrees to buy Daily, maker of Pipecat.</li></ul>
+    </div>
+  </div>
+  <div class="callout" data-step="6" style="margin-top:22px">OpenAI shuts down whisper-1, gpt-4o-transcribe, gpt-4o-mini-transcribe and its diarisation model on 26 February 2027. The replacements do not yet return speaker labels or word timestamps.</div>
+  <aside class="notes"><p>Each era removed a hand-built part: neural networks replaced hand-designed sound models, end-to-end models removed the pronunciation dictionary, Whisper removed separate punctuation and number formatting, and speech LLMs are now absorbing speaker labelling and vocabulary handling too.</p><p>2026 is unusual: in four months every large platform shipped its own transcription model, and each published a benchmark showing itself ahead. Sources: research pack A. Early history is from secondary sources.</p></aside>
+</section>
+
+<section class="slide" id="spectro" data-section="[01] How it works">
+  <span class="kicker">01 · How it works</span>
+  <h2>From sound to a picture of sound</h2>
+  <div class="sp">
+    <div class="pipe-steps walk">
+      <div class="on cur" data-n="01"><b>Record</b><span>A microphone measures air pressure 16,000 times a second. A phone line uses 8,000.</span></div>
+      <div data-n="02"><b>Cut into frames</b><span>Overlapping 25 ms slices, one every 10 ms: 100 frames a second.</span></div>
+      <div data-n="03"><b>Measure the frequencies</b><span>Each frame becomes a spectrum. Vowels show dark bands; "s" is a hiss high up.</span></div>
+      <div data-n="04"><b>Space them like the ear</b><span>80 or 128 "mel" bands, finer at low pitch. This picture is what the model reads.</span></div>
+      <div data-n="05"><b>Pass it through a phone line</b><span>8 kHz sampling keeps only 0–4 kHz. Much of "s", "f" and "th" is lost.</span></div>
+    </div>
+    <div>
+      <canvas id="sp-canvas" width="900" height="470" aria-label="Waveform and spectrogram of the words seven six"></canvas>
+      <div class="sp-bar"><button type="button" id="sp-play">Play the sound</button><button type="button" id="sp-mic">Try your own voice</button><span class="src" style="margin-left:auto">Synthetic voice, generated and analysed in the browser.</span></div>
+    </div>
+  </div>
+  <i data-step="1"></i><i data-step="2"></i><i data-step="3"></i><i data-step="4"></i>
+  <aside class="notes"><p>Step through the five stages. The waveform is computed in the browser from a simple synthetic voice saying "seven six", then analysed with a real Fourier transform. At the last step, play it as a phone line: "seven" and "six" both start with "s", which sits mostly above 4 kHz, so on a call the model has much less to go on. This is one reason contact-centre audio scores worse than meeting audio.</p><p>"Try your own voice" draws a live spectrogram from the microphone. Nothing is recorded or sent. Say "s" and "f", then a vowel, and watch where the energy sits.</p></aside>
+</section>
+
+<section class="slide" id="decoders" data-section="[01] How it works">
+  <span class="kicker">01 · How it works</span>
+  <h2>Four ways to turn sound into words</h2>
+  <p class="lede" style="font-size:19px; margin:-6px 0 0">Every modern system has an encoder that summarises the sound and a decoder that writes the words. The decoder decides most of the practical trade-offs.</p>
+  <div class="dc">
+    <div>
+      <div class="tabs" id="dc-tabs" role="radiogroup" aria-label="Decoder family"></div>
+      <span class="label" style="display:block; margin-top:14px">Audio frames for "seven six" (one box = 40–80 ms)</span>
+      <div class="dc-frames" id="dc-frames"></div>
+      <span class="label" style="display:block; margin-top:10px">What the decoder writes</span>
+      <div class="dc-out" id="dc-out" aria-live="polite"></div>
+    </div>
+    <div class="dc-note" id="dc-note"></div>
+  </div>
+  <aside class="notes"><p>Click through the four families. CTC labels each frame on its own, then tidies up. A transducer writes as it hears and remembers what it wrote: the standard for live transcription. An encoder–decoder such as Whisper waits for a 30-second window and writes like a translator, which is accurate but cannot stream without tricks, and can invent text in silence. A speech LLM is a language model that reads audio; it follows instructions, which is why every 2026 flagship uses this design.</p><p>The Open ASR Leaderboard paper (2025) found the most accurate systems pair Conformer encoders with transformer decoders, and the fastest use CTC or TDT decoders. Research pack A.</p></aside>
+</section>
+
+<section class="slide" data-section="[01] How it works">
+  <span class="kicker">01 · How it works</span>
+  <h2>Whisper and the speech LLM</h2>
+  <div class="cols c2" style="margin-top:14px; gap:40px">
+    <div class="card par-card">
+      <span class="label">2022 · Encoder–decoder</span>
+      <h3>OpenAI Whisper</h3>
+      <div class="pc-img" style="height:300px"><img class="shot" src="../assets/speech-to-text/vendor/a-whisper-approach.png" alt="Whisper approach: 680,000 hours of multitask training data, log-mel input, Transformer encoder and decoder, special task tokens"></div>
+      <p class="src">Image: OpenAI, "Robust Speech Recognition via Large-Scale Weak Supervision", 2022.</p>
+      <ul class="plain small">
+        <li><b>680,000 hours</b> of audio with transcripts found on the web, 117,000 of them in 96 other languages.</li>
+        <li>Learned to write ordinary text, with punctuation and numbers, so no separate formatting step.</li>
+        <li>Open weights. The turbo version still has about 5.6 million downloads a month on Hugging Face.</li>
+      </ul>
+    </div>
+    <div class="card par-card">
+      <span class="label">2025–2026 · Audio encoder + language model</span>
+      <h3>Speech LLMs</h3>
+      <div class="pc-img" style="height:300px; padding:10px"><img class="shot" src="../assets/speech-to-text/vendor/a-qwen3-asr-architecture.png" alt="Qwen3-ASR: an audio encoder feeding a Qwen3 language model, with optional context entities"></div>
+      <p class="src">Image: Alibaba Qwen team, Qwen3-ASR technical report, January 2026.</p>
+      <ul class="plain small">
+        <li>An audio encoder turns sound into tokens that a language model reads alongside a text prompt.</li>
+        <li>Accepts context: the topic, expected names and products, and which languages to expect.</li>
+        <li>Used by OpenAI GPT-Transcribe, Gemini, Voxtral, Qwen3-ASR, AssemblyAI Universal-3 Pro and NVIDIA Nemotron 3.5 Transcribe.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><p>Context is what speech LLMs add. AssemblyAI reports that giving its model prior visit notes cut missed medical terms by 31% in an internal healthcare test; NVIDIA reports instructions cutting error from 7.6% to 6.2% on its own test. Both are vendor claims. The cost: they are slower and dearer per stream, and a model that can follow instructions can also paraphrase or invent.</p><p>OpenAI does not publish its transcription models' architecture; "speech LLM" is inferred from the token-based context window and the prompt input.</p></aside>
+</section>
+
+<section class="slide" data-section="[01] How it works">
+  <span class="kicker">01 · How it works · Live transcription</span>
+  <h2>Transcribing while someone is still speaking</h2>
+  <div class="patterns">
+    <div class="card pat rise" style="--i:0"><span class="label">2023 · Workaround</span><h3>Re-run a non-streaming model</h3><p>Transcribe a growing buffer again and again, and keep only the words two passes agree on. Simple, but slow (about 3.3 seconds) and wasteful.</p>
+      <div class="pimg"><img class="shot" src="../assets/speech-to-text/vendor/a-whisper-streaming-local-agreement.png" alt="Whisper-Streaming confirms only the common prefix of consecutive passes"></div>
+      <div class="eg">Whisper-Streaming (Macháček et al., 2023)</div></div>
+    <div class="card pat rise" style="--i:1"><span class="label">2023–2026 · Native</span><h3>Process small chunks and reuse past work</h3><p>Each new 80 ms chunk is processed once, reusing stored results from earlier chunks. The chunk size sets the trade-off between delay and accuracy.</p>
+      <div class="pimg"><img class="shot" src="../assets/speech-to-text/vendor/a-nemotron-streaming-caching-schema.png" alt="Cached keys and convolution states from earlier chunks reused for each new chunk"></div>
+      <div class="eg">NVIDIA Nemotron streaming; most transducer services</div></div>
+    <div class="card pat rise" style="--i:2"><span class="label">2025–2026 · Native</span><h3>Let the text run behind the audio</h3><p>The model writes text a set distance behind the audio, or decides word by word whether to wait for more. Meta trained its model to balance errors against delay.</p>
+      <div class="pimg"><img class="shot" src="../assets/speech-to-text/vendor/a-kyutai-dsm.png" alt="Delayed streams: the text stream is shifted behind the audio stream"></div>
+      <div class="eg">Kyutai STT, Mistral Voxtral Realtime, Meta Muse</div></div>
+  </div>
+  <p class="src" style="margin-top:10px">Images: Macháček, Dabre and Bojar (arXiv 2307.14743); NVIDIA Nemotron streaming model card (2026); Kyutai, Delayed Streams Modeling (arXiv 2509.08753).</p>
+  <aside class="notes"><p>Whisper was trained on 30-second windows and reads each window in both directions, so it cannot write the first word until it has heard the last. Purpose-built streaming models limit how far ahead they look. Every millisecond of look-ahead improves accuracy and adds delay; NVIDIA's model lets you choose 80, 160, 560 or 1,120 ms at run time without retraining.</p></aside>
+</section>
+
+<section class="slide" id="post" data-section="[01] How it works">
+  <span class="kicker">01 · How it works</span>
+  <h2>From raw output to a usable transcript</h2>
+  <div class="cols c64" style="margin-top:10px; gap:40px">
+    <div class="post-rows" id="post-rows"></div>
+    <div>
+      <span class="label">What to check at each stage</span>
+      <ul class="plain small">
+        <li><b>Numbers and dates</b> carry the highest-stakes errors. Rule-based formatting is predictable; a language model is fluent but can quietly change a number.</li>
+        <li><b>Custom vocabulary</b> fixes names and jargon, but too strong a bias makes the model hear the term where it was not said. Test for false positives.</li>
+        <li><b>Redaction</b> can only remove what was recognised. A misheard digit is not redacted.</li>
+        <li><b>"Clean" output</b> drops fillers and false starts. Legal, compliance and medical uses often need the verbatim text.</li>
+        <li><b>Speech LLMs</b> do several of these steps in one model. Simpler to build, harder to audit.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><p>Step through the five stages. In older systems each stage is a separate component you can test on its own. Speech LLMs fold punctuation, formatting, vocabulary and sometimes speakers into one prompt-driven model. That makes it harder to see which stage made an error.</p><p>A sixth stage sits before all of these: voice activity detection, which cuts out silence. It is the single most effective fix for invented text in Whisper-style models. Research pack A, section 3.</p></aside>
+</section>
+
+<section class="slide" data-section="[01] How it works">
+  <span class="kicker">01 · How it works</span>
+  <h2>Common errors in speech recognition</h2>
+  <div class="cols c55" style="margin-top:12px; gap:40px">
+    <div>
+      <table class="t">
+        <tr><th>Error</th><th>Evidence</th></tr>
+        <tr><td>Invented text</td><td>About 1% of Whisper API transcripts contained whole phrases never spoken; 38% of those were harmful (Careless Whisper, 2024). Silence and long pauses trigger it.</td></tr>
+        <tr><td>Accent and dialect</td><td>Five commercial systems averaged 35% word error for Black speakers and 19% for white speakers; 23% against 1.6% of clips were unusable (PNAS, 2020).</td></tr>
+        <tr><td>Phone audio and noise</td><td>8 kHz audio removes the high frequencies; noise, distance and echo raise errors sharply.</td></tr>
+        <tr><td>People talking at once</td><td>Most models transcribe one voice and drop the other. Multi-speaker models are new in 2025–26.</td></tr>
+        <tr><td>Numbers, names, jargon</td><td>The words that matter most are rare in training data, so the model prefers a common word that sounds similar.</td></tr>
+        <tr><td>Switching language mid-sentence</td><td>In one vendor's test across five language pairs, error ranged from 7.7% to 44.6% (GPT-4o Transcribe).</td></tr>
+      </table>
+    </div>
+    <div>
+      <figure><img class="shot" src="../assets/speech-to-text/vendor/a-careless-whisper-harms.png" alt="Share of Whisper hallucinations that perpetuate violence, make inaccurate associations or imply false authority" style="max-height:250px; width:100%; object-fit:contain"><figcaption>Types of harm in Whisper's invented text. Image: Koenecke et al., "Careless Whisper", ACM FAccT 2024.</figcaption></figure>
+      <div class="callout warn" style="margin-top:16px; font-size:16px">In October 2024 the AP reported a Whisper-based clinical tool used in about 7 million medical visits that deleted the original audio, so transcripts could not be checked. Keep the audio, cut silence before transcription, and ask vendors for an invented-text rate. None publishes one.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>Invented text is a property of models with a language-model decoder: Whisper and speech LLMs. CTC and transducer models make "sounds-like" errors but rarely invent fluent sentences in silence. A cheap check is to run a CTC model alongside and flag spans where the two disagree.</p><p>Sources: Careless Whisper (arXiv 2402.08021); AP, 26 October 2024; Koenecke et al., PNAS 117(14), 2020; AssemblyAI code-switching test, July 2026 (vendor-run). Research pack A, section 4.</p></aside>
+</section>
+
+<section class="slide" id="wer" data-section="[01] How it works">
+  <span class="kicker">01 · How accuracy is measured</span>
+  <h2>Word error rate</h2>
+  <p class="lede" style="font-size:19px; margin:-6px 0 0">Line up the transcript against a human reference and count the words that were substituted, deleted or inserted.</p>
+  <div class="tabs" id="wer-ex" role="radiogroup" aria-label="Example" style="margin-top:16px"></div>
+  <div class="wer-in">
+    <span class="label">Reference</span><div class="ref" id="wer-ref"></div>
+    <label class="label" for="wer-hyp">Transcript (edit me)</label><input type="text" id="wer-hyp" spellcheck="false">
+  </div>
+  <div style="margin-top:12px"><label class="chk"><input type="checkbox" id="wer-norm"> Normalise both first: lower case, no punctuation, numbers written as words</label></div>
+  <div class="wer-align" id="wer-align"></div>
+  <div class="wer-res" id="wer-res"></div>
+  <aside class="notes"><p>Try each example with normalisation off, then on. "Formatting only" scores very badly raw and perfectly once normalised: the transcript was right, only its format differed. "Invented text" shows that WER can exceed 100%. Every benchmark applies its own normaliser, which is one reason scores from different boards cannot be compared. Research pack A's worked example scored the same transcript at 78%, 56% or 14% depending only on normalisation.</p><p>WER weights every word equally. For client work, also measure accuracy on the words that matter: amounts, account numbers, names and products.</p></aside>
+</section>
+
+<!-- ================= 02 LIVE TRANSCRIPTION ================= -->
+<section class="slide" data-section="[02] Live transcription">
+  <span class="kicker">02 · Live transcription</span>
+  <h2>Why speed matters</h2>
+  <div class="cols c46" style="margin-top:14px; gap:44px">
+    <div>
+      <div class="stat"><div class="big-num">208 ms</div><span class="label">average gap before a person replies, across 10 languages (Stivers et al., PNAS 2009)</span></div>
+      <div class="stat"><div class="big-num">1,115 ms</div><span class="label">Twilio's target for a voice agent, from the caller stopping to hearing the reply</span></div>
+      <div class="stat"><div class="big-num">1.4–1.7 s</div><span class="label">typical production median; one reply in ten takes 3.3–3.8 s (Hamming, vendor data)</span></div>
+    </div>
+    <div>
+      <span class="label">Not every live use case needs the same speed</span>
+      <table class="t" style="margin-top:8px">
+        <tr><th>Tier</th><th>Budget</th><th>Use cases</th><th>What matters most</th></tr>
+        <tr><td>Conversation</td><td>About 1 s, voice to voice</td><td>Voice agents</td><td>Detecting the end of a turn; the language model's first word</td></tr>
+        <tr><td>Assistance</td><td>1–5 s</td><td>Agent assist, compliance alerts, live meeting notes</td><td>Stable partial text; correct speaker</td></tr>
+        <tr><td>Display</td><td>1–5 s (Ofcom: mean of 4.5 s for live TV)</td><td>Live captions</td><td>Text that does not jump about; names</td></tr>
+        <tr><td>After the event</td><td>Seconds to hours</td><td>Clinical notes, call analytics, QA scoring</td><td>Accuracy, speakers, formatting</td></tr>
+      </table>
+      <div class="callout" style="margin-top:16px; font-size:16px">Producing a word takes people over 600 ms, so they predict the end of a turn and plan the reply early. A system that waits for silence before starting work cannot match 200 ms. It has to predict too.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>Agree the tier before choosing a vendor. Genesys quotes about 3–5 seconds for its contact-centre transcription; Abridge notes are ready about 30 seconds after a clinical visit ends. Only voice agents need sub-second speech recognition. A slow reply also carries meaning: Stivers found a delayed answer reads as a coming "no".</p><p>No peer-reviewed study links voice-agent delay to hang-ups. The often-quoted "40% more abandonment above one second" has no primary source we could find. Research pack D, section 1.</p></aside>
+</section>
+
+<section class="slide" data-section="[02] Live transcription">
+  <span class="kicker">02 · Live transcription</span>
+  <h2>What a streaming service sends back</h2>
+  <div class="cols c55" style="margin-top:14px; gap:40px">
+    <div>
+<div class="code" style="height:420px; font-size:12px"><span class="c">// audio goes up in 20–100 ms chunks; events come back</span>
+{ <span class="str">"type"</span>: <span class="str">"partial"</span>, <span class="str">"text"</span>: <span class="str">"I'd like to fly to Austin"</span> }
+{ <span class="str">"type"</span>: <span class="str">"partial"</span>, <span class="str">"text"</span>: <span class="str">"I'd like to fly to Boston on"</span> }  <span class="c">← revised</span>
+<span class="c">// caller stops; the service decides the turn is over</span>
+{ <span class="str">"type"</span>: <span class="str">"final"</span>,
+  <span class="str">"text"</span>: <span class="str">"I'd like to fly to Boston on the 14th."</span>,
+  <span class="str">"words"</span>: [{ <span class="str">"w"</span>: <span class="str">"Boston"</span>, <span class="str">"start"</span>: <span class="num">1.42</span>, <span class="str">"end"</span>: <span class="num">1.80</span>, <span class="str">"conf"</span>: <span class="num">0.93</span> }, …],
+  <span class="str">"speaker"</span>: <span class="num">1</span> }
+{ <span class="str">"type"</span>: <span class="str">"end_of_turn"</span>, <span class="str">"confidence"</span>: <span class="num">0.88</span> }</div>
+      <p class="src" style="margin-top:6px">Simplified. Event names and fields differ between providers.</p>
+    </div>
+    <div>
+      <ul class="plain small">
+        <li><b>Partial results</b> arrive within a few hundred milliseconds and may change. Captions show them; agents should not act on them.</li>
+        <li><b>Final results</b> are committed once the service decides a phrase or turn has ended. Voice agents act on these.</li>
+        <li><b>Controlling the "flicker".</b> AWS lets you trade speed for stability; AssemblyAI's partials never change once sent; Speechmatics' partials are 10–25% less accurate than its finals.</li>
+        <li><b>A "finalise now" signal</b> lets the application end a turn early. Daily found the fastest services all support one; for the others every turn takes as long as the slowest 5%.</li>
+        <li><b>Billing.</b> Some services charge for the time the connection is open, not the audio sent: hold music costs money.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><p>The difference between partial and final results is the core of live transcription. A live caption can show the partial and correct it; an agent that books a flight to Austin cannot. Sources: AWS, AssemblyAI and Speechmatics documentation; Daily, "Benchmarking STT for voice agents", February 2026. Research pack D, section 3.</p></aside>
+</section>
+
+<section class="slide" id="budget" data-section="[02] Live transcription">
+  <span class="kicker">02 · Live transcription · Voice agents</span>
+  <h2>Where the time goes in a voice agent</h2>
+  <div class="tabs" id="bg-tabs" role="radiogroup" aria-label="Published budget"></div>
+  <div class="bg-wrap">
+    <div class="bg-track"><div class="bg-marks" id="bg-marks"></div><div id="bg-bar"></div></div>
+    <div class="bg-axis" id="bg-axis"></div>
+  </div>
+  <div class="bg-low">
+    <div><span class="label">From the caller stopping to hearing the reply</span><div class="bg-tot" id="bg-total">–</div><p style="font-size:16.5px; color:var(--ink-3)" id="bg-why"></p></div>
+    <div class="bg-list" id="bg-list"></div>
+  </div>
+  <aside class="notes"><p>Click through the budgets. The transcription model itself is now fast: the best reach a final transcript 220–310 ms after speech ends. The biggest single lever is deciding that the caller has finished. Swapping an 800 ms silence timeout for a turn-detection model saves about half a second, more than the whole transcription step.</p><p>Speech-to-speech is not clearly faster. Its benchmark figure (first audio after 0.6–1.3 s) leaves out turn detection and the caller's network. A phone call adds a few hundred milliseconds of carrier buffering that cannot be tuned away.</p><p>Sources: Twilio (November 2025); Voice AI and Voice Agents primer (Daily and Pipecat, 2026); Artificial Analysis speech-to-speech leaderboard. The first and last two budgets are our sums of published parts. Research pack D, section 2.5.</p></aside>
+</section>
+
+<section class="slide" id="turns" data-section="[02] Live transcription">
+  <span class="kicker">02 · Live transcription · Turn-taking</span>
+  <h2>Deciding when the caller has finished</h2>
+  <div class="tabs" id="tn-tabs" role="radiogroup" aria-label="Turn detection method" style="margin-top:10px"></div>
+  <div class="tn-lanes" id="tn-lanes"></div>
+  <div class="cols c55" style="margin-top:14px; gap:40px">
+    <div class="callout tn-note" id="tn-note" style="font-size:16.5px"></div>
+    <table class="t">
+      <tr><th>Detector</th><th>Published latency</th></tr>
+      <tr><td>Deepgram Flux (in the model)</td><td>About 260 ms median; 1.5 s at the 95th percentile</td></tr>
+      <tr><td>Pipecat Smart Turn v3 (open, CPU)</td><td>About 250 ms from a pause; 13 ms to run</td></tr>
+      <tr><td>AssemblyAI Universal-3.5 Pro Realtime</td><td>568 ms median to a complete turn</td></tr>
+      <tr><td>LiveKit turn detector, OpenAI semantic VAD</td><td>Not comparable or not published</td></tr>
+    </table>
+  </div>
+  <aside class="notes"><p>Click through the three methods on the same caller, who pauses mid-number. Too short a timeout and the agent interrupts: Pipecat's authors call interruptions the most common complaint about home-built voice agents. Too long and every reply starts with dead air: LiveKit says an 800 ms timeout "adds nearly a full second to every single response". Model-based detectors read the words and the intonation, and hold turns that end in a number or an email address.</p><p>A further trick: start the language model on an early, lower-confidence end-of-turn signal and discard the reply if the caller keeps talking. Deepgram says this saves 150–250 ms at the cost of 50–70% more model calls. Sources in research pack D, sections 2.3–2.4 and 3.3.</p></aside>
+</section>
+
+<section class="slide" data-section="[02] Live transcription">
+  <span class="kicker">02 · Live transcription · Turn-taking</span>
+  <h2>Precision and delay in turn detection</h2>
+  <div class="cols c55" style="margin-top:10px; gap:40px">
+    <figure><img class="shot" src="../assets/speech-to-text/vendor/d-deepgram-flux-eot-precision-vs-latency.png" alt="End-of-turn precision against median detection latency for silence timeouts and five model-based detectors" style="max-height:560px; width:100%; object-fit:contain"><figcaption>Share of end-of-turn decisions that were right, against median delay. Image: Deepgram, Flux launch page, October 2025. Vendor-run.</figcaption></figure>
+    <div>
+      <ul class="plain small">
+        <li><b>Silence timeouts</b> (purple crosses) need about 900 ms to be right 80% of the time, and are right only 40% of the time at 270 ms.</li>
+        <li><b>Model-based detectors</b> move the whole curve up and to the left: better decisions sooner. No choice of timeout can do that.</li>
+        <li><b>The ordering is Deepgram's claim</b> on its own test. The shape is the point, and other vendors' charts show the same shape.</li>
+        <li><b>The current recommended setup</b> (Pipecat): a short silence trigger, a small turn model on CPU, and a one-token "complete or not" tag from the language model.</li>
+      </ul>
+      <div class="callout" style="margin-top:14px; font-size:16px">For voice agents, test turn detection as carefully as transcription accuracy: interruptions and dead air are what callers notice first.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-section="[02] Live transcription">
+  <span class="kicker">02 · Live transcription · Trade-offs</span>
+  <h2>Live transcription costs accuracy and money</h2>
+  <div class="cols c55" style="margin-top:12px; gap:40px">
+    <div>
+      <span class="label">Same vendor, same audio (Artificial Analysis, 3 Nov 2026): error rate</span>
+      <table class="t" style="margin-top:8px">
+        <tr><th>Vendor</th><th>Live model</th><th>Batch model</th><th>Live is worse by</th></tr>
+        <tr><td>Google</td><td>Gemini 3.5 Transcribe Live 2.9%</td><td>Gemini 3.5 Transcribe 2.6%</td><td>11%</td></tr>
+        <tr><td>Microsoft</td><td>MAI-Transcribe-2 Streaming 2.5%</td><td>MAI-Transcribe-2 2.0%</td><td>23%</td></tr>
+        <tr><td>Deepgram</td><td>Nova-3 live 6.5%</td><td>Nova-3 5.2%</td><td>25%</td></tr>
+        <tr><td>AssemblyAI</td><td>Universal-3.5 Pro Realtime 4.0%</td><td>Universal-3.5 Pro 3.0%</td><td>34%</td></tr>
+        <tr><td>ElevenLabs</td><td>Scribe v2 Realtime 3.0%</td><td>Scribe v2 2.2%</td><td>36%</td></tr>
+      </table>
+      <p class="src" style="margin-top:6px">Relative difference, our calculation from the board's batch and streaming tables.</p>
+      <span class="label" style="display:block; margin-top:16px">Price per audio hour</span>
+      <table class="t" style="margin-top:8px">
+        <tr><th>Vendor</th><th>Live</th><th>Batch</th><th>Ratio</th></tr>
+        <tr><td>Deepgram Nova-3</td><td>$0.46</td><td>$0.26</td><td>1.8×</td></tr>
+        <tr><td>AssemblyAI, top models</td><td>$0.45</td><td>$0.21</td><td>2.1×</td></tr>
+        <tr><td>OpenAI GPT-Live-Transcribe / GPT-Transcribe</td><td>$1.02</td><td>$0.27</td><td>3.8×</td></tr>
+      </table>
+    </div>
+    <div>
+      <figure><img class="shot" src="../assets/speech-to-text/vendor/d-nvidia-nemotron-streaming-wer-vs-chunk.png" alt="Left: error falls from 8.43% at 80 ms chunks to 6.93% at 1.12 s. Right: streams per H100 rise with chunk size" style="width:100%"><figcaption>One model, four chunk sizes: error rate (left) and streams per H100 GPU (right). Image: NVIDIA, Nemotron speech streaming model card, 2026.</figcaption></figure>
+      <ul class="plain small" style="margin-top:14px">
+        <li><b>Why live is worse:</b> the model can look only a short way ahead, gets no second pass, and has less context for names and numbers.</li>
+        <li><b>Delay, accuracy and cost trade off together.</b> Waiting longer per chunk lowers the error rate and lets one GPU serve more callers.</li>
+        <li><b>Common pattern:</b> stream for the live use, then re-transcribe the recording in batch for the record and for analytics.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><p>The gap has narrowed: the best live models now reach 2.5–3% on Artificial Analysis's audio with well under half a second to a final transcript, against 2–2.5% for the best batch models. On meeting audio the gap is larger: NVIDIA's model goes from 11.7% to 18.3% error on AMI when the chunk shrinks from 1.12 s to 80 ms. Research pack D, sections 3.1 and 6.5; pack B for prices.</p></aside>
+</section>
+
+<section class="slide" data-section="[02] Live transcription">
+  <span class="kicker">02 · Live transcription · Measurement</span>
+  <h2>Why published latency figures disagree</h2>
+  <figure style="margin-top:6px"><img class="shot" src="../assets/speech-to-text/vendor/d-daily-ttfs-measurement.png" alt="Timeline: actual end of speech, voice activity detection hang-over, user-stopped event, final transcript" style="width:100%; max-height:230px; object-fit:contain"><figcaption>How Pipecat's benchmark times a final transcript from the actual end of speech. Image: Daily, February 2026.</figcaption></figure>
+  <div class="cols c55" style="margin-top:14px; gap:40px">
+    <table class="t">
+      <tr><th>"Latency" can mean</th><th>Clock starts</th><th>Clock stops</th></tr>
+      <tr><td>Time to first text</td><td>First audio sent</td><td>First event. Easy to game</td></tr>
+      <tr><td>Time to final</td><td>End of speech, or after a detector has noticed it</td><td>Final transcript</td></tr>
+      <tr><td>End-of-turn latency</td><td>Caller stops</td><td>"Turn over" event</td></tr>
+      <tr><td>Voice to voice</td><td>Caller stops</td><td>Reply reaches the caller's ear</td></tr>
+    </table>
+    <ul class="plain small">
+      <li><b>Same model, different clocks.</b> Deepgram Nova-3: 60 ms on Artificial Analysis, 247 ms on Pipecat. Most of the gap is Pipecat's 200 ms detector wait.</li>
+      <li><b>Medians hide tails.</b> One service has a 392 ms median and a 1,292 ms 95th percentile.</li>
+      <li><b>Rankings flip.</b> Soniox is near the top for accuracy on Pipecat (1.1%) and last on Artificial Analysis (11.9%). Neither board explains the gap.</li>
+      <li><b>Vendor figures</b> often count model time only: no network, no endpointing.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>When a vendor quotes a latency, ask: from when, to what event, at which percentile, measured from where. Pipecat tests from one US location during weekday business hours; Artificial Analysis does not publish its location. For a UK client, a US-hosted service adds about 125 ms of round trip. Research pack D, section 4.</p></aside>
+</section>
+
+<section class="slide" data-section="[02] Live transcription">
+  <span class="kicker">02 · Live transcription · Voice agents</span>
+  <h2>Cascaded pipelines and speech-to-speech models</h2>
+  <div class="cols c55" style="margin-top:14px; gap:40px">
+    <div>
+      <span class="label">Speech-to-speech models: time to first audio (Artificial Analysis, Nov 2026)</span>
+      <table class="t" style="margin-top:8px">
+        <tr><th>Model</th><th>First audio</th><th>Reasoning test</th></tr>
+        <tr><td>GPT-Realtime-1.5</td><td>0.81 s</td><td>81%</td></tr>
+        <tr><td>Grok Voice 3.0</td><td>0.81 s</td><td>99%</td></tr>
+        <tr><td>GPT-Realtime-2, high reasoning</td><td>1.14 s</td><td>97%</td></tr>
+        <tr><td>Amazon Nova 2.0 Sonic</td><td>1.14 s</td><td>88%</td></tr>
+        <tr><td>Gemini 3.8 Live</td><td>1.18 s</td><td>92%</td></tr>
+        <tr><td>Gemini 3.1 Flash Live, high</td><td>2.99 s</td><td>97%</td></tr>
+      </table>
+      <p class="src" style="margin-top:6px">Reasoning test: Big Bench Audio. First audio excludes turn detection and the caller's network.</p>
+    </div>
+    <div>
+      <span class="label">Why most enterprise voice agents still use a cascade</span>
+      <ul class="plain small">
+        <li><b>The transcript is the record.</b> Regulated firms must keep what was said. A cascade produces it; speech-to-speech models add it as an optional, weaker extra.</li>
+        <li><b>Control.</b> Text between stages can be checked, redacted and logged before the model sees it or speaks it.</li>
+        <li><b>Tools and reasoning.</b> Speech-to-speech models follow instructions and call tools less reliably than text models. OpenAI's GPT-Live hands reasoning to a separate text model.</li>
+        <li><b>Choice.</b> Pick the best transcription for Arabic, the cheapest model for the task, and the brand's voice, and change each separately.</li>
+        <li><b>Cost.</b> The Pipecat primer puts an agent on OpenAI's Realtime API at 3–5 times the cost of a cascade.</li>
+      </ul>
+      <div class="callout" style="margin-top:12px; font-size:16px">Speech-to-speech sounds more natural and handles tone and mixed languages better. Where a transcript is needed anyway, a common hybrid runs a separate transcription on the same audio.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>Pipecat's view in 2026: "both the OpenAI and Google speech-to-speech models are slower than a well-tuned cascaded voice agent". More reasoning means slower first audio: Gemini 3.1 Flash Live goes from 0.96 s at minimal reasoning to 2.99 s at high. Research pack D, section 5; pack A, section 6.</p></aside>
+</section>
+
+<section class="slide" data-section="[02] Live transcription">
+  <span class="kicker">02 · Live transcription · Deployment</span>
+  <h2>Deployment choices that affect speed</h2>
+  <div class="cols c55" style="margin-top:12px; gap:40px">
+    <figure><img class="shot" src="../assets/speech-to-text/vendor/d-twilio-latency-waterfall-targets.webp" alt="Waterfall of a voice agent's median latency targets: network hops and buffers around STT 350 ms, LLM 375 ms and TTS 100 ms" style="width:100%"><figcaption>Every hop and buffer in a cascaded voice agent, at Twilio's median targets. Image: Twilio, November 2025.</figcaption></figure>
+    <ul class="plain small">
+      <li><b>Region.</b> Put transcription, the language model and speech synthesis in one region near the caller. From the UK, a US West service adds about 125 ms of round trip.</li>
+      <li><b>Telephony.</b> Calls arrive as 8 kHz audio with a few hundred milliseconds of carrier buffering. Most models expect 16 kHz, so test on real call audio.</li>
+      <li><b>Separate channels.</b> Telephony platforms provide the caller and the agent as separate tracks. Transcribe each on its own and speaker labels come for free.</li>
+      <li><b>Self-hosting.</b> NVIDIA's open streaming model serves 240 live calls per H100 at 160 ms chunks and 900 at 560 ms. Deepgram, Speechmatics, AssemblyAI and others sell containers for the client's own cloud.</li>
+      <li><b>Concurrency limits.</b> Deepgram's standard plan allows 150 live connections; AssemblyAI 100 new streams a minute. Negotiate concurrency as well as price.</li>
+      <li><b>Measure the slowest 5%,</b> not the median, and occasionally time a recorded call end to end.</li>
+    </ul>
+  </div>
+  <aside class="notes"><p>Two more: use WebRTC from apps and browsers and keep connections to each service open and warm; and on-device models (Apple's SpeechAnalyzer in iOS 26, Moonshine) remove the network entirely, at the cost of smaller models. The running cost of the agent's own servers is under 1% of the per-minute cost, according to the Pipecat primer. Research pack D, section 6.</p></aside>
+</section>
+
+<!-- ================= 03 SPEAKERS AND LANGUAGES ================= -->
+<section class="slide" data-section="[03] Speakers and languages">
+  <span class="kicker">03 · Speakers</span>
+  <h2>How diarisation works</h2>
+  <p class="lede" style="font-size:19px; margin:-6px 0 0">Diarisation answers "who spoke when". It gives each voice an anonymous label, such as Speaker 1, that stays the same through the recording. It does not know names.</p>
+  <figure style="margin-top:18px"><img class="shot" src="../assets/speech-to-text/vendor/e-pyannote-metrics-pipeline.png" alt="Four stages: voice activity detection, speaker change detection, speech turn clustering, supervised speaker recognition" style="width:100%; max-height:120px; object-fit:contain"><figcaption>The classic chain, from detecting speech to recognising known speakers. Image: pyannote.metrics documentation.</figcaption></figure>
+  <div class="cols c55" style="margin-top:16px; gap:40px">
+    <ul class="plain small">
+      <li><b>Classic pipeline.</b> Find the speech, cut it into short segments, turn each into a "voiceprint" vector, then group similar vectors. Each group is a speaker.</li>
+      <li><b>End-to-end models</b> such as NVIDIA's Sortformer label every frame with who is speaking, including two people at once, and number speakers in order of arrival so labels stay consistent in a live stream.</li>
+      <li><b>Joint models</b> (AssemblyAI Universal-3.5 Pro, Meta Muse, NVIDIA Nemotron 3.5 Transcribe) write the words and the speaker labels together.</li>
+    </ul>
+    <figure><img class="shot" src="../assets/speech-to-text/vendor/e-sortformer-intro.png" alt="Sortformer orders speakers by arrival time rather than an arbitrary permutation" style="width:100%; max-height:250px; object-fit:contain"><figcaption>Sortformer numbers speakers by when they first speak (right). Image: NVIDIA NeMo, Sortformer model card.</figcaption></figure>
+  </div>
+  <aside class="notes"><p>Live diarisation is harder than batch: the system must label a voice before it has heard the rest of the conversation, and must not swap labels later. Sortformer's "arrival order" trick is how NVIDIA solved label consistency for streaming. Research pack E, section 1.</p></aside>
+</section>
+
+<section class="slide" id="der" data-section="[03] Speakers and languages">
+  <span class="kicker">03 · Speakers · Measurement</span>
+  <h2>Diarisation error rate</h2>
+  <div class="der-box">
+    <span class="label">Reference: who really spoke, and a door closing</span>
+    <div id="der-ref"></div>
+    <div data-step="1"><span class="label" style="display:block; margin-top:12px">The system's labels</span><div id="der-hyp"></div></div>
+    <div data-step="2"><span class="label" style="display:block; margin-top:12px">Errors</span><div class="der-err" id="der-err"></div></div>
+    <div class="ax" id="der-axis" style="margin-left:0; margin-top:4px"></div>
+  </div>
+  <div class="der-res" id="der-res"></div>
+  <aside class="notes"><p>Step through. Diarisation error rate adds three kinds of error and divides by the total reference speech time: speech that was missed (usually overlap), non-speech labelled as a speaker, and speech given to the wrong speaker. It is computed live here on a 10 ms grid.</p><p>Two cautions. Scores change with the scoring rules: many benchmarks ignore a quarter-second "collar" around each boundary, and some ignore overlap. And DER does not look at the words. For transcripts, word-level measures (WDER, cpWER) count words given to the wrong speaker, which is what a reader notices. Research pack E, section 2.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] Speakers and languages">
+  <span class="kicker">03 · Speakers · Evidence</span>
+  <h2>What makes diarisation hard</h2>
+  <div class="cols c55" style="margin-top:12px; gap:40px">
+    <div>
+      <span class="label">Number of speakers: NVIDIA Streaming Sortformer (open model)</span>
+      <table class="t" style="margin-top:8px">
+        <tr><th>Recording</th><th>Error rate (DER)</th></tr>
+        <tr><td>Phone calls, 2 speakers</td><td>6.7%</td></tr>
+        <tr><td>Phone calls, 4 speakers</td><td>13.4%</td></tr>
+        <tr><td>Phone calls, 6 speakers</td><td>24.5% (model limit is 4)</td></tr>
+        <tr><td>Mixed real-world audio, 5–9 speakers</td><td>41.4%</td></tr>
+      </table>
+      <span class="label" style="display:block; margin-top:16px">Setting: leading live system on each kind of audio (pyannoteAI's test)</span>
+      <table class="t" style="margin-top:8px">
+        <tr><th>Audio</th><th>Best live DER</th><th>Others tested</th></tr>
+        <tr><td>Phone calls</td><td>10.3%</td><td>23–34%</td></tr>
+        <tr><td>Meetings</td><td>44.6%</td><td>58–67%</td></tr>
+        <tr><td>Restaurant</td><td>54.4%</td><td>64–76%</td></tr>
+      </table>
+      <p class="src" style="margin-top:6px">NVIDIA model card; pyannoteAI streaming benchmark, Oct 2026 (vendor-run; others: Deepgram, AssemblyAI, Speechmatics).</p>
+    </div>
+    <div>
+      <ul class="plain small">
+        <li><b>Overlap.</b> Two people speaking at once is where most missed speech comes from.</li>
+        <li><b>Short turns.</b> "Yes", "mm-hm" and "right" are too short for a reliable voiceprint.</li>
+        <li><b>Unknown speaker count.</b> The system must guess how many people there are. Tell it when you know.</li>
+        <li><b>Far microphones.</b> One microphone in a meeting room picks up echo, distance and noise for every voice.</li>
+        <li><b>Speech LLMs get the words but not the speakers.</b> On 22 Indian languages, Gemini 3 Pro had the best word accuracy with speakers attached, but 74% DER. Sarvam, an Indian specialist, had the lowest DER at 16%, ahead of AWS at 23.5%.</li>
+      </ul>
+      <div class="callout" style="margin-top:14px; font-size:16px">On a clean two-person call, diarisation works well. In a busy meeting from one microphone, expect a large share of the speech to be missed or given to the wrong person.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>Streaming costs less accuracy than expected for a model built for it: Sortformer at a 1-second delay is about one point worse than at 30 seconds. The gap between vendors is larger: in pyannoteAI's own test on mixed real-world audio, pyannote scored 19.8% DER, Speechmatics 31.3%, Deepgram 39.1% and AssemblyAI 39.2%, mostly from missed speech. Treat vendor-run results with care. Indic DiarBench, July 2026. Research pack E, section 5.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] Speakers and languages">
+  <span class="kicker">03 · Speakers · In practice</span>
+  <h2>Speaker labels in live and recorded audio</h2>
+  <div class="cols c55" style="margin-top:14px; gap:40px">
+    <table class="t">
+      <tr><th>Service</th><th>Batch</th><th>Live</th><th>Max speakers</th></tr>
+      <tr><td>Amazon Transcribe</td><td>Yes</td><td>Yes</td><td>30</td></tr>
+      <tr><td>Azure Speech</td><td>Yes</td><td>Yes, +$0.30/hr</td><td>Under 36</td></tr>
+      <tr><td>Google Chirp 3</td><td>Yes, 14 locales</td><td class="bad-t">No</td><td>–</td></tr>
+      <tr><td>Gemini 3.5 Transcribe</td><td>Yes</td><td class="bad-t">No</td><td>8</td></tr>
+      <tr><td>OpenAI GPT-Transcribe / Live</td><td class="bad-t">No</td><td class="bad-t">No</td><td>–</td></tr>
+      <tr><td>Deepgram Nova-3</td><td>Yes</td><td>Yes, +$0.12/hr</td><td>Not stated</td></tr>
+      <tr><td>AssemblyAI Universal-3.5 / 3.6 Pro</td><td>Yes</td><td>Beta, +$0.12/hr</td><td>10 live</td></tr>
+      <tr><td>Speechmatics, Soniox</td><td>Yes</td><td>Yes, included</td><td>No limit / 15</td></tr>
+      <tr><td>ElevenLabs Scribe v2</td><td>Yes</td><td class="bad-t">No</td><td>32</td></tr>
+      <tr><td>NVIDIA Streaming Sortformer (open)</td><td>–</td><td>Yes</td><td>4</td></tr>
+    </table>
+    <div>
+      <span class="label">Cheaper than any model: one channel per person</span>
+      <ul class="plain small">
+        <li><b>Contact centres:</b> record the agent and the customer on separate channels and labelling is trivial. Many platforms default to one channel to save storage, so check the client's archive.</li>
+        <li><b>Meetings:</b> bots can capture a separate stream per participant on Teams, Meet and Zoom, with the participant's name attached. A meeting room is still one participant with many voices.</li>
+        <li><b>Voice agents:</b> the agent's own speech is known, so only the caller needs transcribing.</li>
+      </ul>
+      <div class="callout warn" style="margin-top:14px; font-size:16px"><b>Diarisation is not identification, but the law may treat it as such.</b> Matching a voice to a named person is biometric data under GDPR. US suits against Walmart (August 2026) and Lowe's claim that call-centre voice analysis created voiceprints under Illinois law, at $1,000–5,000 per person.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>Several popular services have no live speaker labels at all. For a contact centre this rarely matters if calls are recorded on two channels; for live meeting captions from one room microphone it rules them out. Separate channels also avoid creating voiceprints, which helps with the privacy question. Vendor documentation read 3 November 2026; research pack E, sections 4–6.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] Speakers and languages">
+  <span class="kicker">03 · Languages</span>
+  <h2>Language coverage claims</h2>
+  <div class="cols c55" style="margin-top:10px; gap:40px">
+    <div>
+      <table class="t">
+        <tr><th>Service</th><th>Batch</th><th>Live</th></tr>
+        <tr><td>Meta Omnilingual ASR (open)</td><td>1,600+</td><td>–</td></tr>
+        <tr><td>Amazon Transcribe</td><td>113 locales</td><td>99 locales</td></tr>
+        <tr><td>Google Chirp 3</td><td>109 locales (29 GA)</td><td>109 locales</td></tr>
+        <tr><td>ElevenLabs Scribe v2</td><td>90+</td><td>90+</td></tr>
+        <tr><td>Gemini 3.5 Transcribe</td><td>85+</td><td>85+</td></tr>
+        <tr><td>Soniox v5</td><td>60+</td><td>60+</td></tr>
+        <tr><td>MAI-Transcribe-2</td><td>60</td><td>60 (preview)</td></tr>
+        <tr><td>Speechmatics</td><td>55–56</td><td>55–56</td></tr>
+        <tr><td>Deepgram Nova-3 / Flux</td><td>40+</td><td>40+ / 10</td></tr>
+        <tr><td>AssemblyAI Universal-3.5 / 3.6 Pro</td><td>18</td><td>32</td></tr>
+        <tr><td>OpenAI GPT-Transcribe / Live</td><td>Not published</td><td>Not published</td></tr>
+      </table>
+      <p class="src" style="margin-top:6px">Vendor documentation, 3 Nov 2026. Research packs B and E.</p>
+    </div>
+    <div>
+      <figure><img class="shot" src="../assets/speech-to-text/vendor/e-whisper-training-hours-vs-wer.png" alt="Log-log scatter of Whisper's error rate against hours of training audio per language" style="max-height:330px; width:100%; object-fit:contain"><figcaption>Whisper's error rate by language against hours of training audio. Image: OpenAI, Whisper paper, 2022.</figcaption></figure>
+      <div class="callout" style="margin-top:14px; font-size:16px">Error tracks training data: in the Whisper paper, error roughly halves for every 16-fold increase in hours. Whisper had 438,218 hours of English, 12 of Hindi and 1.3 of Bengali. A language on the list is not the same as a language done well.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>Two questions for any vendor: how many languages in live mode, and what is the error rate on the client's own accents? Omnilingual's 1,600 languages include 546 low-resource ones, of which 36% reach a character error rate under 10%. Research pack E, sections 7 and 8.3.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] Speakers and languages">
+  <span class="kicker">03 · Languages · The long tail</span>
+  <h2>Languages beyond the commercial lists</h2>
+  <div class="cols c55" style="margin-top:10px; gap:40px">
+    <figure><img class="shot" src="../assets/speech-to-text/vendor/e-mms-language-coverage-map.png" alt="World map of MMS language coverage: transcription for about 1,100 languages and language identification for about 4,000" style="width:100%; max-height:330px; object-fit:contain"><figcaption>Meta MMS coverage: purple marks transcription, teal marks language identification only. Image: Meta AI, May 2023.</figcaption></figure>
+    <div>
+      <ul class="plain small">
+        <li><b>Meta MMS (2023)</b> covered 1,107 languages, mostly from recordings of people reading religious texts.</li>
+        <li><b>Meta Omnilingual ASR (November 2025)</b> covers 1,600+ languages, 500 of them never served before, and can learn a new one from a handful of examples. Open weights, Apache 2.0.</li>
+        <li><b>Coverage is not quality.</b> Its 7B model scores 9.4% on English on the Open ASR Leaderboard, against about 5–7% for English-focused models.</li>
+      </ul>
+    </div>
+  </div>
+  <figure style="margin-top:14px"><img class="shot" src="../assets/speech-to-text/vendor/e-omnilingual-performance.png" alt="Omnilingual ASR: languages reaching a character error rate under 10%, by resource level: 95% of high and medium, 36% of low" style="width:100%; max-height:150px; object-fit:contain"><figcaption>Share of languages with character error under 10%, by amount of training audio. Image: Meta AI, Omnilingual ASR, November 2025.</figcaption></figure>
+  <aside class="notes"><p>For clients working in African, South Asian or indigenous languages, the open models are often the only option, and may need fine-tuning on a few hours of local audio. Regional specialists (Intron for African languages, Sarvam and AI4Bharat for Indian languages) usually beat both the global vendors and the open giants on their own languages. Research pack E, section 12.</p></aside>
+</section>
+
+<section class="slide" id="langs" data-section="[03] Speakers and languages">
+  <span class="kicker">03 · Languages · Quality</span>
+  <h2>Error rates for 21 business languages</h2>
+  <div class="cols c64" style="margin-top:6px; gap:32px">
+    <div id="lang-heat"></div>
+    <div>
+      <ul class="plain small">
+        <li><b>On read speech the frontier is 2–5%</b> for 18 of these 21 languages. Arabic, Swahili and Cantonese lag.</li>
+        <li><b>The gap between products is largest in the hardest languages.</b> Swahili: 9.2% for the best, 19.8% for GPT-Transcribe, 35.4% for Whisper large-v3.</li>
+        <li><b>Whisper large-v3, still the default open model,</b> is two to ten times worse than the frontier outside English and Western Europe.</li>
+        <li><b>Read speech flatters.</b> These are people reading Wikipedia sentences. On spontaneous Indian speech, the best system scores about 19%; on accented English (EdAcc), 19.7%.</li>
+      </ul>
+      <p class="src" style="margin-top:10px">FLEURS test set, language given. "Best 2026" is the lowest of seven systems in Microsoft's MAI-Transcribe-2 chart (Sep 2026, vendor-run); Whisper large-v2 from the Whisper paper (2022). Chinese, Japanese, Thai and Cantonese use character error rate.</p>
+    </div>
+  </div>
+  <aside class="notes"><p>Hover a cell for the system that achieved the best score. Microsoft's own model wins most of its own chart, so treat the "best" column as "best of seven on one vendor's test". Normalisation moves these numbers a lot: Bengali is about 5% in Microsoft's chart and over 16% for every system in Qwen's report. Compare within one table only. Research pack E, section 8.1.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] Speakers and languages">
+  <span class="kicker">03 · Languages · Accents and mixing</span>
+  <h2>Accents, dialects and mixed languages</h2>
+  <div class="cols c55" style="margin-top:14px; gap:40px">
+    <div>
+      <figure><img class="shot" src="../assets/speech-to-text/vendor/e-koenecke-2020-wer-by-race.png" alt="Average word error rate for Black and white speakers across five commercial systems" style="width:100%; max-height:240px; object-fit:contain"><figcaption>Error rates for Black (red) and white (blue) speakers in five commercial systems. Image: Koenecke et al., PNAS, 2020.</figcaption></figure>
+      <ul class="plain small" style="margin-top:12px">
+        <li><b>Arabic dialects</b> remain hard: the best open model scores about 50% error on Moroccan Arabic.</li>
+        <li><b>Accented English</b> (EdAcc) scores 19.7% against 2.7% for clean US read speech.</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="plain small">
+        <li><b>Switching language mid-sentence</b> is common in India, the Gulf, the US and much of Africa. Deepgram, AssemblyAI, Soniox, Speechmatics, Microsoft, Google and Sarvam all claim support.</li>
+        <li><b>Measured rarely.</b> No head-to-head test of commercial services exists. On the one public Korean–English test, GPT-4o-transcribe scored 21.8% on mixed speech against 2.5% on Korean alone.</li>
+        <li><b>Automatic language detection</b> can mislabel accented English as another language. Give the expected languages when you know them.</li>
+        <li><b>Regional specialists</b> often beat global vendors: Sarvam on Indian languages, Intron on African names (12.4% against over 50%, the vendor's own test), Cohere Transcribe Arabic on Arabic.</li>
+      </ul>
+      <div class="callout" style="margin-top:14px; font-size:16px">Ask for the error rate on the client's own speakers, split by accent or region, not the average.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>Koenecke et al. (2020) remains the canonical study: five commercial systems averaged 35% error for Black speakers and 19% for white speakers. No study has repeated it across the 2026 models. Sources: HiKE benchmark; Casablanca dataset; EdAcc; Intron Sahara V2 paper; Open Arabic ASR leaderboard. Research pack E, sections 9–12.</p></aside>
+</section>
+
+<section class="slide" data-section="[03] Speakers and languages">
+  <span class="kicker">01–03 · Weaknesses</span>
+  <h2>Weaknesses of speech recognition today</h2>
+  <p class="lede" style="font-size:19px; margin:-6px 0 10px">Where the frontier stands on each weakness in November 2026, and what it means for client work.</p>
+  <table class="t fail wk">
+    <tr><th>Weakness</th><th>Where the frontier stands</th><th>Direction</th><th>For client work</th></tr>
+    <tr><td>Invented text</td><td>About 1% of Whisper transcripts in 2023 contained invented phrases. Vendors claim better silence handling, but none publishes a rate.</td><td><span class="trend un">Not measured</span></td><td>Cut silence first, keep the audio, and test on hold music and long pauses.</td></tr>
+    <tr><td>Live accuracy</td><td>The best live models reach 2.5–3% error on Artificial Analysis, under 0.4 s to the final text, against 2–2.5% in batch.</td><td><span class="trend ok">Improving fast</span></td><td>Stream for the live use; re-transcribe in batch for the record.</td></tr>
+    <tr><td>Turn-taking</td><td>Model-based detectors decide in about 250 ms; silence timeouts need 800 ms or more to avoid interrupting.</td><td><span class="trend ok">Improving fast</span></td><td>Test interruptions and dead air on real calls, at the slowest 5%.</td></tr>
+    <tr><td>Many speakers</td><td>About 7% DER on two-person calls; 40–55% in meetings and noisy rooms. Several services have no live speaker labels.</td><td><span class="trend mid">Slow</span></td><td>Record one channel per person wherever possible.</td></tr>
+    <tr><td>Languages beyond the top 20</td><td>2–5% on read speech for most major languages; Arabic, Swahili and Cantonese 6–9%; the long tail far worse.</td><td><span class="trend ok">Improving</span></td><td>Test each language separately; consider a regional specialist.</td></tr>
+    <tr><td>Spontaneous and accented speech</td><td>Several times the read-speech error rate (about 19% on Indian conversational speech and accented English).</td><td><span class="trend un">Barely tracked</span></td><td>Build the test set from the client's own recordings.</td></tr>
+    <tr><td>Mixed languages</td><td>Widely claimed, rarely measured: 21.8% on Korean–English mixing against 2.5% on Korean alone.</td><td><span class="trend un">Not tracked</span></td><td>Include mixed-language calls in the test, and give the expected languages.</td></tr>
+    <tr><td>Numbers and names</td><td>Labs now target them (OpenAI's 2026 models, gpt-realtime-2.1) but publish no standard measure.</td><td><span class="trend mid">Improving, unmeasured</span></td><td>Score accuracy on amounts, IDs and names separately from WER.</td></tr>
+  </table>
+  <div class="callout" style="margin-top:12px; font-size:16px">Progress is fastest where benchmarks exist: clean English, live latency and turn detection. It is slowest where they do not: invented text, mixed languages and real conversational audio.</div>
+</section>
+
+<!-- ================= 04 PLAYERS ================= -->
+<section class="slide" data-section="[04] Players">
+  <span class="kicker">04 · Who the players are</span>
+  <h2>Five families of service</h2>
+  <div class="land">
+    <div class="card col rise" style="--i:0"><div class="bar" style="background:var(--blue)"></div><span class="sees">Your cloud's own service</span><h3>Cloud speech services</h3><p>Transcription run by AWS, Azure or Google Cloud inside the client's account and region, with their contracts and compliance.</p><div class="eg">Amazon Transcribe · Azure Speech<br>Google Chirp 3 · Gemini on Vertex<br><b>$0.18–1.00 / audio hour</b></div></div>
+    <div class="card col rise" style="--i:1"><div class="bar" style="background:var(--purple)"></div><span class="sees">Speech LLMs</span><h3>AI lab models</h3><p>Transcription models from the large AI labs, all launched July–October 2026. Some also run inside a cloud: OpenAI in Azure, Gemini in Google Cloud.</p><div class="eg">OpenAI GPT-Transcribe · Gemini 3.5 Transcribe<br>MAI-Transcribe-2 · Voxtral 3 · xAI<br><b>$0.10–1.02 / audio hour</b></div></div>
+    <div class="card col rise" style="--i:2"><div class="bar" style="background:var(--orange)"></div><span class="sees">Speech is the product</span><h3>Specialist providers</h3><p>Companies that only do speech. They lead on live transcription, turn detection, speaker labels and contact-centre features.</p><div class="eg">Deepgram · AssemblyAI · Speechmatics<br>ElevenLabs · Soniox · Cartesia · Gladia<br><b>$0.10–0.76 / audio hour</b></div></div>
+    <div class="card col rise" style="--i:3"><div class="bar" style="background:var(--green)"></div><span class="sees">Run it yourself</span><h3>Open models</h3><p>Weights you can host in the client's own environment, or buy hosted from Groq or Together for a few cents an hour.</p><div class="eg">NVIDIA Nemotron and Parakeet · Whisper<br>Qwen3-ASR · Voxtral · Omnilingual ASR<br><b>&lt;$0.01–0.09 / audio hour</b></div></div>
+    <div class="card col rise" style="--i:4"><div class="bar" style="background:var(--teal)"></div><span class="sees">Audio in, audio out</span><h3>Speech-to-speech</h3><p>One model listens and replies by voice. Included for comparison: a transcript is a by-product, not the main output.</p><div class="eg">OpenAI GPT-Live · gpt-realtime<br>Gemini Live · Nova Sonic · Grok Voice<br><b>$3–5 / hour of conversation</b></div></div>
+  </div>
+  <div class="spectrum"><span>Inside the client's cloud, simpler to approve</span><div class="arrow"></div><span>Outside it, often faster to adopt new features</span></div>
+  <aside class="notes"><p>List prices checked on 3 November 2026 (research pack B). Batch transcription has become cheap almost everywhere: most mainstream options cost $0.10–0.40 per audio hour. Live transcription costs 1.5–4 times as much. The specialists are not hosted first-party in any of the three clouds; their route into a client's account is a self-hosting contract.</p></aside>
+</section>
+
+<section class="slide" id="players" data-section="[04] Players">
+  <span class="kicker">04 · Who the players are</span>
+  <h2>Services, models and where they run</h2>
+  <div class="pl-filters"><span class="label">Show</span></div>
+  <div class="pl-grid" id="pl-grid"></div>
+  <aside class="notes"><p>Each tile shows batch and live price per audio hour where both exist. "Hosted on Azure, AWS or Google Cloud" means that cloud's own infrastructure runs the model; a marketplace listing is a billing route only. Hover or tab to a tile for languages, speaker labels and data handling. Speech-to-speech models are left off this grid; they are compared on the voice-agent slide.</p></aside>
+</section>
+
+<section class="slide" id="price-ladder" data-section="[04] Players">
+  <span class="kicker">04 · Price</span>
+  <h2>Price per audio hour, batch and live</h2>
+  <div id="ladder-chart" style="margin-top:10px"></div>
+  <p class="src">List prices, pay as you go, one channel, checked 3 Nov 2026 (research pack B). Self-hosted figures assume an H100 at $4 an hour at full load; real deployments need two to three times the capacity for peaks.</p>
+  <aside class="notes"><p>Three points. Batch has converged on $0.10–0.40 an hour. Live transcription spreads from $0.12 to $1.02, and the most expensive live services are the hyperscalers' and OpenAI's. Self-hosted open models cost almost nothing per hour once the GPUs are running; the real cost is engineering and peak capacity.</p></aside>
+</section>
+
+<section class="slide" id="cost-calc" data-section="[04] Players">
+  <span class="kicker">04 · Price · Calculator</span>
+  <h2>Annual cost for a contact centre</h2>
+  <div class="cols c37" style="margin-top:12px; gap:36px">
+    <div class="card calc">
+      <span class="label">Inputs</span>
+      <div class="calc-row cc"><label for="cc-agents">Agents</label><input type="range" id="cc-agents" min="1" max="4" step="0.01" value="3"><span id="cc-agents-v" class="mono"></span></div>
+      <div class="calc-row cc"><label for="cc-hours">Talk hours per agent per day</label><input type="range" id="cc-hours" min="1" max="7" step="0.5" value="5"><span id="cc-hours-v" class="mono"></span></div>
+      <div class="calc-row cc"><label for="cc-live">Share transcribed live</label><input type="range" id="cc-live" min="0" max="100" step="5" value="100"><span id="cc-live-v" class="mono"></span></div>
+      <div class="calc-row cc"><label for="cc-ch">Two channels (caller and agent)</label><input type="checkbox" id="cc-ch" checked><span class="mono" id="cc-ch-v"></span></div>
+      <div class="calc-row cc"><label for="cc-dia">Speaker labels (one-channel audio)</label><input type="checkbox" id="cc-dia"><span class="mono"></span></div>
+      <div class="calc-res" style="grid-template-columns:1fr"><div><span class="label">Audio hours a year</span><div class="big-num" id="cc-total">–</div></div></div>
+      <p class="src" id="cc-note">250 working days a year. Most providers bill each channel separately. List prices, before volume discounts.</p>
+    </div>
+    <div id="cc-chart"></div>
+  </div>
+  <aside class="notes"><p>Move the sliders to a client's numbers. With two channels, speaker labels are free because each channel is one speaker, but most services bill each channel, which doubles the hours. With one channel, speaker labels are an add-on at some providers and missing from several live services, which the chart marks.</p><p>List prices from research pack B. Volume discounts are large: Azure live transcription falls from $1.00 to $0.40 an hour at 100,000 hours a month; Google Chirp from $0.96 to $0.24.</p></aside>
+</section>
+
+<section class="slide" data-section="[04] Players">
+  <span class="kicker">04 · By client cloud</span>
+  <h2>Options by cloud provider</h2>
+  <div class="cols c3" style="margin-top:26px; gap:22px">
+    <div class="card cloudcol rise" style="--i:0"><span class="label">Amazon Web Services</span><h3>AWS clients</h3>
+      <ul class="plain small"><li><b>Amazon Transcribe:</b> $0.36 batch, $0.60 live, 113 locales batch and 99 live, speaker labels included. AWS's page shows a flat price we could not match to an announcement: confirm before quoting.</li><li>Call Analytics $1.80; Medical $4.50; HealthScribe $6.00 an hour.</li><li>Open models in the client's account through SageMaker, including Voxtral Realtime and Whisper. Deepgram sells a SageMaker package.</li></ul></div>
+    <div class="card cloudcol rise" style="--i:1"><span class="label">Microsoft Azure</span><h3>Azure clients</h3>
+      <ul class="plain small"><li><b>The widest choice:</b> Azure Speech ($0.18 batch, $1.00 live), MAI-Transcribe-2, and OpenAI's GPT-Transcribe ($0.27) and GPT-Live-Transcribe ($1.02), with EU or US data zones at +10%.</li><li>Live speaker labels and language detection cost +$0.30 an hour each.</li><li><b>The only air-gapped option</b> from a hyperscaler: disconnected Speech containers.</li></ul></div>
+    <div class="card cloudcol rise" style="--i:2"><span class="label">Google Cloud</span><h3>Google Cloud clients</h3>
+      <ul class="plain small"><li><b>Chirp 3:</b> $0.96 an hour (down to $0.24 at volume; $0.18 for slow "dynamic batch"), 109 locales, EU region available. Speaker labels in batch only.</li><li><b>Gemini 3.5 Transcribe</b> on Vertex: $0.31 batch, $0.54 live, 85+ languages, custom vocabulary. No speaker labels in the live version; live sessions last up to 10 minutes.</li></ul></div>
+  </div>
+  <div class="callout" style="margin-top:22px">None of the specialists (Deepgram, AssemblyAI, Speechmatics, ElevenLabs, Soniox) is hosted first-party in any of the three clouds. To use one inside a client's account, buy its self-hosted version, or approve its EU endpoint where the client allows.</div>
+  <aside class="notes"><p>Unlike web search last week, every cloud now has a modern transcription model inside its boundary. The constraint is features rather than availability: live speaker labels and the less common languages are where the in-cloud options are weakest. Research pack B, section 2.</p></aside>
+</section>
+
+<section class="slide" data-section="[04] Players">
+  <span class="kicker">04 · Watch-outs</span>
+  <h2>Terms, data handling and scheduled changes</h2>
+  <div class="cols c2" style="margin-top:22px; gap:44px">
+    <div>
+      <h3 style="margin-bottom:12px">Terms that affect client work</h3>
+      <table class="t">
+        <tr><th>Issue</th><th>Detail</th></tr>
+        <tr><td>Training on audio</td><td>Gladia's self-serve plan and the free Gemini API use customer audio for training by default. Speechmatics offers 33% off for opting in.</td></tr>
+        <tr><td>Retention</td><td>Speechmatics never stores live audio and deletes batch audio after 7 days. Others vary; zero retention is usually an enterprise option.</td></tr>
+        <tr><td>AWS opt-out</td><td>AWS AI services may use content to improve the service unless the organisation sets an opt-out policy.</td></tr>
+        <tr><td>Region routing</td><td>Some preview models route to fixed regions. Check before sending EU audio.</td></tr>
+        <tr><td>Billing per channel</td><td>Two-channel calls are billed twice by most providers.</td></tr>
+        <tr><td>Health data</td><td>The three clouds, Deepgram, AssemblyAI, Speechmatics, ElevenLabs, Gladia and Rev sign HIPAA agreements.</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3 style="margin-bottom:12px">Recent and scheduled changes</h3>
+      <ul class="plain small">
+        <li><b>OpenAI</b> shuts down whisper-1, gpt-4o-transcribe, gpt-4o-mini-transcribe, gpt-4o-transcribe-diarize and its translation endpoint on 26 February 2027. The new models lack speaker labels and word timestamps.</li>
+        <li><b>Google</b> shuts down Gemini 2.5 Flash native audio on 17 November 2026.</li>
+        <li><b>Mistral</b> retires Voxtral Transcribe 2 on 30 April 2027.</li>
+        <li><b>Azure</b> promotional prices for Fast Transcription and MAI-Transcribe-2 end on 31 December 2026.</li>
+        <li><b>Deepgram</b> agreed on 29 October 2026 to acquire Daily, maker of Pipecat, whose benchmark we use in this session.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="src" style="margin-top:14px">Vendor terms, pricing pages and documentation, checked 3 Nov 2026. Research pack B, sections 6–7.</p>
+</section>
+
+<!-- ================= 05 MEASUREMENT ================= -->
+<section class="slide" data-section="[05] Measurement">
+  <span class="kicker">05 · How they are measured</span>
+  <h2>How benchmarks score speech recognition</h2>
+  <table class="t metrics" style="margin-top:22px">
+    <tr><th>Method</th><th>How it works</th><th>Used by</th><th>Watch for</th></tr>
+    <tr data-step="1"><td>Word error rate after normalising</td><td>Both texts are lower-cased, stripped of punctuation and numbers standardised, then words are aligned and errors counted.</td><td>Artificial Analysis, Open ASR Leaderboard, Coval, most vendor charts</td><td>Each board uses its own normaliser, so scores move by points between boards</td></tr>
+    <tr data-step="2"><td>Errors judged by a model</td><td>A language model decides whether a difference changes the meaning ("semantic WER").</td><td>Pipecat</td><td>Changing the judge model moved scores by about 15%</td></tr>
+    <tr data-step="3"><td>Errors on the words that matter</td><td>Score only names, numbers, drugs or other entities.</td><td>AssemblyAI entity error, Omi Health medical-term WER</td><td>Few boards; entity lists differ</td></tr>
+    <tr data-step="4"><td>Speaker errors</td><td>Diarisation error rate on time, or word error with speakers attached (cpWER).</td><td>VoiceArena, pyannoteAI, NVIDIA, AssemblyAI</td><td>Collar and overlap rules change scores about threefold</td></tr>
+    <tr data-step="5"><td>Speed</td><td>Time to final transcript after speech ends; throughput for batch (RTFx).</td><td>Artificial Analysis, Pipecat, Coval, Cekura, Open ASR</td><td>Each starts the clock at a different moment</td></tr>
+  </table>
+  <div class="callout" data-step="6" style="margin-top:20px">The same model on different boards: ElevenLabs Scribe v2 scores 2.2% on Artificial Analysis and 6.0% on the Open ASR Leaderboard. Across the 15 systems on both boards, the rankings only partly agree (rank correlation 0.51).</div>
+  <aside class="notes"><p>Always ask what was scored, against which reference, with which normaliser. Artificial Analysis gives half its weight to its private voice-agent audio; Open ASR mixes meetings, finance, noise and Indian-accented conversation. Neither is wrong; they measure different audio. Research pack C, sections 2 and 8.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] Measurement">
+  <span class="kicker">05 · The main benchmarks</span>
+  <h2>The main benchmarks</h2>
+  <div class="scroller" style="height:620px; margin-top:10px">
+  <table class="t bench">
+    <tr><th>Benchmark</th><th>Run by</th><th>Independent?</th><th>What it tests</th><th>Size</th><th>Status, Nov 2026</th><th>Cost or speed?</th></tr>
+    <tr><td>Artificial Analysis, batch</td><td>Artificial Analysis</td><td><span class="pill yes">Yes</span></td><td>Held-out voice-agent audio (50%), parliament speeches, earnings calls</td><td>About 8 hours, 63 endpoints</td><td>Top 7 within 1.7–2.5%</td><td>Price and speed</td></tr>
+    <tr><td>Artificial Analysis, streaming</td><td>Artificial Analysis</td><td><span class="pill yes">Yes</span></td><td>Same audio, streamed in 20 ms chunks</td><td>47 configurations</td><td>2.5–10% spread</td><td>Price and time to final</td></tr>
+    <tr><td>Open ASR Leaderboard</td><td>Hugging Face, with NVIDIA and others</td><td><span class="pill yes">Yes</span></td><td>9 English sets, including private conversational audio; 7 other languages; long recordings</td><td>63 English systems</td><td>Leader 4.9%; LibriSpeech dropped as saturated</td><td>Throughput, open models</td></tr>
+    <tr><td>Pipecat STT benchmark</td><td>Daily (joining Deepgram)</td><td><span class="pill mid">Semi</span></td><td>Short voice-agent turns, model-judged errors</td><td>1,000 turns, 24 services</td><td>Top dozen within the margin of error</td><td>Median and tail latency</td></tr>
+    <tr><td>Coval</td><td>Coval</td><td><span class="pill yes">Yes</span></td><td>Voice-agent clips; accent, far-field, noise and phone-codec conditions</td><td>About 900 clips plus 6 conditions</td><td>Live, 24-hour window</td><td>Latency</td></tr>
+    <tr><td>Cekura</td><td>Cekura</td><td><span class="pill mid">Semi</span></td><td>Voice-agent clips and 8 real phone calls</td><td>19 systems</td><td>15 systems tied on real calls</td><td>Price and latency</td></tr>
+    <tr><td>VoiceArena Diarization Bench</td><td>Voice Arena</td><td><span class="pill yes">Yes</span></td><td>Speaker labels, 2–8 speakers, far-field and calls</td><td>22 hours, 15 systems</td><td>Early results</td><td>No</td></tr>
+    <tr><td>PriMock57 medical</td><td>Omi Health</td><td><span class="pill mid">Semi</span></td><td>Mock GP consultations; medical-term and drug-name errors</td><td>55 consultations, 42 models</td><td>April 2026</td><td>No</td></tr>
+    <tr><td>FLEURS</td><td>Google dataset; scores self-reported</td><td><span class="pill no">Vendor</span></td><td>Read Wikipedia sentences in 102 languages</td><td>About 12 hours per language</td><td>Saturated for major languages</td><td>No</td></tr>
+    <tr><td>Switchboard and CallHome</td><td>LDC dataset; Microsoft and IBM human tests</td><td><span class="pill mid">Semi</span></td><td>Telephone conversations</td><td>Hub5 2000</td><td>Machines at parity since 2017</td><td>No</td></tr>
+  </table>
+  </div>
+  <p class="src" style="margin-top:8px">Research pack C, read 3 Nov 2026. 5,476 score rows in the repository.</p>
+  <aside class="notes"><p>Only Artificial Analysis publishes both quality and price on one independent board, for batch and for streaming. That is why the frontier charts that follow lean on it, cross-checked against Pipecat for latency and Open ASR for open models. No independent contact-centre board with 8 kHz calls and prices exists.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] Measurement">
+  <span class="kicker">05 · Models and human performance</span>
+  <h2>Model and human performance in transcription</h2>
+  <div class="cols c2" style="margin-top:16px; gap:40px">
+    <div>
+      <span class="label">Professional transcribers on telephone calls</span>
+      <table class="t" style="margin-top:8px">
+        <tr><th>Measured by</th><th>Switchboard</th><th>CallHome</th></tr>
+        <tr><td>Microsoft, 2016</td><td>5.9%</td><td>11.3%</td></tr>
+        <tr><td>IBM, best transcriber after checks, 2017</td><td>5.1%</td><td>6.8%</td></tr>
+        <tr><td>Machines (Microsoft, 2017)</td><td>5.1%</td><td>–</td></tr>
+      </table>
+      <p style="font-size:15.5px; margin-top:10px">The often-quoted "4% human error" rests on a personal communication from 1997.</p>
+      <span class="label" style="display:block; margin-top:14px">Machines in November 2026</span>
+      <ul class="plain small">
+        <li><b>Clean and agent audio:</b> 2–3% on Artificial Analysis, at or below the human range.</li>
+        <li><b>Private conversational audio:</b> 11.6% at best, about four times the same systems' error on scripted speech (Open ASR).</li>
+        <li><b>Real phone calls:</b> on Cekura's 8 calls, error ran from 2.8% to 12.5%; 15 systems were statistically tied.</li>
+      </ul>
+    </div>
+    <div>
+      <span class="label">Medical consultations (PriMock57): error on medical terms</span>
+      <table class="t" style="margin-top:8px">
+        <tr><th>System</th><th>Medical-term error</th></tr>
+        <tr><td>Gemini 3 Pro</td><td>1.4%</td></tr>
+        <tr><td>Soniox v4</td><td>2.1%</td></tr>
+        <tr><td>ElevenLabs Scribe v2</td><td>2.5%</td></tr>
+        <tr><td>AssemblyAI Universal-3 Pro Medical</td><td>2.8%</td></tr>
+        <tr><td>Deepgram Nova-3 Medical</td><td>3.2%</td></tr>
+        <tr><td>GPT-4o Transcribe</td><td>7.9%</td></tr>
+      </table>
+      <div class="callout" style="margin-top:14px; font-size:16px"><b>As accurate as careful people on clean audio. Not yet on real conversations,</b> and no benchmark compares a model's transcript of a client's calls with a professional's.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>When models approach human error rates, mistakes in the human reference transcripts start to dominate the measurement. The "specialist" medical models do not beat general frontier models on PriMock57; overall WER on that audio is 8–15% because the references are verbatim conversation. Sources: arXiv 1610.05256, 1703.02136; Open ASR Leaderboard private sets; Cekura; Omi Health. Research pack C, sections 6 and 9.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] Measurement">
+  <span class="kicker">05 · Strengths and limits</span>
+  <h2>Strengths and limitations of benchmarks</h2>
+  <div class="cols c2" style="margin-top:22px; gap:44px">
+    <div>
+      <table class="t">
+        <tr><th>Vendor's own chart</th><th>Leader on it</th><th>On independent boards</th></tr>
+        <tr><td>Deepgram, Nova-3 launch</td><td>Nova-3, "54% lower" error than an unnamed rival</td><td>Mid-table on accuracy; among the fastest</td></tr>
+        <tr><td>Microsoft, MAI-Transcribe-2</td><td>MAI-Transcribe-2, 60 languages</td><td>2nd batch and 1st streaming on Artificial Analysis</td></tr>
+        <tr><td>AssemblyAI</td><td>Wins most tables, loses several to ElevenLabs and Meta</td><td>1st on Coval; 16th of 62 on Artificial Analysis batch</td></tr>
+        <tr><td>Gladia, Solaria-3</td><td>Solaria-3 on 3 of 4 sets</td><td>18th of 62 on Artificial Analysis</td></tr>
+        <tr><td>pyannoteAI</td><td>Precision-3, every domain</td><td>3rd on VoiceArena, behind two open models</td></tr>
+      </table>
+      <div class="callout" style="margin-top:16px; font-size:16px">Vendors choose the audio, the normaliser and the rivals. The more credible vendor pages show the tables they lose.</div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:10px">Limitations</h3>
+      <ul class="plain small">
+        <li><b>Saturation.</b> Read speech is solved: LibriSpeech has been dropped, and major FLEURS languages sit at 1–4% for six or more systems.</li>
+        <li><b>Contamination.</b> Public test sets are on the web and training data is undisclosed. Private held-out sets now carry the weight.</li>
+        <li><b>Normalisers and judges change.</b> Coval, Pipecat and Artificial Analysis all changed scoring in 2026, so older snapshots are not comparable.</li>
+        <li><b>Read speech flatters.</b> Conversational error is about four times scripted error.</li>
+        <li><b>Endpoints, not models.</b> Whisper large-v3 scores 2.5 times worse on one host than another.</li>
+        <li><b>Small samples.</b> Six earnings calls; eight phone calls.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes"><p>Research pack C, sections 7 and 8. The pattern from the previous sessions holds: use a vendor's own chart to compare that vendor's tiers, not to rank vendors.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] Measurement">
+  <span class="kicker">05 · Strengths and limits</span>
+  <h2>How vendors present their results</h2>
+  <div class="cols c3" style="margin-top:14px; gap:22px">
+    <div class="card par-card"><span class="label">Google · own test, own model first</span>
+      <div class="pc-img" style="height:250px"><img class="shot" src="../assets/speech-to-text/vendor/a-gemini-35-transcribe-fleurs.webp" alt="Google's chart of streaming error on FLEURS: Gemini 3.5 Transcribe Live lowest, Deepgram Nova-3 highest"></div>
+      <p class="src">Gemini 3.5 Transcribe launch, Aug 2026.</p>
+      <p style="font-size:15px">Live error on Google's choice of FLEURS languages: Gemini 5.5%, Deepgram Nova-3 15.8%. Useful mainly to show how wide multilingual live gaps are.</p></div>
+    <div class="card par-card"><span class="label">Deepgram · flattering comparison</span>
+      <div class="pc-img" style="height:250px"><img class="shot" src="../assets/speech-to-text/vendor/d-deepgram-flux-wer-vs-latency.png" alt="Deepgram chart: Flux at about 8% error against competitors drawn as lines at 15–21%"></div>
+      <p class="src">Flux launch page, Oct 2025.</p>
+      <p style="font-size:15px">Flux at about 8% error, rivals drawn as flat lines at 15–21%. On Artificial Analysis's live board Flux is the fastest, at 7.4% error, in the bottom third for accuracy.</p></div>
+    <div class="card par-card"><span class="label">Meta · independent data, replotted</span>
+      <div class="pc-img" style="height:250px"><img class="shot" src="../assets/speech-to-text/vendor/a-muse-adaptive-delay.png" alt="Meta's copy of the Artificial Analysis streaming chart with Muse below the previous frontier"></div>
+      <p class="src">Muse Voice Transcribe launch, Sep 2026.</p>
+      <p style="font-size:15px">Meta plotted Artificial Analysis's own figures with Muse below the frontier. Two months later, MAI-Transcribe-2 Streaming and ElevenLabs had moved past it.</p></div>
+  </div>
+  <div class="callout" style="margin-top:16px; font-size:16px">A vendor chart built on an independent board is more credible than one on the vendor's own audio, but it is still a snapshot chosen on the best day.</div>
+  <aside class="notes"><p>Three charts, three levels of trust. Google's is its own test with its own choice of languages. Deepgram's compares its model against unnamed or older rivals on its own audio. Meta's reuses an independent board, which is the most credible of the three, but the board moves every few weeks. Research packs A, C and D.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] The frontier">
+  <span class="kicker">05 · How we built the charts</span>
+  <h2>Method for the frontier charts</h2>
+  <div class="cols c3" style="margin-top:30px; gap:22px">
+    <div class="card fam rise" style="--i:0"><span class="label">Question 1</span><h3>Recorded audio</h3><p>Error rate against list price per audio hour.</p><div class="eg">Artificial Analysis, batch (59 priced endpoints)<br>Cross-check: Open ASR Leaderboard</div><span class="tag blue"><i></i>Independent</span></div>
+    <div class="card fam rise" style="--i:1"><span class="label">Question 2</span><h3>Live audio</h3><p>Error rate against price, and against time to the final transcript.</p><div class="eg">Artificial Analysis, streaming (47 configurations)<br>Cross-check: Pipecat, median and slowest 5%</div><span class="tag blue"><i></i>Independent</span></div>
+    <div class="card fam rise" style="--i:2"><span class="label">Question 3</span><h3>Running it yourself</h3><p>Error rate of open models against GPU cost, from measured throughput.</p><div class="eg">Open ASR Leaderboard (47 open models)<br>GPU cost: our estimate at $4 an hour</div><span class="tag blue"><i></i>Independent</span></div>
+  </div>
+  <ul class="plain small" style="margin-top:26px; columns:2; column-gap:44px">
+    <li><b>Lower is better.</b> The charts show error rates, so better options sit higher on a flipped axis.</li>
+    <li><b>One board per view.</b> Boards use different audio and define cost and latency differently. Switch views to cross-check.</li>
+    <li><b>Price per audio hour,</b> converted from the board's price per 1,000 minutes. Boards may use older list prices than research pack B.</li>
+    <li><b>Near the frontier.</b> Dashed rings mark options within 0.25 points of the frontier: treat these as ties.</li>
+  </ul>
+</section>
+
+<section class="slide" id="pf-batch" data-section="[05] The frontier">
+  <span class="kicker">05 · Where the frontier is</span>
+  <h2>Frontier: recorded audio</h2>
+  <div class="pf-tabs"></div>
+  <div class="pf-chart" id="pf-batch-chart"></div>
+  <aside class="notes"><p>Artificial Analysis's batch board, 59 priced endpoints. The frontier runs from StepAudio 2.5 (4.7% at about 2 cents an hour) through Modulate, Voxtral Mini on DeepInfra and Soniox v5 to Microsoft MAI-Transcribe-2 (2.0% at about 10 cents an hour) and Alibaba's Fun-Realtime-ASR preview (1.7%). Nothing that costs more is more accurate. Speechmatics Enhanced, Gladia Solaria-3, Gemini 3.1 Pro and Google Chirp 3 cost five to ten times MAI-Transcribe-2 and score worse.</p><p>Use the hosting filters: on Azure, MAI-Transcribe-2 is the frontier; on Google Cloud, Gemini 3.5 Transcribe; on AWS, Amazon Transcribe at 4.1%. Prices are the board's normalised list prices; MAI-Transcribe-2's reflects a promotion that ends on 31 December 2026.</p></aside>
+</section>
+
+<section class="slide" id="pf-live" data-section="[05] The frontier">
+  <span class="kicker">05 · Where the frontier is</span>
+  <h2>Frontier: live audio</h2>
+  <div class="pf-tabs"></div>
+  <div class="pf-chart" id="pf-live-chart"></div>
+  <aside class="notes"><p>Four views. Price: the frontier runs from Modulate and Inworld (under 10 cents an hour) through Meta Muse and Grok to MAI-Transcribe-2 Streaming (2.5%). Time to final: Deepgram Flux (21 ms, 7.4%), Soniox v5 (54 ms, 4.5%), ElevenLabs Scribe v2 Realtime (78 ms, 3.0%) and MAI-Transcribe-2 Streaming (128 ms, 2.5%).</p><p>Then switch to Pipecat. Its clock includes a 200 ms detector wait and it uses voice-agent turns, so the milliseconds are different, but the slow group is the same: AWS, Azure, Google's older model, OpenAI and xAI. The slowest-5% view shows the tails: Meta Muse has a 392 ms median and a 1,292 ms 95th percentile. Do not compare points across views.</p></aside>
+</section>
+
+<section class="slide" id="pf-open" data-section="[05] The frontier">
+  <span class="kicker">05 · Where the frontier is</span>
+  <h2>Frontier: open models you run yourself</h2>
+  <div class="pf-tabs"></div>
+  <div class="pf-chart" id="pf-open-chart"></div>
+  <aside class="notes"><p>The Open ASR Leaderboard measures how many seconds of audio each open model transcribes per second of GPU time. We turned that into a cost at $4 per GPU-hour at full load. Small NVIDIA Parakeet and IBM Granite models transcribe an hour of audio for a fraction of a cent; NVIDIA Nemotron 3.5 Transcribe and Qwen3-ASR are the most accurate open models, at about a cent an hour. Whisper large-v3, the usual default, is neither the cheapest nor the most accurate.</p><p>Real deployments run well below full load and need engineering, so multiply by two to three. Even so, self-hosting is ten to a hundred times cheaper per hour than the APIs; the cost is the team that runs it.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] The frontier">
+  <span class="kicker">05 · Speakers</span>
+  <h2>Independent diarisation results</h2>
+  <div class="cols c64" style="margin-top:12px; gap:36px">
+    <figure><img class="shot" src="../assets/speech-to-text/vendor/c-voicearena-diarization-bench-der.png" alt="VoiceArena Diarization Bench: DER from 14.7% for NVIDIA Nemotron 3 Diarization to 67.1% for Deepgram Nova-3" style="width:100%"><figcaption>Diarisation error, English, no collar, overlap scored. Image: VoiceArena Diarization Bench v1, read 3 Nov 2026.</figcaption></figure>
+    <div>
+      <ul class="plain small">
+        <li><b>Dedicated diarisation models lead:</b> NVIDIA's open Nemotron 3 Diarization at 14.7%, then DiariZen and pyannoteAI.</li>
+        <li><b>The speaker labels built into transcription APIs</b> score 40–67% on the same audio.</li>
+        <li><b>Scoring rules matter:</b> with a quarter-second collar, Nemotron scores 4.3%; AssemblyAI reports 12.2% for itself without scoring overlap.</li>
+        <li><b>No diarisation board publishes cost.</b></li>
+      </ul>
+      <div class="callout" style="margin-top:14px; font-size:16px">Where speaker labels matter and channels are not separate, test a dedicated diarisation model alongside the transcription service's own labels.</div>
+    </div>
+  </div>
+  <aside class="notes"><p>VoiceArena covers 139 sessions, 22 hours, two to eight speakers, with far-field and internet-call audio. Speaker counting varies too: Meta Muse got the number of speakers exactly right 90.6% of the time, Deepgram 35.3%. Deepgram's Diarization v2 (May 2026) is opt-in, and default-settings tests probably measured v1. Research pack C, section 5.</p></aside>
+</section>
+
+<section class="slide" data-section="[05] The frontier">
+  <span class="kicker">05 · Where the frontier is</span>
+  <h2>Conclusions</h2>
+  <div class="takeaways">
+    <div class="rise" style="--i:0"><span class="n">1</span><div><b>Recorded English audio is cheap and accurate.</b> The frontier reaches about 2% error for about 10 cents an hour, and paying more buys nothing on the independent board. Whisper, the usual default, is now in the bottom half.</div></div>
+    <div class="rise" style="--i:1"><span class="n">2</span><div><b>Live transcription has nearly caught up.</b> The best live models are within about half a point of batch, with a final transcript in under 150 ms. The cloud providers' own live services are among the slowest.</div></div>
+    <div class="rise" style="--i:2"><span class="n">3</span><div><b>For voice agents, turn detection matters more than the model.</b> Deciding when the caller has finished costs more time than transcribing what they said.</div></div>
+    <div class="rise" style="--i:3"><span class="n">4</span><div><b>Speakers and languages are where services really differ.</b> Live speaker labels are missing from several leading services, and error rates on Arabic, Swahili or mixed-language speech vary by two to four times between products.</div></div>
+    <div class="rise" style="--i:4"><span class="n">5</span><div><b>Benchmarks use cleaner audio than clients have.</b> Conversational speech scores about four times worse than read speech, and no independent board tests contact-centre calls with prices. The client's own recordings decide.</div></div>
+  </div>
+</section>
+
+<!-- ================= 06 RECOMMEND ================= -->
+<section class="slide" id="guide" data-section="[06] Recommendations">
+  <span class="kicker">06 · What to recommend</span>
+  <h2>Decision guide</h2>
+  <div class="guide">
+    <div class="g-qs" id="g-qs"></div>
+    <div class="g-out card" id="g-out"></div>
+  </div>
+  <aside class="notes"><p>Pick a real client situation from the room and click through it. The output is a starting point for a test, not a final answer. Picks dated 3 November 2026.</p></aside>
+</section>
+
+<section class="slide" data-section="[06] Recommendations">
+  <span class="kicker">06 · What to recommend · November 2026</span>
+  <h2>Default picks by situation</h2>
+  <div class="scroller" style="height:620px; margin-top:10px">
+  <table class="t picks">
+    <tr><th>Situation</th><th>Start with</th><th>Test against</th><th>Watch out for</th></tr>
+    <tr><td>Recorded calls or meetings, mainly English</td><td>Microsoft MAI-Transcribe-2 (about $0.10 an hour at the promotional price) or ElevenLabs Scribe v2 ($0.22)</td><td>Soniox v5 ($0.10) and AssemblyAI Universal-3.5 Pro ($0.21)</td><td>MAI-Transcribe-2 is in preview and its promotion ends on 31 December 2026</td></tr>
+    <tr><td>Recorded, with speakers from one channel</td><td>AssemblyAI Universal-3.5 Pro or ElevenLabs Scribe v2, both with speaker labels included</td><td>A dedicated model: NVIDIA Nemotron 3 Diarization (open) or pyannoteAI Precision-3</td><td>Built-in labels scored 40–67% DER on the independent board; dedicated models 15–21%</td></tr>
+    <tr><td>Live captions or agent assist</td><td>ElevenLabs Scribe v2 Realtime ($0.39) or AssemblyAI Universal-3.6 Pro Realtime ($0.45)</td><td>Speechmatics Melia ($0.20, live speaker labels included) or Soniox v5 ($0.12)</td><td>Partial results that change on screen; record one channel per speaker</td></tr>
+    <tr><td>Voice agents</td><td>Deepgram Flux ($0.46, turn detection in the model) or AssemblyAI Universal-3.6 Pro Realtime</td><td>ElevenLabs Scribe v2 Realtime with Pipecat Smart Turn; MAI-Transcribe-2 Streaming</td><td>Measure interruptions and the slowest 5% of replies, not the median</td></tr>
+    <tr><td>Many languages</td><td>MAI-Transcribe-2 (60), Gemini 3.5 Transcribe (85+) or ElevenLabs Scribe v2 (90+)</td><td>A regional specialist: Sarvam for India, Cohere Transcribe Arabic for Arabic</td><td>Check the live language list separately; test mixed-language calls</td></tr>
+    <tr><td>Medical consultations</td><td>ElevenLabs Scribe v2 or AssemblyAI Universal-3 Pro Medical, batch after the visit</td><td>Gemini 3 Pro, which had the lowest medical-term error on PriMock57</td><td>Keep the audio; check invented text in pauses; HIPAA agreements</td></tr>
+    <tr><td>Audio must stay in Azure</td><td>Azure Speech ($0.18 batch, $1.00 live) or MAI-Transcribe-2</td><td>OpenAI GPT-Transcribe in Azure ($0.27, no speaker labels)</td><td>Live speaker labels +$0.30 an hour; OpenAI's older models shut down 26 Feb 2027</td></tr>
+    <tr><td>Audio must stay in AWS</td><td>Amazon Transcribe ($0.36 batch, $0.60 live, speaker labels included); Call Analytics for contact centres</td><td>Voxtral Realtime on SageMaker, or Deepgram's SageMaker package</td><td>Mid-table on accuracy and slow live; confirm the new flat price</td></tr>
+    <tr><td>Audio must stay in Google Cloud</td><td>Gemini 3.5 Transcribe on Vertex ($0.31 batch, $0.54 live)</td><td>Chirp 3 for batch speaker labels</td><td>No live speaker labels; live sessions capped at 10 minutes</td></tr>
+    <tr><td>No external services at all</td><td>Batch: NVIDIA Nemotron 3.5 Transcribe. Live: Nemotron 3.5 ASR Streaming with Streaming Sortformer and Smart Turn</td><td>Parakeet TDT for cheap bulk; Whisper large-v3 turbo for breadth; commercial containers (Deepgram, Speechmatics)</td><td>Engineering effort and peak capacity; Sortformer handles at most 4 speakers</td></tr>
+  </table>
+  </div>
+  <p class="src" style="margin-top:8px">Our judgement from the benchmarks and prices in this session, dated 3 November 2026. List prices per audio hour.</p>
+</section>
+
+<section class="slide" data-section="[06] Recommendations">
+  <span class="kicker">06 · Before recommending</span>
+  <h2>Testing on client audio</h2>
+  <div class="recipe">
+    <div class="rise" style="--i:0"><span class="label">Step 1</span><h3>Collect real audio</h3><p>50–100 clips from the client's own channels: phone calls as recorded, meeting rooms, each main accent and language, plus hold music, silence and cross-talk.</p></div>
+    <div class="rise" style="--i:1"><span class="label">Step 2</span><h3>Write references</h3><p>Double-checked verbatim transcripts with speaker turns, and a list of the words that matter: names, products, amounts, IDs.</p></div>
+    <div class="rise" style="--i:2"><span class="label">Step 3</span><h3>Test three options</h3><p>A cheap baseline, the default pick and a premium option, with the same settings. For live use, test over the client's real network and telephony.</p></div>
+    <div class="rise" style="--i:3"><span class="label">Step 4</span><h3>Measure</h3><p>Error rate with a stated normaliser, errors on key words, speaker errors, text invented in silence, time to final at the median and slowest 5%, and cost including channels and add-ons.</p></div>
+    <div class="rise" style="--i:4"><span class="label">Step 5</span><h3>Check where audio goes</h3><p>Region, retention, whether audio is used for training, and whether speaker analysis needs consent. Confirm with the client.</p></div>
+    <div class="rise" style="--i:5"><span class="label">Step 6</span><h3>Date and repeat</h3><p>Re-run every quarter. OpenAI, Google, Microsoft, Meta and Mistral all launched new transcription models between July and October 2026.</p></div>
+  </div>
+  <div class="callout" style="margin-top:22px">Benchmarks help select the options to test. The final choice should rest on results from the client's own recordings.</div>
+</section>
+
+<section class="slide" data-section="[06] Recommendations">
+  <span class="kicker">Sources</span>
+  <h2>Sources and further reading</h2>
+  <div class="cols c3 srcs" style="margin-top:18px; gap:30px">
+    <div>
+      <span class="label">How speech recognition works</span>
+      <ul>
+        <li><a href="https://arxiv.org/abs/2212.04356" target="_blank">Whisper: large-scale weak supervision</a></li>
+        <li><a href="https://arxiv.org/abs/2510.06961" target="_blank">Open ASR Leaderboard paper</a></li>
+        <li><a href="https://arxiv.org/abs/2601.21337" target="_blank">Qwen3-ASR technical report</a> · <a href="https://arxiv.org/abs/2509.08753" target="_blank">Delayed Streams Modeling</a></li>
+        <li><a href="https://huggingface.co/nvidia/nemotron-speech-streaming-en-0.6b" target="_blank">NVIDIA Nemotron streaming model card</a></li>
+        <li><a href="https://arxiv.org/abs/2402.08021" target="_blank">Careless Whisper</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7149386" target="_blank">Koenecke et al., PNAS 2020</a></li>
+        <li><a href="https://arxiv.org/abs/2511.09690" target="_blank">Meta Omnilingual ASR</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="label">Live transcription and voice agents</span>
+      <ul>
+        <li><a href="https://voiceaiandvoiceagents.com/" target="_blank">Voice AI and Voice Agents: an illustrated primer</a></li>
+        <li><a href="https://www.twilio.com/en-us/blog/developers/best-practices/guide-core-latency-ai-voice-agents" target="_blank">Twilio: core latency in AI voice agents</a></li>
+        <li><a href="https://www.daily.co/blog/benchmarking-stt-for-voice-agents/" target="_blank">Daily: benchmarking STT for voice agents</a></li>
+        <li><a href="https://deepgram.com/flux" target="_blank">Deepgram Flux</a> · <a href="https://www.assemblyai.com/docs/streaming/benchmarks" target="_blank">AssemblyAI streaming benchmarks</a></li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2705608/" target="_blank">Stivers et al. 2009: turn-taking in 10 languages</a></li>
+        <li><a href="https://www.pyannote.ai/blog/streaming-diarization-benchmark" target="_blank">pyannoteAI streaming diarisation benchmark</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="label">Benchmarks and research files</span>
+      <ul>
+        <li><a href="https://artificialanalysis.ai/speech-to-text" target="_blank">Artificial Analysis: speech to text</a> · <a href="https://artificialanalysis.ai/speech-to-text/streaming" target="_blank">streaming</a></li>
+        <li><a href="https://huggingface.co/spaces/hf-audio/open_asr_leaderboard" target="_blank">Hugging Face Open ASR Leaderboard</a></li>
+        <li><a href="https://github.com/pipecat-ai/stt-benchmark" target="_blank">Pipecat STT benchmark</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/speech-to-text/research/A-history-and-internals.md" target="_blank">Research A: history and internals</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/speech-to-text/research/B-players-pricing.md" target="_blank">Research B: players and prices</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/speech-to-text/research/C-benchmarks.md" target="_blank">Research C: benchmarks</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/speech-to-text/research/D-realtime-latency.md" target="_blank">Research D: live transcription and latency</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/speech-to-text/research/E-diarisation-languages.md" target="_blank">Research E: speakers and languages</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="src" style="margin-top:16px">All prices and scores as of 3 November 2026. Third-party images are credited on each slide and used for internal teaching.</p>
+</section>
+
+<section class="slide" data-section="Discussion" data-nochrome>
+  <div style="height:100%; display:flex; flex-direction:column; justify-content:center; max-width:1000px">
+    <span class="kicker">Discussion</span>
+    <h1 style="font-size:84px">Discussion questions</h1>
+    <ul class="plain" style="margin-top:34px">
+      <li>Which client "real-time" request needed sub-second results, and which only needed them within a few seconds?</li>
+      <li>Where would recording each speaker on their own channel remove a problem we were about to solve with a model?</li>
+      <li>What would we need to see before trusting a transcript as the record of a regulated conversation?</li>
+    </ul>
+    <p class="label" style="margin-top:40px">Next session: automated research and optimisation · <a href="../">All sessions</a></p>
+  </div>
+</section>
+
+</main>
+<script src="../assets/vendor/d3-7.9.0.min.js"></script>
+<script src="../assets/js/pareto.js"></script>
+<script src="data.js"></script>
+<script src="../assets/js/deck.js"></script>
+<script src="demos.js"></script>
+</body>
+</html>
