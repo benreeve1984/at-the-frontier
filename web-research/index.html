@@ -296,6 +296,27 @@
   <aside class="notes"><p>The economics: a search engine crawls pages and sends visitors back. An AI model crawls pages for training or answers and sends almost nobody back. Sites responded by blocking, and Cloudflare, which sits in front of more than a quarter of all websites, turned that into product features.</p><p>For our work this means: a growing share of good sources will refuse plain fetches from AI tools. While compiling this session's research, openai.com and perplexity.ai themselves returned a Cloudflare challenge (HTTP 403) to a plain request.</p><p>Sources: Cloudflare blog posts listed in research pack A; W3Techs for the 28% share.</p></aside>
 </section>
 
+<section class="slide" id="ai-crawlers" data-section="[02] How the web works">
+  <span class="kicker">02 · Bot controls</span>
+  <h2>Crawlers run by OpenAI and Anthropic</h2>
+  <p class="lede" style="font-size:19px; margin:-6px 0 12px">Each company runs separate crawlers for separate purposes, and publishes their names so sites can allow or block each one.</p>
+  <table class="t" style="margin-top:6px">
+    <tr><th>Purpose</th><th>OpenAI</th><th>Anthropic</th><th>How it works</th></tr>
+    <tr><td>Training</td><td class="mono">GPTBot</td><td class="mono">ClaudeBot</td><td>Collects pages in bulk that may be used to train future models. Sends nothing back to the site.</td></tr>
+    <tr><td>Search index</td><td class="mono">OAI-SearchBot</td><td class="mono">Claude-SearchBot</td><td>Crawls in advance to build the index that the search feature queries. Blocking it removes the site from search answers.</td></tr>
+    <tr><td>On demand</td><td class="mono">ChatGPT-User</td><td class="mono">Claude-User</td><td>Fetches a specific page while a user's question or agent is running, such as opening a search result.</td></tr>
+    <tr><td>Other</td><td class="mono">OAI-AdsBot</td><td class="mono">Claude-Agent</td><td>OpenAI: checks pages submitted as ads. Anthropic: browsers it hosts that act for users.</td></tr>
+  </table>
+  <div class="cols c3" style="margin-top:22px; gap:22px">
+    <div class="card fam"><span class="label">A typical answer</span><p>The model queries an index built in advance, then fetches a few pages live to read them. Both stages leave a trace in the site's logs.</p></div>
+    <div class="card fam"><span class="label">robots.txt</span><p>Anthropic says all its crawlers honour robots.txt. OpenAI says robots.txt rules "may not apply" to ChatGPT-User, because a user starts those fetches.</p></div>
+    <div class="card fam"><span class="label">Where the traffic goes</span><p>About 80% of AI crawling was for training, 18% for search and 2% for user actions (Cloudflare, 12 months to August 2025). Requests from AI agents grew about 1,700% in the year to September 2026.</p></div>
+  </div>
+  <div class="callout" style="margin-top:18px; font-size:16px">Because the purposes are separate, a site can block training while staying visible in AI search. This is the split that Cloudflare's controls for search, training and agents now offer every site.</div>
+  <p class="src" style="margin-top:8px">OpenAI, "Overview of OpenAI crawlers" (developers.openai.com/api/docs/bots); Anthropic help centre, "Does Anthropic crawl data from the web" (support.claude.com). Both checked 6 Nov 2026. Traffic figures from Cloudflare, research pack A.</p>
+  <aside class="notes"><p>OpenAI also says that ChatGPT-User is not used to decide whether content appears in search. Anthropic recently began recognising a general machine-readable "no AI training" signal, but says that a robots.txt rule naming ClaudeBot takes priority over it.</p><p>Anthropic has not said which index sits underneath Claude's web search. OpenAI uses its own crawler plus partners.</p></aside>
+</section>
+
 <!-- ================= 03 HOW RESEARCH TOOLS WORK ================= -->
 <section class="slide" data-section="[03] How research tools work">
   <span class="kicker">03 · How research tools work</span>
