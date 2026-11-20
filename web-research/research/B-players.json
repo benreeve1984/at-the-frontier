@@ -1774,7 +1774,7 @@
    "private": false,
    "weights": false,
    "saas": true,
-   "note": "o3-deep-research remains on Azure (see azure-foundry-deep-research).",
+   "note": "Azure also retired o3-deep-research, on 19 Nov 2026.",
    "licence": null
   },
   "data_handling": "OpenAI API terms.",
@@ -1795,7 +1795,7 @@
   "name": "Deep Research tool in Foundry Agent Service (o3-deep-research)",
   "vendor": "Microsoft",
   "category": "deep-research-api",
-  "status": "available",
+  "status": "retired 2026-11-19",
   "own_index": true,
   "index_source": "Bing via Grounding with Bing Search",
   "price": {

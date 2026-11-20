@@ -20,7 +20,7 @@ COLUMNS = [
     ("crawl", "Crawl and scrape", "per 1,000 pages", "var(--pink)", ["crawl-scrape"]),
     ("open", "Open research models", "self-hosted", "var(--green)", ["open-model"]),
 ]
-SKIP = {"perplexity-sonar", "anthropic-web-fetch", "gemini-url-context"}  # retired, or free add-ons shown elsewhere
+SKIP = {"perplexity-sonar", "azure-foundry-deep-research", "anthropic-web-fetch", "gemini-url-context"}  # retired, or free add-ons shown elsewhere
 
 SHORT = {
     "google-custom-search-json": "Google Custom Search*", "google-vertex-ai-search": "Vertex AI Search",
@@ -126,7 +126,7 @@ LADDER = [
     ("Parallel Task, ultra", 300, "research", "tasks"), ("Exa Agent, high", 500, "research", "tasks"),
     ("Gemini Deep Research", 2000, "research", "tasks"), ("Parallel Task, ultra8x", 2400, "research", "tasks"),
     ("OpenAI GPT-5.5 deep research (estimate)", 3290, "research", "tasks"), ("Gemini Deep Research Max", 5000, "research", "tasks"),
-    ("Azure o3-deep-research (estimate)", 5080, "research", "tasks"), ("Valyu DeepResearch, max", 15630, "research", "tasks"),
+    ("Valyu DeepResearch, max", 15630, "research", "tasks"),
 ]
 ladder = [{"name": n, "cost": c, "fam": f, "unit": u} for n, c, f, u in LADDER]
 

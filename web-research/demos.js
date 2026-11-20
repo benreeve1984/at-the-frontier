@@ -144,7 +144,7 @@ safe('page anatomy demo', function () {
       ['p1', 'Revenue rose 8% to £412m in the three months to September, driven by heat pump installations in the North of England.', 0], ['', '', 0],
       ['table', '| Segment | Q3 2026 | Q3 2025 |', 0], ['table', '|---|---|---|', 0], ['table', '| Retail supply | £251m | £238m |', 0], ['table', '| Heat pumps | £97m | £74m |', 0], ['table', '| Services | £64m | £69m |', 0], ['', '', 0],
       ['p2', 'The company kept its full-year guidance and will report again on 20 January 2027.', 0], ['', '', 0],
-      ['', '<!-- navigation, related links, advert, footer, cookie banner and scripts removed -->', 1],
+      ['', '<!-- navigation, related links, advert, footer, cookie banner and scripts removed -->', 1], ['', '<!-- illustrative: typical converter output, written by hand -->', 1],
     ]],
     marks: ['Screenshot with marks', 'Screenshot', [
       ['', 'The model receives the screenshot as an image,', 1], ['', 'with a number drawn on every element it can use:', 1], ['', '', 1],
@@ -175,7 +175,16 @@ safe('page anatomy demo', function () {
     });
   }
   const tabs = document.getElementById('anat-tabs');
+  const CAP = {
+    source: '<b>Where it comes from:</b> the server. A plain fetch, such as curl, receives exactly this.',
+    dom: '<b>Where it comes from:</b> the browser, after running the page\'s scripts. Tools need a headless browser to get it.',
+    a11y: '<b>Where it comes from:</b> the browser\'s summary for screen readers. Agents such as Playwright MCP and Browser Use read this.',
+    md: '<b>Where it comes from:</b> a converter, such as Readability, Jina Reader or Firecrawl, that keeps the main content and rewrites it as markdown. Search APIs and agents do this out of sight.',
+    marks: '<b>Where it comes from:</b> a screenshot with numbered marks drawn on, as used by Claude computer use and OpenAI\'s agent.',
+  };
+  const cap = document.getElementById('anat-cap');
   const show = k => {
+    cap.innerHTML = CAP[k];
     view.querySelectorAll('.code').forEach(c => c.classList.toggle('cur', c.dataset.v === k));
     tb.querySelectorAll('.tb').forEach(c => c.classList.toggle('cur', c.dataset.v === k));
     tabs.querySelectorAll('.bt').forEach(b => { const on = b.dataset.v === k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });

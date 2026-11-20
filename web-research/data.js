@@ -886,32 +886,13 @@ window.WX = {
       "private": false,
       "weights": false,
       "saas": true,
-      "note": "o3-deep-research remains on Azure (see azure-foundry-deep-research)."
+      "note": "Azure also retired o3-deep-research, on 19 Nov 2026."
      },
      "status": "available",
      "notes": "The dedicated deep-research model SKUs are gone on OpenAI's own API; deep research is now a configuration of a frontier model.",
      "basis": "Estimate using Google's published Deep Research profile (80 searches, 250k input of which 50% cached, 60k output incl. reasoning) on gpt-5.5: 80 x $0.01 + 125k x $5/1M + 125k x $0.50/1M + 60k x $30/1M = 0.80 + 0.625 + 0.0625 + 1.80 = ~$3.29.",
      "data": "OpenAI API terms.",
      "index": "OpenAI web search tool",
-     "verified": true
-    },
-    {
-     "id": "azure-foundry-deep-research",
-     "name": "Azure o3-deep-research",
-     "price": "$5.08",
-     "deploy": {
-      "hosted": [],
-      "billing": "Azure",
-      "private": false,
-      "weights": false,
-      "saas": false,
-      "note": "Model inference in Azure, but every search goes to Bing outside the Azure compliance boundary."
-     },
-     "status": "available",
-     "notes": "Still listed on Azure after OpenAI retired the model on its own API (July 2026); expect a retirement notice.",
-     "basis": "Same profile: 80 Bing calls x $0.014 = 1.12 + 125k x $10/1M + 125k x $2.50/1M + 60k x $40/1M = 1.12 + 1.25 + 0.31 + 2.40 = ~$5.08.",
-     "data": "As Grounding with Bing: queries leave the compliance boundary.",
-     "index": "Bing via Grounding with Bing Search",
      "verified": true
     }
    ]
@@ -1836,12 +1817,6 @@ window.WX = {
   {
    "name": "Gemini Deep Research Max",
    "cost": 5000,
-   "fam": "research",
-   "unit": "tasks"
-  },
-  {
-   "name": "Azure o3-deep-research (estimate)",
-   "cost": 5080,
    "fam": "research",
    "unit": "tasks"
   },

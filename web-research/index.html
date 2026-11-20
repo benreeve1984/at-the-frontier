@@ -222,11 +222,12 @@
     </div>
     <div class="anat-right">
       <div class="anat-tabs" id="anat-tabs"></div>
+      <p class="anat-cap" id="anat-cap" aria-live="polite"></p>
       <div class="anat-view" id="anat-view"></div>
       <div class="tokbars" id="anat-tok"></div>
     </div>
   </div>
-  <aside class="notes"><p>A fictional page. Step through: the HTML source a crawler downloads; the DOM tree the browser builds; the accessibility tree, which is what DOM-based browser agents read; clean markdown, which is what most research tools pass to the model; and the screenshot with numbered marks, which is what screenshot-based agents see. Hover over a line on the right to see which part of the page it describes.</p><p>Most of the source is not the article. Navigation, scripts, tracking and styling usually outweigh the content, which is why every tool converts pages before a model reads them.</p></aside>
+  <aside class="notes"><p>A fictional page. Step through: the HTML source a crawler downloads; the DOM tree the browser builds; the accessibility tree, which is what DOM-based browser agents read; clean markdown, which is what most research tools pass to the model (made by a converter such as Readability, Trafilatura, Jina Reader or Firecrawl, usually out of sight inside the search API or agent; the markdown here was written by hand to show the typical result); and the screenshot with numbered marks, which is what screenshot-based agents see. Hover over a line on the right to see which part of the page it describes.</p><p>Most of the source is not the article. Navigation, scripts, tracking and styling usually outweigh the content, which is why every tool converts pages before a model reads them.</p></aside>
 </section>
 
 <section class="slide" id="fetch" data-section="[02] How the web works">
@@ -799,13 +800,65 @@ September, driven by heat pump installations…
         <li><b>Google Custom Search API</b> closed to new customers; ends 1 January 2027.</li>
         <li><b>Gemini grounding</b> moved from $35 per 1,000 prompts to $14 per 1,000 searches (January 2026). One prompt can trigger several searches.</li>
         <li><b>Gemini token prices</b> double for 4 Argon on 1 December 2026 and for 3.8 and 3.6 Flash on 1 January 2027.</li>
-        <li><b>OpenAI</b> shut down its o3 and o4-mini deep research models on its own API in July 2026. Deep research is now a general model with high reasoning and web search. Azure still sells o3-deep-research.</li>
+        <li><b>OpenAI</b> shut down its o3 and o4-mini deep research models on its own API in July 2026. Deep research is now a general model with high reasoning and web search. Azure retired o3-deep-research on 19 November 2026.</li>
         <li><b>Perplexity</b> retired its Sonar models, including Sonar Deep Research, in September 2026.</li>
         <li><b>Consolidation:</b> Elastic bought Jina AI; Tavily is joining Nebius.</li>
       </ul>
     </div>
   </div>
   <p class="src" style="margin-top:14px">Vendor terms, pricing pages and documentation, checked 25 Oct 2026. Research pack B.</p>
+</section>
+
+
+<section class="slide" id="scale" data-section="[04] Players">
+  <span class="kicker">04 · Scale and status</span>
+  <h2>Provider scale and retired products</h2>
+  <div class="cols c55" style="margin-top:12px; gap:40px">
+    <div>
+      <span class="label">How large the main providers are</span>
+      <table class="t sc" style="margin-top:6px">
+        <tr><th>Provider</th><th>Latest published figure</th><th>Date</th></tr>
+        <tr><td>Google AI Overviews</td><td>2.5bn+ monthly users (AI Mode 1bn+)</td><td>May 2026</td></tr>
+        <tr><td>ChatGPT</td><td>About 1.2bn weekly users; search-like queries about a fifth of Google's</td><td>Nov 2026</td></tr>
+        <tr><td>Microsoft Bing</td><td>1bn monthly users</td><td>Apr 2026</td></tr>
+        <tr><td>Perplexity</td><td>780m queries a month; 0.8% of visits to AI websites (Oct 2026)</td><td>May 2025</td></tr>
+        <tr><td>You.com API</td><td>1bn+ queries a month</td><td>Sep 2025</td></tr>
+        <tr><td>Tavily (now Nebius)</td><td>350m+ requests a month</td><td>Nov 2026</td></tr>
+        <tr><td>Brave Search API</td><td>"Billions" of calls a week</td><td>Feb 2026</td></tr>
+        <tr><td>Exa</td><td>400,000+ developers; valued at $2.2bn</td><td>May 2026</td></tr>
+        <tr><td>Parallel</td><td>100,000+ developers; valued at $2bn</td><td>Apr 2026</td></tr>
+        <tr><td>Firecrawl</td><td>1.5m+ users</td><td>Sep 2026</td></tr>
+        <tr><td>Browserbase</td><td>35m+ browser sessions a month</td><td>Nov 2026</td></tr>
+      </table>
+      <p class="src" style="margin-top:6px">Mostly the companies' own claims, each on a different measure, so rows are not comparable. Anthropic, Google grounding, OpenAI's search API and AWS publish no usage figures.</p>
+    </div>
+    <div>
+      <span class="label" style="color:var(--red)">Retired: do not recommend</span>
+      <table class="t sc" style="margin-top:6px">
+        <tr><td>Bing Search APIs, Bing Custom Search</td><td>Aug 2025</td></tr>
+        <tr><td>xAI Live Search</td><td>Dec 2025</td></tr>
+        <tr><td>Exa Research API (now Exa Agent)</td><td>Apr 2026</td></tr>
+        <tr><td>OpenAI API: o3 and o4-mini deep research, GPT-4o search preview, computer-use-preview</td><td>Jul 2026</td></tr>
+        <tr><td>ChatGPT Atlas browser (now in the ChatGPT app)</td><td>Aug 2026</td></tr>
+        <tr><td>Perplexity Sonar API (now the Agent API)</td><td>Sep 2026</td></tr>
+        <tr><td>Azure o3-deep-research</td><td>19 Nov 2026</td></tr>
+      </table>
+      <span class="label" style="color:var(--orange); display:block; margin-top:14px">Closing soon</span>
+      <table class="t sc" style="margin-top:6px">
+        <tr><td>Gemini 2.5 Pro and Flash on the Gemini API</td><td>1 Dec 2026</td></tr>
+        <tr><td>Google Custom Search API, including whole-web search in existing engines</td><td>1 Jan 2027</td></tr>
+        <tr><td>Foundry classic agents, including their Bing grounding tools</td><td>31 Mar 2027</td></tr>
+      </table>
+      <span class="label" style="color:var(--green); display:block; margin-top:14px">Worth watching</span>
+      <ul class="plain small sc-watch">
+        <li><b>Microsoft Web IQ</b>: Bing-based search for agents, from $1 per 1,000 calls (Nov 2026).</li>
+        <li><b>AWS AgentCore Web Search</b>: Amazon's own index; AWS says data stays in AWS (Nov 2026).</li>
+        <li><b>Keenable</b>: a new independent index of 100bn+ documents.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="src" style="margin-top:8px">Checked 20 November 2026, after this session's main snapshot of 25 October. Sources in research pack F.</p>
+  <aside class="notes"><p>The point of this slide: the consumer products are very large, and among the search APIs, You.com, Tavily, Brave, Exa and Parallel have real scale. Names a client may remember, such as the Bing Search APIs, Perplexity's Sonar API or OpenAI's deep research models on the API, no longer exist.</p><p>Treat the usage figures as indicative only. Most are company claims, they measure different things (users, queries, requests, developers), and some are old: Perplexity has published no query figure since May 2025. Manus still operates, but after the Meta deal was unwound in August 2026 some user data was deleted; treat it with caution.</p><p>Two changes since the rest of this deck was compiled: Microsoft made Web IQ generally available on 17 November, and Azure retired o3-deep-research on 19 November.</p></aside>
 </section>
 
 <section class="slide" data-section="[04] Players">
@@ -817,7 +870,7 @@ September, driven by heat pump installations…
     <div class="card cloudcol rise" style="--i:1"><span class="label">Google Cloud</span><h3>Google Cloud clients</h3>
       <ul class="plain small"><li><b>Web Grounding for Enterprise</b> on Vertex: no customer data logged, VPC Service Controls supported, $14 per 1,000. Gemini models only.</li><li>Standard Google Search grounding runs on Google's infrastructure but processes globally and keeps logs for up to 3 days.</li><li>Grounding with Parallel or Exa through Vertex sends queries to those companies.</li></ul></div>
     <div class="card cloudcol rise" style="--i:2"><span class="label">Microsoft Azure</span><h3>Azure clients</h3>
-      <ul class="plain small"><li>Every Microsoft web search route, including the Azure OpenAI web search tool and Foundry's deep research tool, goes through <b>Grounding with Bing</b>, which sends data outside the Azure compliance boundary.</li><li>Browsers can stay in Azure (Playwright Workspaces, Foundry Browser Automation), but fetching pages still means contacting the open web.</li></ul></div>
+      <ul class="plain small"><li>Every Microsoft web search route, including the Azure OpenAI web search tool and Foundry's deep research tool, goes through <b>Grounding with Bing</b>, which sends data outside the Azure compliance boundary.</li><li>Browsers can stay in Azure (Playwright Workspaces, Foundry Browser Automation), but fetching pages still means contacting the open web.</li><li><b>New: Web IQ</b>, Microsoft's Bing-based search for agents, generally available since 17 November 2026 from $1 per 1,000 calls. Check where it processes data before relying on it.</li></ul></div>
   </div>
   <div class="callout" style="margin-top:22px">Any setup can run open-source agents and crawlers in the client's own account. The search API it calls still decides where the queries go. Whether a query is confidential is a question for the client: a list of searches can reveal a deal before it is announced.</div>
   <aside class="notes"><p>This is the main constraint for regulated clients, and it differs from last week. For documents, all three clouds had good options inside the boundary. For web search, AWS and Google Cloud do; Azure does not, because Microsoft routes all web search through Bing outside the compliance boundary. Claude in Foundry and on Vertex has only the basic search tool, and Anthropic does not say which provider runs it, so assume queries leave the cloud.</p></aside>
@@ -1154,6 +1207,7 @@ September, driven by heat pump installations…
         <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/C-benchmarks.md" target="_blank">Research C: benchmarks</a></li>
         <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/D-deep-research.md" target="_blank">Research D: deep research and RL</a></li>
         <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/E-citations.md" target="_blank">Research E: citations and checking</a></li>
+        <li><a href="https://github.com/benreeve1984/at-the-frontier/blob/main/web-research/research/F-scale-and-retirements.md" target="_blank">Research F: scale and retired products</a></li>
       </ul>
     </div>
   </div>
