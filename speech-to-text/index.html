@@ -158,10 +158,51 @@
   <aside class="notes"><p>Step through the five stages. The waveform is computed in the browser from a simple synthetic voice saying "seven six", then analysed with a real Fourier transform. At the last step, play it as a phone line: "seven" and "six" both start with "s", which sits mostly above 4 kHz, so on a call the model has much less to go on. This is one reason contact-centre audio scores worse than meeting audio.</p><p>"Try your own voice" draws a live spectrogram from the microphone. Nothing is recorded or sent. Say "s" and "f", then a vowel, and watch where the energy sits.</p></aside>
 </section>
 
+<section class="slide" id="arch" data-section="[01] How it works">
+  <span class="kicker">01 · How it works</span>
+  <h2>The encoder and the decoder</h2>
+  <p class="lede" style="font-size:19px; margin:-6px 0 0">Every modern system has two parts. The encoder turns the picture of sound into vectors; the decoder turns the vectors into words. The vision models in session 1 work the same way.</p>
+  <svg id="ar-svg" viewBox="0 0 1300 252" role="img" aria-label="Diagram: the picture of sound goes into an encoder, which outputs one vector per slice; a decoder reads the vectors and writes the words seven six"></svg>
+  <div class="ar-cards">
+    <div class="card ar-card" data-step="1">
+      <span class="label" style="--c:var(--teal)">Encoder · listens</span>
+      <dl>
+        <dt>Job</dt><dd>Works out which sounds are present, judging each one by the sound around it.</dd>
+        <dt>Reads</dt><dd>The picture of sound: 100 frames a second.</dd>
+        <dt>Writes</dt><dd>One vector every 40–80 ms, 512 to 1,280 numbers each. Not letters and not tokens.</dd>
+        <dt>Text model it resembles</dt><dd>BERT: each slice can look both ways. Live models limit how far ahead it looks.</dd>
+        <dt>Built from</dt><dd>A stack of layers mixing attention and convolution (a Conformer). Whisper uses a plain Transformer, 32 layers in the large model.</dd>
+      </dl>
+    </div>
+    <div class="card ar-card" data-step="2">
+      <span class="label" style="--c:var(--blue)">Decoder · writes</span>
+      <dl>
+        <dt>Job</dt><dd>Turns sounds into written words: spelling and word choice, and in larger decoders punctuation and numbers.</dd>
+        <dt>Reads</dt><dd>The encoder's vectors and, in most designs, the words it has written so far.</dd>
+        <dt>Writes</dt><dd>Text tokens: letters or word pieces, as a text model does.</dd>
+        <dt>Text model it resembles</dt><dd>GPT: it writes left to right. CTC is the exception; it labels each vector on its own.</dd>
+        <dt>Size</dt><dd>From a single layer (CTC) to a whole language model (speech LLM).</dd>
+      </dl>
+    </div>
+    <div class="card ar-card ar-diff" data-step="3">
+      <span class="label">Where the four designs differ</span>
+      <dl>
+        <dt>CTC</dt><dd>One small layer labels each vector on its own.</dd>
+        <dt>Transducer</dt><dd>Adds a small memory of the words so far.</dd>
+        <dt>Encoder–decoder</dt><dd>A full text decoder that can look at any vector in the window.</dd>
+        <dt>Speech LLM</dt><dd>A general language model reads the vectors as if they were word tokens.</dd>
+      </dl>
+      <p>The encoder changes little between them. The differences are in the decoder, and they set both speed and accuracy.</p>
+    </div>
+  </div>
+  <i data-step="1"></i><i data-step="2"></i><i data-step="3"></i>
+  <aside class="notes"><p>Step through: the picture of sound, then the encoder, then the decoder. The encoder first squeezes 100 frames a second down to one vector every 40 ms (4×) or 80 ms (8×, NVIDIA's Fast Conformer, Qwen3-ASR, Voxtral). Fewer vectors make everything after it faster and cheaper. Then a stack of layers lets each slice take account of the others: attention looks anywhere in the window, convolution looks at close neighbours, which suits the shape of a single sound.</p><p>The output is continuous vectors, not tokens. The letters under the vectors are only a rough guide to what each one carries; no vector is labelled. That is the decoder's core problem: about 12 vectors a second against 2–3 words a second, and nobody said which vector belongs to which letter. The four designs on the next two slides are four answers to that problem.</p><p>The comparison to text models: the encoder is like BERT (reads in both directions, outputs vectors); the decoder is like GPT (writes one token at a time). The encoder can be pre-trained on unlabelled audio (wav2vec 2.0, Meta's Omnilingual), which is how coverage reached 1,000+ languages; the decoder needs audio with transcripts.</p><p>For scale: in NVIDIA's 0.6B Parakeet models almost all the parameters are in the encoder; in Whisper large-v3 (1.55B) about 40% is the encoder and 60% the decoder (our calculation from the published layer sizes); in a speech LLM the decoder is the language model and holds most of them. Sources: research pack A, sections 2.3, 2.4 and 2.6; Conformer (arXiv 2005.08100); Fast Conformer (arXiv 2305.05084); Whisper paper.</p></aside>
+</section>
+
 <section class="slide" id="decoders" data-section="[01] How it works">
   <span class="kicker">01 · How it works</span>
   <h2>When each design writes its words</h2>
-  <p class="lede" style="font-size:19px; margin:-6px 0 0">Every modern system has an encoder that summarises the sound and a decoder that writes the words. The decoder decides when text can appear, which decides whether the design can be used live.</p>
+  <p class="lede" style="font-size:19px; margin:-6px 0 0">The decoder decides when text can appear, which decides whether the design can be used live.</p>
   <div class="dc">
     <div>
       <div class="tabs" id="dc-tabs" role="radiogroup" aria-label="Decoder family"></div>
@@ -191,7 +232,7 @@
   <i data-step="1"></i><i data-step="2"></i><i data-step="3"></i>
   <aside class="notes" id="ld-notes"><p>Step through the four designs on the same sentence: "I booked with Northwind for the flight to Nice on the fourth." Watch the word "Nice". The lines show everything the model can use when it writes that word.</p>
   <p>CTC labels each slice of sound on its own and never looks at what it has already written, so it spells by sound. The transducer adds a small language model over the words so far, which fixes spelling, but it only knows the past and only common words, so "niece" beats "Nice". The encoder–decoder (Whisper) hears the whole window, including "on the fourth" after the word, and has a much stronger language model, so it gets "Nice" and writes "4th" itself; it still cannot know the company is spelled "Northwind". The speech LLM gets that from the prompt.</p>
-  <p>The encoder is broadly the same at every step: usually a Conformer reading the picture of sound from two slides back. The gains come from giving the decoder more to condition on, and each step costs speed: the example models run from about 21,000 times real time down to about 470 times on the same leaderboard. Note that Whisper is not the most accurate on English here; its 2022 gain was robustness across accents, noise and 99 languages. The example sentence and transcripts are illustrative; the speeds and error rates are from the Hugging Face Open ASR Leaderboard, November 2026.</p></aside>
+  <p>The encoder is broadly the same at every step: usually a Conformer reading the picture of sound from slide 6. The gains come from giving the decoder more to condition on, and each step costs speed: the example models run from about 21,000 times real time down to about 470 times on the same leaderboard. Note that Whisper is not the most accurate on English here; its 2022 gain was robustness across accents, noise and 99 languages. The example sentence and transcripts are illustrative; the speeds and error rates are from the Hugging Face Open ASR Leaderboard, November 2026.</p></aside>
 </section>
 
 <section class="slide" data-section="[01] How it works">

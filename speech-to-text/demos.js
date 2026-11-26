@@ -911,3 +911,89 @@ safe('streaming methods', function () {
   s.addEventListener('slide:enter', play);
   frame(END);
 });
+
+/* ---------- encoder and decoder: one picture of the pipeline ---------- */
+safe('encoder decoder', function () {
+  const s = document.getElementById('arch'); if (!s) return;
+  const svg = document.getElementById('ar-svg');
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  // "seven six" in 20 ms frames: [phone, first frame, end frame]
+  const PH = [['s', 0, 6], ['e', 6, 12], ['v', 12, 16], ['e', 16, 20], ['n', 20, 25], ['·', 25, 28], ['s', 28, 34], ['i', 34, 39], ['k', 39, 42], ['s', 42, 48], ['·', 48, 50]];
+  const phoneAt = f => PH.find(p => f >= p[1] && f < p[2])[0];
+  const NF = 50, NR = 20;
+  // rough energy by phone and band (row 0 = low pitch)
+  function energy(ph, r, f) {
+    const n = .15 * rnd();
+    if (ph === 's') return r > 12 ? .55 + .4 * rnd() : n * .6;
+    if (ph === 'e') return Math.max(Math.exp(-((r - 3) ** 2) / 2), .8 * Math.exp(-((r - 9) ** 2) / 2), r < 1 ? .7 : 0) * (.8 + .2 * rnd()) + n;
+    if (ph === 'i') return Math.max(Math.exp(-((r - 1.5) ** 2) / 2), .75 * Math.exp(-((r - 12) ** 2) / 2.5)) * (.8 + .2 * rnd()) + n;
+    if (ph === 'v') return (r < 3 ? .45 : .18 * rnd()) + n * .5;
+    if (ph === 'n') return (r < 4 ? .75 - r * .1 : .05) + n * .5;
+    if (ph === 'k') return f === 41 ? (r > 5 && r < 15 ? .6 + .3 * rnd() : .2) : .03;
+    return .03 * rnd();
+  }
+  const el = (tag, attrs, txt) => `<${tag} ${Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(' ')}>${txt || ''}</${tag}>`;
+  const arrow = (x1, x2, y) => `<line x1="${x1}" y1="${y}" x2="${x2 - 6}" y2="${y}" stroke="var(--ink-3)" stroke-width="1.5"/><path d="M${x2 - 8} ${y - 5} L${x2} ${y} L${x2 - 8} ${y + 5}Z" fill="var(--ink-3)"/>`;
+  let out = '';
+  // panel 0: picture of sound
+  const sx = 10, sy = 52, cw = 4.8, chh = 6;
+  out += el('text', { x: sx, y: 30, class: 'ar-h' }, 'Picture of sound');
+  for (let f = 0; f < NF; f++) for (let r = 0; r < NR; r++) {
+    const e = Math.min(1, energy(phoneAt(f), r, f));
+    out += `<rect x="${sx + f * cw}" y="${sy + (NR - 1 - r) * chh}" width="${cw}" height="${chh}" fill="var(--blue)" fill-opacity="${(.04 + .9 * e).toFixed(2)}"/>`;
+  }
+  out += `<rect x="${sx}" y="${sy}" width="${NF * cw}" height="${NR * chh}" fill="none" stroke="var(--line-2)"/>`;
+  out += el('text', { x: sx, y: sy + NR * chh + 20 }, '"seven six", about 1 second');
+  out += el('text', { x: sx, y: sy + NR * chh + 37, class: 'ar-c' }, '100 frames a second · 80–128 numbers each');
+  // panel 1: encoder
+  const ex = 300, ew = 340, d0 = 420, dd = 19, rows = [205, 160, 120, 80];
+  let g1 = arrow(256, ex - 4, 112);
+  g1 += `<rect x="${ex}" y="10" width="${ew}" height="240" fill="#fff" stroke="var(--teal)" stroke-width="1.5"/>`;
+  g1 += el('text', { x: ex + 12, y: 34, class: 'ar-h' }, 'Encoder');
+  // straight links between layers
+  for (let i = 0; i < 12; i++) g1 += `<line x1="${d0 + i * dd}" y1="${rows[3]}" x2="${d0 + i * dd}" y2="${rows[0]}" stroke="var(--line)" />`;
+  // attention arcs from one slice in layer 2, convolution to its neighbours
+  const hi = 6, hy = rows[2];
+  for (let i = 0; i < 12; i++) if (i !== hi) {
+    const x1 = d0 + hi * dd, x2 = d0 + i * dd, cy = hy - 8 - Math.abs(i - hi) * 3;
+    g1 += `<path d="M${x1} ${hy} Q${(x1 + x2) / 2} ${cy} ${x2} ${hy}" fill="none" stroke="var(--blue)" stroke-opacity=".55" stroke-width="1.2"/>`;
+  }
+  [hi - 1, hi + 1].forEach(i => { g1 += `<line x1="${d0 + hi * dd}" y1="${hy}" x2="${d0 + i * dd}" y2="${hy}" stroke="var(--orange)" stroke-width="4" stroke-linecap="round"/>`; });
+  const rl = ['squeeze 4–8×', 'layer 1', 'layer 2', 'layer n'];
+  rows.forEach((y, k) => {
+    g1 += el('text', { x: ex + 12, y: y + 4 }, rl[k]);
+    for (let i = 0; i < 12; i++) g1 += k === 0 ? `<rect x="${d0 + i * dd - 5}" y="${y - 5}" width="10" height="10" fill="var(--paper-2)" stroke="var(--line-2)"/>` : `<circle cx="${d0 + i * dd}" cy="${y}" r="${k === 2 && i === hi ? 6 : 4.5}" fill="${k === 2 && i === hi ? 'var(--blue)' : 'var(--teal)'}"/>`;
+  });
+  g1 += `<line x1="${ex + 12}" y1="230" x2="${ex + 30}" y2="230" stroke="var(--blue)" stroke-opacity=".6" stroke-width="1.5"/>` + el('text', { x: ex + 35, y: 234, class: 'ar-c' }, 'attention: any slice');
+  g1 += `<line x1="${ex + 172}" y1="230" x2="${ex + 190}" y2="230" stroke="var(--orange)" stroke-width="4" stroke-linecap="round"/>` + el('text', { x: ex + 196, y: 234, class: 'ar-c' }, 'convolution: neighbours');
+  // vectors: one column per 80 ms; similar sounds get similar patterns
+  const vx = 690, vy = 52, vc = 17, vh = 10, base = {};
+  g1 += arrow(ex + ew + 4, vx - 6, 112);
+  g1 += el('text', { x: vx, y: 30, class: 'ar-h' }, 'Vectors');
+  for (let c = 0; c < 12; c++) {
+    const ph = phoneAt(Math.min(NF - 1, Math.floor((c + .5) * 4.17)));
+    base[ph] = base[ph] || Array.from({ length: 10 }, () => rnd() * 2 - 1);
+    for (let r = 0; r < 10; r++) {
+      const v = Math.max(-1, Math.min(1, base[ph][r] + (rnd() - .5) * .35));
+      g1 += `<rect x="${vx + c * vc}" y="${vy + r * vh}" width="${vc - 3}" height="${vh - 1}" fill="${v > 0 ? 'var(--teal)' : 'var(--orange)'}" fill-opacity="${(.12 + .8 * Math.abs(v)).toFixed(2)}"/>`;
+    }
+    g1 += el('text', { x: vx + c * vc + 7, y: vy + 10 * vh + 18, 'text-anchor': 'middle', class: 'ar-c' }, ph);
+  }
+  g1 += el('text', { x: vx, y: vy + 10 * vh + 37 }, 'one every 80 ms, not tokens');
+  g1 += el('text', { x: vx, y: vy + 10 * vh + 54, class: 'ar-c' }, 'letters: a rough guide only');
+  // panel 2: decoder and its output
+  const dx = 925;
+  let g2 = arrow(vx + 12 * vc + 2, dx - 4, 112);
+  g2 += `<rect x="${dx}" y="62" width="150" height="100" fill="#fff" stroke="var(--blue)" stroke-width="1.5"/>`;
+  g2 += el('text', { x: dx + 14, y: 92, class: 'ar-h' }, 'Decoder');
+  g2 += el('text', { x: dx + 14, y: 116, class: 'ar-c' }, 'reads the vectors,');
+  g2 += el('text', { x: dx + 14, y: 132, class: 'ar-c' }, 'writes text tokens');
+  g2 += arrow(dx + 154, 1116, 112);
+  g2 += el('text', { x: 1120, y: 30, class: 'ar-h' }, 'Text');
+  [['seven', 1120, 64], ['six', 1202, 44]].forEach(([t, x, w]) => { g2 += `<rect x="${x}" y="94" width="${w + 12}" height="34" fill="#fff" stroke="var(--blue)"/>` + el('text', { x: x + 6, y: 117, class: 'ar-tok' }, t); });
+  ['12 vectors in,', '2 words out.', 'Which vector is', 'which letter?'].forEach((t, i) => { g2 += el('text', { x: 1120, y: 156 + i * 16, class: 'ar-c' }, t); });
+  svg.innerHTML = out + `<g class="ar-g g1">${g1}</g><g class="ar-g g2">${g2}</g>`;
+  const draw = st => { svg.querySelector('.g1').classList.toggle('on', st >= 1); svg.querySelector('.g2').classList.toggle('on', st >= 2); };
+  s.addEventListener('slide:step', e => draw(e.detail.step));
+  draw(0);
+});
