@@ -707,3 +707,102 @@ safe('decision guide', function () {
   window.__guidePick = pick; // used by the automated combination checks
   run();
 });
+
+/* ---------- the four designs in use today: what each can use to choose a word ---------- */
+safe('design ladder', function () {
+  const s = document.getElementById('ladder'); if (!s) return;
+  const svg = document.getElementById('ld-svg'), side = document.getElementById('ld-side'), text = document.getElementById('ld-text');
+  // spoken words and how many audio slices each takes
+  const SPOKEN = [['I', 1], ['booked', 2], ['with', 1], ['North', 2], ['wind', 2], ['for', 1], ['the', 1], ['flight', 2], ['to', 1], ['Nice', 2], ['on', 1], ['the', 1], ['fourth', 2]];
+  const LEAD = 1, NF = SPOKEN.reduce((a, w) => a + w[1], 0) + 2;
+  let f = LEAD; const span = SPOKEN.map(([, n]) => { const r = [f, f + n]; f += n; return r; });
+  const TARGET = 9; // "Nice"
+  // tokens: [text, spoken word indices it covers, mark] — mark: err (wrong), fix (fixed at this step), '' (fine)
+  const R = [
+    { k: 'ctc', name: 'CTC', dec: 'Per-slice classifier: no memory of what it wrote',
+      toks: [['i', [0]], ['bookt', [1], 'err'], ['with', [2]], ['nort', [3], 'err'], ['wind', [4]], ['for', [5]], ['the', [6]], ['flite', [7], 'err'], ['to', [8]], ['neece', [9], 'err'], ['on', [10]], ['the', [11]], ['fourth', [12]]],
+      see: ['yes', 'no', 'Some, through the encoder', 'no', 'no'],
+      how: 'Labels every slice of sound on its own, then merges repeats. It never looks back at the words it has written, so it spells by sound.',
+      fix: 'Replaced the 1990s production line (sound model, pronunciation dictionary, language model, search) with one network.',
+      cost: 'Names, rare words and grammar need an outside language model or a word list bolted on.',
+      ex: [['IBM Granite Speech 5.0 TurboCTC', '0.47B', '7.3%', '21,400×']], eg: 'wav2vec 2.0, Meta MMS and Omnilingual (CTC versions), IBM Granite TurboCTC' },
+    { k: 'rnnt', name: 'Transducer', dec: 'Prediction network: remembers the words so far',
+      toks: [['i', [0]], ['booked', [1], 'fix'], ['with', [2]], ['north', [3], 'fix'], ['wind', [4]], ['for', [5]], ['the', [6]], ['flight', [7], 'fix'], ['to', [8]], ['niece', [9], 'err'], ['on', [10]], ['the', [11]], ['fourth', [12]]],
+      see: ['yes', 'yes', 'A short way ahead', 'A word list at most', 'a little'],
+      how: 'Writes as the audio arrives. A small language model over the words already written steers each choice, so the spelling comes out right.',
+      fix: 'Real words and common phrases ("flight", not "flite"), with text appearing while the person is still speaking.',
+      cost: 'It knows only what has been said so far and only common words: "niece" is a far likelier word than "Nice".',
+      ex: [['NVIDIA Parakeet TDT 0.6B v2', '0.6B', '6.9%', '6,100×']], eg: 'Most live services; Google on-device; NVIDIA Parakeet and Nemotron streaming' },
+    { k: 'aed', name: 'Encoder–decoder', dec: 'Text decoder: can attend to any part of the window',
+      toks: [['I', [0], 'fix'], ['booked', [1]], ['with', [2]], ['North', [3]], ['Wind', [4], 'err'], ['for', [5]], ['the', [6]], ['flight', [7]], ['to', [8]], ['Nice', [9], 'fix'], ['on', [10]], ['the', [11]], ['4th.', [12], 'fix']],
+      see: ['yes', 'yes', 'The whole 30-second window', 'A short text hint', 'some'],
+      how: 'Hears a whole window first, then writes word by word like a translator, looking at any part of the audio, before or after the word.',
+      fix: 'Later words settle earlier ones ("on the fourth" suggests a place, not a relative). It writes capitals, punctuation and "4th" itself.',
+      cost: 'Must wait for the window. Its text decoder can keep writing with no audio behind it: invented text. It cannot know how a client spells its name.',
+      ex: [['OpenAI Whisper large-v3', '1.55B', '8.2%', '470×']], eg: 'OpenAI Whisper, NVIDIA Canary' },
+    { k: 'llm', name: 'Speech LLM', dec: 'Language model: reads audio tokens alongside your prompt',
+      toks: [['I', [0]], ['booked', [1]], ['with', [2]], ['Northwind', [3, 4], 'fix'], ['for', [5]], ['the', [6]], ['flight', [7]], ['to', [8]], ['Nice', [9]], ['on', [10]], ['the', [11]], ['4th.', [12]]],
+      see: ['yes', 'yes', 'The whole recording', 'Yes: topic, names, format', 'a lot'],
+      how: 'An audio encoder turns the sound into tokens that a general language model reads together with a text prompt, then it writes the transcript.',
+      fix: 'Names and jargon from the prompt ("Northwind"), world knowledge, and instructions such as "write numbers as digits".',
+      cost: 'Larger and slower per stream. It can paraphrase or invent, and live use needs special training.',
+      ex: [['Alibaba Qwen3-ASR 1.7B', '1.7B', '6.1%', '840×'], ['Mistral Voxtral Small', '24B', '7.4%', '100×']], eg: 'OpenAI GPT-Transcribe, Gemini, Voxtral, Qwen3-ASR, NVIDIA Nemotron 3.5 Transcribe' },
+  ];
+  const ROWS = ['The sound of this word', 'The words already written', 'The sound still to come', 'Your instructions and context', 'General knowledge'];
+  const W = 780, X0 = 30, X1 = 760, fx = i => X0 + (X1 - X0) * i / NF, fw = (X1 - X0) / NF;
+  const Y = { prompt: 10, tok: 92, dec: 158, enc: 236, fr: 296 };
+  const C = { blue: '#1a2fd0', purple: '#7b4fd6', orange: '#e5892a', green: '#2c9a58', red: '#d6453b', line: '#cfd2d9' };
+  let cur = 0, timers = [];
+  function draw(i) {
+    cur = i; timers.forEach(clearTimeout); timers = [];
+    const r = R[i];
+    // token boxes, spread across the width in proportion to their length
+    const widths = r.toks.map(([t]) => t.length * 8.2 + 16), gap = 6, total = widths.reduce((a, b) => a + b, 0) + gap * (widths.length - 1);
+    let x = X0 + (X1 - X0 - total) / 2;
+    const tok = r.toks.map(([t, w, m], j) => { const b = { t, w, m, x, wd: widths[j] }; x += widths[j] + gap; return b; });
+    const ti = tok.findIndex(b => b.w.includes(TARGET)), T = tok[ti], tc = T.x + T.wd / 2;
+    const vis = k => { // 2 = used directly, 1 = only through the encoder, 0 = not available
+      const [a, b] = span[TARGET];
+      if (i >= 2) return 2;
+      if (k >= a && k < b) return 2;
+      if (i === 0) return 1;
+      return k < b + 1 ? 1 : 0;
+    };
+    const parts = [];
+    // prompt and knowledge boxes
+    if (i === 3) parts.push(`<g class="ld-in"><rect x="${X0}" y="${Y.prompt}" width="420" height="34" rx="2" fill="#fdf4ea" stroke="${C.orange}"/><text x="${X0 + 12}" y="${Y.prompt + 22}" class="ld-p">Prompt: "Call for Northwind Travel. Write numbers as digits."</text></g>`);
+    if (i >= 1) {
+      const kw = i === 1 ? .35 : i === 2 ? .65 : 1;
+      parts.push(`<g class="ld-in"><g opacity="${kw}"><rect x="${X1 - 190}" y="${Y.prompt}" width="190" height="34" rx="17" fill="#f3eefc" stroke="${C.purple}"/><text x="${X1 - 95}" y="${Y.prompt + 22}" text-anchor="middle" class="ld-p">Knowledge of language: ${['', 'a little', 'some', 'a lot'][i]}</text></g></g>`);
+    }
+    // bands
+    parts.push(`<rect x="${X0}" y="${Y.dec}" width="${X1 - X0}" height="34" fill="#fff" stroke="${C.line}"/><text x="${X0 + 10}" y="${Y.dec + 22}" class="ld-b">Decoder · ${r.dec}</text>`);
+    parts.push(`<rect x="${X0}" y="${Y.enc}" width="${X1 - X0}" height="34" fill="#fff" stroke="${C.line}"/><text x="${X0 + 10}" y="${Y.enc + 22}" class="ld-b">Encoder · turns the picture of sound into one summary per slice (the same idea at every step)</text>`);
+    // what the target word can use: fan from the token down to the audio it can attend to
+    const vs = [...Array(NF).keys()].filter(k => vis(k) === 2), vlo = fx(Math.min(...vs)), vhi = fx(Math.max(...vs) + 1);
+    parts.push(`<path class="ld-l fan" d="M${tc - 8},${Y.tok + 30} L${tc + 8},${Y.tok + 30} L${vhi},${Y.fr} L${vlo},${Y.fr} Z" fill="${C.blue}"/>`);
+    parts.push(`<path class="ld-l" d="M${tc},${Y.tok + 30} L${vlo},${Y.fr}" stroke="${C.blue}" stroke-width="1.5" fill="none"/><path class="ld-l" d="M${tc},${Y.tok + 30} L${vhi},${Y.fr}" stroke="${C.blue}" stroke-width="1.5" fill="none"/>`);
+    // words already written: arcs above the token row
+    if (i >= 1) tok.slice(0, ti).forEach(b => { const bc = b.x + b.wd / 2, h = 18 + (tc - bc) * .12; parts.push(`<path class="ld-l" d="M${tc},${Y.tok} C${tc},${Y.tok - h} ${bc},${Y.tok - h} ${bc},${Y.tok}" stroke="${C.purple}" stroke-width="1.4" fill="none" opacity=".8"/>`); });
+    if (i === 3) parts.push(`<path class="ld-l" d="M${X0 + 300},${Y.prompt + 34} C${X0 + 300},${Y.tok - 30} ${tc},${Y.tok - 40} ${tc},${Y.tok}" stroke="${C.orange}" stroke-width="2" fill="none"/>`);
+    if (i >= 1) parts.push(`<path class="ld-l" d="M${X1 - 95},${Y.prompt + 34} C${X1 - 95},${Y.tok - 20} ${tc + 30},${Y.tok - 30} ${tc + 6},${Y.tok}" stroke="${C.purple}" stroke-width="${i}" fill="none" stroke-dasharray="4 3" opacity=".7"/>`);
+    // audio slices and the spoken words under them
+    for (let k = 0; k < NF; k++) { const v = vis(k), own = k >= span[TARGET][0] && k < span[TARGET][1]; parts.push(`<rect x="${fx(k) + 1}" y="${Y.fr}" width="${fw - 2}" height="38" fill="${own ? C.blue : v === 2 ? '#9aa6ee' : v === 1 ? '#dfe3fb' : '#f3f4f6'}" stroke="${v ? '#c9cff5' : '#e2e4e9'}"/>`); }
+    SPOKEN.forEach(([w], j) => parts.push(`<text x="${(fx(span[j][0]) + fx(span[j][1])) / 2}" y="${Y.fr + 58}" text-anchor="middle" class="ld-s ${j === TARGET ? 'tgt' : ''}">${w}</text>`));
+    parts.push(`<text x="${X0}" y="${Y.fr - 6}" class="ld-cap">Audio slices · dark: this word · mid: used directly · pale: only through the encoder · grey: not heard yet</text>`);
+    // token row last, so it sits on top
+    tok.forEach((b, j) => parts.push(`<g class="ld-t ${b.m} ${j === ti ? 'tgt' : ''}" style="--d:${j * 70}ms"><rect x="${b.x}" y="${Y.tok}" width="${b.wd}" height="30" rx="2"/><text x="${b.x + b.wd / 2}" y="${Y.tok + 20}" text-anchor="middle">${esc(b.t)}</text></g>`));
+    svg.innerHTML = parts.join('');
+    svg.classList.remove('go'); void svg.getBoundingClientRect(); requestAnimationFrame(() => svg.classList.add('go'));
+    text.innerHTML = r.toks.map(([t, , m]) => `<span class="${m || ''}">${esc(t)}</span>`).join(' ') + `<span class="ld-key"><i class="err"></i>wrong <i class="fix"></i>fixed at this step</span>`;
+    side.innerHTML = `<span class="label">Step ${i + 1} of 4</span><h3>${r.name}</h3><p class="src" style="margin:2px 0 10px">${r.eg}</p>
+      <table class="ld-see">${ROWS.map((q, j) => { const v = r.see[j], c = v === 'yes' ? 'ok' : v === 'no' ? 'no' : 'mid'; return `<tr><td>${q}</td><td class="${c}">${v === 'yes' ? '✓' : v === 'no' ? '✗' : v}</td></tr>`; }).join('')}</table>
+      <p><b>How it decides.</b> ${r.how}</p><p class="ok-t"><b>What this fixes.</b> ${r.fix}</p><p class="bad-t"><b>What it costs.</b> ${r.cost}</p>
+      <table class="ld-ex"><tr><th>Example</th><th>Size</th><th>English error</th><th>Speed</th></tr>${r.ex.map(e => `<tr>${e.map(v => `<td>${v}</td>`).join('')}</tr>`).join('')}</table>
+      <p class="src" style="margin-top:4px">Open ASR Leaderboard, Nov 2026: mean WER on 9 English sets; speed is audio processed per second of one GPU's time, which also depends on the software.</p>`;
+    setTabs(R[i].k);
+  }
+  const setTabs = radios(document.getElementById('ld-tabs'), R.map((r, i) => [r.k, `${i + 1}. ${r.name}`]), 'ctc', v => draw(R.findIndex(r => r.k === v)));
+  s.addEventListener('slide:step', e => draw(e.detail.step));
+  draw(0);
+});

@@ -175,6 +175,23 @@
   <aside class="notes"><p>Click through the four families. CTC labels each frame on its own, then tidies up. A transducer writes as it hears and remembers what it wrote: the standard for live transcription. An encoder–decoder such as Whisper waits for a 30-second window and writes like a translator, which is accurate but cannot stream without tricks, and can invent text in silence. A speech LLM is a language model that reads audio; it follows instructions, which is why every 2026 flagship uses this design.</p><p>The Open ASR Leaderboard paper (2025) found the most accurate systems pair Conformer encoders with transformer decoders, and the fastest use CTC or TDT decoders. Research pack A.</p></aside>
 </section>
 
+<section class="slide" id="ladder" data-section="[01] How it works">
+  <span class="kicker">01 · How it works · The four designs in use today</span>
+  <h2>What each design uses to choose a word</h2>
+  <div class="tabs" id="ld-tabs" role="radiogroup" aria-label="Design" style="margin-top:2px"></div>
+  <div class="ld">
+    <div>
+      <svg id="ld-svg" viewBox="0 0 780 380" role="img" aria-label="Diagram of what the model can use when it writes the word Nice"></svg>
+      <div class="ld-out"><span class="label">What it writes</span><div id="ld-text"></div></div>
+    </div>
+    <div class="ld-side" id="ld-side"></div>
+  </div>
+  <i data-step="1"></i><i data-step="2"></i><i data-step="3"></i>
+  <aside class="notes" id="ld-notes"><p>Step through the four designs on the same sentence: "I booked with Northwind for the flight to Nice on the fourth." Watch the word "Nice". The lines show everything the model can use when it writes that word.</p>
+  <p>CTC labels each slice of sound on its own and never looks at what it has already written, so it spells by sound. The transducer adds a small language model over the words so far, which fixes spelling, but it only knows the past and only common words, so "niece" beats "Nice". The encoder–decoder (Whisper) hears the whole window, including "on the fourth" after the word, and has a much stronger language model, so it gets "Nice" and writes "4th" itself; it still cannot know the company is spelled "Northwind". The speech LLM gets that from the prompt.</p>
+  <p>The encoder is broadly the same at every step: usually a Conformer reading the picture of sound from two slides back. The gains come from giving the decoder more to condition on, and each step costs speed: the example models run from about 21,000 times real time down to about 470 times on the same leaderboard. Note that Whisper is not the most accurate on English here; its 2022 gain was robustness across accents, noise and 99 languages. The example sentence and transcripts are illustrative; the speeds and error rates are from the Hugging Face Open ASR Leaderboard, November 2026.</p></aside>
+</section>
+
 <section class="slide" data-section="[01] How it works">
   <span class="kicker">01 · How it works</span>
   <h2>Whisper and the speech LLM</h2>
