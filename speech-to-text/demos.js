@@ -825,3 +825,89 @@ safe('design ladder', function () {
   s.addEventListener('slide:step', e => draw(e.detail.step));
   draw(0);
 });
+
+/* ---------- three ways to stream: one sentence, one clock ---------- */
+safe('streaming methods', function () {
+  const s = document.getElementById('stream3'); if (!s) return;
+  const WORDS = [['I', .3], ['booked', .7], ['with', .9], ['Northwind', 1.5], ['for', 1.7], ['the', 1.85], ['flight', 2.3], ['to', 2.45], ['Nice', 2.9], ['on', 3.1], ['the', 3.25], ['fourth', 3.8]];
+  const END = 5.5, SPEED = .55, X = t => 14 + t / END * 332, $ = id => document.getElementById(id);
+  const mean = a => a.reduce((x, y) => x + y, 0) / a.length;
+  // A: re-run every second; each run's transcript, then commit the prefix two runs agree on
+  const RUNS = [[1, ['I', 'book', 'with']], [2, ['I', 'booked', 'with', 'North', 'for']], [3, ['I', 'booked', 'with', 'Northwind', 'for', 'the', 'flight', 'to', 'niece']],
+    [4, WORDS.map(w => w[0])], [5, WORDS.map(w => w[0])]];
+  const commitAt = WORDS.map(() => null);
+  RUNS.forEach(([rt, hyp], k) => { if (!k) return; const prev = RUNS[k - 1][1]; let n = 0; while (n < hyp.length && n < prev.length && hyp[n] === prev[n]) n++; for (let j = 0; j < n; j++) if (commitAt[j] == null) commitAt[j] = rt; });
+  // B: half-second chunks, computed once the chunk plus 160 ms of look-ahead has arrived
+  const CH = .5, LA = .16, ready = c => (c + 1) * CH + LA;
+  const emitB = WORDS.map(([, e]) => ready(Math.ceil(e / CH - 1e-9) - 1));
+  // C: fixed 0.5 s delay, or a short delay that stretches on hard words
+  const FIX = .5, ADAPT = { Northwind: .6, Nice: .7, fourth: .25 };
+  const emitF = WORDS.map(([, e]) => e + FIX), emitA = WORDS.map(([w, e]) => e + (ADAPT[w] ?? .13));
+  const lag = em => mean(em.map((x, j) => x - WORDS[j][1]));
+  const levels = em => { // first row where the word does not overlap one already placed
+    const rows = [];
+    return em.map((x, j) => { const x0 = X(x), x1 = x0 + WORDS[j][0].length * 5.6 + 4; let r = 0; while ((rows[r] || []).some(([a, b]) => x0 < b && a < x1)) r++; (rows[r] = rows[r] || []).push([x0, x1]); return r; });
+  };
+  const LV = { F: levels(emitF), A: levels(emitA) };
+  $('sm-a-stat').innerHTML = `<span>Average lag <b>${lag(commitAt).toFixed(1)} s</b></span><span>Audio processed <b>15 s</b> for 5 s</span>`;
+  $('sm-b-stat').innerHTML = `<span>Average lag <b>${lag(emitB).toFixed(1)} s</b></span><span>Audio processed <b>once</b></span>`;
+  $('sm-c-stat').innerHTML = `<span>Average lag <b>${FIX.toFixed(1)} s</b> fixed, <b>${lag(emitA).toFixed(1)} s</b> adaptive</span><span>Audio processed <b>once</b></span>`;
+
+  const audio = t => { // shared top strip: speech heard so far
+    let p = `<rect x="${X(0)}" y="8" width="${X(END) - X(0)}" height="16" fill="#f3f4f6"/>`;
+    for (let k = 0; k < 47; k++) { const a = .1 + k * .08; if (a > Math.min(t, 3.8)) break; const hgt = 4 + 10 * Math.abs(Math.sin(k * 1.7) * Math.cos(k * .6)); p += `<rect x="${X(a)}" y="${16 - hgt / 2}" width="${X(.06) - X(0)}" height="${hgt}" fill="#e5892a" opacity=".8"/>`; }
+    return p + `<line x1="${X(t)}" x2="${X(t)}" y1="4" y2="196" stroke="#d6453b" stroke-width="1.2"/><text x="${X(0)}" y="36" class="sm-lab">audio heard so far</text>`;
+  };
+  function frame(t) {
+    $('sm-clock').textContent = t.toFixed(1) + ' s';
+    // A
+    let a = audio(t);
+    RUNS.forEach(([rt], k) => {
+      if (t < rt) return;
+      const y = 46 + k * 26;
+      a += `<rect x="${X(0)}" y="${y}" width="${X(rt - 1) - X(0)}" height="14" fill="url(#hatch)"/><rect x="${X(rt - 1)}" y="${y}" width="${X(rt) - X(rt - 1)}" height="14" fill="#3d50e6"/>`;
+      const inside = X(rt) + 110 > 356;
+      a += `<text x="${inside ? X(0) + 5 : X(rt) + 5}" y="${y + 11}" class="sm-lab ${inside ? 'halo' : ''}">run ${k + 1}: re-reads ${rt} s</text>`;
+    });
+    a = `<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#c9cff5"/><line x1="0" y1="0" x2="0" y2="6" stroke="#3d50e6" stroke-width="2"/></pattern></defs>` + a;
+    $('sm-a').innerHTML = a;
+    const last = [...RUNS].reverse().find(([rt]) => t >= rt);
+    $('sm-a-out').innerHTML = !last ? '<i class="w">waiting for the first run…</i>' : last[1].map((w, j) => `<span class="${commitAt[j] != null && t >= commitAt[j] ? 'c' : 'p'}">${w}</span>`).join(' ');
+    // B
+    let b = audio(t);
+    const nC = Math.ceil(END / CH), done = c => t >= ready(c), newest = [...Array(nC).keys()].filter(done).pop();
+    for (let c = 0; c < nC; c++) {
+      const x = X(c * CH) + 1, w = X(CH) - X(0) - 2;
+      for (let r = 0; r < 3; r++) b += `<rect x="${x}" y="${50 + r * 22}" width="${w}" height="18" fill="${c === newest ? '#1a2fd0' : done(c) ? '#9aa6ee' : '#fff'}" stroke="${done(c) ? 'none' : '#cfd2d9'}"/>`;
+      if (!done(c) && t >= (c + 1) * CH) b += `<rect x="${X((c + 1) * CH)}" y="50" width="${X(LA) - X(0)}" height="62" fill="#fdf4ea" stroke="#e5892a" stroke-dasharray="3 2"/>`;
+    }
+    if (newest != null) for (let c = Math.max(0, newest - 3); c < newest; c++) { const x1 = X(newest * CH) + 4, x2 = X(c * CH + CH / 2); b += `<path d="M${x1},50 C${x1},38 ${x2},38 ${x2},50" fill="none" stroke="#1a2fd0" stroke-width="1" opacity=".7"/>`; }
+    b += `<text x="${X(0)}" y="134" class="sm-lab"><tspan fill="#1a2fd0">■</tspan> computed now  <tspan fill="#9aa6ee">■</tspan> cached and reused  <tspan fill="#e5892a">▭</tspan> waiting for look-ahead</text>`;
+    b += `<text x="${X(0)}" y="150" class="sm-lab">Encoder layers, one column per 0.5 s chunk</text>`;
+    $('sm-b').innerHTML = b;
+    $('sm-b-out').innerHTML = WORDS.filter((_, j) => t >= emitB[j]).map(([w]) => `<span class="c">${w}</span>`).join(' ') || '<i class="w">waiting for the first chunk…</i>';
+    // C
+    let c = audio(t);
+    [['Fixed 0.5 s behind', emitF, 92, LV.F], ['Adaptive: waits on hard words', emitA, 176, LV.A]].forEach(([lab, em, y, lv]) => {
+      c += `<text x="${X(0)}" y="${y - 42}" class="sm-lab">${lab}</text><line x1="${X(0)}" x2="${X(END)}" y1="${y + 4}" y2="${y + 4}" stroke="#eceef2"/>`;
+      WORDS.forEach(([w, e], j) => {
+        if (t < em[j]) return;
+        const yy = y - lv[j] * 12, hard = em === emitA && em[j] - e > .3;
+        c += `<line x1="${X(e)}" y1="25" x2="${X(em[j])}" y2="${yy - 9}" stroke="${hard ? '#d6453b' : '#9aa6ee'}" stroke-width="${hard ? 1.2 : .7}" opacity=".6"/>`;
+        c += `<text x="${X(em[j])}" y="${yy}" class="sm-w ${hard ? 'hard' : ''}">${w}</text>`;
+      });
+    });
+    $('sm-c').innerHTML = c;
+    $('sm-c-out').innerHTML = `<span class="lbl">Red lines: words where the adaptive model chose to wait longer.</span>`;
+  }
+  let raf = 0, t0 = 0;
+  function play() {
+    cancelAnimationFrame(raf); t0 = performance.now();
+    const tick = now => { const t = Math.min(END, (now - t0) / 1000 * SPEED); frame(t); if (t < END && s.classList.contains('active')) raf = requestAnimationFrame(tick); };
+    if (reduced) { frame(END); return; }
+    raf = requestAnimationFrame(tick);
+  }
+  $('sm-play').addEventListener('click', play);
+  s.addEventListener('slide:enter', play);
+  frame(END);
+});

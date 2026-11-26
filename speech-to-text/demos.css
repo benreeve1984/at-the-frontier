@@ -478,3 +478,20 @@ table.dc-time tr.on td { background: var(--blue-soft); color: var(--ink); }
 .dc > div { min-width: 0; }
 .dc-reads .rd { flex-wrap: wrap; row-gap: 4px; }
 .dc-reads .cap { white-space: normal; flex: 1 1 200px; }
+/* --- streaming methods --- */
+.sm-bar { display: flex; align-items: center; gap: 12px; margin: -6px 0 10px; }
+.sm-clock { font-family: var(--f-mono); font-size: 14px; color: var(--red); min-width: 56px; }
+.patterns.sm { margin-top: 0; }
+.patterns.sm .pat { height: 610px; }
+.patterns.sm .pat p { font-size: 15px; margin-bottom: 8px; }
+.patterns.sm svg { width: 100%; height: auto; display: block; background: #fff; border: 1px solid var(--line); }
+.sm-lab { font-family: var(--f-mono); font-size: 9.5px; fill: var(--ink-3); }
+.sm-w { font-family: var(--f-body); font-size: 10.5px; fill: var(--ink-2); }
+.sm-w.hard { fill: var(--red); font-weight: 700; }
+.sm-out { min-height: 54px; font-family: Georgia, serif; font-size: 16px; line-height: 1.45; margin-top: 8px; }
+.sm-out .c { color: var(--ink); }
+.sm-out .p { color: var(--muted); font-style: italic; }
+.sm-out .w, .sm-out .lbl { font-family: var(--f-mono); font-size: 11px; color: var(--muted); font-style: normal; }
+.sm-stat { display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--line); padding-top: 6px; font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); }
+.sm-stat b { color: var(--ink); font-weight: 500; }
+.sm-lab.halo { paint-order: stroke; stroke: #fff; stroke-width: 3px; fill: var(--ink); }

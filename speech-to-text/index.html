@@ -220,22 +220,25 @@
   <aside class="notes"><p>The two architectures behind steps 3 and 4 of the previous slide. Whisper's lesson was data: about 130 times the largest public labelled collection, scraped from subtitled web video. The speech LLM's lesson is context: you can tell it what the call is about. Both figures on the right are vendor claims. The cost: speech LLMs are slower and dearer per stream, and a model that follows instructions can also paraphrase or invent.</p><p>OpenAI does not publish its transcription models' architecture; "speech LLM" is inferred from the token-based context window and the prompt input.</p></aside>
 </section>
 
-<section class="slide" data-section="[01] How it works">
+<section class="slide" id="stream3" data-section="[01] How it works">
   <span class="kicker">01 · How it works · Live transcription</span>
   <h2>Transcribing while someone is still speaking</h2>
-  <div class="patterns">
-    <div class="card pat rise" style="--i:0"><span class="label">2023 · Workaround</span><h3>Re-run a non-streaming model</h3><p>Transcribe a growing buffer again and again, and keep only the words two passes agree on. Simple, but slow (about 3.3 seconds) and wasteful.</p>
-      <div class="pimg"><img class="shot" src="../assets/speech-to-text/vendor/a-whisper-streaming-local-agreement.png" alt="Whisper-Streaming confirms only the common prefix of consecutive passes"></div>
+  <div class="sm-bar"><button type="button" class="mini" id="sm-play">Replay</button><span class="sm-clock" id="sm-clock">0.0 s</span><span class="src">Same sentence in all three, shown at about half speed. Each finishes speaking at 3.8 s.</span></div>
+  <div class="patterns sm">
+    <div class="card pat"><span class="label">2023 · Workaround</span><h3>Re-run a non-streaming model</h3><p>Every second, transcribe the whole buffer again from the start. Keep only the words two runs in a row agree on.</p>
+      <svg id="sm-a" viewBox="0 0 360 200" role="img" aria-label="Each run re-reads all the audio so far"></svg>
+      <div class="sm-out" id="sm-a-out"></div><div class="sm-stat" id="sm-a-stat"></div>
       <div class="eg">Whisper-Streaming (Macháček et al., 2023)</div></div>
-    <div class="card pat rise" style="--i:1"><span class="label">2023–2026 · Native</span><h3>Process small chunks and reuse past work</h3><p>Each new 80 ms chunk is processed once, reusing stored results from earlier chunks. The chunk size sets the trade-off between delay and accuracy.</p>
-      <div class="pimg"><img class="shot" src="../assets/speech-to-text/vendor/a-nemotron-streaming-caching-schema.png" alt="Cached keys and convolution states from earlier chunks reused for each new chunk"></div>
+    <div class="card pat"><span class="label">2023–2026 · Native</span><h3>Process small chunks and reuse past work</h3><p>Each new chunk is computed once, after a short look-ahead, and earlier results are kept in a cache. The chunk size trades delay against accuracy.</p>
+      <svg id="sm-b" viewBox="0 0 360 200" role="img" aria-label="Chunks computed once, earlier chunks cached"></svg>
+      <div class="sm-out" id="sm-b-out"></div><div class="sm-stat" id="sm-b-stat"></div>
       <div class="eg">NVIDIA Nemotron streaming; most transducer services</div></div>
-    <div class="card pat rise" style="--i:2"><span class="label">2025–2026 · Native</span><h3>Let the text run behind the audio</h3><p>The model writes text a set distance behind the audio, or decides word by word whether to wait for more. Meta trained its model to balance errors against delay.</p>
-      <div class="pimg"><img class="shot" src="../assets/speech-to-text/vendor/a-kyutai-dsm.png" alt="Delayed streams: the text stream is shifted behind the audio stream"></div>
-      <div class="eg">Kyutai STT, Mistral Voxtral Realtime, Meta Muse</div></div>
+    <div class="card pat"><span class="label">2025–2026 · Native</span><h3>Let the text run behind the audio</h3><p>Text is written a set distance behind the audio, or the model decides word by word whether to wait for more.</p>
+      <svg id="sm-c" viewBox="0 0 360 200" role="img" aria-label="Text tracks running behind the audio with fixed and adaptive delay"></svg>
+      <div class="sm-out" id="sm-c-out"></div><div class="sm-stat" id="sm-c-stat"></div>
+      <div class="eg">Fixed: Kyutai STT, Voxtral Realtime. Adaptive: Meta Muse</div></div>
   </div>
-  <p class="src" style="margin-top:10px">Images: Macháček, Dabre and Bojar (arXiv 2307.14743); NVIDIA Nemotron streaming model card (2026); Kyutai, Delayed Streams Modeling (arXiv 2509.08753).</p>
-  <aside class="notes"><p>Whisper was trained on 30-second windows and reads each window in both directions, so it cannot write the first word until it has heard the last. Purpose-built streaming models limit how far ahead they look. Every millisecond of look-ahead improves accuracy and adds delay; NVIDIA's model lets you choose 80, 160, 560 or 1,120 ms at run time without retraining.</p></aside>
+  <aside class="notes"><p>Press Replay and watch the same sentence come through three ways. Left: every second, Whisper re-reads all the audio so far; words only turn black when two runs agree, so they arrive in bursts about two seconds late, and the audio is processed many times over. Middle: a cache-aware streaming encoder computes each half-second chunk once, after a short look-ahead, and reuses the stored results for earlier chunks; words follow a few hundred milliseconds behind. Right: the text is a second stream running a fixed distance behind the audio (Kyutai, Voxtral Realtime), or a model that waits longer only on hard words such as "Northwind" and "Nice" (Meta Muse, trained to balance errors against delay).</p><p>The timings are illustrative, built from each method's design: one-second re-runs, half-second chunks with 160 ms look-ahead, a 0.5 s fixed delay. Real figures: Whisper-Streaming measured about 3.3 s behind; NVIDIA's model offers 80, 160, 560 or 1,120 ms chunks at run time; Kyutai's 1B model runs 0.5 s behind. Research pack A, section 2.5.</p></aside>
 </section>
 
 <section class="slide" id="post" data-section="[01] How it works">
