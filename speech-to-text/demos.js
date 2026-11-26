@@ -260,15 +260,16 @@ safe('spectrogram demo', function () {
 safe('decoder demo', function () {
   const s = document.getElementById('decoders'); if (!s) return;
   const frames = 'ss_eev_enn__sii_kss_'.split('');
+  // when text can appear, for the timing panel
   const D = {
-    ctc: { t: 'CTC', what: 'One label per frame, each chosen on its own. Merge repeats, then drop the blanks.',
-      good: 'Fast and simple. Streams naturally. Cannot invent words where there is no sound.', bad: 'Each frame ignores the words already written, so spelling and names suffer without a language model on top.', eg: 'NVIDIA Parakeet CTC, wav2vec 2.0, Meta MMS and Omnilingual ASR (CTC versions)' },
-    rnnt: { t: 'Transducer', what: 'Reads frames as they arrive and writes a word piece whenever it is confident, taking the text so far into account.',
-      good: 'Streams with low delay and uses context. The usual design for live transcription on phones and in the cloud.', bad: 'Harder to train. Accuracy drops a little when it can look only a short way ahead.', eg: 'Google on-device and Chirp streaming, NVIDIA Parakeet TDT, Amazon Transcribe streaming, most live APIs' },
-    aed: { t: 'Encoder–decoder', what: 'Listens to a whole window (30 seconds for Whisper), then writes the text word by word, like a translator.',
-      good: 'Very accurate, handles punctuation and formatting, and can translate.', bad: 'Must wait for the window, so it does not stream without tricks. Can invent fluent text in silence or noise.', eg: 'OpenAI Whisper, NVIDIA Canary' },
-    llm: { t: 'Speech LLM', what: 'An audio encoder turns sound into tokens that a language model reads with a text prompt, then writes the transcript.',
-      good: 'Follows instructions: names to expect, output format, summaries. Strong on context and rare words.', bad: 'Slower and dearer per minute. Shares the encoder–decoder risk of inventing text. Streaming needs extra engineering.', eg: 'OpenAI gpt-4o-transcribe, Gemini, Mistral Voxtral, Qwen3-ASR, IBM Granite Speech' },
+    ctc: { t: 'CTC', first: 'As each slice is processed', stream: 'Yes, natively', lag: 'A chunk plus a little look-ahead',
+      watch: 'Text comes out almost at once, but spelled by sound: the next slide shows why.' },
+    rnnt: { t: 'Transducer', first: 'Mid-sentence, whenever it is confident', stream: 'Yes: the standard for live services', lag: '0.1–0.3 s to a final transcript for the best',
+      watch: 'Early words can be revised as more audio arrives: the "partial results" of section 02.' },
+    aed: { t: 'Encoder–decoder', first: 'After the whole window (30 s for Whisper)', stream: 'Not natively; re-running a growing buffer gets to about 3.3 s', lag: 'Seconds',
+      watch: 'Waiting for the window is the price of hearing the whole sentence. In trailing silence its language model can keep writing.' },
+    llm: { t: 'Speech LLM', first: 'After the audio, or each chunk if trained to stream', stream: 'Only with special training (Voxtral Realtime, Meta Muse, GPT-Live-Transcribe)', lag: 'Batch; the newest live models 0.1–0.9 s to final',
+      watch: 'The same wait as the encoder–decoder unless trained to stream, and the same risk of invented text.' },
   };
   const tabs = document.getElementById('dc-tabs'), grid = document.getElementById('dc-frames'), out = document.getElementById('dc-out'), note = document.getElementById('dc-note');
   grid.innerHTML = frames.map((_, i) => `<i data-i="${i}"></i>`).join('');
@@ -278,7 +279,9 @@ safe('decoder demo', function () {
   function run(k) {
     mode = k; timers.forEach(clearTimeout); timers = []; out.innerHTML = ''; lit(0);
     const d = D[k];
-    note.innerHTML = `<p><b>How it works.</b> ${d.what}</p><p class="ok-t"><b>Good:</b> ${d.good}</p><p class="bad-t"><b>Watch:</b> ${d.bad}</p><p class="src">${d.eg}</p>`;
+    note.innerHTML = `<table class="dc-time"><tr><th></th><th>First text appears</th><th>Can it stream?</th><th>Text runs behind by</th></tr>` +
+      Object.entries(D).map(([key, v]) => `<tr class="${key === k ? 'on' : ''}"><td>${v.t}</td><td>${v.first}</td><td>${v.stream}</td><td>${v.lag}</td></tr>`).join('') +
+      `</table><p class="dc-watch"><b>${d.t}.</b> ${d.watch}</p><p class="src">Live timings: Pipecat STT benchmark and Artificial Analysis streaming board, 2026; Whisper-Streaming (Macháček et al., 2023).</p>`;
     const F = 140;
     if (k === 'ctc') {
       frames.forEach((c, i) => at(i * F, () => { lit(i + 1); out.insertAdjacentHTML('beforeend', `<span class="tk ${c === '_' ? 'blank' : ''}">${c === '_' ? '∅' : c}</span>`); }));

@@ -160,8 +160,8 @@
 
 <section class="slide" id="decoders" data-section="[01] How it works">
   <span class="kicker">01 · How it works</span>
-  <h2>Four ways to turn sound into words</h2>
-  <p class="lede" style="font-size:19px; margin:-6px 0 0">Every modern system has an encoder that summarises the sound and a decoder that writes the words. The decoder decides most of the practical trade-offs.</p>
+  <h2>When each design writes its words</h2>
+  <p class="lede" style="font-size:19px; margin:-6px 0 0">Every modern system has an encoder that summarises the sound and a decoder that writes the words. The decoder decides when text can appear, which decides whether the design can be used live.</p>
   <div class="dc">
     <div>
       <div class="tabs" id="dc-tabs" role="radiogroup" aria-label="Decoder family"></div>
@@ -172,7 +172,7 @@
     </div>
     <div class="dc-note" id="dc-note"></div>
   </div>
-  <aside class="notes"><p>Click through the four families. CTC labels each frame on its own, then tidies up. A transducer writes as it hears and remembers what it wrote: the standard for live transcription. An encoder–decoder such as Whisper waits for a 30-second window and writes like a translator, which is accurate but cannot stream without tricks, and can invent text in silence. A speech LLM is a language model that reads audio; it follows instructions, which is why every 2026 flagship uses this design.</p><p>The Open ASR Leaderboard paper (2025) found the most accurate systems pair Conformer encoders with transformer decoders, and the fastest use CTC or TDT decoders. Research pack A.</p></aside>
+  <aside class="notes"><p>This slide is about timing; the next one is about accuracy. Click through the four designs and watch when the words appear. CTC labels each slice as it goes, then merges repeats and drops the blanks. A transducer writes word pieces mid-sentence, whenever it is confident: the standard for live transcription. An encoder–decoder such as Whisper waits for the whole 30-second window, then writes; in trailing silence its language model can keep going and invent a line. A speech LLM also waits unless it has been specially trained to stream.</p><p>Line to use: "Watch when the words come out. On the next slide, watch what the model is looking at when it picks each one."</p><p>Sources: Whisper-Streaming (3.3 s, arXiv 2307.14743); Pipecat STT benchmark and Artificial Analysis streaming board for live timings. Research packs A and D.</p></aside>
 </section>
 
 <section class="slide" id="ladder" data-section="[01] How it works">
@@ -199,27 +199,23 @@
     <div class="card par-card">
       <span class="label">2022 · Encoder–decoder</span>
       <h3>OpenAI Whisper</h3>
-      <div class="pc-img" style="height:300px"><img class="shot" src="../assets/speech-to-text/vendor/a-whisper-approach.png" alt="Whisper approach: 680,000 hours of multitask training data, log-mel input, Transformer encoder and decoder, special task tokens"></div>
+      <div class="pc-img" style="height:400px"><img class="shot" src="../assets/speech-to-text/vendor/a-whisper-approach.png" alt="Whisper approach: 680,000 hours of multitask training data, log-mel input, Transformer encoder and decoder, special task tokens"></div>
       <p class="src">Image: OpenAI, "Robust Speech Recognition via Large-Scale Weak Supervision", 2022.</p>
       <ul class="plain small">
-        <li><b>680,000 hours</b> of audio with transcripts found on the web, 117,000 of them in 96 other languages.</li>
-        <li>Learned to write ordinary text, with punctuation and numbers, so no separate formatting step.</li>
-        <li>Open weights. The turbo version still has about 5.6 million downloads a month on Hugging Face.</li>
+        <li><b>680,000 hours</b> of subtitled web audio, about 77 years, 117,000 hours of it in 96 other languages. Open weights; the turbo version still has about 5.6 million downloads a month.</li>
       </ul>
     </div>
     <div class="card par-card">
       <span class="label">2025–2026 · Audio encoder + language model</span>
       <h3>Speech LLMs</h3>
-      <div class="pc-img" style="height:300px; padding:10px"><img class="shot" src="../assets/speech-to-text/vendor/a-qwen3-asr-architecture.png" alt="Qwen3-ASR: an audio encoder feeding a Qwen3 language model, with optional context entities"></div>
+      <div class="pc-img" style="height:400px; padding:10px"><img class="shot" src="../assets/speech-to-text/vendor/a-qwen3-asr-architecture.png" alt="Qwen3-ASR: an audio encoder feeding a Qwen3 language model, with optional context entities"></div>
       <p class="src">Image: Alibaba Qwen team, Qwen3-ASR technical report, January 2026.</p>
       <ul class="plain small">
-        <li>An audio encoder turns sound into tokens that a language model reads alongside a text prompt.</li>
-        <li>Accepts context: the topic, expected names and products, and which languages to expect.</li>
-        <li>Used by OpenAI GPT-Transcribe, Gemini, Voxtral, Qwen3-ASR, AssemblyAI Universal-3 Pro and NVIDIA Nemotron 3.5 Transcribe.</li>
+        <li><b>The prompt is the new lever.</b> Prior visit notes cut missed medical terms by 31% in AssemblyAI's internal test; instructions cut NVIDIA's error from 7.6% to 6.2% (both vendor claims).</li>
       </ul>
     </div>
   </div>
-  <aside class="notes"><p>Context is what speech LLMs add. AssemblyAI reports that giving its model prior visit notes cut missed medical terms by 31% in an internal healthcare test; NVIDIA reports instructions cutting error from 7.6% to 6.2% on its own test. Both are vendor claims. The cost: they are slower and dearer per stream, and a model that can follow instructions can also paraphrase or invent.</p><p>OpenAI does not publish its transcription models' architecture; "speech LLM" is inferred from the token-based context window and the prompt input.</p></aside>
+  <aside class="notes"><p>The two architectures behind steps 3 and 4 of the previous slide. Whisper's lesson was data: about 130 times the largest public labelled collection, scraped from subtitled web video. The speech LLM's lesson is context: you can tell it what the call is about. Both figures on the right are vendor claims. The cost: speech LLMs are slower and dearer per stream, and a model that follows instructions can also paraphrase or invent.</p><p>OpenAI does not publish its transcription models' architecture; "speech LLM" is inferred from the token-based context window and the prompt input.</p></aside>
 </section>
 
 <section class="slide" data-section="[01] How it works">

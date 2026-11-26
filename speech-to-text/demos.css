@@ -449,3 +449,12 @@ table.ld-see td.ok { color: var(--green); font-size: 16px; } table.ld-see td.no 
 table.ld-ex { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
 table.ld-ex th { font-family: var(--f-mono); font-weight: 400; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line-2); }
 table.ld-ex td { padding: 4px 6px; border-bottom: 1px solid var(--line); }
+
+/* --- decoder timing panel --- */
+.dc { grid-template-columns: 1fr 1fr; }
+table.dc-time { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.dc-time th { font-family: var(--f-mono); font-weight: 400; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); text-align: left; padding: 6px; border-bottom: 1px solid var(--line-2); }
+table.dc-time td { padding: 8px 6px; border-bottom: 1px solid var(--line); color: var(--ink-3); line-height: 1.35; vertical-align: top; }
+table.dc-time td:first-child { font-weight: 600; white-space: nowrap; }
+table.dc-time tr.on td { background: var(--blue-soft); color: var(--ink); }
+.dc-watch { font-size: 16px; margin: 14px 0 6px; }
