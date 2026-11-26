@@ -272,6 +272,21 @@ safe('decoder demo', function () {
       watch: 'The same wait as the encoder–decoder unless trained to stream, and the same risk of invented text.' },
   };
   const tabs = document.getElementById('dc-tabs'), grid = document.getElementById('dc-frames'), out = document.getElementById('dc-out'), note = document.getElementById('dc-note');
+  const reads = document.getElementById('dc-reads');
+  // what each decoder reads, and the units it writes in
+  const vec = n => Array.from({ length: n }, () => '<i class="v"></i>').join('');
+  const tk = (list, cls) => list.map(x => `<b class="${cls}">${esc(x)}</b>`).join('');
+  const READS = {
+    ctc: `<div class="rd">${vec(20)}<span class="arr">→</span>${tk(['s', 's', '∅', 'e', 'e', 'v', '…'], 'ch')}</div>
+      <p>One encoder vector per slice: a list of numbers, not a token. Each is labelled on its own with a <b>character</b> or a blank.</p>`,
+    rnnt: `<div class="rd">${vec(20)}<span class="plus">+</span>${tk(['sev', 'en'], 'wp')}<span class="arr">→</span>${tk(['▁six'], 'wp')}</div>
+      <p>The same vectors, as they arrive, plus the <b>word pieces</b> it has already written.</p>`,
+    aed: `<div class="rd">${vec(20)}<span class="cap">1,500 vectors per 30-second window, one per 20 ms, read all at once</span></div>
+      <div class="rd">${tk(['<|en|>', '<|transcribe|>', '<|0.00|>'], 'ctl')}${tk(['▁Seven', '▁six', '.'], 'wp')}${tk(['<|1.52|>', '<|endoftext|>'], 'ctl')}</div>
+      <p>Writes GPT-2-style <b>word pieces</b>, plus <b>control tokens</b> for language, task and timestamps. The audio itself is never turned into tokens.</p>`,
+    llm: `<div class="rd seq">${tk(['Transcribe', '▁this', '▁call', '.', '▁Write', '▁numbers', '▁as', '▁digits', '.', '…'], 'tx')}${vec(19).replace(/class="v"/g, 'class="v au"')}<span class="arr">→</span>${tk(['76'], 'wp')}</div>
+      <p>One sequence: your prompt as ordinary <b>text tokens</b>, then the audio squeezed to about <b>12.5 "audio tokens" a second</b> (80 ms each). These are still vectors, not words from a vocabulary, placed where word embeddings would go. A minute of audio is about 750 of them; Gemini bills 25 a second.</p>`,
+  };
   grid.innerHTML = frames.map((_, i) => `<i data-i="${i}"></i>`).join('');
   let timers = [], mode = 'ctc';
   const at = (ms, f) => timers.push(setTimeout(f, reduced ? 0 : ms));
@@ -279,6 +294,7 @@ safe('decoder demo', function () {
   function run(k) {
     mode = k; timers.forEach(clearTimeout); timers = []; out.innerHTML = ''; lit(0);
     const d = D[k];
+    reads.innerHTML = READS[k];
     note.innerHTML = `<table class="dc-time"><tr><th></th><th>First text appears</th><th>Can it stream?</th><th>Text runs behind by</th></tr>` +
       Object.entries(D).map(([key, v]) => `<tr class="${key === k ? 'on' : ''}"><td>${v.t}</td><td>${v.first}</td><td>${v.stream}</td><td>${v.lag}</td></tr>`).join('') +
       `</table><p class="dc-watch"><b>${d.t}.</b> ${d.watch}</p><p class="src">Live timings: Pipecat STT benchmark and Artificial Analysis streaming board, 2026; Whisper-Streaming (Macháček et al., 2023).</p>`;
