@@ -327,7 +327,7 @@
 <section class="slide" id="wer" data-section="[01] How it works">
   <span class="kicker">01 · How accuracy is measured</span>
   <h2>Word error rate</h2>
-  <p class="lede" style="font-size:19px; margin:-6px 0 0">Line up the transcript against a human reference and count the words that were substituted, deleted or inserted.</p>
+  <p class="lede" style="font-size:19px; margin:-6px 0 0">The standard measure looks simple: line up the transcript against a human reference and count the words substituted, deleted or inserted. In practice the score depends on choices made before anything is counted.</p>
   <div class="tabs" id="wer-ex" role="radiogroup" aria-label="Example" style="margin-top:16px"></div>
   <div class="wer-in">
     <span class="label">Reference</span><div class="ref" id="wer-ref"></div>
@@ -336,7 +336,8 @@
   <div style="margin-top:12px"><label class="chk"><input type="checkbox" id="wer-norm"> Normalise both first: lower case, no punctuation, numbers written as words</label></div>
   <div class="wer-align" id="wer-align"></div>
   <div class="wer-res" id="wer-res"></div>
-  <aside class="notes"><p>Try each example with normalisation off, then on. "Formatting only" scores very badly raw and perfectly once normalised: the transcript was right, only its format differed. "Invented text" shows that WER can exceed 100%. Every benchmark applies its own normaliser, which is one reason scores from different boards cannot be compared. Research pack A's worked example scored the same transcript at 78%, 56% or 14% depending only on normalisation.</p><p>WER weights every word equally. For client work, also measure accuracy on the words that matter: amounts, account numbers, names and products.</p></aside>
+  <div class="callout" style="margin-top:14px; font-size:16px"><b>Why one number is hard to trust.</b> The same transcript can score 78%, 56% or 14% depending only on how both texts are normalised, and each benchmark normalises differently. Every word counts the same, so a wrong account number costs no more than a missed "the". Invented text can push the score above 100%.</div>
+  <aside class="notes"><p>The point of this slide: even measuring accuracy is not straightforward. Try each example with normalisation off, then on. "Formatting only" scores very badly raw and perfectly once normalised: the transcript was right, only its format differed. "Invented text" shows that WER can exceed 100%. Every benchmark applies its own normaliser, which is one reason scores from different boards cannot be compared. Research pack A's worked example scored the same transcript at 78%, 56% or 14% depending only on normalisation.</p><p>WER weights every word equally. For client work, also measure accuracy on the words that matter: amounts, account numbers, names and products.</p></aside>
 </section>
 
 <!-- ================= 02 LIVE TRANSCRIPTION ================= -->
