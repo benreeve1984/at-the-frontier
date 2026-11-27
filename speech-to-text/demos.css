@@ -548,3 +548,17 @@ table.dc-time tr.on td { background: var(--blue-soft); color: var(--ink); }
 .vp-r { font-family: var(--f-mono); font-size: 12px; color: var(--teal); }
 .vp-low { margin-top: 16px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items: start; }
 .vp-low .callout { font-size: 16px; }
+
+/* --- today's landscape --- */
+.ld-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.ld-card { padding: 14px 16px; }
+.ld-t { display: block; font-size: 18px; font-weight: 600; color: var(--ink); }
+.ld-card p { font-size: 15px; line-height: 1.4; color: var(--ink-2); margin: 6px 0 10px; }
+.ld-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.ld-chips i { font-style: normal; font-size: 13.5px; padding: 3px 8px; background: var(--paper-2); border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
+.ld-band { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; margin-top: 14px; }
+.ld-band > .label { width: 160px; color: var(--teal); }
+.ld-band .ld-chips i { border-color: var(--teal); background: color-mix(in srgb, var(--teal) 8%, white); }
+.ld-ways { display: flex; gap: 10px; }
+.ld-ways span { font-size: 15px; padding: 6px 12px; border: 1.5px solid var(--blue); color: var(--ink); background: #fff; }
+.ld-band small { flex-basis: 100%; margin-left: 246px; font-size: 13.5px; color: var(--ink-3); }
