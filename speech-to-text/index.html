@@ -394,6 +394,37 @@
   <aside class="notes"><p>The difference between partial and final results is the core of live transcription. A live caption can show the partial and correct it; an agent that books a flight to Austin cannot. Sources: AWS, AssemblyAI and Speechmatics documentation; Daily, "Benchmarking STT for voice agents", February 2026. Research pack D, section 3.</p></aside>
 </section>
 
+<section class="slide" id="s2s" data-section="[02] Live transcription">
+  <span class="kicker">02 · Live transcription · Context</span>
+  <h2>Speech-to-speech models</h2>
+  <p class="lede" style="font-size:19px; margin:-6px 0 0">Some voice agents skip the transcript: one model hears audio and speaks audio back. This session ranks transcription, but clients will ask about these.</p>
+  <div class="s2s-flows">
+    <div class="s2s-row"><span class="label">Cascade</span>
+      <i class="s2s-a">Caller</i><b>Speech to text</b><em>text</em><b>Language model</b><em>text</em><b>Text to speech</b><i class="s2s-a">Reply</i>
+      <small>Text between each step can be logged, checked and redacted.</small></div>
+    <div class="s2s-row one" data-step="1"><span class="label">Speech to speech</span>
+      <i class="s2s-a">Caller</i><b class="wide">One model hears and speaks, and listens while it talks</b><i class="s2s-a">Reply</i>
+      <small>Any transcript is an optional side output.</small></div>
+  </div>
+  <div class="s2s-cols">
+    <div class="card" data-step="2"><span class="label" style="color:var(--teal)">What they can do</span>
+      <ul><li><b>Hear tone.</b> Frustration, sarcasm, laughter and hesitation reach the model; a transcript drops them.</li>
+      <li><b>Talk and listen at once.</b> "Full duplex": say "mhm", take interruptions, stay quiet while the caller thinks.</li>
+      <li><b>Sound like a person.</b> Pauses, emphasis, laughter, and switching language mid-sentence.</li></ul></div>
+    <div class="card" data-step="3"><span class="label" style="color:var(--red)">What they cannot do reliably yet</span>
+      <ul><li><b>Keep a record.</b> There is no transcript of record, only a weaker optional one.</li>
+      <li><b>Be checked before they speak.</b> No text step to filter, redact or approve.</li>
+      <li><b>Follow instructions and call tools</b> as well as text models. Adding reasoning slows the first reply, up to about 3 s.</li>
+      <li><b>Cost the same.</b> About 3–5 times a cascade, on one estimate.</li></ul></div>
+    <div class="card" data-step="4"><span class="label" style="color:var(--purple)">The frontier, 2026</span>
+      <ul><li><b>OpenAI GPT-Live (Jul–Sep).</b> Full duplex. It hands reasoning and tool calls to a separate text model.</li>
+      <li><b>Block's Dessa (Oct).</b> Trained only on recorded conversation, with no text. Laughs, sighs and interjects like a person; reviewers found its answers vague and its instruction-following weak. Waitlist only.</li>
+      <li><b>Fish Audio Live 3 (Nov).</b> Full duplex, reported to react in 186 ms.</li></ul></div>
+  </div>
+  <div class="callout" data-step="5" style="margin-top:12px; font-size:16px">Realism is improving faster than control. The more a model behaves like a person, the harder it is to check what it will say before it says it. Today's answer is a split: the voice model runs the conversation, and text systems make the decisions, call the tools and keep the record.</div>
+  <aside class="notes"><p>Many people have not met these yet. The point is that "voice AI" now means two different builds. A cascade (the rest of this section) turns speech into text, lets a text model decide, and turns the reply back into speech. A speech-to-speech model does it in one step. Kyutai's Moshi (2024) showed how: audio is turned into codec tokens, discrete units that can be generated as well as read, and the model handles its own speech and the caller's as parallel streams.</p><p>What to say about the frontier. OpenAI's GPT-Live launched in ChatGPT in July 2026 and in the API on 10 September at $0.05 a minute plus the backend model; its design, a voice front-end that delegates thinking and tools to a text model, is OpenAI conceding the control problem. Block's Dessa (announced by Jack Dorsey in late October) is the "how is that not a person?" demo: Block says it was trained from scratch on human conversation only, on a single NVIDIA GB200 NVL72 rack, and runs on a high-end MacBook. These are Block's claims; it is not available yet, and Blaze's review of the demo videos found it "linguistically impressive" but vague and poor at following directions. Fish Audio Live 3's 186 ms figure is from press coverage of the launch, not tested.</p><p>The production question: how do you stop a convincing voice from saying the wrong thing? With a cascade you can check the text before it is spoken. With speech-to-speech you rely on the system prompt, monitoring after the fact, and hand-offs to text models. Also consider voice cloning and impersonation risk, and prompt injection by audio. Slide 23 compares speed and cost in detail.</p><p>Sources: research pack A, section 6; pack D, section 5 (Artificial Analysis first-audio times; Pipecat primer cost estimate); block.xyz/dessa and Blaze News, 4 Nov 2026; MarkTechPost, 10 Nov 2026 (Fish Audio).</p></aside>
+</section>
+
 <section class="slide" id="budget" data-section="[02] Live transcription">
   <span class="kicker">02 · Live transcription · Voice agents</span>
   <h2>Where the time goes in a voice agent</h2>
