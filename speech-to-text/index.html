@@ -318,7 +318,7 @@
     </div>
     <div>
       <figure><img class="shot" src="../assets/speech-to-text/vendor/a-careless-whisper-harms.png" alt="Share of Whisper hallucinations that perpetuate violence, make inaccurate associations or imply false authority" style="max-height:250px; width:100%; object-fit:contain"><figcaption>Types of harm in Whisper's invented text. Image: Koenecke et al., "Careless Whisper", ACM FAccT 2024.</figcaption></figure>
-      <div class="callout warn" style="margin-top:16px; font-size:16px">In October 2024 the AP reported a Whisper-based clinical tool used in about 7 million medical visits that deleted the original audio, so transcripts could not be checked. Keep the audio, cut silence before transcription, and ask vendors for an invented-text rate. None publishes one.</div>
+      <div class="callout warn" style="margin-top:16px; font-size:16px">Nabla’s Whisper-based note-taker was used in about 7 million doctor visits. It deleted each recording after transcription, so nobody could check the notes for invented text (AP, October 2024).</div>
     </div>
   </div>
   <aside class="notes"><p>Invented text is a property of models with a language-model decoder: Whisper and speech LLMs. CTC and transducer models make "sounds-like" errors but rarely invent fluent sentences in silence. A cheap check is to run a CTC model alongside and flag spans where the two disagree.</p><p>Sources: Careless Whisper (arXiv 2402.08021); AP, 26 October 2024; Koenecke et al., PNAS 117(14), 2020; AssemblyAI code-switching test, July 2026 (vendor-run). Research pack A, section 4.</p></aside>
